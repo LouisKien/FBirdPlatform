@@ -4,22 +4,21 @@
  */
 package fbird.controller;
 
-import fbird.feedback.FeedbackDAO;
-import fbird.feedback.FeedbackDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import fbird.feedback.FeedbackDAO;
+import fbird.feedback.FeedbackDTO;
+import java.util.List;
 
 /**
  *
  * @author Admin
  */
-public class FeedbackController extends HttpServlet {
+public class ViewFeedbackController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,25 +29,24 @@ public class FeedbackController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    private static final String ERROR="cặc.jsp";
+    private static final String SUCCESS="lồn.jsp";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try {
+         String url=ERROR;
+        try{
+            int shop_product_item_id = Integer.parseInt(request.getParameter("shop_product_item_id"));
             FeedbackDAO dao = new FeedbackDAO();
-            int custommer_id = Integer.parseInt(request.getParameter("custommer_id"));
-            int shop_product_item_id = Integer.parseInt(request.getParameter("Shop_product_item_id"));
-            String feedback = request.getParameter("feedback");
-            Boolean status = true;
-            int number_of_stars = Integer.parseInt(request.getParameter("number_of_stars"));
-            String feedback_date_str = request.getParameter("feedback_date");
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            Date feedback_date = null;
-            feedback_date = dateFormat.parse(feedback_date_str);
-            FeedbackDTO addfeedback = new FeedbackDTO(custommer_id, shop_product_item_id, feedback, status, number_of_stars, feedback_date);
-            dao.addFeedback(addfeedback);
-        } catch (Exception e) {
-            e.printStackTrace();
-
+            List<FeedbackDTO> listFeedback = dao.getFeedback(shop_product_item_id);
+            if(listFeedback.size()>0){
+                request.setAttribute("LIST_USER", listFeedback);
+                url= SUCCESS;
+            }
+        }catch(Exception ex){
+            log("Error at Search: " + ex.toString());
+        }finally{
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 
@@ -65,6 +63,7 @@ public class FeedbackController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
     }
 
     /**

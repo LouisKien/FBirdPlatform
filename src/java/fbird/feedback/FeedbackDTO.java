@@ -32,8 +32,6 @@ public class FeedbackDTO {
         this.feedback_date = feedback_date;
     }
 
-    
-
     public FeedbackDTO(int customer_id, int shop_product_item_id, String feedback, Boolean status, int number_of_stars, Date feedback_date) {
         this.customer_id = customer_id;
         this.shop_product_item_id = shop_product_item_id;
@@ -42,6 +40,10 @@ public class FeedbackDTO {
         this.number_of_stars = number_of_stars;
         this.feedback_date = feedback_date;
     }
+
+    
+
+   
 
     public int getFeedback_id() {
         return feedback_id;

@@ -1,11 +1,20 @@
-<!--<%@page import="java.util.List"%>
-<%@page import="fbird.feedback.FeedbackDTO"%>-->
-<html lang="en">
+<%-- 
+    Document   : productDetail
+    Created on : Jun 23, 2023, 1:28:03 PM
+    Author     : Khanh
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="fbird.feedback.FeedbackDTO"%>
+<!DOCTYPE html>
+<html>
     <head>
         <meta charset="UTF-8">
+        <title>Product Details Page</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Product Details Page</title>
+        
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <!-- Favicon -->
         <link href="img/favicon.ico" rel="icon">
@@ -192,7 +201,7 @@
             Nó được thiết kế để đáp ứng nhu cầu dinh dưỡng của các loài chim khác nhau, bao gồm các loại vẹt, bồ câu, sáo và cú.
         </h1>
 
-                <div style="margin-top: 50px;">
+        <!--        <div style="margin-top: 50px;">
                     <div class="mb-5">
                         <h3 class="border-start border-5 border-primary ps-3 mb-4" style="margin-left: 10px;">3 Bình luận</h3>
                         <div class="d-flex mb-4" style="margin-left: 10px;">
@@ -219,8 +228,10 @@
                                 <button class="btn btn-sm btn-light">Phản hồi</button>
                             </div>
                         </div>
-                    </div>
-<!--        <form action="ViewFeedbackController">
+                    </div>-->
+        
+        <form action="ViewFeedbackController" >
+            
     <% 
     List<FeedbackDTO> listFeedback = (List<FeedbackDTO>) request.getAttribute("listFeedback");
     if (listFeedback != null && !listFeedback.isEmpty()) {
@@ -232,9 +243,10 @@
  
     <% 
         }
+    }
   
     %>
-        </form>-->
+        </form>
 
         <!-- Comment List End -->
 
@@ -261,7 +273,7 @@
                 </div>
             </form>
         </div>
-    </div>
+    
 
 
     <!-- Comment Form End -->
@@ -348,8 +360,7 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-</body>
-
+    </body>
 </html>
 <style>
     .url{

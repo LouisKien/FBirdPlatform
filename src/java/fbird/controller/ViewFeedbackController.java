@@ -29,19 +29,18 @@ public class ViewFeedbackController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static final String ERROR="cặc.jsp";
-    private static final String SUCCESS="lồn.jsp";
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-         String url=ERROR;
+        String url="productDetail.jsp";
         try{
             int shop_product_item_id = Integer.parseInt(request.getParameter("shop_product_item_id"));
             FeedbackDAO dao = new FeedbackDAO();
             List<FeedbackDTO> listFeedback = dao.getFeedback(shop_product_item_id);
             if(listFeedback.size()>0){
                 request.setAttribute("LIST_USER", listFeedback);
-                url= SUCCESS;
+                
             }
         }catch(Exception ex){
             log("Error at Search: " + ex.toString());

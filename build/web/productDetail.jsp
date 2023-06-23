@@ -231,14 +231,16 @@
                     </div>-->
         
         <form action="ViewFeedbackController" >
-            
+             <input type="submit" name="shop_product_item_id" readonly="" value=2>
     <% 
-    List<FeedbackDTO> listFeedback = (List<FeedbackDTO>) request.getAttribute("listFeedback");
+    List<FeedbackDTO> listFeedback = (List<FeedbackDTO>) request.getAttribute("LIST_Feedback");
     if (listFeedback != null && !listFeedback.isEmpty()) {
         int count = 0;
         for (FeedbackDTO feedback : listFeedback) {
     %>
     <div><%= ++count %></div>
+    <div><%= feedback.getCustomer_id() %></div>
+    <div><%= feedback.getFeedback() %></div>
     <div><%= feedback.getCustomer_id() %></div>
  
     <% 

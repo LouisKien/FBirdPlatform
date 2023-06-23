@@ -5,23 +5,23 @@
         <servlet-class>fbird.controller.MainController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>FeedbackController</servlet-name>
-        <servlet-class>fbird.controller.ViewFeedbackController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>FeedBackController</servlet-name>
         <servlet-class>fbird.controller.FeedbackController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewFeedbackController</servlet-name>
+        <servlet-class>fbird.controller.ViewFeedbackController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>FeedbackController</servlet-name>
-        <url-pattern>/FeedbackController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>FeedBackController</servlet-name>
         <url-pattern>/FeedBackController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewFeedbackController</servlet-name>
+        <url-pattern>/ViewFeedbackController</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -39,7 +39,7 @@ public class ViewFeedbackController extends HttpServlet {
             FeedbackDAO dao = new FeedbackDAO();
             List<FeedbackDTO> listFeedback = dao.getFeedback(shop_product_item_id);
             if(listFeedback.size()>0){
-                request.setAttribute("LIST_USER", listFeedback);
+                request.setAttribute("LIST_Feedback", listFeedback);
                 
             }
         }catch(Exception ex){

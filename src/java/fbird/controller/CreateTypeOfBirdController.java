@@ -3,12 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 package fbird.controller;
+
 import fbird.typeofbird.TypeOfBirdDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -16,7 +16,7 @@ import java.io.PrintWriter;
  *
  * @author Admin
  */
-public class DeleteTyoeOfBirdController extends HttpServlet {
+public class CreateTypeOfBirdController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,21 +30,22 @@ public class DeleteTyoeOfBirdController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        try  {
+        String url="xemLoaiChim.jsp";
+         try  {
             String name = request.getParameter("name");
-            TypeOfBirdDAO dao = new TypeOfBirdDAO(); 
-              boolean checkDelete = dao.deleteTypeOfBird(name);
-           
-            if(checkDelete=false){
-                 request.setAttribute("ERROR", "!!!sản phẩm của loại chim vẫn đang được bán, không thể xóa loại chim!!!");
-//              
-          }
-             
-        }catch(Exception e){
-            log("Error at DeleteController: " + e.toString());
-        }finally{
-            request.getRequestDispatcher("xemLoaiChim.js").forward(request, response);
+            TypeOfBirdDAO dao = new TypeOfBirdDAO();
+            boolean checkExist = dao.checkExist(name);
+            if (checkExist) {
+                  request.setAttribute("ERROR", "!!!LOẠI CHIM ĐÃ TỒN TẠI!!!");
+                url = "themLoaiChim.jsp";
+            }else{
+                dao.createTypeOfBird(name);
+            }
+    }catch(Exception e){
+         log("Error at DeleteController: " + e.toString());
+    }
+    finally{
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 
@@ -86,5 +87,5 @@ public class DeleteTyoeOfBirdController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+    }
 
-}

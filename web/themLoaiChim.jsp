@@ -83,13 +83,15 @@
 
                     <div class="row my-5">
                         <!--                        <h3 class="fs-4 mb-3">Ngày đặt hàng</h3>-->
+                        <form action="CreateTypeOfBirdController">
+                        
                         <div class="col">
 
-                            <label for="typeOfBirdName" style="font-size: 18px; font-weight: bold;">Nhập tên chim: </label> <input type="text" id="typeOfBirdName" name="typeOfBirdName" placeholder="Nhập tên chim cần tạo" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left:5%;"></br>
+                            <label for="typeOfBirdName" style="font-size: 18px; font-weight: bold;">Nhập tên chim: </label> <input type="text" id="typeOfBirdName" name="name" placeholder="Nhập tên chim cần tạo" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left:5%;"></br>
 
-
+                            <button type="submit" class="btn btn-primary" style="margin-left: 50%; margin-top: 30px; border-radius: 20px;">Cập nhật</button>
                         </div>
-
+                            </form>
 
 
                     </div>
@@ -98,7 +100,7 @@
                     <div class="form-group mt-5">
 
                     </div>
-                    <button type="button" class="btn btn-primary" style="margin-left: 50%; margin-top: 30px; border-radius: 20px;">Cập nhật</button>
+                    
                     <!--                        Nhấn cập nhật -> in ra thêm chim thành công và sẽ ở lại thêm tiếp, muốn kiểm ra thì click bảng xem loại chim -->
                 </div>
             </div>

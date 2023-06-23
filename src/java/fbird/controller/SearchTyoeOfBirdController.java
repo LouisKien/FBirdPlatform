@@ -3,20 +3,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 package fbird.controller;
+
 import fbird.typeofbird.TypeOfBirdDAO;
+import fbird.typeofbird.TypeOfBirdDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 /**
  *
  * @author Admin
  */
-public class DeleteTyoeOfBirdController extends HttpServlet {
+public class SearchTyoeOfBirdController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,21 +32,19 @@ public class DeleteTyoeOfBirdController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        try  {
-            String name = request.getParameter("name");
-            TypeOfBirdDAO dao = new TypeOfBirdDAO(); 
-              boolean checkDelete = dao.deleteTypeOfBird(name);
-           
-            if(checkDelete=false){
-                 request.setAttribute("ERROR", "!!!sản phẩm của loại chim vẫn đang được bán, không thể xóa loại chim!!!");
-//              
-          }
-             
-        }catch(Exception e){
-            log("Error at DeleteController: " + e.toString());
+//        String url = ERROR;
+        try {
+            String search=request.getParameter("search");
+            TypeOfBirdDAO dao = new TypeOfBirdDAO();
+            List<TypeOfBirdDTO> listTypeOfBird = dao.searchTypeOfBird(search);
+            if(listTypeOfBird.size()>0){
+                request.setAttribute("LIST_TYPE_OF_BIRD", listTypeOfBird);
+//                url=SUCCESS;
+            }
+        } catch (Exception e) {
+            log("ERROR at SearchController: " + e.toString());
         }finally{
-            request.getRequestDispatcher("xemLoaiChim.js").forward(request, response);
+            request.getRequestDispatcher("xemLoaiChim.jsp").forward(request, response);
         }
     }
 

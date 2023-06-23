@@ -23,8 +23,9 @@ public class TypeOfBirdDAO {
     private static final String CREATE = "INSERT INTO type_of_bird (name) VALUES (?)";
     private static final String DELETE = "DELETE type_of_bird Where name = ?";
     private static final String SEARCH = "SELECT name FROM type_of_bird WHERE name like ?";
+    private static final String CHECK_EXIST = "SELECT name FROM tbl_User WHERE name=?";
     
-    public List<TypeOfBirdDTO> searchTypeOfBird(String name) throws SQLException {
+    public List<TypeOfBirdDTO> searchTypeOfBird(String search) throws SQLException {
         List<TypeOfBirdDTO> list = new ArrayList<>();
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -33,11 +34,9 @@ public class TypeOfBirdDAO {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 ptm = conn.prepareStatement(SEARCH);
-                ptm.setString(1,"%"+ name+ "%" );
+                ptm.setString(1,"%"+ search+ "%" );
                 rs = ptm.executeQuery();
-//                while(rs.next()){
-//                    list.add(new UserDto(rs.getString("userID"), rs.getString("fullName"), rs.getString("roleID"), "***"));   
-//                }
+
 
                 while (rs.next()) {                 
                     String nameofbird = rs.getString("name");
@@ -104,6 +103,60 @@ public class TypeOfBirdDAO {
         }
         return checkDelete;
     }
-    
+    public boolean checkExist(String name) throws SQLException {
+        boolean check = false;
+        TypeOfBirdDTO tob = null;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(CHECK_EXIST);
+                ptm.setString(1, name);
+                rs = ptm.executeQuery();
+                if (rs.next()) {
+                    check = true;
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+    public void addFeedback(String name) throws SQLException, ClassNotFoundException{
+        
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(CREATE);
+                ptm.setString(1, name);
+                ptm.executeUpdate();
+               
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        
+    }
     
 }

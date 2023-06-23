@@ -2,6 +2,17 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/typeofbird/TypeOfBirdDTO.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/web/xemLoaiChim.jsp</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/controller/SearchTyoeOfBirdController.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/typeofbird/TypeOfBirdDAO.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/controller/CreateTypeOfBirdController.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/feedback/FeedbackDAO.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/controller/FeedbackController.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/web/productDetail.jsp</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/web/themLoaiChim.jsp</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/controller/DeleteTyoeOfBirdController.java</file>
+        </group>
     </open-files>
 </project-private>

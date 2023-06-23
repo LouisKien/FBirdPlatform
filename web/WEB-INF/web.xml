@@ -20,6 +20,14 @@
         <servlet-name>DeleteTyoeOfBirdController</servlet-name>
         <servlet-class>fbird.controller.DeleteTyoeOfBirdController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchTyoeOfBirdController</servlet-name>
+        <servlet-class>fbird.controller.SearchTyoeOfBirdController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateTypeOfBirdController</servlet-name>
+        <servlet-class>fbird.controller.CreateTypeOfBirdController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -39,5 +47,13 @@
     <servlet-mapping>
         <servlet-name>DeleteTyoeOfBirdController</servlet-name>
         <url-pattern>/DeleteTyoeOfBirdController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchTyoeOfBirdController</servlet-name>
+        <url-pattern>/SearchTyoeOfBirdController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateTypeOfBirdController</servlet-name>
+        <url-pattern>/CreateTypeOfBirdController</url-pattern>
     </servlet-mapping>
 </web-app>

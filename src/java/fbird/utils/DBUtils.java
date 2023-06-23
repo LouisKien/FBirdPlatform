@@ -13,13 +13,24 @@ import java.sql.SQLException;
  * @author louis
  */
 public class DBUtils {
-    public static Connection getConnection() throws SQLException, ClassNotFoundException {
+    private static final String userName="bridtradingfood1_SQLLogin_1";
+    private static final String password="gj6u9lboq5";
+    public static Connection getConnection() throws ClassNotFoundException, SQLException {
         Connection conn = null;
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        String url="jdbc:sqlserver://localhost:1433;databaseName=nguoivietchimtay";
-        String username="sa";
-        String password="12345";
-        conn= DriverManager.getConnection(url, username, password);
+        String url = ("jdbc:sqlserver://BirdFood.mssql.somee.com:1433;databaseName=BirdFood");
+        conn = DriverManager.getConnection(url,userName,password);
         return conn;
     }
 }
+//public class DBUtils {
+//    public static Connection getConnection() throws SQLException, ClassNotFoundException {
+//        Connection conn = null;
+//        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+//        String url="jdbc:sqlserver://localhost:1433;databaseName=nguoivietchimtay";
+//        String username="sa";
+//        String password="12345";
+//        conn= DriverManager.getConnection(url, username, password);
+//        return conn;
+//    }
+//}

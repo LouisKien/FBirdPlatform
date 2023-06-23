@@ -1,0 +1,69 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package fbird.report;
+
+/**
+ *
+ * @author Admin
+ */
+public class ReportedProductDTO {
+    int report_product_id;
+    int shop_product_item_id;
+    int customer_id;
+    String detail;
+
+    public ReportedProductDTO() {
+    }
+
+    public ReportedProductDTO(int report_product_id, int shop_product_item_id, int customer_id, String detail) {
+        this.report_product_id = report_product_id;
+        this.shop_product_item_id = shop_product_item_id;
+        this.customer_id = customer_id;
+        this.detail = detail;
+    }
+
+    public ReportedProductDTO(int shop_product_item_id, int customer_id, String detail) {
+        this.shop_product_item_id = shop_product_item_id;
+        this.customer_id = customer_id;
+        this.detail = detail;
+    }
+
+    public int getReport_product_id() {
+        return report_product_id;
+    }
+
+    public void setReport_product_id(int report_product_id) {
+        this.report_product_id = report_product_id;
+    }
+
+    public int getShop_product_item_id() {
+        return shop_product_item_id;
+    }
+
+    public void setShop_product_item_id(int shop_product_item_id) {
+        this.shop_product_item_id = shop_product_item_id;
+    }
+
+    public int getCustomer_id() {
+        return customer_id;
+    }
+
+    public void setCustomer_id(int customer_id) {
+        this.customer_id = customer_id;
+    }
+
+    public String getDetail() {
+        return detail;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
+    }
+
+   
+
+    
+    
+}

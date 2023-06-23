@@ -23,7 +23,7 @@ public class TypeOfBirdDAO {
     private static final String CREATE = "INSERT INTO type_of_bird (name) VALUES (?)";
     private static final String DELETE = "DELETE type_of_bird Where name = ?";
     private static final String SEARCH = "SELECT name FROM type_of_bird WHERE name like ?";
-    private static final String CHECK_EXIST = "SELECT name FROM tbl_User WHERE name=?";
+    private static final String CHECK_EXIST = "SELECT name FROM type_of_bird WHERE name=?";
     
     public List<TypeOfBirdDTO> searchTypeOfBird(String search) throws SQLException {
         List<TypeOfBirdDTO> list = new ArrayList<>();
@@ -115,7 +115,8 @@ public class TypeOfBirdDAO {
                 ptm = conn.prepareStatement(CHECK_EXIST);
                 ptm.setString(1, name);
                 rs = ptm.executeQuery();
-                if (rs.next()) {
+                if(rs.next()) {
+                    
                     check = true;
                 }
             }
@@ -134,29 +135,6 @@ public class TypeOfBirdDAO {
         }
         return check;
     }
-    public void addFeedback(String name) throws SQLException, ClassNotFoundException{
-        
-        Connection conn = null;
-        PreparedStatement ptm = null;
-        try {
-            conn = DBUtils.getConnection();
-            if (conn != null) {
-                ptm = conn.prepareStatement(CREATE);
-                ptm.setString(1, name);
-                ptm.executeUpdate();
-               
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        } finally {
-            if (ptm != null) {
-                ptm.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
-        }
-        
-    }
+    
     
 }

@@ -8,29 +8,29 @@ package fbird.report;
  *
  * @author Admin
  */
-public class ReportShopDTO {
+public class ReportedShopDTO {
     int reported_shop_id;
     int shop_id;
     int custommer_id;
     String detail;
-    int reported_reson;
+    
 
-    public ReportShopDTO() {
+    public ReportedShopDTO() {
     }
 
-    public ReportShopDTO(int reported_shop_id, int shop_id, int custommer_id, String detail, int reported_reson) {
+    public ReportedShopDTO(int reported_shop_id, int shop_id, int custommer_id, String detail) {
         this.reported_shop_id = reported_shop_id;
         this.shop_id = shop_id;
         this.custommer_id = custommer_id;
         this.detail = detail;
-        this.reported_reson = reported_reson;
+        
     }
 
-    public ReportShopDTO(int shop_id, int custommer_id, String detail, int reported_reson) {
+    public ReportedShopDTO(int shop_id, int custommer_id, String detail) {
         this.shop_id = shop_id;
         this.custommer_id = custommer_id;
         this.detail = detail;
-        this.reported_reson = reported_reson;
+        
     }
 
     public int getReported_shop_id() {
@@ -64,14 +64,4 @@ public class ReportShopDTO {
     public void setDetail(String detail) {
         this.detail = detail;
     }
-
-    public int getReported_reson() {
-        return reported_reson;
-    }
-
-    public void setReported_reson(int reported_reson) {
-        this.reported_reson = reported_reson;
-    }
-    
-    
 }

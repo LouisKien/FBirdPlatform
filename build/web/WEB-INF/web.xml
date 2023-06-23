@@ -28,6 +28,22 @@
         <servlet-name>CreateTypeOfBirdController</servlet-name>
         <servlet-class>fbird.controller.CreateTypeOfBirdController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewReportedShopController</servlet-name>
+        <servlet-class>fbird.controller.ViewReportedShopController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewReportedProductController</servlet-name>
+        <servlet-class>fbird.controller.ViewReportedProductController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReportProductController</servlet-name>
+        <servlet-class>fbird.controller.ReportProductController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReportShopController</servlet-name>
+        <servlet-class>fbird.controller.ReportShopController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -55,5 +71,21 @@
     <servlet-mapping>
         <servlet-name>CreateTypeOfBirdController</servlet-name>
         <url-pattern>/CreateTypeOfBirdController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewReportedShopController</servlet-name>
+        <url-pattern>/ViewReportedShopController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewReportedProductController</servlet-name>
+        <url-pattern>/ViewReportedProductController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReportProductController</servlet-name>
+        <url-pattern>/ReportProductController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReportShopController</servlet-name>
+        <url-pattern>/ReportShopController</url-pattern>
     </servlet-mapping>
 </web-app>

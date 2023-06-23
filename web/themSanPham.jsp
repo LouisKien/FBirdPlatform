@@ -110,43 +110,19 @@
                         <div class="col">
                             <div class="container" style="display: grid; grid-template-rows: repeat(4,0fr); gap:10px;">
                                 <label for="productName" style="font-size: 18px; font-weight: bold;" >Tên sản phẩm:  </label> <input type="text" id="productName" name="productName" placeholder="Nhập tên sản phẩm" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-                                <label for="typeOfBird" style="font-size: 18px; font-weight: bold;">Dành cho chim:</label> <input type="text" id="typeOfBird" name="typeOfBird" placeholder="Nhập tên chim" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left:5%;"></br>
+                                <label for="typeOfBird" style="font-size: 18px; font-weight: bold;">Dành cho chim: </label> <input type="text" id="typeOfBird" name="typeOfBird" placeholder="Nhập tên chim" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left:5%;"></br>
                                 <label for="typeProduct" style="font-size: 18px; font-weight: bold;">Loại hàng:     </label> <input type="text" id="typeProduct" name="typeProduct" placeholder="Nhập loại hàng" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                <label for="productPrice" style="font-size: 18px; font-weight: bold;">Giá sản phẩm: </label> <input type="text" id="productPrice" name="description" placeholder="Nhập giá" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
                                 <label for="description" style="font-size: 18px; font-weight: bold;">Mô tả sản phẩm:</label> <input type="text" id="description" name="description" placeholder="Nhập mô tả" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
 
 
                             </div>
 
-                            <label for="method1" style="font-size: 18px; font-weight: bold">Express</label>
-                            <div class="custom-control custom-switch" style="font-size: 20px; border:2px solid; border-radius: 10px; padding: 20px;">
+                            
 
-                                Hỏa tốc<label class="switch" style="float: right;">
-                                    <input type="checkbox">
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
                         </div>
 
-                        <div class="form-group mt-5">
-                            <label for="method2" style="font-size: 18px; font-weight: bold">Standard</label>
-                            <div class="custom-control custom-switch" style="font-size: 20px; border:2px solid; border-radius: 10px; padding: 20px;">
 
-                                Nhanh<label class="switch" style="float: right;">
-                                    <input type="checkbox">
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="form-group mt-5">
-                            <label for="method3" style="font-size: 18px; font-weight: bold">Economy</label>
-                            <div class="custom-control custom-switch" style="font-size: 20px; border:2px solid; border-radius: 10px; padding: 20px;">
-
-                                Tiết kiệm<label class="switch" style="float: right;">
-                                    <input type="checkbox">
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
-                        </div>
                         <button type="button" class="btn btn-primary" style="margin-top: 30px; border-radius: 20px;">Cập nhật</button>
                     </div>
                 </div>

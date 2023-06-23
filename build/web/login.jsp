@@ -43,17 +43,17 @@
                                         </p>
                                     </div>
                                 </div>
-                                <form action="#" class="signin-form">
+                                <form action="MainController" class="signin-form" method="POST">
                                     <div class="form-group mb-3">
                                         <label class="label" for="name">Tên đăng nhập:</label>
-                                        <input type="text" class="form-control" placeholder="Username" required>
+                                        <input type="text" class="form-control" placeholder="Username" name="username" required="">
                                     </div>
                                     <div class="form-group mb-3">
                                         <label class="label" for="password">Mật khẩu:</label>
-                                        <input type="password" class="form-control" placeholder="Password" required>
+                                        <input type="password" class="form-control" placeholder="Password" name="password" required="">
                                     </div>
                                     <div class="form-group">
-                                        <button type="submit" class="form-control btn btn-primary rounded submit px-3">Đăng nhập</button>
+                                        <button type="submit" class="form-control btn btn-primary rounded submit px-3" name="action" value="Login">Đăng nhập</button>
                                     </div>
                                     <div class="form-group d-md-flex">
                                         <div class="w-50 text-left">

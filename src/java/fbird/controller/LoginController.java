@@ -4,10 +4,13 @@
  */
 package fbird.controller;
 
+import fbird.user.UserDAO;
+import fbird.user.UserDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -15,26 +18,34 @@ import java.io.PrintWriter;
  *
  * @author louis
  */
-public class MainController extends HttpServlet {
+public class LoginController extends HttpServlet {
 
-    public static final String WELCOME_PAGE = "index.html";
-    
-    private static final String LOGIN = "Login";
-    private static final String LOGIN_CONTROLLER = "LoginController";
-    
+    private static final String LOGIN_PAGE = "login.jsp";
+    private static final int AD = 1;
+    private static final String AD_PAGE = "admin.jsp";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = WELCOME_PAGE;
+        String url = LOGIN_PAGE;
         try {
-            String action = request.getParameter("action");
-            if (LOGIN.equals(action)) {
-                url = LOGIN_CONTROLLER;
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+            UserDAO dao = new UserDAO();
+            UserDTO loginUser =  dao.checkLogin(username, password);
+            if (loginUser == null) {
+                request.setAttribute("ERROR", "Incorrect userID or password");
             } else {
-                request.setAttribute("ERROR", "Your ACTION is not support");
+                HttpSession session = request.getSession();
+                int role_id = loginUser.getRole();
+                if (AD == role_id) {
+                    url = AD_PAGE;
+                    session.setAttribute("LOGIN_USER", loginUser);
+                } else {
+                    request.setAttribute("ERROR", "Your role is not support");
+                }
             }
         } catch (Exception e) {
-            log("ERROR at MainController" + e.toString());
+            log("ERROR at LoginConttroller: " + toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

@@ -107,6 +107,7 @@
 
                     <div class="row my-5">
                         <!--                        <h3 class="fs-4 mb-3">Ngày đặt hàng</h3>-->
+                        <form action="MainController">
                         <div class="col">
                             <div class="container" style="display: grid; grid-template-rows: repeat(4,0fr); gap:10px;">
                                 <label for="productName" style="font-size: 18px; font-weight: bold;" >Tên sản phẩm:  </label> <input type="text" id="productName" name="productName" placeholder="Nhập tên sản phẩm" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
@@ -114,12 +115,12 @@
                                 <label for="typeProduct" style="font-size: 18px; font-weight: bold;">Loại hàng:</label>
                                 <select id="typeProduct" name="typeProduct" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
                                     <option value="">Chọn loại hàng</option>
-                                    <option value="option1">Thức ăn</option>
-                                    <option value="option2">Thức uống</option>
-                                    <option value="option3">Thực phẩm bổ sung</option>
-                                    <option value="option4">Thuốc</option>
+                                    <option value="1">Thức ăn</option>
+                                    <option value="2">Thức uống</option>
+                                    <option value="3">Thực phẩm bổ sung</option>
+                                    <option value="4">Thuốc</option>
                                 </select>
-                                <label for="productPrice" style="font-size: 18px; font-weight: bold;">Giá sản phẩm: </label> <input type="text" id="productPrice" name="description" placeholder="Nhập giá" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                <label for="productPrice" style="font-size: 18px; font-weight: bold;">Giá sản phẩm: </label> <input type="text" id="productPrice" name="priceOfProduct" placeholder="Nhập giá" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
                                 <label for="description" style="font-size: 18px; font-weight: bold;">Mô tả sản phẩm:</label> <input type="text" id="description" name="description" placeholder="Nhập mô tả" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
 
 
@@ -130,7 +131,9 @@
                         </div>
 
 
-                        <button type="button" class="btn btn-primary" style="margin-top: 30px; border-radius: 20px;">Cập nhật</button>
+                            <button type="button" name="action" value="Create Product" class="btn btn-primary" style="margin-top: 30px; border-radius: 20px;">Cập nhật</button>
+                        <!--<input type="button" name="action" value="Create" style="margin-top: 30px; border-radius: 20px;/>-->
+                        </form>
                     </div>
                 </div>
 

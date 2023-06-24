@@ -16,7 +16,8 @@ import java.sql.SQLException;
  */
 public class UserDAO {
     private static final String LOGIN = "SELECT role_id, status FROM account WHERE username=? AND password=?";
-    
+    private static final String CHECK_EXIST = "SELECT * FROM account WHERE username=? AND password=?";
+    private static final String SIGN_UP = "insert into account values(?, ?, 3, 1)";
     public UserDTO checkLogin(String username, String password) throws SQLException {
         UserDTO user = null;
         Connection conn = null;
@@ -47,5 +48,60 @@ public class UserDAO {
             }
         }
         return user;
+    }
+    
+    public UserDTO checkUserExist(String username, String password) throws SQLException {
+        //UserDTO user = null;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            ptm = conn.prepareStatement(CHECK_EXIST);
+            ptm.setString(1, username);
+            ptm.setString(2, password);
+            rs = ptm.executeQuery();
+            if (rs.next()) {
+                return new UserDTO(rs.getString(1), rs.getString(2), Integer.parseInt(rs.getString(3)), Integer.parseInt(rs.getString(4)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return null;
+    }
+    public void singup(String username, String password) throws SQLException{
+        
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        
+        try{
+            conn = DBUtils.getConnection();
+            ptm = conn.prepareStatement(SIGN_UP);
+            ptm.setString(1, username);
+            ptm.setString(2, password);
+            ptm.executeUpdate();
+        }catch (Exception e) {
+            e.printStackTrace();
+            
+        }finally {
+            
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+    
+        }
     }
 }

@@ -42,18 +42,22 @@
                                         </p>
                                     </div>
                                 </div>
-                                <form action="#" class="signin-form">
+                                <form action="SignUpController" class="signin-form">
+                                    <p class="text-danger">
+                                        
+                                        ${msg}
+                                    </p>
                                     <div class="form-group mb-3">
                                         <label class="label" for="name">Tên truy cập:</label>
-                                        <input type="text" class="form-control" placeholder="Username" required>
+                                        <input name="username" type="text" class="form-control" placeholder="Username" required>
                                     </div>
                                     <div class="form-group mb-3">
                                         <label class="label" for="password">Mật khẩu:</label>
-                                        <input type="password" class="form-control" placeholder="Password" required>
+                                        <input name="password" type="password" class="form-control" placeholder="Password" required>
                                     </div>
                                     <div class="form-group mb-3">
                                         <label class="label" for="password">Xác nhận mật khẩu:</label>
-                                        <input type="ConfirmPassword" class="form-control" placeholder="Confirm Password" required>
+                                        <input name="confirm" type="ConfirmPassword" class="form-control" placeholder="Confirm Password" required>
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" class="form-control btn btn-primary rounded submit px-3">Đăng ký</button>

@@ -44,7 +44,7 @@ public class DeleteTyoeOfBirdController extends HttpServlet {
         }catch(Exception e){
             log("Error at DeleteController: " + e.toString());
         }finally{
-            request.getRequestDispatcher("xemLoaiChim.js").forward(request, response);
+            request.getRequestDispatcher("xemLoaiChim.jsp").forward(request, response);
         }
     }
 

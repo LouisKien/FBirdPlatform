@@ -20,6 +20,7 @@ public class ProductDAO {
     private static final String GET_BIRD = "SELECT [type_of_bird_id] FROM type_of_bird WHERE [name] like ?";
     
     public int checkTypeOfBird(String typeOfBird) throws ClassNotFoundException, SQLException {
+        int id = 0;
         Connection conn = null;
         PreparedStatement ptm = null;
         ResultSet rs = null;
@@ -30,7 +31,7 @@ public class ProductDAO {
                 ptm.setString(1, "N" + typeOfBird);
                 rs = ptm.executeQuery();
                 if(rs.next()){
-                    int id = rs.getString("type_of_bird_id");
+                     id = rs.getInt("type_of_bird_id");
                 }
             }
         }catch(Exception e){

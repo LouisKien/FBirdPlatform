@@ -8,6 +8,6 @@ package fbird.recipe;
  *
  * @author louis
  */
-public class Recipe {
+public class RecipeDTO {
     
 }

@@ -4,7 +4,7 @@
  */
 package fbird.customer;
 
-import fbird.feedback.FeedbackDTO;
+
 import fbird.utils.DBUtils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -63,4 +63,5 @@ public class CustomerDAO {
         }
         return list;
     }
-}
+    
+    }

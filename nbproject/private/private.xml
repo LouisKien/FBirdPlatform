@@ -6,7 +6,10 @@
             <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/web/xemTaiKhoan.jsp</file>
             <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/web/donHuy.jsp</file>
             <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/web/loaiChim.jsp</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/controller/AddProductController.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/customer/CustomerDAO.java</file>
             <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/utils/DBUtils.java</file>
             <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/report/ReportedShopDAO.java</file>
             <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/web/shopProduct.jsp</file>
             <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/controller/ReportShopController.java</file>
@@ -26,6 +29,8 @@
             <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/web/sanPhamViPham.jsp</file>
             <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/controller/SearchTyoeOfBirdController.java</file>
             <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/report/ReportedProductDTO.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/recipe/RecipeDTO.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/product/ProductDAO.java</file>
             <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/web/productDetail.jsp</file>
             <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/controller/LoginController.java</file>
         </group>

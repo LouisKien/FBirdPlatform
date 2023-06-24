@@ -12,6 +12,8 @@ import java.io.IOException;
 import fbird.feedback.FeedbackDAO;
 import fbird.feedback.FeedbackDTO;
 import java.util.List;
+import fbird.customer.CustomerDAO;
+import fbird.customer.CustomerDTO;
 
 /**
  *
@@ -35,10 +37,14 @@ public class ViewFeedbackController extends HttpServlet {
         String url="productDetail.jsp";
         try{
             int shop_product_item_id = Integer.parseInt(request.getParameter("shop_product_item_id"));
-            FeedbackDAO dao = new FeedbackDAO();
-            List<FeedbackDTO> listFeedback = dao.getFeedback(shop_product_item_id);
+            int customer_id = Integer.parseInt(request.getParameter("customer_id"));           
+            FeedbackDAO daoFeedback = new FeedbackDAO();
+            CustomerDAO daoCustomer = new CustomerDAO();
+            List<FeedbackDTO> listFeedback = daoFeedback.getFeedback(shop_product_item_id);
+            List<CustomerDTO> listCustomer = daoCustomer.getCustomer(customer_id);
             if(listFeedback.size()>0){
                 request.setAttribute("LIST_Feedback", listFeedback);
+                request.setAttribute("LIST_Customer", listCustomer);
                 
             }
         }catch(Exception ex){

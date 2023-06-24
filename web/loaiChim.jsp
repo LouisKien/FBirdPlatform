@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="vi">
+    <%@page import="java.util.List"%>
+    <%@page import="fbird.typeofbird.TypeOfBirdDTO"%>
     <%@page contentType="text/html" pageEncoding="UTF-8"%>
     <head>
         <title>ban hang</title>
@@ -80,20 +82,46 @@
                         </div>
 
                     </div>
+                    
                                         <div class="row my-5">
                         <h3 class="fs-4 mb-3">Tìm kiếm loại chim:</h3>
-                        <form action="/search" method="GET">
-                            <input type="text" name="query" placeholder="Nhập tên chim">
+                        <form action="SearchTyoeOfBirdController" method="GET">
+                            <input type="text" name="search" placeholder="Nhập tên chim">
                             <button type="submit">Tìm kiếm</button>
                         </form>
                         <div class="col">
+
                             <table class="table bg-white rounded shadow-sm  table-hover">
                                 <thead>
                                     <tr>
                                         <th scope="col" width="50">#</th>
                                         <th scope="col">Tên chim</th>
+                                        <th scope="col"> </th>
                                     </tr>
                                 </thead>
+
+                                <tbody>
+                                    
+
+                                        <% 
+                                        List<TypeOfBirdDTO> listTOB = (List<TypeOfBirdDTO>) request.getAttribute("LIST_TYPE_OF_BIRD");
+                                        if (listTOB != null && !listTOB.isEmpty()) {
+                                            int count = 0;
+            
+                                            for (TypeOfBirdDTO tob : listTOB) {
+                                            count++;
+                                        %>
+                                        <tr>
+                                        <td><%= count%></td>
+                                        <td><%= tob.getName() %></td>
+                                        <td><a href="index.html" class="fw-bold" style="text-decoration: none; color: black;">Xóa chim</a></td>
+                                        <%
+                                            }
+                                        }
+                                        %>
+
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>
                     </div>

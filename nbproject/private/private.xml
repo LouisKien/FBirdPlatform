@@ -3,13 +3,31 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/COMPUTER/Desktop/Fbird-2362023/FBirdPlatform/src/java/fbird/controller/LogoutController.java</file>
-            <file>file:/C:/Users/COMPUTER/Desktop/Fbird-2362023/FBirdPlatform/web/index.html</file>
-            <file>file:/C:/Users/COMPUTER/Desktop/Fbird-2362023/FBirdPlatform/src/java/fbird/controller/MainController.java</file>
-            <file>file:/C:/Users/COMPUTER/Desktop/Fbird-2362023/FBirdPlatform/web/error.jsp</file>
-            <file>file:/C:/Users/COMPUTER/Desktop/Fbird-2362023/FBirdPlatform/web/admin.jsp</file>
-            <file>file:/C:/Users/COMPUTER/Desktop/Fbird-2362023/FBirdPlatform/web/themSanPham.jsp</file>
-            <file>file:/C:/Users/COMPUTER/Desktop/Fbird-2362023/FBirdPlatform/src/java/fbird/controller/LoginController.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/web/xemTaiKhoan.jsp</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/web/donHuy.jsp</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/web/loaiChim.jsp</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/report/ReportedShopDAO.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/web/shopProduct.jsp</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/controller/ReportShopController.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/report/ReportedProductDAO.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/controller/MainController.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/controller/ViewReportedProductController.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/web/themLoaiChim.jsp</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/controller/DeleteTyoeOfBirdController.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/controller/ReportProductController.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/web/xoaLoaiChim.jsp</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/typeofbird/TypeOfBirdDTO.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/typeofbird/TypeOfBirdDAO.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/feedback/FeedbackDAO.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/controller/CreateTypeOfBirdController.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/controller/ViewFeedbackController.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/feedback/FeedbackDTO.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/web/sanPhamViPham.jsp</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/controller/SearchTyoeOfBirdController.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/report/ReportedProductDTO.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/web/productDetail.jsp</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/controller/LoginController.java</file>
         </group>
     </open-files>
 </project-private>

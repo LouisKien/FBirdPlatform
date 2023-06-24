@@ -44,7 +44,7 @@ public class SearchTyoeOfBirdController extends HttpServlet {
         } catch (Exception e) {
             log("ERROR at SearchController: " + e.toString());
         }finally{
-            request.getRequestDispatcher("xemLoaiChim.jsp").forward(request, response);
+            request.getRequestDispatcher("loaiChim.jsp").forward(request, response);
         }
     }
 

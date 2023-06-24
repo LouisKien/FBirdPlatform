@@ -1,3 +1,8 @@
+<%@page import="org.apache.catalina.User"%>
+<%@page import="java.util.List"%>
+<%@page import="fbird.user.UserDTO"%>
+<%@page import="fbird.customer.CustomerDTO"%>
+<%@page import="fbird.shop.ShopDTO"%>
 <!DOCTYPE html>
 <html lang="vi">
     <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -37,7 +42,7 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="adminDropdown">
 
-                    
+
                     <li><a class="dropdown-item" style="width: 239px;" href="loaiChim.jsp">Loại chim</a></li>
                     <li><a class="dropdown-item" style="width: 239px;" href="sanPhamKhieuNai.jsp">Sản phẩm khiếu nại</a></li>
                 </ul>
@@ -67,7 +72,7 @@
                 <div class="container-fluid px-4">
                     <div class="row g-3 my-2">
                         <div class="col-md-3">
-                            <a href="xemTaiKhoan.jsp" class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded fw-bold" style="text-decoration: none; color: black;">
+                            <a href="MainController?action=ViewAccount" class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded fw-bold" style="text-decoration: none; color: black;">
 
                                 Tất cả
 
@@ -76,13 +81,13 @@
                         </div>
 
                         <div class="col-md-3">
-                            <a href="xemNguoiDung.jsp"  class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded fw-bold" style="text-decoration: none; color: black;">
+                            <a href="MainController?action=ViewCustomerAccount"  class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded fw-bold" style="text-decoration: none; color: black;">
                                 Người dùng 
                             </a>
                         </div>
 
                         <div class="col-md-3">
-                            <a href="xemBanHang.jsp" class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded fw-bold" style="text-decoration: none; color: black;" >
+                            <a href="MainController?action=ViewShopAccount" class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded fw-bold" style="text-decoration: none; color: black;" >
                                 Cửa hàng
                             </a>
                         </div>
@@ -95,6 +100,12 @@
                             <button type="submit">Tìm kiếm</button>
                         </form>
                         <div class="col">
+                            <%
+                                List<UserDTO> listAccount = (List<UserDTO>) request.getAttribute("LIST_ACCOUNT");
+                                List<ShopDTO> listShop = (List<ShopDTO>) request.getAttribute("LIST_SHOP");
+                                if (listAccount != null) {
+                                    if (listAccount.size() > 0) {
+                            %>
                             <table class="table bg-white rounded shadow-sm  table-hover">
                                 <thead>
                                     <tr>
@@ -108,63 +119,72 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-         
+                                    <%
+                                        int count = 1;
+                                        for(UserDTO account: listAccount){
+                                            if(account.getRole() == 2){
+                                    %>
                                     <tr>
-                                        <th scope="row">7</th>
-                                        <td>duypham</td>
-                                        <td>Cửa hàng</td>
-                                        <td>duypham@gmail.com</td>
-                                        <td>Đã khóa</td>
-                                        <td>6549873210</td>
-                                        <td>21/6/2023</td>
+                                        <th scope="row"><%= count++%></th>
+                                        <td><%= account.getUsername() %></td>
+                                        <td><%= account.getRole()%></td>
+                                        <td>
+                                            <%
+                                                for(ShopDTO shop: listShop){
+                                                    if(account.getUsername().equals(shop.getUsername())){
+                                            %>
+                                            <%= shop.getEmail()%>
+                                            <%
+                                            }
+                                        }
+                                            %>
+                                        </td>
+                                        <td>
+                                            <%
+                                            if(account.getStatus() == 0){
+                                            %>
+                                            Đã bị vô hiệu hóa
+                                            <%
+                                                } else {
+                                            %>
+                                            Đang hoạt động
+                                            <%
+                                                }
+                                            %>
+                                        </td>
+                                        <td>
+                                            <%
+                                                for(ShopDTO shop: listShop){
+                                                    if(account.getUsername().equals(shop.getUsername())){
+                                            %>
+                                            <%= shop.getPhone()%>
+                                            <%
+                                            }
+                                        }
+                                            %>
+                                        </td>
+                                        <td>
+                                            <%
+                                                for(ShopDTO shop: listShop){
+                                                    if(account.getUsername().equals(shop.getUsername())){
+                                            %>
+                                            <%= shop.getRegisted_date()%>
+                                            <%
+                                            }
+                                        }
+                                            %>
+                                        </td>
                                     </tr>
-                                    <tr>
-                                        <th scope="row">8</th>
-                                        <td>namtran</td>
-                                        <td>Cửa hàng</td>
-                                        <td>namtran@gmail.com</td>
-                                        <td>Đã khóa</td>
-                                        <td>3217896540</td>
-                                        <td>1/1/2023</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">9</th>
-                                        <td>kinhpham</td>
-                                        <td>Cửa hàng</td>
-                                        <td>kinhpham@gmail.com</td>
-                                        <td>Đã khóa</td>
-                                        <td>3217896540</td>
-                                        <td>1/1/2023</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">10</th>
-                                        <td>johnpham</td>
-                                        <td>Cửa hàng</td>
-                                        <td>johnpham@gmail.com</td>
-                                        <td>Đã khóa</td>
-                                        <td>3217896540</td>
-                                        <td>1/1/2023</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">11</th>
-                                        <td>jeconguyen</td>
-                                        <td>Cửa hàng</td>
-                                        <td>jeconguyen@gmail.com</td>
-                                        <td>Đã khóa</td>
-                                        <td>3217896540</td>
-                                        <td>1/1/2023</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">12</th>
-                                        <td>yasuonguyen</td>
-                                        <td>Cửa hàng</td>   
-                                        <td>yasuonguyen@gmail.com</td>
-                                        <td>Đã khóa</td>
-                                        <td>3217896540</td>
-                                        <td>1/1/2023</td>
-                                    </tr>
+                                    <%
+                                            }
+                                        }
+                                    %>
                                 </tbody>
                             </table>
+                            <%
+                                        }
+                                    }
+                            %>
                         </div>
                     </div>
 

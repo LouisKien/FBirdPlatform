@@ -4,57 +4,47 @@
  */
 package fbird.controller;
 
+import fbird.customer.CustomerDTO;
+import fbird.shop.ShopDTO;
+import fbird.user.UserDAO;
+import fbird.user.UserDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
 
 /**
  *
- * @author louis
+ * @author Louis
  */
-public class MainController extends HttpServlet {
+public class ViewAccountController extends HttpServlet {
 
-    public static final String WELCOME_PAGE = "index.html";
-
-    private static final String LOGIN = "Login";
-    private static final String LOGIN_CONTROLLER = "LoginController";
-    private static final String LOGOUT = "Logout";
-    private static final String LOGOUT_CONTROLLER = "LogoutController";
-    
-    private static final String VIEW_ACCOUNT = "ViewAccount";
-    private static final String VIEW_ACCOUNT_CONTROLLER = "ViewAccountController";
-    private static final String VIEW_CUSTOMER_ACCOUNT = "ViewCustomerAccount";
-    private static final String VIEW_CUSTOMER_ACCOUNT_CONTROLLER = "ViewCustomerAccountController";
-    private static final String VIEW_SHOP_ACCOUNT = "ViewShopAccount";
-    private static final String VIEW_SHOP_ACCOUNT_CONTROLLER = "ViewShopAccountController";
-    
+    private static final String ERROR = "xemTaiKhoan.jsp";
+    private static final String SUCCESS = "xemTaiKhoan.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = WELCOME_PAGE;
+        String url = ERROR;
         try {
-            String action = request.getParameter("action");
-            if (LOGIN.equals(action)) {
-                url = LOGIN_CONTROLLER;
-
-            } else if (LOGOUT.equals(action)) {
-                url = LOGOUT_CONTROLLER;
-            } else if (VIEW_ACCOUNT.equals(action)) {
-                url = VIEW_ACCOUNT_CONTROLLER;
-            } else if (VIEW_CUSTOMER_ACCOUNT.equals(action)) {
-                url = VIEW_CUSTOMER_ACCOUNT_CONTROLLER;
-            } else if (VIEW_SHOP_ACCOUNT.equals(action)) {
-                url = VIEW_SHOP_ACCOUNT_CONTROLLER;
+            UserDAO dao = new UserDAO();
+            List<UserDTO> listAccount = dao.getListAccount();
+            List<CustomerDTO> listCustomer = dao.listAccountForCustomer();
+            List<ShopDTO> listShop = dao.listAccountForShop();
+            if (listAccount.size() > 0) {
+                request.setAttribute("LIST_ACCOUNT", listAccount);
             }
-            else {
-                request.setAttribute("ERROR", "Your ACTION is not support");
+            if (listCustomer.size() > 0) {
+                request.setAttribute("LIST_CUSTOMER", listCustomer);
             }
+            if (listShop.size() > 0) {
+                request.setAttribute("LIST_SHOP", listShop);
+            }
+            url = SUCCESS;
         } catch (Exception e) {
-            log("ERROR at MainController" + e.toString());
+            log("ERROR at ViewAccountController: " + toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

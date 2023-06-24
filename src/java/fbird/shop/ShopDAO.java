@@ -8,6 +8,6 @@ package fbird.shop;
  *
  * @author louis
  */
-public class ShopOwner {
+public class ShopDAO {
     
 }

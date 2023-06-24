@@ -52,6 +52,18 @@
         <servlet-name>SignUpController</servlet-name>
         <servlet-class>fbird.controller.SignUpController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewAccountController</servlet-name>
+        <servlet-class>fbird.controller.ViewAccountController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewCustomerAccountController</servlet-name>
+        <servlet-class>fbird.controller.ViewCustomerAccountController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewShopAccountController</servlet-name>
+        <servlet-class>fbird.controller.ViewShopAccountController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -103,5 +115,17 @@
     <servlet-mapping>
         <servlet-name>SignUpController</servlet-name>
         <url-pattern>/SignUpController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewAccountController</servlet-name>
+        <url-pattern>/ViewAccountController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewCustomerAccountController</servlet-name>
+        <url-pattern>/ViewCustomerAccountController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewShopAccountController</servlet-name>
+        <url-pattern>/ViewShopAccountController</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -1,3 +1,8 @@
+<%@page import="org.apache.catalina.User"%>
+<%@page import="java.util.List"%>
+<%@page import="fbird.user.UserDTO"%>
+<%@page import="fbird.customer.CustomerDTO"%>
+<%@page import="fbird.shop.ShopDTO"%>
 <!DOCTYPE html>
 <html lang="vi">
     <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -67,7 +72,7 @@
                 <div class="container-fluid px-4">
                     <div class="row g-3 my-2">
                         <div class="col-md-3">
-                            <a href="xemTaiKhoan.jsp" class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded fw-bold" style="text-decoration: none; color: black;">
+                            <a href="MainController?action=ViewAccount" class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded fw-bold" style="text-decoration: none; color: black;">
 
                                 Tất cả
 
@@ -76,13 +81,13 @@
                         </div>
 
                         <div class="col-md-3">
-                            <a href="xemNguoiDung.jsp"  class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded fw-bold" style="text-decoration: none; color: black;">
+                            <a href="MainController?action=ViewCustomerAccount"  class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded fw-bold" style="text-decoration: none; color: black;">
                                 Người dùng 
                             </a>
                         </div>
 
                         <div class="col-md-3">
-                            <a href="xemBanHang.jsp" class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded fw-bold" style="text-decoration: none; color: black;" >
+                            <a href="MainController?action=ViewShopAccount" class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded fw-bold" style="text-decoration: none; color: black;" >
                                 Bán hàng
                             </a>
                         </div>
@@ -95,6 +100,12 @@
                             <button type="submit">Tìm kiếm</button>
                         </form>
                         <div class="col">
+                            <%
+                                List<UserDTO> listAccount = (List<UserDTO>) request.getAttribute("LIST_ACCOUNT");
+                                List<CustomerDTO> listCustomer = (List<CustomerDTO>) request.getAttribute("LIST_CUSTOMER");
+                                if (listAccount != null) {
+                                    if (listAccount.size() > 0) {
+                            %>
                             <table class="table bg-white rounded shadow-sm  table-hover">
                                 <thead>
                                     <tr>
@@ -108,63 +119,72 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <%
+                                        int count = 1;
+                                        for(UserDTO account: listAccount){
+                                            if(account.getRole() == 3){
+                                    %>
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>tuanguyen</td>
-                                        <td>Người dùng</td>
-                                        <td>tuangnguyen@gmail.com</td>
-                                        <td>Hoạt động</td>
-                                        <td>0123456789</td>
-                                        <td>1/1/2023</td>
+                                        <th scope="row"><%= count++%></th>
+                                        <td><%= account.getUsername() %></td>
+                                        <td><%= account.getRole()%></td>
+                                        <td>
+                                            <%
+                                                for(CustomerDTO customer: listCustomer){
+                                                    if(account.getUsername().equals(customer.getUsername())){
+                                                            %>
+                                                            <%= customer.getEmail()%>
+                                            <%
+                                                    }
+                                                }
+                                            %>
+                                        </td>
+                                        <td>
+                                            <%
+                                            if(account.getStatus() == 0){
+                                            %>
+                                            Đã bị vô hiệu hóa
+                                            <%
+                                                } else {
+                                            %>
+                                            Đang hoạt động
+                                            <%
+                                                }
+                                            %>
+                                        </td>
+                                        <td>
+                                            <%
+                                                for(CustomerDTO customer: listCustomer){
+                                                    if(account.getUsername().equals(customer.getUsername())){
+                                                            %>
+                                                            <%= customer.getPhone()%>
+                                            <%
+                                                    }
+                                                }
+                                            %>
+                                        </td>
+                                        <td>
+                                            <%
+                                                for(CustomerDTO customer: listCustomer){
+                                                    if(account.getUsername().equals(customer.getUsername())){
+                                                            %>
+                                                            <%= customer.getRegisted_date()%>
+                                            <%
+                                                    }
+                                                }
+                                            %>
+                                        </td>
                                     </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>namnguyen</td>
-                                        <td>Người dùng</td>
-                                        <td>namnguyen@gmail.com</td>
-                                        <td>Hoạt động</td>
-                                        <td>0123465789</td>
-                                        <td>11/1/2023</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>lannguyen</td>
-                                        <td>Người dùng</td>
-                                        <td>lannguyen@gmail.com</td>
-                                        <td>Hoạt động</td>
-                                        <td>0123456789</td>
-                                        <td>12/1/2023</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">4</th>
-                                        <td>lynguyen</td>
-                                        <td>Người dùng</td>
-                                        <td>lynguyen@gmail.com</td>
-                                        <td>Hoạt động</td>
-                                        <td>0321654987</td>
-                                        <td>16/1/2023</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">5</th>
-                                        <td>khanhnguyen</td>
-                                        <td>Người dùng</td>
-                                        <td>khanhnnguyen@gmail.com</td>
-                                        <td>Hoạt động</td>
-                                        <td>0123456897</td>
-                                        <td>15/5/2023</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">6</th>
-                                        <td>kientran</td>
-                                        <td>Người dùng</td>
-                                        <td>kientran@gmail.com</td>
-                                        <td>Hoạt động</td>
-                                        <td>0321654987</td>
-                                        <td>12/3/2023</td>
-                                    </tr>
-
+                                    <%
+                                            }
+                                        }
+                                    %>
                                 </tbody>
                             </table>
+                            <%
+                                    }
+                                }
+                            %>
                         </div>
                     </div>
 

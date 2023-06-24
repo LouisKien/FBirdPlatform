@@ -21,6 +21,12 @@ public class UserDTO {
         this.role = role;
         this.status = status;
     }
+    
+    public UserDTO(String username, int role, int status) {
+        this.username = username;
+        this.role = role;
+        this.status = status;
+    }
 
     public String getUsername() {
         return username;

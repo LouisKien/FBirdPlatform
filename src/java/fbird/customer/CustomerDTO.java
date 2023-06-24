@@ -19,6 +19,7 @@ public class CustomerDTO {
     String avatar;
     boolean gender;
     String email;
+    Date registed_date;
 
     public CustomerDTO() {
     }
@@ -34,6 +35,15 @@ public class CustomerDTO {
         this.email = email;
     }
 
+    public CustomerDTO(String username, String phone, String email, Date registed_date) {
+        this.username = username;
+        this.phone = phone;
+        this.email = email;
+        this.registed_date = registed_date;
+    }
+
+    
+    
     public int getCustomer_id() {
         return customer_id;
     }
@@ -96,6 +106,14 @@ public class CustomerDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Date getRegisted_date() {
+        return registed_date;
+    }
+
+    public void setRegisted_date(Date registed_date) {
+        this.registed_date = registed_date;
     }
     
 }

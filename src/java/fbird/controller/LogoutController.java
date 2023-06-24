@@ -8,40 +8,33 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
  *
- * @author louis
+ * @author COMPUTER
  */
-public class MainController extends HttpServlet {
+public class LogoutController extends HttpServlet {
 
-    public static final String WELCOME_PAGE = "index.html";
-
-    private static final String LOGIN = "Login";
-    private static final String LOGIN_CONTROLLER = "LoginController";
-    private static final String LOGOUT = "Logout";
-    private static final String LOGOUT_CONTROLLER = "LogoutController";
-
+    private static final String ERROR="error.jsp";
+    private static final String SUCCESS="index.html";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = WELCOME_PAGE;
-        try {
-            String action = request.getParameter("action");
-            if (LOGIN.equals(action)) {
-                url = LOGIN_CONTROLLER;
-
-            } else if (LOGOUT.equals(action)) {
-                url = LOGOUT_CONTROLLER;
-            } else {
-                request.setAttribute("ERROR", "Your ACTION is not support");
+        String url = ERROR;
+        try  {
+            HttpSession session = request.getSession(false);
+            if(session != null){
+                session.invalidate();
+                url=SUCCESS;
             }
-        } catch (Exception e) {
-            log("ERROR at MainController" + e.toString());
-        } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+                    
+        }catch(Exception e){
+            log("Error at LogoutController: " + e.toString());
+        }finally{
+            response.sendRedirect(url);
         }
     }
 

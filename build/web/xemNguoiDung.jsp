@@ -67,7 +67,7 @@
                 <div class="container-fluid px-4">
                     <div class="row g-3 my-2">
                         <div class="col-md-3">
-                            <a href="xemTatCaTaiKhoan.jsp" class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded fw-bold" style="text-decoration: none; color: black;">
+                            <a href="xemTaiKhoan.jsp" class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded fw-bold" style="text-decoration: none; color: black;">
 
                                 Tất cả
 

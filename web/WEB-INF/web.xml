@@ -44,6 +44,10 @@
         <servlet-name>ReportShopController</servlet-name>
         <servlet-class>fbird.controller.ReportShopController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LogoutController</servlet-name>
+        <servlet-class>fbird.controller.LogoutController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -87,5 +91,9 @@
     <servlet-mapping>
         <servlet-name>ReportShopController</servlet-name>
         <url-pattern>/ReportShopController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutController</servlet-name>
+        <url-pattern>/LogoutController</url-pattern>
     </servlet-mapping>
 </web-app>

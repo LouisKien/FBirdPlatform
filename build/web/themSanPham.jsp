@@ -111,14 +111,21 @@
                             <div class="container" style="display: grid; grid-template-rows: repeat(4,0fr); gap:10px;">
                                 <label for="productName" style="font-size: 18px; font-weight: bold;" >Tên sản phẩm:  </label> <input type="text" id="productName" name="productName" placeholder="Nhập tên sản phẩm" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
                                 <label for="typeOfBird" style="font-size: 18px; font-weight: bold;">Dành cho chim: </label> <input type="text" id="typeOfBird" name="typeOfBird" placeholder="Nhập tên chim" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left:5%;"></br>
-                                <label for="typeProduct" style="font-size: 18px; font-weight: bold;">Loại hàng:     </label> <input type="text" id="typeProduct" name="typeProduct" placeholder="Nhập loại hàng" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                <label for="typeProduct" style="font-size: 18px; font-weight: bold;">Loại hàng:</label>
+                                <select id="typeProduct" name="typeProduct" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
+                                    <option value="">Chọn loại hàng</option>
+                                    <option value="option1">Thức ăn</option>
+                                    <option value="option2">Thức uống</option>
+                                    <option value="option3">Thực phẩm bổ sung</option>
+                                    <option value="option4">Thuốc</option>
+                                </select>
                                 <label for="productPrice" style="font-size: 18px; font-weight: bold;">Giá sản phẩm: </label> <input type="text" id="productPrice" name="description" placeholder="Nhập giá" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
                                 <label for="description" style="font-size: 18px; font-weight: bold;">Mô tả sản phẩm:</label> <input type="text" id="description" name="description" placeholder="Nhập mô tả" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
 
 
                             </div>
 
-                            
+
 
                         </div>
 

@@ -118,6 +118,7 @@
                                         <th scope="col">Trạng thái</th>
                                         <th scope="col">Thời gian</th>
                                         <th scope="col">Vận chuyển</th>
+                                        <th scope="col">Cập nhật</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -129,6 +130,7 @@
                                         <td>Đã giao</td>
                                         <td>1/1/2023</td>
                                         <td>Hỏa tốc</td>
+                                        <td><input type="submit" name="action" value="Update Product"/></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">2</th>
@@ -138,6 +140,7 @@
                                         <td>Đã hủy</td>
                                         <td>1/1/2023</td>
                                         <td>Hỏa tốc</td>
+                                        <td><input type="submit" name="action" value="Update Product"/></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">3</th>
@@ -147,6 +150,7 @@
                                         <td>Đã giao</td>
                                         <td>1/1/2023</td>
                                         <td>Hỏa tốc</td>
+                                        <td><input type="submit" name="action" value="Update Product"/></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">4</th>

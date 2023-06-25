@@ -12,51 +12,45 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
  * @author tuan3
  */
-@WebServlet(name = "AddProductController", urlPatterns = {"/AddProductController"})
-public class AddProductController extends HttpServlet {
+@WebServlet(name = "UpdateProductController", urlPatterns = {"/UpdateProductController"})
+public class UpdateProductController extends HttpServlet {
 
-    private static final String ERROR = "themSanPham.jsp";
-    private static final String SUCCESS = "themSanPham.jsp";
+    private static final String ERROR = "tatCaSanPham.jsp";
+    private static final String SUCCESS = "tatCaSanPham.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try{
-            ProductDAO dao = new ProductDAO();
-            // thieu ShopID
+            int productShopItemID = Integer.parseInt(request.getParameter("productShopItemID"));
             String productName = request.getParameter("productName");
             int inventory = Integer.parseInt(request.getParameter("inventory"));
-            String typeOfBird = request.getParameter("typeOfBird");
-            int typeOfBirdID = dao.checkTypeOfBird(typeOfBird);
-            if(typeOfBird!=null){
-                request.setAttribute("ERROR_BIRD", "Don't have any type of Bird");
-            }else{
+            int typeOfBirdID = Integer.parseInt(request.getParameter("typeOfBirdID"));
             int typeProduct = Integer.parseInt(request.getParameter("typeProduct"));
 //            priceProduct = request.getParameter("priceOfProduct");
-            String description = request.getParameter("description");
-            LocalDateTime myDateObj = LocalDateTime.now();  
-            System.out.println("Before Formatting: " + myDateObj);  
-            DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("E, MMM dd yyyy HH:mm:ss");  
-            String formattedDate = myDateObj.format(myFormatObj);
-            ProductDTO product = new ProductDTO(ShopID, typeProduct, typeOfBirdID, productName, description, inventory, formattedDate, 1);
-            boolean check = dao.addProduct(product);
-            if(check){
-                request.setAttribute("MESSAGE", "Create successfully!");
+            String description = request.getParameter("description");  
+            ProductDAO dao = new ProductDAO();
+            ProductDTO product = new ProductDTO(productShopItemID, ShopID, typeProduct, typeOfBirdID, productName, description, inventory, "", 0);
+            boolean checkUpdate = dao.checkUpdate(product);
+            if(checkUpdate){
                 url = SUCCESS;
-            }else{
-                    request.setAttribute("ERROR", "Unknow error!!");
-                }
             }
         }catch(Exception e){
-            log("Error at AddProductController :" + e.toString());
+            log("Error at UpdateProductController :" + e.toString());
         }finally{
             request.getRequestDispatcher(url).forward(request, response);
         }

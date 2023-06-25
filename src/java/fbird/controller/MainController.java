@@ -31,6 +31,11 @@ public class MainController extends HttpServlet {
     private static final String VIEW_SHOP_ACCOUNT = "ViewShopAccount";
     private static final String VIEW_SHOP_ACCOUNT_CONTROLLER = "ViewShopAccountController";
     
+    
+    private static final String CREATE_PRODUCT = "CreateProduct";
+    private static final String CREATE_PRODUCT_CONTROLLER = "AddProductController";
+    private static final String UPDATE_PRODUCT = "Update Product";
+    private static final String UPDATE_PRODUCT_CONTROLLER = "UpdateProductController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -49,6 +54,10 @@ public class MainController extends HttpServlet {
                 url = VIEW_CUSTOMER_ACCOUNT_CONTROLLER;
             } else if (VIEW_SHOP_ACCOUNT.equals(action)) {
                 url = VIEW_SHOP_ACCOUNT_CONTROLLER;
+            } else if (CREATE_PRODUCT.equals(action)) {
+                url = CREATE_PRODUCT_CONTROLLER;
+            } else if (CREATE_PRODUCT.equals(action)) {
+                url = CREATE_PRODUCT_CONTROLLER;
             }
             else {
                 request.setAttribute("ERROR", "Your ACTION is not support");

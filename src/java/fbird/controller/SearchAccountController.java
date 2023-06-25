@@ -13,37 +13,45 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 /**
  *
  * @author Louis
  */
-public class ViewShopAccountController extends HttpServlet {
+public class SearchAccountController extends HttpServlet {
 
-    private static final String ERROR = "viewShop.jsp";
-    private static final String SUCCESS = "viewShop.jsp";
-
+    private static final String ERROR = "searchViewAccount.jsp";
+    private static final String SUCCESS = "searchViewAccount.jsp";
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
-        try {
-            UserDAO dao = new UserDAO();
-            List<UserDTO> listAccount = dao.getListAccount();
-            List<CustomerDTO> listCustomer = dao.listAccountForCustomer();
+        try (PrintWriter out = response.getWriter()) {
+
+            String url = ERROR;
+            try {
+                String search = request.getParameter("search");
+                UserDAO dao = new UserDAO();
+                List<UserDTO> listSearch = dao.searchAccountList(search);
+                List<CustomerDTO> listCustomer = dao.listAccountForCustomer();
             List<ShopDTO> listShop = dao.listAccountForShop();
-            if (listAccount.size() > 0) {
-                request.setAttribute("LIST_ACCOUNT", listAccount);
+            if (listSearch.size() > 0) {
+                request.setAttribute("LIST_SEARCH_ACCOUNT", listSearch);
+            }
+            if (listCustomer.size() > 0) {
+                request.setAttribute("LIST_CUSTOMER", listCustomer);
             }
             if (listShop.size() > 0) {
                 request.setAttribute("LIST_SHOP", listShop);
             }
             url = SUCCESS;
-        } catch (Exception e) {
-            log("ERROR at ViewShopAccountController: " + toString());
-        } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+            } catch (Exception e) {
+                log("ERROR at SearchController: " + e.toString());
+            } finally {
+                request.getRequestDispatcher(url).forward(request, response);
+            }
         }
     }
 

@@ -21,8 +21,8 @@ import java.util.List;
  */
 public class ViewAccountController extends HttpServlet {
 
-    private static final String ERROR = "xemTaiKhoan.jsp";
-    private static final String SUCCESS = "xemTaiKhoan.jsp";
+    private static final String ERROR = "viewAccount.jsp";
+    private static final String SUCCESS = "viewAccount.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

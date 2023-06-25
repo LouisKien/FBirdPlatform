@@ -92,12 +92,17 @@
                             </a>
                         </div>
                     </div>
-
+                    <%
+                        String search = request.getParameter("search");
+                        if (search == null) {
+                        search = "";
+                        }
+                    %>
                     <div class="row my-5">
                         <h3 class="fs-4 mb-3">Tìm kiếm tài khoản:</h3>
-                        <form action="/search" method="GET">
-                            <input type="text" name="query" placeholder="Nhập tên đăng nhập">
-                            <button type="submit">Tìm kiếm</button>
+                        <form action="MainController" method="GET">
+                            <input type="text" name="search" value="<%=search%>" placeholder="Nhập tên đăng nhập" />
+                            <button type="submit" name="action" value="SearchAccount">Tìm kiếm</button>
                         </form>
                         <div class="col">
                             <%

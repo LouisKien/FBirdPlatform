@@ -97,7 +97,7 @@
                 <div class="flex-box">
                     <div class="left">
                         <div class="big-img">
-                            <img src="img/product-1.png">
+                            <img src="img/avatar-khanh.png">
                         </div>
                         <div class="images">
                             <div class="small-img">

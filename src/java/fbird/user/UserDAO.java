@@ -22,7 +22,7 @@ import java.util.List;
 public class UserDAO {
 
     private static final String LOGIN = "SELECT role_id, status FROM account WHERE username=? AND password=?";
-    private static final String CHECK_EXIST = "SELECT * FROM account WHERE username=? AND password=?";
+    private static final String CHECK_EXIST = "SELECT * FROM account WHERE username=?";
     private static final String SIGN_UP = "insert into account values(?, ?, 3, 1)";
 
     private static final String GET_ACCOUNT = "SELECT username, role_id, status FROM account WHERE role_id = 2 OR role_id = 3";
@@ -62,7 +62,7 @@ public class UserDAO {
         return user;
     }
 
-    public UserDTO checkUserExist(String username, String password) throws SQLException {
+    public UserDTO checkUserExist(String username) throws SQLException {
         //UserDTO user = null;
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -71,7 +71,7 @@ public class UserDAO {
             conn = DBUtils.getConnection();
             ptm = conn.prepareStatement(CHECK_EXIST);
             ptm.setString(1, username);
-            ptm.setString(2, password);
+            
             rs = ptm.executeQuery();
             if (rs.next()) {
                 return new UserDTO(rs.getString(1), rs.getString(2), Integer.parseInt(rs.getString(3)), Integer.parseInt(rs.getString(4)));

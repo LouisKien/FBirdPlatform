@@ -14,7 +14,7 @@
         <title>Product Details Page</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
+
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <!-- Favicon -->
         <link href="img/favicon.ico" rel="icon">
@@ -118,8 +118,21 @@
                     <div class="right">
                         <div class="url">
                             <a class="url1" href="index.jsp">Trang chủ</a> > <a class="url1" href="product.html">Sản phẩm</a> > <a class="url1" href="recipe.jsp">Khẩu phần cho chim</a>
+
                         </div>
-                        <div class="pname">Cám chim 1</div>
+                        <div class="report-option">
+                            <p style="margin-top: 11px;">Tố cáo:</p>
+                            <select>
+                                <option value="spam">Spam</option>
+                                <option value="phishing">Hàng 18+</option>
+                                <option value="inappropriate-content">Hàng fake</option>
+                                <option value="other">Khác</option>
+                            </select>
+                            <button class="confirm-button">Xác nhận</button>
+                        </div>
+                        <div class="pname" style="margin-bottom: 1px;">Cám chim 1
+
+                        </div>
                         <input type="hidden" name="id" value="1"/>
                         <input type="hidden" name="name" value="Cám chim 1"/>
                         <input type="hidden" name="price" value="4000"/>
@@ -229,25 +242,25 @@
                             </div>
                         </div>
                     </div>-->
-        
+
         <form action="ViewFeedbackController" >
-             <input type="submit" name="shop_product_item_id" readonly="" value=2>
-    <% 
-    List<FeedbackDTO> listFeedback = (List<FeedbackDTO>) request.getAttribute("LIST_Feedback");
-    if (listFeedback != null && !listFeedback.isEmpty()) {
-        int count = 0;
-        for (FeedbackDTO feedback : listFeedback) {
-    %>
-    <div><%= ++count %></div>
-    <div><%= feedback.getCustomer_id() %></div>
-    <div><%= feedback.getFeedback() %></div>
-    <div><%= feedback.getCustomer_id() %></div>
- 
-    <% 
-        }
-    }
+            <input type="submit" name="shop_product_item_id" readonly="" value=2>
+            <% 
+            List<FeedbackDTO> listFeedback = (List<FeedbackDTO>) request.getAttribute("LIST_Feedback");
+            if (listFeedback != null && !listFeedback.isEmpty()) {
+                int count = 0;
+                for (FeedbackDTO feedback : listFeedback) {
+            %>
+            <div><%= ++count %></div>
+            <div><%= feedback.getCustomer_id() %></div>
+            <div><%= feedback.getFeedback() %></div>
+            <div><%= feedback.getCustomer_id() %></div>
+
+            <% 
+                }
+            }
   
-    %>
+            %>
         </form>
 
         <!-- Comment List End -->
@@ -275,93 +288,94 @@
                 </div>
             </form>
         </div>
-    
 
 
-    <!-- Comment Form End -->
+
+        <!-- Comment Form End -->
 
 
-    <!-- Topbar End -->
-    <!-- Footer Start -->
-    <div class="container-fluid bg-light mt-5 py-5">
-        <div class="container pt-5">
-            <div class="row g-5">
-                <div class="col-lg-3 col-md-6">
-                    <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">PHƯƠNG THỨC LIÊN LẠC</h5>
-                    <p class="mb-4"></p>
-                    <p class="mb-2"><i class="bi bi-geo-alt text-primary me-2"></i>Lô E2a-7, Đường D1, Khu Công nghệ cao, P.Long Thạnh Mỹ, Tp. Thủ Đức, TP.HCM.</p>
-                    <p class="mb-2"><i class="bi bi-envelope-open text-primary me-2"></i>daihoc.hcm@fpt.edu.vn</p>
-                    <p class="mb-0"><i class="bi bi-telephone text-primary me-2"></i> (028) 7300 5588</p>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">FBird</h5>
-                    <div class="d-flex flex-column justify-content-start">
-                        <a class="text-body mb-2" href="index.html"><i class="bi bi-arrow-right text-primary me-2"></i>Trang chủ</a>
-
-                        <a class="text-body mb-2" href="member.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thành viên</a>
-
-
+        <!-- Topbar End -->
+        <!-- Footer Start -->
+        <div class="container-fluid bg-light mt-5 py-5">
+            <div class="container pt-5">
+                <div class="row g-5">
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">PHƯƠNG THỨC LIÊN LẠC</h5>
+                        <p class="mb-4"></p>
+                        <p class="mb-2"><i class="bi bi-geo-alt text-primary me-2"></i>Lô E2a-7, Đường D1, Khu Công nghệ cao, P.Long Thạnh Mỹ, Tp. Thủ Đức, TP.HCM.</p>
+                        <p class="mb-2"><i class="bi bi-envelope-open text-primary me-2"></i>daihoc.hcm@fpt.edu.vn</p>
+                        <p class="mb-0"><i class="bi bi-telephone text-primary me-2"></i> (028) 7300 5588</p>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Loại hàng cho chim</h5>
-                    <div class="d-flex flex-column justify-content-start">
-                        <a class="text-body mb-2" href="food.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thức ăn</a>
-                        <a class="text-body mb-2" href="drinks.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thức uống</a>
-                        <a class="text-body mb-2" href="supplement.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thực phẩm bổ sung</a>
-                        <a class="text-body mb-2" href="medicine.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thuốc</a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Phản hồi đến công ty chúng tôi</h5>
-                    <form action="">
-                        <div class="input-group">
-                            <input type="text" class="form-control p-3" placeholder="Nhập email">
-                            <button class="btn btn-primary">Đăng ký</button>
+
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">FBird</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-body mb-2" href="index.html"><i class="bi bi-arrow-right text-primary me-2"></i>Trang chủ</a>
+
+                            <a class="text-body mb-2" href="member.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thành viên</a>
+
+
                         </div>
-                    </form>
-                    <h6 class="text-uppercase mt-4 mb-3"> Theo dõi chúng tôi trên</h6>
-                    <div class="d-flex">
-                        <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-twitter"></i></a>
-                        <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-facebook"></i></a>
-                        <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-linkedin"></i></a>
-                        <a class="btn btn-outline-primary btn-square" href="#"><i class="bi bi-instagram"></i></a>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Loại hàng cho chim</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-body mb-2" href="food.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thức ăn</a>
+                            <a class="text-body mb-2" href="drinks.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thức uống</a>
+                            <a class="text-body mb-2" href="supplement.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thực phẩm bổ sung</a>
+                            <a class="text-body mb-2" href="medicine.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thuốc</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Phản hồi đến công ty chúng tôi</h5>
+                        <form action="">
+                            <div class="input-group">
+                                <input type="text" class="form-control p-3" placeholder="Nhập email">
+                                <button class="btn btn-primary">Đăng ký</button>
+                            </div>
+                        </form>
+                        <h6 class="text-uppercase mt-4 mb-3"> Theo dõi chúng tôi trên</h6>
+                        <div class="d-flex">
+                            <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-twitter"></i></a>
+                            <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-facebook"></i></a>
+                            <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-linkedin"></i></a>
+                            <a class="btn btn-outline-primary btn-square" href="#"><i class="bi bi-instagram"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="container-fluid bg-dark text-white-50 py-4">
-        <div class="container">
-            <div class="row g-5">
-                <div class="col-md-6 text-center text-md-start">
-                    <p class="mb-md-0">&copy; <a class="text-white" href="index.html">Trang web được thiết kế bởi nhóm 3 </a> </p>
-                </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <p class="mb-0">Nguồn <a class="text-white" href="https://htmlcodex.com">HTML Codex</a></p>
+        <div class="container-fluid bg-dark text-white-50 py-4">
+            <div class="container">
+                <div class="row g-5">
+                    <div class="col-md-6 text-center text-md-start">
+                        <p class="mb-md-0">&copy; <a class="text-white" href="index.html">Trang web được thiết kế bởi nhóm 3 </a> </p>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <p class="mb-0">Nguồn <a class="text-white" href="https://htmlcodex.com">HTML Codex</a></p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Footer End -->
+        <!-- Footer End -->
 
-    <script>
-        let bigImg = document.querySelector('.big-img img');
-        function showImg(pic) {
-            bigImg.src = pic;
-        }
-    </script>
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+        <script>
+            let bigImg = document.querySelector('.big-img img');
+            function showImg(pic) {
+                bigImg.src = pic;
+            }
+        </script>
 
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+        <!-- Template Javascript -->
+        <script src="js/main.js"></script>
     </body>
 </html>
 <style>
@@ -444,4 +458,23 @@
         transition: .5s;
         width: max-content;
     }
+
+    /*   chỉnh thanh tố cáo --------------------------------*/
+    .report-option {
+        display: flex;
+        align-items: center;
+    }
+
+    .report-option p {
+        margin-right: 10px;
+    }
+
+    .report-option select {
+        margin-right: 10px;
+    }
+
+    .report-option .confirm-button {
+        margin-right: 10px;
+    }
+    /*    ---------------------------------*/
 </style>

@@ -17,12 +17,12 @@
         <servlet-class>fbird.controller.LoginController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>DeleteTyoeOfBirdController</servlet-name>
-        <servlet-class>fbird.controller.DeleteTyoeOfBirdController</servlet-class>
+        <servlet-name>DeleteTypeOfBirdController</servlet-name>
+        <servlet-class>fbird.controller.DeleteTypeOfBirdController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>SearchTyoeOfBirdController</servlet-name>
-        <servlet-class>fbird.controller.SearchTyoeOfBirdController</servlet-class>
+        <servlet-name>SearchTypeOfBirdController</servlet-name>
+        <servlet-class>fbird.controller.SearchTypeOfBirdController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CreateTypeOfBirdController</servlet-name>
@@ -81,12 +81,12 @@
         <url-pattern>/LoginController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>DeleteTyoeOfBirdController</servlet-name>
-        <url-pattern>/DeleteTyoeOfBirdController</url-pattern>
+        <servlet-name>DeleteTypeOfBirdController</servlet-name>
+        <url-pattern>/DeleteTypeOfBirdController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>SearchTyoeOfBirdController</servlet-name>
-        <url-pattern>/SearchTyoeOfBirdController</url-pattern>
+        <servlet-name>SearchTypeOfBirdController</servlet-name>
+        <url-pattern>/SearchTypeOfBirdController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CreateTypeOfBirdController</servlet-name>

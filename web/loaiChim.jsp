@@ -69,7 +69,7 @@
                         <div class="col-md-3">
                             <a href="loaiChim.jsp" class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded fw-bold" style="text-decoration: none; color: black;">
 
-                               Xem loại chim
+                                Xem loại chim
 
 
                             </a>
@@ -82,10 +82,10 @@
                         </div>
 
                     </div>
-                    
-                                        <div class="row my-5">
+
+                    <div class="row my-5">
                         <h3 class="fs-4 mb-3">Tìm kiếm loại chim:</h3>
-                        <form action="SearchTyoeOfBirdController" method="GET">
+                        <form action="SearchTypeOfBirdController" method="GET">
                             <input type="text" name="search" placeholder="Nhập tên chim">
                             <button type="submit">Tìm kiếm</button>
                         </form>
@@ -101,26 +101,33 @@
                                 </thead>
 
                                 <tbody>
-                                    
 
-                                        <% 
-                                        List<TypeOfBirdDTO> listTOB = (List<TypeOfBirdDTO>) request.getAttribute("LIST_TYPE_OF_BIRD");
-                                        if (listTOB != null && !listTOB.isEmpty()) {
-                                            int count = 0;
+
+                                    <% 
+                                    List<TypeOfBirdDTO> listTOB = (List<TypeOfBirdDTO>) request.getAttribute("LIST_TYPE_OF_BIRD");
+                                    if (listTOB != null && !listTOB.isEmpty()) {
+                                        int count = 0;
             
-                                            for (TypeOfBirdDTO tob : listTOB) {
-                                            count++;
-                                        %>
-                                        <tr>
+                                        for (TypeOfBirdDTO tob : listTOB) {
+                                        count++;
+                                    %>
+                                    <tr>
                                         <td><%= count%></td>
-                                        <td><%= tob.getName() %></td>
-                                        <td><a href="index.html" class="fw-bold" style="text-decoration: none; color: black;">Xóa chim</a></td>
-                                        <%
-                                            }
-                                        }
-                                        %>
+                                        <td>  <%= tob.getName() %> </td>
 
-                                    </tr>
+
+                                <form action="DeleteTypeOfBirdController" method="post">
+                                    <td>
+                                        <input type="hidden" name="name" value="<%= tob.getName() %>">
+                                        <input type="submit" value="Xóa chim" class="fw-bold" style="text-decoration: none; color: black;"/>
+                                    </td>
+                                </form>
+                                <%
+                                    }
+                                }
+                                %>
+
+                                </tr>
                                 </tbody>
                             </table>
                         </div>

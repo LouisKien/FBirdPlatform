@@ -16,7 +16,7 @@ import java.io.PrintWriter;
  *
  * @author Admin
  */
-public class DeleteTyoeOfBirdController extends HttpServlet {
+public class DeleteTypeOfBirdController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,7 +44,7 @@ public class DeleteTyoeOfBirdController extends HttpServlet {
         }catch(Exception e){
             log("Error at DeleteController: " + e.toString());
         }finally{
-            request.getRequestDispatcher("xemLoaiChim.jsp").forward(request, response);
+            request.getRequestDispatcher("loaiChim.jsp").forward(request, response);
         }
     }
 

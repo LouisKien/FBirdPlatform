@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="fbird.feedback.FeedbackDTO"%>
+<%@page import="fbird.customer.CustomerDTO"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -97,7 +98,7 @@
                 <div class="flex-box">
                     <div class="left">
                         <div class="big-img">
-                            <img src="img/avatar-khanh.png">
+                            <img src="img/avatar-nhat.png">
                         </div>
                         <div class="images">
                             <div class="small-img">
@@ -244,22 +245,30 @@
                     </div>-->
 
         <form action="ViewFeedbackController" >
-            <input type="submit" name="shop_product_item_id" readonly="" value=2>
+            
+            <!--<input type="submit" name="shop_product_item_id" readonly="" value=1>-->
+            <input type="submit" name="customer_id" readonly="" value=1>
             <% 
-            List<FeedbackDTO> listFeedback = (List<FeedbackDTO>) request.getAttribute("LIST_Feedback");
-            if (listFeedback != null && !listFeedback.isEmpty()) {
+  //          List<FeedbackDTO> listFeedback = (List<FeedbackDTO>) request.getAttribute("LIST_Feedback");
+            List<CustomerDTO> listCustomer = (List<CustomerDTO>) request.getAttribute("LIST_Customer");
+            if (listCustomer != null && !listCustomer.isEmpty()) {
                 int count = 0;
-                for (FeedbackDTO feedback : listFeedback) {
+         //       for (FeedbackDTO feedback : listFeedback) {
+                for (CustomerDTO customer : listCustomer) {
             %>
-            <div><%= ++count %></div>
-            <div><%= feedback.getCustomer_id() %></div>
-            <div><%= feedback.getFeedback() %></div>
-            <div><%= feedback.getCustomer_id() %></div>
+            <div><%= ++count %></div>         
+            <div class="small-img">
+                                <img src="<%= customer.getAvatar() %>">
+                            </div>
+            
+          <!--  <div></%= feedback.getCustomer_id() %></div>
+            <div></%= feedback.getFeedback() %></div>
+           <div></%= feedback.getCustomer_id() %></div>-->
 
             <% 
                 }
-            }
-  
+       //     }
+}
             %>
         </form>
 

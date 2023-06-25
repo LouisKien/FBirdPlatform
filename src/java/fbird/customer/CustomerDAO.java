@@ -19,7 +19,7 @@ import java.util.List;
  * @author Admin
  */
 public class CustomerDAO {
-    private static final String VIEW = "SELECT * FROM feedback WHERE customer_id= ?";
+    private static final String VIEW = "SELECT * FROM customer WHERE customer_id= ?";
     
     
     public List<CustomerDTO> getCustomer(int customer_id) throws SQLException {
@@ -38,7 +38,7 @@ public class CustomerDAO {
 //                }
 
                 while (rs.next()) {
-                    String username = rs.getString("feedback");
+                    String username = rs.getString("username");
                     String phone = rs.getString("phone");
                     String fullname = rs.getString("fullname");
                     String avatar = rs.getString("avatar");

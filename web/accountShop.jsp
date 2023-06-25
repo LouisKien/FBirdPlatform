@@ -51,7 +51,7 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="profileDropdown">
 
-                        <li><a class="dropdown-item" style="width: 239px;" href="tatCaSanPham.jsp">Tất cả sản phẩm</a></li>
+                        <li><a class="dropdown-item" style="width: 239px;" href="MainController?action=ViewProduct">Tất cả sản phẩm</a></li>
                         <li><a class="dropdown-item" style="width: 239px;" href="sanPhamViPham.jsp">Sản phẩm vi phạm</a></li>
                         <li><a class="dropdown-item" style="width: 239px;" href="themSanPham.jsp">Thêm sản phẩm</a></li>
                     </ul>

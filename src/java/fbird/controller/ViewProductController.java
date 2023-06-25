@@ -12,40 +12,32 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
-
+import java.io.PrintWriter;
+import java.util.List;
 
 
 /**
  *
  * @author tuan3
  */
-@WebServlet(name = "UpdateProductController", urlPatterns = {"/UpdateProductController"})
-public class UpdateProductController extends HttpServlet {
+@WebServlet(name = "ViewProductController", urlPatterns = {"/ViewProductController"})
+public class ViewProductController extends HttpServlet {
 
-    private static final String ERROR = "tatCaSanPham.jsp";
-    private static final String SUCCESS = "tatCaSanPham.jsp";
-    
+    public static final String ERROR = "tatCaSanPham.jsp";
+    public static final String SUCCESS = "tatCaSanPham.jsp";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try{
-            int productShopItemID = Integer.parseInt(request.getParameter("productShopItemID"));
-            String productName = request.getParameter("productName");
-            int inventory = Integer.parseInt(request.getParameter("inventory"));
-            int typeOfBirdID = Integer.parseInt(request.getParameter("typeOfBirdID"));
-            int typeProduct = Integer.parseInt(request.getParameter("typeProduct"));
-//            priceProduct = request.getParameter("priceOfProduct");
-            String description = request.getParameter("description");  
             ProductDAO dao = new ProductDAO();
-            ProductDTO product = new ProductDTO(productShopItemID, ShopID, typeProduct, typeOfBirdID, productName, description, inventory, "", 0);
-            boolean checkUpdate = dao.checkUpdate(product);
-            if(checkUpdate){
+            List<ProductDTO> listProduct = dao.getListProduct();
+            if(listProduct.size()>0){
+                request.setAttribute("LIST_PRODUCT", listProduct);
                 url = SUCCESS;
             }
         }catch(Exception e){
-            log("Error at UpdateProductController :" + e.toString());
+            log("Error at ViewProductController :" + e.toString());
         }finally{
             request.getRequestDispatcher(url).forward(request, response);
         }

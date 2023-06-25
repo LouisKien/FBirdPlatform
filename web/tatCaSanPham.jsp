@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="vi">
     <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -112,127 +113,163 @@
                                 <thead>
                                     <tr>
                                         <th scope="col" width="50">#</th>
-                                        <th scope="col">Sản phẩm</th>
-                                        <th scope="col">Khách hàng</th>
-                                        <th scope="col">Giá</th>
-                                        <th scope="col">Trạng thái</th>
-                                        <th scope="col">Thời gian</th>
-                                        <th scope="col">Vận chuyển</th>
-                                        <th scope="col">Cập nhật</th>
+                                        <th scope="col">Mã Sản Phẩm</th>
+                                        <th scope="col">Mã Shop</th>
+                                        <th scope="col">Mã Loại Hàng</th>
+                                        <th scope="col">Mã Loại Chim</th>
+                                        <th scope="col">Tên Sản Phẩm</th>
+                                        <th scope="col">Mô Tả</th>
+                                        <th scope="col">Số Lượng</th>
+                                        <th scope="col">Ngày đăng kí</th>
+                                        <th scope="col">Trạng Thái</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Cám chim 1</td>
-                                        <td>Jonny</td>
-                                        <td>$1200</td>
-                                        <td>Đã giao</td>
-                                        <td>1/1/2023</td>
-                                        <td>Hỏa tốc</td>
-                                        <td><input type="submit" name="action" value="Update Product"/></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Cám chim 2</td>
-                                        <td>Kenny</td>
-                                        <td>$750</td>
-                                        <td>Đã hủy</td>
-                                        <td>1/1/2023</td>
-                                        <td>Hỏa tốc</td>
-                                        <td><input type="submit" name="action" value="Update Product"/></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Cám chim 3</td>
-                                        <td>Jenny</td>
-                                        <td>$600</td>
-                                        <td>Đã giao</td>
-                                        <td>1/1/2023</td>
-                                        <td>Hỏa tốc</td>
-                                        <td><input type="submit" name="action" value="Update Product"/></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">4</th>
-                                        <td>Cám chim 4</td>
-                                        <td>Killy</td>
-                                        <td>$300</td>
-                                        <td>Đã hủy</td>
-                                        <td>1/1/2023</td>
-                                        <td>Hỏa tốc</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">5</th>
-                                        <td>Cám chim 5</td>
-                                        <td>Filly</td>
-                                        <td>$120</td>
-                                        <td>Đã giao</td>
-                                        <td>1/1/2023</td>
-                                        <td>Hỏa tốc</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">6</th>
-                                        <td>Cám chim 6</td>
-                                        <td>Bumbo</td>
-                                        <td>$1800</td>
-                                        <td>Đã hủy</td>
-                                        <td>1/1/2023</td>
-                                        <td>Hỏa tốc</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">7</th>
-                                        <td>Cám chim 7</td>
-                                        <td>Bilbo</td>
-                                        <td>$75</td>
-                                        <td>Đã giao</td>
-                                        <td>1/1/2023</td>
-                                        <td>Hỏa tốc</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">8</th>
-                                        <td>Cám chim 8</td>
-                                        <td>Frodo</td>
-                                        <td>$36</td>
-                                        <td>Đã hủy</td>
-                                        <td>1/1/2023</td>
-                                        <td>Hỏa tốc</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">9</th>
-                                        <td>Cám chim 9</td>
-                                        <td>Kimo</td>
-                                        <td>$255</td>
-                                        <td>Đã giao</td>
-                                        <td>1/1/2023</td>
-                                        <td>Hỏa tốc</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">10</th>
-                                        <td>Cám chim 10</td>
-                                        <td>Zico</td>
-                                        <td>$434</td>
-                                        <td>Đã hủy</td>
-                                        <td>1/1/2023</td>
-                                        <td>Hỏa tốc</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">11</th>
-                                        <td>Cám chim 11</td>
-                                        <td>Jeco</td>
-                                        <td>$1236</td>
-                                        <td>Đã giao</td>
-                                        <td>1/1/2023</td>
-                                        <td>Hỏa tốc</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">12</th>
-                                        <td>Cám chim 12</td>
-                                        <td>Haso</td>
-                                        <td>$422</td>
-                                        <td>Đã hủy</td>
-                                        <td>1/1/2023</td>
-                                        <td>Hỏa tốc</td>
-                                    </tr>
+                                    <!--                                    <tr>
+                                                                            <th scope="row">1</th>
+                                                                            <td>Cám chim 1</td>
+                                                                            <td>Jonny</td>
+                                                                            <td>$1200</td>
+                                                                            <td>Đã giao</td>
+                                                                            <td>1/1/2023</td>
+                                                                            <td>Hỏa tốc</td>
+                                                                            <td><input type="submit" name="action" value="Update Product"/></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">2</th>
+                                                                            <td>Cám chim 2</td>
+                                                                            <td>Kenny</td>
+                                                                            <td>$750</td>
+                                                                            <td>Đã hủy</td>
+                                                                            <td>1/1/2023</td>
+                                                                            <td>Hỏa tốc</td>
+                                                                            <td><input type="submit" name="action" value="Update Product"/></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">3</th>
+                                                                            <td>Cám chim 3</td>
+                                                                            <td>Jenny</td>
+                                                                            <td>$600</td>
+                                                                            <td>Đã giao</td>
+                                                                            <td>1/1/2023</td>
+                                                                            <td>Hỏa tốc</td>
+                                                                            <td><input type="submit" name="action" value="Update Product"/></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">4</th>
+                                                                            <td>Cám chim 4</td>
+                                                                            <td>Killy</td>
+                                                                            <td>$300</td>
+                                                                            <td>Đã hủy</td>
+                                                                            <td>1/1/2023</td>
+                                                                            <td>Hỏa tốc</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">5</th>
+                                                                            <td>Cám chim 5</td>
+                                                                            <td>Filly</td>
+                                                                            <td>$120</td>
+                                                                            <td>Đã giao</td>
+                                                                            <td>1/1/2023</td>
+                                                                            <td>Hỏa tốc</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">6</th>
+                                                                            <td>Cám chim 6</td>
+                                                                            <td>Bumbo</td>
+                                                                            <td>$1800</td>
+                                                                            <td>Đã hủy</td>
+                                                                            <td>1/1/2023</td>
+                                                                            <td>Hỏa tốc</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">7</th>
+                                                                            <td>Cám chim 7</td>
+                                                                            <td>Bilbo</td>
+                                                                            <td>$75</td>
+                                                                            <td>Đã giao</td>
+                                                                            <td>1/1/2023</td>
+                                                                            <td>Hỏa tốc</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">8</th>
+                                                                            <td>Cám chim 8</td>
+                                                                            <td>Frodo</td>
+                                                                            <td>$36</td>
+                                                                            <td>Đã hủy</td>
+                                                                            <td>1/1/2023</td>
+                                                                            <td>Hỏa tốc</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">9</th>
+                                                                            <td>Cám chim 9</td>
+                                                                            <td>Kimo</td>
+                                                                            <td>$255</td>
+                                                                            <td>Đã giao</td>
+                                                                            <td>1/1/2023</td>
+                                                                            <td>Hỏa tốc</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">10</th>
+                                                                            <td>Cám chim 10</td>
+                                                                            <td>Zico</td>
+                                                                            <td>$434</td>
+                                                                            <td>Đã hủy</td>
+                                                                            <td>1/1/2023</td>
+                                                                            <td>Hỏa tốc</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">11</th>
+                                                                            <td>Cám chim 11</td>
+                                                                            <td>Jeco</td>
+                                                                            <td>$1236</td>
+                                                                            <td>Đã giao</td>
+                                                                            <td>1/1/2023</td>
+                                                                            <td>Hỏa tốc</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">12</th>
+                                                                            <td>Cám chim 12</td>
+                                                                            <td>Haso</td>
+                                                                            <td>$422</td>
+                                                                            <td>Đã hủy</td>
+                                                                            <td>1/1/2023</td>
+                                                                            <td>Hỏa tốc</td>
+                                                                        </tr>-->
+                                    <c:forEach var="product" varStatus="counter" items="${requestScope.LIST_PRODUCT}">
+                                    <form action="MainController">
+                                        <tr>
+                                            <td>${counter.count}</td>
+                                            <td>
+                                                ${product.shopProductItemID}
+                                            </td>
+                                            <td>
+                                                ${product.shopID}
+                                            </td>
+                                            <td>
+                                                ${product.categoryID}
+                                            </td>
+                                            <td>
+                                                ${product.typeOfBirdID}
+                                            </td>
+                                            <td>
+                                                <input type="text" name="title" value="${product.title}"/>
+                                            </td>
+                                            <td>
+                                                <input type="text" name="description" value="${product.description}"/>
+                                            </td>
+                                            <td>
+                                                <input type="number" name="inventory" value="${product.inventory}" min="0"/>
+                                            </td>
+                                            <td>
+                                                ${product.uploadDate}
+                                            </td>
+                                            <td>
+                                                <input type="text" name="status" value="${product.status}"/>
+                                            </td>
+                                        </tr>
+                                    </form>
+                                </c:forEach>
                                 </tbody>
                             </table>
                         </div>

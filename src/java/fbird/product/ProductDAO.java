@@ -10,6 +10,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -20,6 +22,7 @@ public class ProductDAO {
     private static final String GET_BIRD = "SELECT [type_of_bird_id] FROM type_of_bird WHERE [name] like ?";
     private static final String ADD_PRODUCT = "INSERT INTO [shop_product_item] VALUES (?,?,?,?,?,?,?,?)";
     private static final String UPDATE = "UPDATE shop_product_item SET title=?, description=?, inventory=?, status=? WHERE shop_product_item_id=? ";
+    private static final String VIEW_PRODUCT = "SELECT * FROM shop_product_item";
 
     public int checkTypeOfBird(String typeOfBird) throws ClassNotFoundException, SQLException {
         int id = 0;
@@ -92,11 +95,12 @@ public class ProductDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                ptm = conn.prepareStatement(ADD_PRODUCT);
+                ptm = conn.prepareStatement(UPDATE);
                     ptm.setString(1, product.getTitle());
                     ptm.setString(2, product.getDescription());
                     ptm.setInt(3, product.getInventory());
                     ptm.setInt(4, product.getStatus());
+                    ptm.setInt(5, product.getShopProductItemID());
                     check = ptm.executeUpdate()>0?true:false;
                 }
             }finally{
@@ -104,5 +108,38 @@ public class ProductDAO {
             if(ptm != null) ptm = null;
         }
         return check;
+    }
+
+    public List<ProductDTO> getListProduct() throws SQLException {
+        List<ProductDTO> list = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try{
+            conn = DBUtils.getConnection();
+            if(conn!=null){
+                ptm = conn.prepareStatement(VIEW_PRODUCT);
+                rs = ptm.executeQuery();
+                while(rs.next()){
+                    int shopProductItemID = rs.getInt("shop_product_item_id");
+                    int shopID = rs.getInt("shop_id");
+                    int categoryID = rs.getInt("category_id");
+                    int typeOfBirdID = rs.getInt("type_of_bird_id");
+                    String title = rs.getString("title");
+                    String description = rs.getString("description");
+                    int inventory = rs.getInt("inventory");
+                    Date uploadDate = rs.getDate("upload_date");
+                    Byte status = rs.getByte("status");
+                    list.add(new ProductDTO(shopProductItemID, shopID, categoryID, typeOfBirdID, title, description, inventory, uploadDate, status));
+                }
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            if(conn!=null) conn.close();
+            if(ptm!=null) ptm.close();
+            if(rs!=null) rs.close();
+        }
+        return list;
     }
 }

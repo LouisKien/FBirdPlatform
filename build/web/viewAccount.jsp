@@ -132,7 +132,16 @@
                                     <tr>
                                         <th scope="row"><%= count++%></th>
                                         <td><%= account.getUsername() %></td>
-                                        <td><%= account.getRole()%></td>
+                                        
+                                        <td><%
+                                            if(account.getRole() == 3) {
+                                                %> 
+                                                Khách hàng
+                                          <%  }else{%>
+                                          Cửa hàng
+<%}
+                                            %>
+                                        </td>
                                         <td>
                                             <%
                                                 if(account.getRole() == 3) {

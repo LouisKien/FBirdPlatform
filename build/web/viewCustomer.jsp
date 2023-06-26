@@ -127,7 +127,7 @@
                                     <tr>
                                         <th scope="row"><%= count++%></th>
                                         <td><%= account.getUsername() %></td>
-                                        <td><%= account.getRole()%></td>
+                                        <td>Người dùng</td>
                                         <td>
                                             <%
                                                 for(CustomerDTO customer: listCustomer){

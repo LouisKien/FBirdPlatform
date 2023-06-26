@@ -2,6 +2,7 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group>
             <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/web/donHuy.jsp</file>
             <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/web/img/product-1.png</file>
@@ -39,5 +40,8 @@
             <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/web/productDetail.jsp</file>
             <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/controller/LoginController.java</file>
         </group>
+=======
+        <group/>
+>>>>>>> 4429f7aaeefc4401b70c3fe57dee5ac21529861d
     </open-files>
 </project-private>

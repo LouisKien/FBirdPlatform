@@ -116,6 +116,13 @@
                                             </a>
                                         </li>
                                         <li>
+                                            <a href="createShop.jsp">
+                                                <div class="color-item">
+                                                    <span class="color-name">Đăng kí shop</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
                                             <a href="accountShop.jsp">
                                                 <div class="color-item">
                                                     <span class="color-name">Kênh người bán</span>
@@ -173,7 +180,7 @@
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                                         <div class="form-group">
                                             <label for="username">Tên đăng nhập:</label>
-                                            <input type="text" class="form-control" id="username">
+                                            <input type="text" class="form-control" id="username" value="${user}">
                                         </div>
 
                                         <div class="form-group">

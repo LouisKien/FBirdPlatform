@@ -68,6 +68,10 @@
         <servlet-name>SearchAccountController</servlet-name>
         <servlet-class>fbird.controller.SearchAccountController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CreateShopController</servlet-name>
+        <servlet-class>fbird.controller.CreateShopController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -135,5 +139,9 @@
     <servlet-mapping>
         <servlet-name>SearchAccountController</servlet-name>
         <url-pattern>/SearchAccountController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateShopController</servlet-name>
+        <url-pattern>/CreateShopController</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -14,6 +14,7 @@ import fbird.feedback.FeedbackDTO;
 import java.util.List;
 import fbird.customer.CustomerDAO;
 import fbird.customer.CustomerDTO;
+import java.util.ArrayList;
 
 /**
  *
@@ -30,26 +31,25 @@ public class ViewFeedbackController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url="productDetail.jsp";
-        try{
-//            int shop_product_item_id = Integer.parseInt(request.getParameter("shop_product_item_id"));
-            int customer_id = Integer.parseInt(request.getParameter("customer_id"));           
-            FeedbackDAO daoFeedback = new FeedbackDAO();
-            CustomerDAO daoCustomer = new CustomerDAO();
-//            List<FeedbackDTO> listFeedback = daoFeedback.getFeedback(shop_product_item_id);
-            List<CustomerDTO> listCustomer = daoCustomer.getCustomer(customer_id);
-            if(listCustomer.size()>0){
-//                request.setAttribute("LIST_Feedback", listFeedback);
-                request.setAttribute("LIST_Customer", listCustomer);
-                
+        String url = "productDetail.jsp";
+        try {
+
+            int shop_product_item_id = Integer.parseInt(request.getParameter("shop_product_item_id"));
+//            int customer_id = Integer.parseInt(request.getParameter("id"));           
+            FeedbackDAO daoFeedback = new FeedbackDAO();              
+            List<FeedbackDTO> listFeedback = daoFeedback.getFeedback(shop_product_item_id);                       
+                if (!listFeedback.isEmpty()) {
+                request.setAttribute("LIST_Feedback", listFeedback);
+          
             }
-        }catch(Exception ex){
+
+            
+        } catch (Exception ex) {
             log("Error at Search: " + ex.toString());
-        }finally{
+        } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }
@@ -67,7 +67,7 @@ public class ViewFeedbackController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
+
     }
 
     /**

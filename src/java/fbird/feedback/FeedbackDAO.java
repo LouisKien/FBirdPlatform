@@ -19,7 +19,7 @@ import java.util.Date;
  * @author Admin
  */
 public class FeedbackDAO {
-    private static final String VIEW = "SELECT feedback_id, feedback, customer_id, number_of_stars, status, feedback_date FROM feedback WHERE shop_product_item_id= ?";
+    private static final String VIEW = "SELECT  avatar, number_of_stars, status, fullname, feedback_date, feedback.feedback FROM feedback join customer on customer.customer_id = feedback.customer_id WHERE shop_product_item_id = ?";
     private static final String ADD = "INSERT INTO feedback(customer_id, shop_product_item_id, feedback, status, number_of_stars, feedback_date) VALUES(?,?,?,?,?,?)";
     
     public List<FeedbackDTO> getFeedback(int shop_product_item_id) throws SQLException {
@@ -38,15 +38,17 @@ public class FeedbackDAO {
 //                }
 
                 while (rs.next()) {
-                    int feedback_id = rs.getInt("feedback_id");
+                   
                     
+                    String avatar = rs.getString("avatar");
+                    String fullname = rs.getString("fullname");
                     String feedback = rs.getString("feedback");
-                    int customer_id = rs.getInt("customer_id");
+                  
                     int number_of_stars = rs.getInt("number_of_stars");
                     Boolean status = rs.getBoolean("status");
                     Date feedback_date =rs.getDate("feedback_date");
                     
-                    list.add(new FeedbackDTO(feedback_id, customer_id, shop_product_item_id, feedback, status, number_of_stars, feedback_date));
+                    list.add(new FeedbackDTO( feedback,  status,  number_of_stars,  feedback_date,  avatar,  fullname));
                 }
             }
         } catch (Exception e) {

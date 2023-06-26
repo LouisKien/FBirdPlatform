@@ -18,6 +18,8 @@ public class FeedbackDTO {
     Boolean status;
     int number_of_stars;
     Date feedback_date;
+    String avatar;
+    String fullname;
 
     public FeedbackDTO() {
     }
@@ -39,6 +41,15 @@ public class FeedbackDTO {
         this.status = status;
         this.number_of_stars = number_of_stars;
         this.feedback_date = feedback_date;
+    }
+
+    public FeedbackDTO(String feedback, Boolean status, int number_of_stars, Date feedback_date, String avatar, String fullname) {
+        this.feedback = feedback;
+        this.status = status;
+        this.number_of_stars = number_of_stars;
+        this.feedback_date = feedback_date;
+        this.avatar = avatar;
+        this.fullname = fullname;
     }
 
     
@@ -99,6 +110,22 @@ public class FeedbackDTO {
 
     public void setFeedback_date(Date feedback_date) {
         this.feedback_date = feedback_date;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 
     

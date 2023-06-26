@@ -1,3 +1,6 @@
+<%@page import="org.apache.catalina.User"%>
+<%@page import="java.util.List"%>
+<%@page import="fbird.shop.ShopDTO"%>
 <!DOCTYPE html>
 <html lang="vi">
     <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -29,14 +32,14 @@
                 <ul class="dropdown-menu" aria-labelledby="adminDropdown">
 
                     <li><a class="dropdown-item" style="width: 239px;" href="MainController?action=ViewAccount">Xem tài khoản</a></li>
-                    <li><a class="dropdown-item" style="width: 239px;" href="viewReportShopAccount.jsp">Xem báo cáo tài khoản</a></li>
+                    <li><a class="dropdown-item" style="width: 239px;" href="MainController?action=ViewReportedShop">Xem báo cáo tài khoản</a></li>
                 </ul>
                 <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold dropdown-toggle" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-regular fa-briefcase me-2"></i>Cài đặt sản phẩm
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="adminDropdown">
 
-                    
+
                     <li><a class="dropdown-item" style="width: 239px;" href="loaiChim.jsp">Loại chim</a></li>
                     <li><a class="dropdown-item" style="width: 239px;" href="sanPhamKhieuNai.jsp">Sản phẩm khiếu nại</a></li>
                 </ul>
@@ -68,33 +71,59 @@
                         <!--                        <h3 class="fs-4 mb-3">Ngày đặt hàng</h3>-->
                         <div class="col">
                             <div class="container" style="display: grid; grid-template-rows: repeat(4,0fr); gap:10px;">
-                               
 
+                                <%
+                                    List<ShopDTO> listReportedShop = (List<ShopDTO>) request.getAttribute("LIST_REPORTED_SHOP");
+                                    if (listReportedShop != null) {
+                                        if (listReportedShop.size() > 0) {
+                                %>
                                 <table class="table bg-white rounded shadow-sm  table-hover">
                                     <thead>
                                         <tr>
                                             <th scope="col" width="50">#</th>
                                             <th scope="col">Tên đăng nhập</th>
-                                            <th scope="col">Cảnh cáo từ Admin</th>
-                                            <th scope="col">Ngày cảnh cáo</th>
-                                            <th scope="col">Phản hồi từ Shop</th>
-                                            <th scope="col">Ngày phản hồi</th>
-                                            <th scope="col"> </th>
+                                            <th scope="col">Tên shop</th>
+                                            <th scope="col">Nội dung tố cáo</th>
+                                            <th scope="col">Tên khách hàng tố cáo</th>
+                                            <th scope="col">Trạng thái tài khoản shop</th>
+                                            <th scope="col"></th>
                                         </tr>
                                     <tbody>
+                                        <%
+                                            int count = 1;
+                                            for(ShopDTO report: listReportedShop){
+                                        %>
                                         <tr>
-                                            <th scope="row">1</th>
-                                            <td>yasuoNguyen</td>
-                                            <td>Bán hàng fake ( khóa 7 ngày)</td>
-                                            <td>1/1/2024</td>
-                                            <td>Gửi admin, xin lỗi về vấn đề này</td>        
-                                            <td>2/1/2024</td>
-                                            <th><input type="submit" value="Khóa tài khoản" class="fw-bold" style="text-decoration: none; color: black;"/></th>
+                                            <th scope="row"><%=count++%></th>
+                                            <td><%= report.getUsername()%></td>
+                                            <td><%= report.getShopName()%></td>
+                                            <td><%= report.getReport_detail()%></td>
+                                            <td><%= report.getCustomer_fullname()%></td>        
+                                            <td>
+                                                <%
+                                                if(report.getShop_status() == 0){
+                                            %>
+                                                    Đã bị vô hiệu hóa
+                                            <%
+                                                } else {
+                                            %>
+                                                    Đang hoạt động
+                                            <%
+                                                }
+                                            %>
+                                            </td>
+                                            <th><a href="MainController?action=DisableShop&username=<%= report.getUsername()%>">Vô hiệu hóa tài khoản</a></th>
                                         </tr>
+                                        <%
+                                            }
+                                        %>
                                     </tbody>
                                     </thead>
                                 </table>
-
+                                <%
+                                        }
+                                    }
+                                %>
 
                             </div>
 

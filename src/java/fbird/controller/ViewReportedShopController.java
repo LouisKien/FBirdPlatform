@@ -6,6 +6,8 @@ package fbird.controller;
 
 import fbird.report.ReportedShopDAO;
 import fbird.report.ReportedShopDTO;
+import fbird.shop.ShopDAO;
+import fbird.shop.ShopDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,30 +22,24 @@ import java.util.List;
  */
 public class ViewReportedShopController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    private static final String ERROR = "viewReportShopAccount.jsp";
+    private static final String SUCCESS = "viewReportShopAccount.jsp";
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String url = ERROR;
         try{
-            int reported_shop_id = Integer.parseInt(request.getParameter("reported_shop_id"));
-            ReportedShopDAO dao = new ReportedShopDAO();
-            List<ReportedShopDTO> listReport = dao.getReportShop(reported_shop_id);
-            if(listReport.size()>0){
-                request.setAttribute("LIST_Feedback", listReport);
-                
+            ShopDAO dao = new ShopDAO();
+            List<ShopDTO> reportedList = dao.viewShopReport();
+            if(reportedList.size() > 0){
+                request.setAttribute("LIST_REPORTED_SHOP", reportedList);
+                url = SUCCESS;
             }
         }catch(Exception ex){
             log("Error at Search: " + ex.toString());
         }finally{
-//            request.getRequestDispatcher(url).forward(request, response);
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

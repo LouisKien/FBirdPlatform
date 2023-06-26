@@ -11,6 +11,9 @@ public class ShopDTO {
     String username, shopName, phone, address, avatar, email, city;
     Date registed_date;
 
+    String report_detail, customer_fullname;
+    int shop_status;
+    
     public ShopDTO() {
     }
 
@@ -32,6 +35,16 @@ public class ShopDTO {
         this.registed_date = registed_date;
     }
 
+    public ShopDTO(String username, String shopName, String report_detail, String customer_fullname, int shop_status) {
+        this.username = username;
+        this.shopName = shopName;
+        this.report_detail = report_detail;
+        this.customer_fullname = customer_fullname;
+        this.shop_status = shop_status;
+    }
+
+    
+    
     public String getUsername() {
         return username;
     }
@@ -96,4 +109,32 @@ public class ShopDTO {
         this.registed_date = registed_date;
     }
 
+    public String getReport_detail() {
+        return report_detail;
+    }
+
+    public void setReport_detail(String report_detail) {
+        this.report_detail = report_detail;
+    }
+
+    public String getCustomer_fullname() {
+        return customer_fullname;
+    }
+
+    public void setCustomer_fullname(String customer_fullname) {
+        this.customer_fullname = customer_fullname;
+    }
+
+    public int getShop_status() {
+        return shop_status;
+    }
+
+    public void setShop_status(int shop_status) {
+        this.shop_status = shop_status;
+    }
+
+    
+
+    
+    
 }

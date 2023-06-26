@@ -4,11 +4,15 @@
  */
 package fbird.shop;
 
+import fbird.user.UserDTO;
 import fbird.utils.DBUtils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -16,6 +20,7 @@ import java.util.Date;
  */
 public class ShopDAO {
     private static final String CREATE_SHOP = "insert into shop_owner(username, shop_name, phone, email, address, registed_date, city) values(?, ?, ?, ?, ?, ?, ?)";
+    private static final String VIEW_REPORTED_SHOP = "SELECT shop_owner.username, shop_name, detail, customer.fullname, account.status FROM reported_shop left join shop_owner on reported_shop.shop_id = shop_owner.shop_id left join customer on reported_shop.customer_id = customer.customer_id left join account on shop_owner.username = account.username";
     public void createShop(String username, String shop_name, String phone, String email, String address, Date date, String city) throws SQLException{
         
         Connection conn = null;
@@ -45,5 +50,38 @@ public class ShopDAO {
             }
     
         }
+    }
+    
+    public List<ShopDTO> viewShopReport() throws SQLException {
+        List<ShopDTO> listReport = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            ptm = conn.prepareStatement(VIEW_REPORTED_SHOP);
+            rs = ptm.executeQuery();
+            while (rs.next()) {
+                String username = rs.getString("username");
+                String shop_name = rs.getString("shop_name");
+                String detail = rs.getString("detail");
+                String customer_fullname = rs.getString("fullname");
+                int status = Integer.parseInt(rs.getString("status"));
+                listReport.add(new ShopDTO(username, shop_name, detail, customer_fullname, status));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return listReport;
     }
 }

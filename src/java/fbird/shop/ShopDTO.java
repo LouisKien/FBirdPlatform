@@ -43,7 +43,10 @@ public class ShopDTO {
         this.shop_status = shop_status;
     }
 
-    
+    public ShopDTO(String username, int shop_status) {
+        this.username = username;
+        this.shop_status = shop_status;
+    }
     
     public String getUsername() {
         return username;

@@ -72,6 +72,10 @@
         <servlet-name>CreateShopController</servlet-name>
         <servlet-class>fbird.controller.CreateShopController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DisableReportedShopController</servlet-name>
+        <servlet-class>fbird.controller.DisableReportedShopController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -143,5 +147,9 @@
     <servlet-mapping>
         <servlet-name>CreateShopController</servlet-name>
         <url-pattern>/CreateShopController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DisableReportedShopController</servlet-name>
+        <url-pattern>/DisableReportedShopController</url-pattern>
     </servlet-mapping>
 </web-app>

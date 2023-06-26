@@ -112,7 +112,19 @@
                                                 }
                                             %>
                                             </td>
-                                            <th><a href="MainController?action=DisableShop&username=<%= report.getUsername()%>">Vô hiệu hóa tài khoản</a></th>
+                                            <th>
+                                                <%
+                                                    if(report.getShop_status() == 1){
+                                                    %>
+                                                <a href="MainController?action=DisableShop&username=<%= report.getUsername()%>&status=0">Vô hiệu hóa tài khoản</a>
+                                                <%
+                                                    } else {
+                                                    %>
+                                                <a href="MainController?action=DisableShop&username=<%= report.getUsername()%>&status=1">Kích hoạt lại tài khoản</a>
+                                                <%
+                                                    }
+                                                %>
+                                            </th>
                                         </tr>
                                         <%
                                             }

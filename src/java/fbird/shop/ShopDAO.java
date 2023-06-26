@@ -21,6 +21,7 @@ import java.util.List;
 public class ShopDAO {
     private static final String CREATE_SHOP = "insert into shop_owner(username, shop_name, phone, email, address, registed_date, city) values(?, ?, ?, ?, ?, ?, ?)";
     private static final String VIEW_REPORTED_SHOP = "SELECT shop_owner.username, shop_name, detail, customer.fullname, account.status FROM reported_shop left join shop_owner on reported_shop.shop_id = shop_owner.shop_id left join customer on reported_shop.customer_id = customer.customer_id left join account on shop_owner.username = account.username";
+    private static final String DISABLE_SHOP_ACCOUNT = "UPDATE account SET status = ? WHERE username = ?";
     public void createShop(String username, String shop_name, String phone, String email, String address, Date date, String city) throws SQLException{
         
         Connection conn = null;
@@ -83,5 +84,26 @@ public class ShopDAO {
             }
         }
         return listReport;
+    }
+
+    public boolean disableShopAccount(ShopDTO disable) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(DISABLE_SHOP_ACCOUNT);
+                ptm.setInt(1, disable.getShop_status());
+                ptm.setString(2, disable.getUsername());
+                check = ptm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ptm != null) ptm.close();
+            if (conn != null) conn.close();
+        }
+        return check;
     }
 }

@@ -8,14 +8,15 @@ import fbird.utils.DBUtils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Date;
 
 /**
  *
  * @author louis
  */
 public class ShopDAO {
-    private static final String CREATE_SHOP = "insert into shop_owner(username, shop_name, phone, email, address, city) values(?, ?, ?, ?, ?, ?)";
-    public void createShop(String username, String shop_name, String phone, String email, String address, String city) throws SQLException{
+    private static final String CREATE_SHOP = "insert into shop_owner(username, shop_name, phone, email, address, registed_date, city) values(?, ?, ?, ?, ?, ?, ?)";
+    public void createShop(String username, String shop_name, String phone, String email, String address, Date date, String city) throws SQLException{
         
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -28,7 +29,8 @@ public class ShopDAO {
             ptm.setString(3, phone);
             ptm.setString(4, email);
             ptm.setString(5, address);
-            ptm.setString(6, city);
+            ptm.setDate(6, (java.sql.Date) date);
+            ptm.setString(7, city);
             ptm.executeUpdate();
         }catch (Exception e) {
             e.printStackTrace();

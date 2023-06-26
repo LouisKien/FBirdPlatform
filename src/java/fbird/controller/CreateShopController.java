@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import java.sql.SQLException;
+import java.util.Date;
 
 /**
  *
@@ -38,6 +39,8 @@ public class CreateShopController extends HttpServlet {
             String email = request.getParameter("email");
             String address = request.getParameter("address");
             String city = request.getParameter("city");
+            Date date = new Date();
+            java.sql.Date datesql = new java.sql.Date(date.getTime());
 
             UserDAO dao = new UserDAO();
             UserDTO user = dao.checkUserExist(username);
@@ -46,7 +49,7 @@ public class CreateShopController extends HttpServlet {
                 request.getRequestDispatcher("createShop.jsp").forward(request, response);
             } else {
                 ShopDAO shopdao = new ShopDAO();
-                shopdao.createShop(username, shop_name, phone, email, address, city);
+                shopdao.createShop(username, shop_name, phone, email, address, datesql, city);
                 request.setAttribute("msg", "Tạo shop thành công");
                 request.getRequestDispatcher("createShop.jsp").forward(request, response);
             }

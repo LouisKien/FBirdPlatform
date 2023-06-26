@@ -1,4 +1,5 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.util.List"%>
+<%@page import="fbird.product.ProductDTO"%>
 <!DOCTYPE html>
 <html lang="vi">
     <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -109,12 +110,16 @@
                     <div class="row my-5">
                         <h3 class="fs-4 mb-3">Gần đây</h3>
                         <div class="col">
+                            <%
+                            List<ProductDTO> list = (List<ProductDTO>) request.getAttribute("LIST_PRODUCT");
+                            if(list != null){
+                                if(list.size()>0){
+                            %>
                             <table class="table bg-white rounded shadow-sm  table-hover">
                                 <thead>
                                     <tr>
-                                        <th scope="col" width="50">#</th>
+<!--                                        <th scope="col" width="50">#</th>-->
                                         <th scope="col">Mã Sản Phẩm</th>
-                                        <th scope="col">Mã Shop</th>
                                         <th scope="col">Mã Loại Hàng</th>
                                         <th scope="col">Mã Loại Chim</th>
                                         <th scope="col">Tên Sản Phẩm</th>
@@ -236,42 +241,49 @@
                                                                             <td>1/1/2023</td>
                                                                             <td>Hỏa tốc</td>
                                                                         </tr>-->
-                                    <c:forEach var="product" varStatus="counter" items="${requestScope.LIST_PRODUCT}">
+                                    <%
+                                        int count = 1;
+                                        for (ProductDTO pro : list){
+                                    %>
+                                    
                                     <form action="MainController">
                                         <tr>
-                                            <td>${counter.count}</td>
                                             <td>
-                                                ${product.shopProductItemID}
+                                                <%= pro.getShopProductItemID() %>
                                             </td>
                                             <td>
-                                                ${product.shopID}
+                                                <%= pro.getCategoryID() %>
                                             </td>
                                             <td>
-                                                ${product.categoryID}
+                                                <%= pro.getTypeOfBirdID() %>
                                             </td>
                                             <td>
-                                                ${product.typeOfBirdID}
+                                                <input type="text" name="title" value="<%= pro.getTitle() %>"/>
                                             </td>
                                             <td>
-                                                <input type="text" name="title" value="${product.title}"/>
+                                                <p oninput=""><%= pro.getDescription() %></p>
+                                                </input>
                                             </td>
                                             <td>
-                                                <input type="text" name="description" value="${product.description}"/>
+                                                <input type="number" name="inventory" value="<%= pro.getInventory() %>" min="0"/>
                                             </td>
                                             <td>
-                                                <input type="number" name="inventory" value="${product.inventory}" min="0"/>
+                                                <%= pro.getUploadDate() %>
                                             </td>
                                             <td>
-                                                ${product.uploadDate}
-                                            </td>
-                                            <td>
-                                                <input type="text" name="status" value="${product.status}"/>
+                                                <input type="text" name="status" value="<%= pro.getStatus() %>"/>
                                             </td>
                                         </tr>
                                     </form>
-                                </c:forEach>
+                                <%
+                                    }
+                                %>
                                 </tbody>
                             </table>
+                                <%
+                                }
+                                }
+                                %>
                         </div>
                     </div>
 

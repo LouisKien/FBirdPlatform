@@ -29,7 +29,7 @@
                 <ul class="dropdown-menu" aria-labelledby="adminDropdown">
 
                     <li><a class="dropdown-item" style="width: 239px;" href="xemTaiKhoan.jsp">Xem tài khoản</a></li>
-                    <li><a class="dropdown-item" style="width: 239px;" href="xoaTaiKhoan.jsp">Xóa tài khoản</a></li>
+                    <li><a class="dropdown-item" style="width: 239px;" href="viewReportShopAccount.jsp">Xem báo cáo tài khoản</a></li>
                 </ul>
                 <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold dropdown-toggle" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-regular fa-briefcase me-2"></i>Cài đặt sản phẩm
@@ -68,11 +68,8 @@
                         <!--                        <h3 class="fs-4 mb-3">Ngày đặt hàng</h3>-->
                         <div class="col">
                             <div class="container" style="display: grid; grid-template-rows: repeat(4,0fr); gap:10px;">
-                                <label for="productName" style="font-size: 18px; font-weight: bold;" >Tìm cửa hàng:  </label> 
-                                <form action="/search" method="GET">
-                                    <input type="text" name="query" placeholder="Nhập tên đăng nhập" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
-                                    <button type="submit">Tìm kiếm</button>
-                                </form>
+                               
+
                                 <table class="table bg-white rounded shadow-sm  table-hover">
                                     <thead>
                                         <tr>
@@ -82,6 +79,7 @@
                                             <th scope="col">Ngày cảnh cáo</th>
                                             <th scope="col">Phản hồi từ Shop</th>
                                             <th scope="col">Ngày phản hồi</th>
+                                            <th scope="col"> </th>
                                         </tr>
                                     <tbody>
                                         <tr>
@@ -91,19 +89,11 @@
                                             <td>1/1/2024</td>
                                             <td>Gửi admin, xin lỗi về vấn đề này</td>        
                                             <td>2/1/2024</td>
+                                            <th><input type="submit" value="Khóa tài khoản" class="fw-bold" style="text-decoration: none; color: black;"/></th>
                                         </tr>
                                     </tbody>
                                     </thead>
                                 </table>
-                                <label for="warningMess" style="font-size: 18px; font-weight: bold;">Gửi cảnh cáo: </label> <input type="text" id="warningMess" name="warningMess" placeholder="Nhập cảnh cáo" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left:5%;"></br>
-                                <label for="method3" style="font-size: 18px; font-weight: bold">Xác nhận khóa:</label>
-                                <div class="custom-control custom-switch" style="font-size: 20px; border:2px solid; border-radius: 10px; padding: 20px;">
-
-                                    Bật/tắt <label class="switch" style="float: right;">
-                                        <input type="checkbox">
-                                        <span class="slider round"></span>
-                                    </label>
-                                </div>
 
 
                             </div>
@@ -113,10 +103,6 @@
                         </div>
 
 
-                        <div class="form-group mt-5">
-
-                        </div>
-                        <button type="button" class="btn btn-primary" style="margin-top: 30px; border-radius: 20px;">Cập nhật</button>
                     </div>
                 </div>
 

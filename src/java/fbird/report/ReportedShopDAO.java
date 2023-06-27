@@ -20,6 +20,7 @@ import java.util.List;
 public class ReportedShopDAO {
      private static final String VIEW = "SELECT shop_id, customer_id, detail FROM reported_shop WHERE reported_shop_id= ?";
     private static final String ADD = "INSERT INTO reported_shop (shop_id, customer_id, detail) VALUES(?,?,?)";
+    private static final String DELETE_REPORTED_SHOP = "DELETE reported_shop WHERE reported_shop_id = ?";
     
     public List<ReportedShopDTO> getReportShop(int reported_shop_id) throws SQLException {
         List<ReportedShopDTO> list = new ArrayList<>();
@@ -84,4 +85,30 @@ public class ReportedShopDAO {
         }
         
     }
+
+    public boolean checkDeleteReportedShop(String reported_shop_id) throws SQLException {
+        boolean checkDelete = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(DELETE_REPORTED_SHOP);
+                ptm.setString(1, reported_shop_id);
+                checkDelete = ptm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return checkDelete;
+    }
+     
+     
 }

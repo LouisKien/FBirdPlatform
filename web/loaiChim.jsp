@@ -113,12 +113,12 @@
                                     %>
                                     <tr>
                                         <td><%= count%></td>
-                                        <td>  <%= tob.getName() %> </td>
+                                        <td>  <%= tob.getType_of_bird_name() %> </td>
 
 
                                 <form action="DeleteTypeOfBirdController" method="post">
                                     <td>
-                                        <input type="hidden" name="name" value="<%= tob.getName() %>">
+                                        <input type="hidden" name="name" value="<%= tob.getType_of_bird_name() %>">
                                         <input type="submit" value="Xóa chim" class="fw-bold" style="text-decoration: none; color: black;"/>
                                     </td>
                                 </form>

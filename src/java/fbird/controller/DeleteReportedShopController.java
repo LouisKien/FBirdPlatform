@@ -4,7 +4,8 @@
  */
 package fbird.controller;
 
-import fbird.typeofbird.TypeOfBirdDAO;
+import fbird.report.ReportedShopDAO;
+import fbird.report.ReportedShopDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,37 +15,27 @@ import java.io.PrintWriter;
 
 /**
  *
- * @author Admin
+ * @author louis
  */
-public class CreateTypeOfBirdController extends HttpServlet {
+public class DeleteReportedShopController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    public static final String ERROR = "MainController?action=ViewReportedShop";
+    public static final String SUCCESS = "MainController?action=ViewReportedShop";
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url="loaiChim.jsp";
-         try  {
-            String name = request.getParameter("name");
-            TypeOfBirdDAO dao = new TypeOfBirdDAO();
-            boolean checkExist = dao.checkExist(name);
-            if (checkExist) {
-                  request.setAttribute("ERROR", "!!!LOẠI CHIM ĐÃ TỒN TẠI!!!");
-                url = "themLoaiChim.jsp";
-            }else{
-                dao.createTypeOfBird(name);
+        String url = ERROR;
+        try {
+            String reported_shop_id = request.getParameter("reported_shop_id");
+            ReportedShopDAO dao = new ReportedShopDAO();
+            boolean checkDelete = dao.checkDeleteReportedShop(reported_shop_id);
+            if(checkDelete){
+                url = SUCCESS;
             }
-    }catch(Exception e){
-         log("Error at DeleteController: " + e.toString());
-    }
-    finally{
+        } catch (Exception e) {
+            log("ERROR at DeleteReportedShopController: " + e.toString());
+        } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }
@@ -87,5 +78,5 @@ public class CreateTypeOfBirdController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-    }
 
+}

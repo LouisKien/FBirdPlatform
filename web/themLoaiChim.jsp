@@ -85,39 +85,43 @@
                         <!--                        <h3 class="fs-4 mb-3">Ngày đặt hàng</h3>-->
                         <div class="col">
 
-                            <label for="typeOfBirdName" style="font-size: 18px; font-weight: bold;">Nhập tên chim: </label> <input type="text" id="typeOfBirdName" name="typeOfBirdName" placeholder="Nhập tên chim cần tạo" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left:5%;"></br>
+
+                            <form action="CreateTypeOfBirdController" method="POST">
+                                <label  style="font-size: 18px; font-weight: bold;">Nhập tên chim: </label> <input type="text" name="name" placeholder="Nhập tên chim cần tạo" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left:5%;"></br>
+
+                                <button type="submit" class="btn btn-primary" style="margin-left: 50%; margin-top: 30px; border-radius: 20px;">Cập nhật</button>
+
+                                </form>
+                                </div>
 
 
+
+                                </div>
+
+
+
+
+                                <!-- 
+                                Nhấn cập nhật -> in ra thêm chim thành công và sẽ ở lại thêm tiếp, muốn kiểm ra thì click bảng xem loại chim -->
+                            
                         </div>
-
-
-
                     </div>
 
-
-                    <div class="form-group mt-5">
-
-                    </div>
-                    <button type="button" class="btn btn-primary" style="margin-left: 50%; margin-top: 30px; border-radius: 20px;">Cập nhật</button>
-                    <!--                        Nhấn cập nhật -> in ra thêm chim thành công và sẽ ở lại thêm tiếp, muốn kiểm ra thì click bảng xem loại chim -->
                 </div>
             </div>
-
         </div>
+        <!-- /#page-content-wrapper -->
     </div>
-</div>
-<!-- /#page-content-wrapper -->
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    var el = document.getElementById("wrapper");
-    var toggleButton = document.getElementById("menu-toggle");
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        var el = document.getElementById("wrapper");
+        var toggleButton = document.getElementById("menu-toggle");
 
-    toggleButton.onclick = function () {
-        el.classList.toggle("toggled");
-    };
-</script>
+        toggleButton.onclick = function () {
+            el.classList.toggle("toggled");
+        };
+    </script>
 </body>
 
 </html>

@@ -13,6 +13,7 @@ public class ShopDTO {
 
     String report_detail, customer_fullname;
     int shop_status;
+    int reported_shop_id;
     
     public ShopDTO() {
     }
@@ -35,12 +36,13 @@ public class ShopDTO {
         this.registed_date = registed_date;
     }
 
-    public ShopDTO(String username, String shopName, String report_detail, String customer_fullname, int shop_status) {
+    public ShopDTO(String username, String shopName, String report_detail, String customer_fullname, int shop_status, int reported_shop_id) {
         this.username = username;
         this.shopName = shopName;
         this.report_detail = report_detail;
         this.customer_fullname = customer_fullname;
         this.shop_status = shop_status;
+        this.reported_shop_id = reported_shop_id;
     }
 
     public ShopDTO(String username, int shop_status) {
@@ -134,6 +136,14 @@ public class ShopDTO {
 
     public void setShop_status(int shop_status) {
         this.shop_status = shop_status;
+    }
+
+    public int getReported_shop_id() {
+        return reported_shop_id;
+    }
+
+    public void setReported_shop_id(int reported_shop_id) {
+        this.reported_shop_id = reported_shop_id;
     }
 
     

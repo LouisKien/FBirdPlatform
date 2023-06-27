@@ -10,18 +10,20 @@ package fbird.typeofbird;
  */
 public class TypeOfBirdDTO {
     int type_of_bird_id;
-    String Name;
+    String type_of_bird_name;
 
     public TypeOfBirdDTO() {
     }
 
-    public TypeOfBirdDTO(int type_of_bird_id, String Name) {
+    public TypeOfBirdDTO(int type_of_bird_id, String type_of_bird_name) {
         this.type_of_bird_id = type_of_bird_id;
-        this.Name = Name;
+        this.type_of_bird_name = type_of_bird_name;
     }
 
-    public TypeOfBirdDTO(String Name) {
-        this.Name = Name;
+
+
+    public TypeOfBirdDTO(String type_of_bird_name) {
+        this.type_of_bird_name = type_of_bird_name;
     }
 
     public int getType_of_bird_id() {
@@ -32,13 +34,14 @@ public class TypeOfBirdDTO {
         this.type_of_bird_id = type_of_bird_id;
     }
 
-    public String getName() {
-        return Name;
+    public String getType_of_bird_name() {
+        return type_of_bird_name;
     }
 
-    public void setName(String Name) {
-        this.Name = Name;
+    public void setType_of_bird_name(String type_of_bird_name) {
+        this.type_of_bird_name = type_of_bird_name;
     }
-    
+
+   
     
 }

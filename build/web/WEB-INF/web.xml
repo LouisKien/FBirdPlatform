@@ -76,6 +76,10 @@
         <servlet-name>DisableReportedShopController</servlet-name>
         <servlet-class>fbird.controller.DisableReportedShopController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteReportedShopController</servlet-name>
+        <servlet-class>fbird.controller.DeleteReportedShopController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -152,7 +156,14 @@
         <servlet-name>DisableReportedShopController</servlet-name>
         <url-pattern>/DisableReportedShopController</url-pattern>
     </servlet-mapping>
+<<<<<<< HEAD
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+=======
+    <servlet-mapping>
+        <servlet-name>DeleteReportedShopController</servlet-name>
+        <url-pattern>/DeleteReportedShopController</url-pattern>
+    </servlet-mapping>
+>>>>>>> 1677f9f616ba7c6b0db53d93b9272926a2c36e1d
 </web-app>

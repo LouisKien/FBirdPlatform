@@ -87,6 +87,7 @@
                                             <th scope="col">Tên khách hàng tố cáo</th>
                                             <th scope="col">Trạng thái tài khoản shop</th>
                                             <th scope="col"></th>
+                                            <th scope="col"></th>
                                         </tr>
                                     <tbody>
                                         <%
@@ -125,6 +126,7 @@
                                                     }
                                                 %>
                                             </th>
+                                            <th><a href="MainController?action=DeleteReportedShop&reported_shop_id=<%= report.getReported_shop_id()%>">Xóa tố cáo</a></th>
                                         </tr>
                                         <%
                                             }

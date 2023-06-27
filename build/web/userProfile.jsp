@@ -1,4 +1,4 @@
-
+<%@page import="fbird.shop.ShopDTO"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%-- 
@@ -46,6 +46,9 @@
     </head>
 
     <body>
+        <%
+        UserDTO user = session.getAttribute("USER");
+        %>
 
 
 
@@ -123,7 +126,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="accountShop.jsp">
+                                            <a href="MainController?action=LoginShop&username=<%= user.getUsername() %>">
                                                 <div class="color-item">
                                                     <span class="color-name">Kênh người bán</span>
                                                 </div>

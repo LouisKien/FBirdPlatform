@@ -21,6 +21,8 @@ public class ProductDTO {
     int inventory;
     Date uploadDate;
     byte status;
+    String nameOption;
+    double priceView;
 
     public ProductDTO() {
     }
@@ -47,6 +49,22 @@ public class ProductDTO {
         this.uploadDate = uploadDate;
         this.status = status;
     }
+
+    public ProductDTO(int shopProductItemID, int shopID, int categoryID, int typeOfBirdID, String title, String description, int inventory, Date uploadDate, byte status, String nameOption, double priceView) {
+        this.shopProductItemID = shopProductItemID;
+        this.shopID = shopID;
+        this.categoryID = categoryID;
+        this.typeOfBirdID = typeOfBirdID;
+        this.title = title;
+        this.description = description;
+        this.inventory = inventory;
+        this.uploadDate = uploadDate;
+        this.status = status;
+        this.nameOption = nameOption;
+        this.priceView = priceView;
+    }
+    
+    
 
     public int getShopProductItemID() {
         return shopProductItemID;
@@ -119,6 +137,22 @@ public class ProductDTO {
 
     public void setStatus(byte status) {
         this.status = status;
+    }
+
+    public String getNameOption() {
+        return nameOption;
+    }
+
+    public void setNameOption(String nameOption) {
+        this.nameOption = nameOption;
+    }
+
+    public double getPriceView() {
+        return priceView;
+    }
+
+    public void setPriceView(double priceView) {
+        this.priceView = priceView;
     }
 
     

@@ -18,7 +18,7 @@
             <div class="bg-white" id="sidebar-wrapper" style="width: 260px;">
                 <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">
                     <i class="fas fa-solid fa-dove " ></i>
-                    <a href="index.html" class="home-link" style="color: #009d63; text-decoration: none; ">Fbird
+                    <a href="index.jsp" class="home-link" style="color: #009d63; text-decoration: none; ">Fbird
                     </a>
                 </div>
                 <!--------------------------------------------------------------------------------------------------------------------------------------------------------->

@@ -30,7 +30,7 @@ public class CreateTypeOfBirdController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url="xemLoaiChim.jsp";
+        String url="loaiChim.jsp";
          try  {
             String name = request.getParameter("name");
             TypeOfBirdDAO dao = new TypeOfBirdDAO();

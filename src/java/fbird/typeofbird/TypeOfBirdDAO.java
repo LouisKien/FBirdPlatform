@@ -20,10 +20,10 @@ import java.util.List;
  */
 public class TypeOfBirdDAO {
 
-    private static final String CREATE = "INSERT INTO type_of_bird (name) VALUES (?)";
-    private static final String DELETE = "DELETE type_of_bird Where name = ?";
-    private static final String SEARCH = "SELECT name FROM type_of_bird WHERE name like ?";
-    private static final String CHECK_EXIST = "SELECT name FROM type_of_bird WHERE name=?";
+    private static final String CREATE = "INSERT INTO type_of_bird (type_of_bird_name) VALUES (?)";
+    private static final String DELETE = "DELETE type_of_bird Where type_of_bird_name = ?";
+    private static final String SEARCH = "SELECT type_of_bird_name FROM type_of_bird WHERE type_of_bird_name like ?";
+    private static final String CHECK_EXIST = "SELECT type_of_bird_name FROM type_of_bird WHERE type_of_bird_name=?";
     
     public List<TypeOfBirdDTO> searchTypeOfBird(String search) throws SQLException {
         List<TypeOfBirdDTO> list = new ArrayList<>();
@@ -39,7 +39,7 @@ public class TypeOfBirdDAO {
 
 
                 while (rs.next()) {                 
-                    String nameofbird = rs.getString("name");
+                    String nameofbird = rs.getString("type_of_bird_name");
                     list.add(new TypeOfBirdDTO(nameofbird));
                 }
             }

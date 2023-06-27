@@ -36,6 +36,8 @@ public class MainController extends HttpServlet {
     private static final String VIEW_REPORTED_SHOP_CONTROLLER = "ViewReportedShopController";
     private static final String DISABLE_REPORTED_SHOP = "DisableShop";
     private static final String DISABLE_REPORTED_SHOP_CONTROLLER = "DisableReportedShopController";
+    private static final String DELETE_REPORTED_SHOP = "DeleteReportedShop";
+    private static final String DELETE_REPORTED_SHOP_CONTROLLER = "DeleteReportedShopController";
     
     
     private static final String CREATE_PRODUCT = "CreateProduct";
@@ -74,6 +76,8 @@ public class MainController extends HttpServlet {
                 url = VIEW_REPORTED_SHOP_CONTROLLER;
             } else if (DISABLE_REPORTED_SHOP.equals(action)) {
                 url = DISABLE_REPORTED_SHOP_CONTROLLER;
+            } else if (DELETE_REPORTED_SHOP.equals(action)) {
+                url = DELETE_REPORTED_SHOP_CONTROLLER;
             }
             else {
                 request.setAttribute("ERROR", "Your ACTION is not support");

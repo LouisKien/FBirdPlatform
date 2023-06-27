@@ -21,6 +21,19 @@ public class ProductDTO {
     int inventory;
     Date uploadDate;
     byte status;
+    String image_1;
+    String image_2;
+    String image_3;
+    String image_4;
+    String image_5;
+    String type_of_bird_name;
+    String category_name;
+    String shop_name;
+    String avatar;
+    String name;
+    Double price;
+    
+    
 
     public ProductDTO() {
     }
@@ -47,6 +60,26 @@ public class ProductDTO {
         this.uploadDate = uploadDate;
         this.status = status;
     }
+
+    public ProductDTO(int shopProductItemID, String title, String description, int inventory, Date uploadDate, byte status, String image_1, String image_2, String image_3, String image_4, String image_5, String type_of_bird_name, String shop_name, String avatar, String name, Double price) {
+        this.shopProductItemID = shopProductItemID;
+        this.title = title;
+        this.description = description;
+        this.inventory = inventory;
+        this.uploadDate = uploadDate;
+        this.status = status;
+        this.image_1 = image_1;
+        this.image_2 = image_2;
+        this.image_3 = image_3;
+        this.image_4 = image_4;
+        this.image_5 = image_5;
+        this.type_of_bird_name = type_of_bird_name;
+        this.shop_name = shop_name;
+        this.avatar = avatar;
+        this.name = name;
+        this.price = price;
+    }
+    
 
     public int getShopProductItemID() {
         return shopProductItemID;
@@ -119,6 +152,94 @@ public class ProductDTO {
 
     public void setStatus(byte status) {
         this.status = status;
+    }
+
+    public String getImage_1() {
+        return image_1;
+    }
+
+    public void setImage_1(String image_1) {
+        this.image_1 = image_1;
+    }
+
+    public String getImage_2() {
+        return image_2;
+    }
+
+    public void setImage_2(String image_2) {
+        this.image_2 = image_2;
+    }
+
+    public String getImage_3() {
+        return image_3;
+    }
+
+    public void setImage_3(String image_3) {
+        this.image_3 = image_3;
+    }
+
+    public String getImage_4() {
+        return image_4;
+    }
+
+    public void setImage_4(String image_4) {
+        this.image_4 = image_4;
+    }
+
+    public String getImage_5() {
+        return image_5;
+    }
+
+    public void setImage_5(String image_5) {
+        this.image_5 = image_5;
+    }
+
+    public String getType_of_bird_name() {
+        return type_of_bird_name;
+    }
+
+    public void setType_of_bird_name(String type_of_bird_name) {
+        this.type_of_bird_name = type_of_bird_name;
+    }
+
+    public String getCategory_name() {
+        return category_name;
+    }
+
+    public void setCategory_name(String category_name) {
+        this.category_name = category_name;
+    }
+
+    public String getShop_name() {
+        return shop_name;
+    }
+
+    public void setShop_name(String shop_name) {
+        this.shop_name = shop_name;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     

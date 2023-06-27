@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="fbird.feedback.FeedbackDTO"%>
-<%@page import="fbird.customer.CustomerDTO"%>
+<%@page import="fbird.product"%>
 <!DOCTYPE html>
 <html>
     <head>

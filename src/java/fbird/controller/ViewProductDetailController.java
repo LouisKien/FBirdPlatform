@@ -6,8 +6,9 @@ package fbird.controller;
 
 import fbird.product.ProductDAO;
 import fbird.product.ProductDTO;
+import fbird.feedback.FeedbackDTO;
+import fbird.feedback.FeedbackDAO;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -17,27 +18,41 @@ import java.util.List;
 
 /**
  *
- * @author tuan3
+ * @author Admin
  */
-@WebServlet(name = "ViewProductDetailController", urlPatterns = {"/ViewProductDetailController"})
 public class ViewProductDetailController extends HttpServlet {
 
-    private static final String ERROR = "index.html";
-    private static final String SUCCESS = "productDetail.jsp";
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
-        try{
-            String shopProductItemID = request.getParameter("shopProductItemID");
-            ProductDAO dao = new ProductDAO();
-            List<ProductDTO> list = dao.getProductDetail(shopProductItemID);
-            if(list.size()>0){
-                url = SUCCESS;
+        String url = "productDetail.jsp";
+        try {
+
+            int shop_product_item_id = Integer.parseInt(request.getParameter("shop_product_item_id"));
+//            int customer_id = Integer.parseInt(request.getParameter("id"));           
+            ProductDAO daoproduct = new ProductDAO();              
+            FeedbackDAO daofeedback = new FeedbackDAO();              
+            List<ProductDTO> ProductDetail = daoproduct.getProductDetail(shop_product_item_id);                       
+           List<FeedbackDTO> listFeedback = daofeedback.getFeedback(shop_product_item_id);                              
+                if (!ProductDetail.isEmpty()) {
+                request.setAttribute("LIST_ProductDetail", ProductDetail);
+                request.setAttribute("LIST_Feedback", listFeedback);
+          
             }
-        }catch(Exception e){
-            log("Error at ViewProductDetailController : " + e.toString());
-        }finally{
+
+            
+        } catch (Exception ex) {
+            log("Error at Search: " + ex.toString());
+        } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }

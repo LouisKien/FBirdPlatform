@@ -17,7 +17,7 @@ import java.io.PrintWriter;
  */
 public class MainController extends HttpServlet {
 
-    public static final String WELCOME_PAGE = "index.html";
+    public static final String WELCOME_PAGE = "index.jsp";
 
     private static final String LOGIN = "Login";
     private static final String LOGIN_CONTROLLER = "LoginController";

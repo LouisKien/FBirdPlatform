@@ -1,9 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+<%-- 
+    Document   : index
+    Created on : Jun 27, 2023, 1:13:29 PM
+    Author     : Khanh
+--%>
 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
     <head>
-        <meta charset="utf-8">
-        <title>FBird</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Fbird</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Free HTML Templates" name="keywords">
         <meta content="Free HTML Templates" name="description">
@@ -126,8 +132,8 @@
                 <div class="owl-carousel product-carousel">
                     <div class="pb-5">
                         <div class="product-item position-relative bg-light d-flex flex-column text-center">
-                            <img class="img-fluid mb-4" src="img/avatar-khanh.png" alt="">
-                            <h6 class="text-uppercase">Cám chim 1</h6>
+                            <img class="img-fluid mb-4" src="img/product-1.png" alt="">
+                            <h6 class="text-uppercase">Cám chim 20</h6>
                             <h5 class="text-primary mb-0">1200đ</h5>
                             <div class="btn-action d-flex justify-content-center">
                                 <a class="btn btn-primary py-2 px-3" href="addtocart.html"><i class="bi bi-cart"></i></a>
@@ -137,7 +143,7 @@
                     </div>
                     <div class="pb-5">
                         <div class="product-item position-relative bg-light d-flex flex-column text-center">
-                            <img class="img-fluid mb-4" src="img/avatar-nhat.png" alt="">
+                            <img class="img-fluid mb-4" src="img/product-2.png" alt="">
                             <h6 class="text-uppercase">Cám chim 5</h6>
                             <h5 class="text-primary mb-0">1230đ</h5>
                             <div class="btn-action d-flex justify-content-center">

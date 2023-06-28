@@ -1,36 +1,42 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <%@page contentType="text/html" pageEncoding="UTF-8"%>
-    <meta charset="utf-8">
-    <title>Khẩu phần ăn cho chim</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Free HTML Templates" name="keywords">
-    <meta content="Free HTML Templates" name="description">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Fbird</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="Free HTML Templates" name="keywords">
+        <meta content="Free HTML Templates" name="description">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <!-- Favicon -->
+        <link href="img/favicon.ico" rel="icon">
 
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto:wght@700&display=swap" rel="stylesheet">  
 
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto:wght@700&display=swap" rel="stylesheet">  
+        <!-- Icon Font Stylesheet -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+        <link href="lib/flaticon/font/flaticon.css" rel="stylesheet">
 
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="lib/flaticon/font/flaticon.css" rel="stylesheet">
+        <!-- Libraries Stylesheet -->
+        <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
-    <!-- Libraries Stylesheet -->
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+        <!-- Template Stylesheet -->
+        <link href="css/style.css" rel="stylesheet">
+        <!--        Icon Cart-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!--Search bar-->
+        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
-    <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
-    
-    <script src="https://kit.fontawesome.com/39834b73e4.js" crossorigin="anonymous"></script>
-</head>
+        <script src="https://kit.fontawesome.com/39834b73e4.js" crossorigin="anonymous"></script>
+
+    </head>
 
 <body>
     <!-- Topbar Start -->
@@ -62,29 +68,34 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
 
-                    <a href="addtocart.html" class="nav-item nav-link" style="width: max-content">
-                        <i class="fa fa-shopping-cart" style="font-size:25px; "></i>
-                    </a>
+                    <div class="nav-item nav-link" style="width: max-content">
+                        <div class="shopping">
+                            <i class="fa fa-shopping-cart" style="font-size:25px; "></i>
+                            <span class="quantity">0</span>
+                        </div>
+                    </div>
+
 
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Danh mục</a>
                         <div class="dropdown-menu m-0">
-                            <a href="product.html" class="dropdown-item">Sản phẩm</a>
-                            <a href="food.html" class="dropdown-item">Thức ăn</a>
-                            <a href="drinks.html" class="dropdown-item">Thức uống</a>
-                            <a href="supplement.html" class="dropdown-item">Thực phẩm bổ sung</a>
-                            <a href="medicine.html" class="dropdown-item">Thuốc</a>
+                            <a href="product.jsp" class="dropdown-item">Sản phẩm</a>
+                            <a href="food.jsp" class="dropdown-item">Thức ăn</a>
+                            <a href="drinks.jsp" class="dropdown-item">Thức uống</a>
+                            <a href="supplement.jsp" class="dropdown-item">Thực phẩm bổ sung</a>
+                            <a href="medicine.jsp" class="dropdown-item">Thuốc</a>
                         </div>
                     </div>
-                    <a href="recipe.jsp" class="nav-item nav-link">Khẩu phần</a>                    
-                    
-                    <a href="userProfile.jsp" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a> 
+                    <a href="recipe.jsp" class="nav-item nav-link">Khẩu phần</a>                      
+                    <a href="userProfile.jsp" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
+                    <a href="adminDashboard.jsp" class="nav-item nav-link"><i class="fa-solid fa-user-gear"></i></a>
                     <a href="login.jsp" class="nav-item nav-link">Đăng nhập</a>
                     <a href="register.jsp" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5">Đăng ký<i class="bi bi-arrow-right"></i></a>
+
                 </div>
             </div>
         </nav>
-    <!-- Navbar End -->
+        <!-- Navbar End -->
 
 
     <!-- Products Start -->
@@ -103,7 +114,7 @@
                     <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
                         <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
                             <div style="text-align: center;">
-                                <a href="productDetail.html" class="product-image">
+                                <a href="productDetail.jsp" class="product-image">
                                     <img style="width: 160px;height: 190px" src="img/product-1.png" alt="product-image" />
                                 </a>
                             </div>
@@ -122,7 +133,7 @@
                     <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
                         <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
                             <div style="text-align: center;">
-                                <a href="productDetail.html" class="product-image">
+                                <a href="productDetail.jsp" class="product-image">
                                     <img style="width: 160px;height: 190px" src="img/product-2.png" alt="product-image" />
                                 </a>
                             </div>
@@ -141,7 +152,7 @@
                     <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
                         <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
                             <div style="text-align: center;">
-                                <a href="productDetail.html" class="product-image">
+                                <a href="productDetail.jsp" class="product-image">
                                     <img style="width: 160px;height: 190px" src="img/product-3.png" alt="product-image" />
                                 </a>
                             </div>
@@ -160,7 +171,7 @@
                     <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
                         <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
                             <div style="text-align: center;">
-                                <a href="productDetail.html" class="product-image">
+                                <a href="productDetail.jsp" class="product-image">
                                     <img style="width: 160px;height: 190px" src="img/product-4.png" alt="product-image" />
                                 </a>
                             </div>
@@ -179,7 +190,7 @@
                     <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
                         <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
                             <div style="text-align: center;">
-                                <a href="productDetail.html" class="product-image">
+                                <a href="productDetail.jsp" class="product-image">
                                     <img style="width: 160px;height: 190px" src="img/product-1.png" alt="product-image" />
                                 </a>
                             </div>
@@ -221,7 +232,7 @@
                             <div class="d-flex flex-column justify-content-start">
                                 <a class="text-body mb-2" href="index.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Trang chủ</a>
 
-                                <a class="text-body mb-2" href="member.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thành viên</a>
+                                <a class="text-body mb-2" href="team.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thành viên</a>
 
 
                             </div>
@@ -229,10 +240,10 @@
                         <div class="col-lg-3 col-md-6">
                             <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Loại hàng cho chim</h5>
                             <div class="d-flex flex-column justify-content-start">
-                                <a class="text-body mb-2" href="food.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thức ăn</a>
-                                <a class="text-body mb-2" href="drinks.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thức uống</a>
-                                <a class="text-body mb-2" href="supplement.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thực phẩm bổ sung</a>
-                                <a class="text-body mb-2" href="medicine.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thuốc</a>
+                                <a class="text-body mb-2" href="food.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thức ăn</a>
+                                <a class="text-body mb-2" href="drinks.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thức uống</a>
+                                <a class="text-body mb-2" href="supplement.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thực phẩm bổ sung</a>
+                                <a class="text-body mb-2" href="medicine.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thuốc</a>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6">
@@ -259,7 +270,7 @@
                 <div class="container">
                     <div class="row g-5">
                         <div class="col-md-6 text-center text-md-start">
-                            <p class="mb-md-0">&copy; <a class="text-white" href="index.jsp">Trang web được thiết kế bởi nhóm 3 </a> </p>
+                            <p class="mb-md-0">&copy; <a class="text-white" href="index.html">Trang web được thiết kế bởi nhóm 3 </a> </p>
                         </div>
                         <div class="col-md-6 text-center text-md-end">
                             <p class="mb-0">Nguồn <a class="text-white" href="https://htmlcodex.com">HTML Codex</a></p>
@@ -270,19 +281,17 @@
             <!-- Footer End -->
 
 
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-primary py-3 fs-4 back-to-top"><i class="bi bi-arrow-up"></i></a>
+       <!-- Back to Top -->
+            <a href="#" class="btn btn-primary py-3 fs-4 back-to-top"><i class="bi bi-arrow-up"></i></a>
+            <!-- JavaScript Libraries -->
+            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="lib/easing/easing.min.js"></script>
+            <script src="lib/waypoints/waypoints.min.js"></script>
+            <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
-
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+            <!-- Template Javascript -->
+            <script src="js/main.js"></script>
 </body>
 
 </html>

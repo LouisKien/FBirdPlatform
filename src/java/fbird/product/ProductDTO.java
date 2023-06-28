@@ -34,6 +34,10 @@ public class ProductDTO {
     
     
 
+    String nameOption;
+    double priceView;
+
+
     public ProductDTO() {
     }
 
@@ -60,13 +64,17 @@ public class ProductDTO {
         this.status = status;
     }
 
+
     public ProductDTO(int shopProductItemID, String title, String description, int inventory, Date uploadDate, byte status, String image_1, String image_2, String image_3, String image_4, String image_5, String type_of_bird_name, String shop_name, String avatar) {
         this.shopProductItemID = shopProductItemID;
+
+   
+
         this.title = title;
         this.description = description;
         this.inventory = inventory;
         this.uploadDate = uploadDate;
-        this.status = status;
+
         this.image_1 = image_1;
         this.image_2 = image_2;
         this.image_3 = image_3;
@@ -84,7 +92,26 @@ public class ProductDTO {
         this.image_1 = image_1;
         this.price = price;
     }
+
+    public ProductDTO(int shopProductItemID, int shopID, int categoryID, int typeOfBirdID, String title, String description, int inventory, Date uploadDate, byte status, Double price, String nameOption) {
+        this.shopProductItemID = shopProductItemID;
+        this.shopID = shopID;
+        this.categoryID = categoryID;
+        this.typeOfBirdID = typeOfBirdID;
+        this.title = title;
+        this.description = description;
+        this.inventory = inventory;
+        this.uploadDate = uploadDate;
+        this.status = status;
+        this.price = price;
+        this.nameOption = nameOption;
+    }
     
+
+       
+    
+    
+
 
     public int getShopProductItemID() {
         return shopProductItemID;
@@ -158,6 +185,7 @@ public class ProductDTO {
     public void setStatus(byte status) {
         this.status = status;
     }
+
 
     public String getImage_1() {
         return image_1;
@@ -239,6 +267,22 @@ public class ProductDTO {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+    public String getNameOption() {
+        return nameOption;
+    }
+
+    public void setNameOption(String nameOption) {
+        this.nameOption = nameOption;
+    }
+
+    public double getPriceView() {
+        return priceView;
+    }
+
+    public void setPriceView(double priceView) {
+        this.priceView = priceView;
+
     }
 
     

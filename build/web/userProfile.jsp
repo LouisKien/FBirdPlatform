@@ -1,4 +1,4 @@
-
+<%@page import="fbird.shop.ShopDTO"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%-- 
@@ -46,6 +46,9 @@
     </head>
 
     <body>
+        <!--%
+        UserDTO user = session.getAttribute("USER");
+        %-->
 
 
 
@@ -123,7 +126,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="accountShop.jsp">
+                                            <a href="MainController?action=LoginShop&username=<!--%= user.getUsername() %-->">
                                                 <div class="color-item">
                                                     <span class="color-name">Kênh người bán</span>
                                                 </div>
@@ -178,50 +181,53 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                                        <form action="updateUserProfileController" method="POST">
+                                        ${msg}
                                         <div class="form-group">
                                             <label for="username">Tên đăng nhập:</label>
-                                            <input type="text" class="form-control" id="username" value="${user}">
+                                            <input name="username" type="text" class="form-control" id="username" value="${user}">
                                         </div>
 
                                         <div class="form-group">
                                             <label for="name">Tên:</label>
-                                            <input type="text" class="form-control" id="name">
+                                            <input name="fullname" type="text" class="form-control" id="name">
                                         </div>
 
                                         <div class="form-group">
                                             <label for="email">Email:</label>
-                                            <input type="text" class="form-control" id="email">
+                                            <input name="email" type="text" class="form-control" id="email">
                                         </div>
 
                                         <div class="form-group">
                                             <label for="phone">SĐT:</label>
-                                            <input type="text" class="form-control" id="phone">
+                                            <input name="phone" type="text" class="form-control" id="phone">
                                         </div>
 
                                         <div class="form-group">
                                             <label>Giới tính:</label>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="gender" id="male" value="Nam">
+                                                <input name="gender" class="form-check-input" type="radio" name="gender" id="male" value="Nam">
                                                 <label class="form-check-label" for="male">Nam</label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="gender" id="female" value="Nữ">
+                                                <input name="gender" class="form-check-input" type="radio" name="gender" id="female" value="Nữ">
                                                 <label class="form-check-label" for="female">Nữ</label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="gender" id="other" value="Khác">
+                                                <input name="gender" class="form-check-input" type="radio" name="gender" id="other" value="Khác">
                                                 <label class="form-check-label" for="other">Khác</label>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="birthdate">Ngày sinh:</label>
-                                            <input type="date" class="form-control" id="birthdate">
+                                            <input name="dob" type="date" class="form-control" id="birthdate">
                                         </div>
 
                                         <div class="form-group" style="margin-top: 10px; margin-bottom: 10px;">
                                             <button class="btn btn-primary" type="submit">Lưu</button>
                                         </div>
+                                        </form>
                                     </div>
 
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6" style="margin-top: 5px; text-align: center; position: relative;">

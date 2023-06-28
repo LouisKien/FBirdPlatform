@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class CustomerDAO {
     private static final String VIEW = "SELECT * FROM customer WHERE customer_id= ?";
-    
+    private static final String CREATE_SHOP = "insert into customer(username, fullname, phone, email, gender, date_of_birth, registed_date,) values(?, ?, ?, ?, ?, ?, ?)";
     
     public List<CustomerDTO> getCustomer(int customer_id) throws SQLException {
         List<CustomerDTO> list = new ArrayList<>();
@@ -62,6 +62,36 @@ public class CustomerDAO {
             }
         }
         return list;
+    }
+    public void createCustomer(String username, String fullname, String phone, String email, boolean gender, String dob, Date date) throws SQLException{
+        boolean check;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        
+        try{
+            conn = DBUtils.getConnection();
+            ptm = conn.prepareStatement(CREATE_SHOP);
+            ptm.setString(1, username);
+            ptm.setString(2, fullname);
+            ptm.setString(3, phone);
+            ptm.setString(4, email);
+            ptm.setBoolean(5, gender);
+            ptm.setString(6, dob);
+            ptm.setDate(7, (java.sql.Date) date);
+            ptm.executeUpdate();
+        }catch (Exception e) {
+            e.printStackTrace();
+            
+        }finally {
+            
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+    
+        }
     }
     
     }

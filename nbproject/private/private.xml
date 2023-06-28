@@ -3,7 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/shop/ShopDTO.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/controller/ViewProductDetailController.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/product/ProductDTO.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/shop/ShopDAO.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/feedback/FeedbackDAO.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/product/ProductDAO.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/controller/MainController.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/web/error.jsp</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/src/java/fbird/controller/ViewProductHomePageController.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/web/index.jsp</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/web/productDetail.jsp</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/web/shopProduct.jsp</file>
         </group>
     </open-files>
 </project-private>

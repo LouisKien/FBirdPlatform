@@ -21,8 +21,12 @@ import java.io.PrintWriter;
 public class LoginController extends HttpServlet {
 
     private static final String LOGIN_PAGE = "login.jsp";
-    private static final int AD = 1;
-    private static final String AD_PAGE = "admin.jsp";
+    private static final int ADMIN = 1;
+    private static final String ADMIN_PAGE = "adminDashboard.jsp";
+    private static final int SHOP = 2;
+    private static final String SHOP_PAGE = "accountShop.jsp";
+    private static final int CUSTOMER = 3;
+    private static final String CUSTOMER_PAGE = "MainController?action=";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -37,8 +41,14 @@ public class LoginController extends HttpServlet {
             } else {
                 HttpSession session = request.getSession();
                 int role_id = loginUser.getRole();
-                if (AD == role_id) {
-                    url = AD_PAGE;
+                if (ADMIN == role_id) {
+                    url = ADMIN_PAGE;
+                    session.setAttribute("LOGIN_USER", loginUser);
+                } else if (SHOP == role_id) {
+                    url = SHOP_PAGE;
+                    session.setAttribute("LOGIN_USER", loginUser);
+                } else if (CUSTOMER == role_id) {
+                    url = CUSTOMER_PAGE;
                     session.setAttribute("LOGIN_USER", loginUser);
                 } else {
                     request.setAttribute("ERROR", "Your role is not support");

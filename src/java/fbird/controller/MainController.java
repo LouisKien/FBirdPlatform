@@ -99,7 +99,6 @@ public class MainController extends HttpServlet {
 
             } else if (LOGIN_SHOP.equals(action)) {
                 url = LOGIN_SHOP_CONTROLLER;
-
             }
             else {
                 request.setAttribute("ERROR", "Your ACTION is not support");

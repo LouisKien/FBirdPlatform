@@ -24,6 +24,7 @@ public class UserDAO {
     private static final String LOGIN = "SELECT role_id, status FROM account WHERE username=? AND password=?";
     private static final String CHECK_EXIST = "SELECT * FROM account WHERE username=?";
     private static final String SIGN_UP = "insert into account values(?, ?, 3, 1)";
+    private static final String UPDATE_ROLEID = "UPDATE account SET role_id = 2 WHERE username = ?";
 
     private static final String GET_ACCOUNT = "SELECT username, role_id, status FROM account WHERE role_id = 2 OR role_id = 3";
     private static final String GET_SHOP = "SELECT username, email, phone, registed_date from shop_owner";
@@ -116,6 +117,28 @@ public class UserDAO {
             }
 
         }
+    }
+    public boolean updateRoleID(String username) throws SQLException, ClassNotFoundException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(UPDATE_ROLEID);
+                ptm.setString(1, username);
+                check = ptm.executeUpdate()>0?true:false;
+            }
+        } finally {
+            if (conn != null) {
+                conn = null;
+            }
+            if (ptm != null) {
+                ptm = null;
+            }
+        }
+        return check;
     }
 
     public List<UserDTO> getListAccount() throws SQLException {

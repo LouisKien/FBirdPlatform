@@ -48,7 +48,7 @@
 
         <!-- Navbar Start -->
         <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm py-3 py-lg-0 px-3 px-lg-0 mb-5">
-            <a href="index.html" class="navbar-brand ms-lg-5">
+            <a href="index.jsp" class="navbar-brand ms-lg-5">
                 <h1 class="m-0 text-uppercase text-dark"><i class="bi bi-shop fs-1 text-primary me-3"></i>FBird</h1>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -81,11 +81,11 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Danh mục</a>
                         <div class="dropdown-menu m-0">
-                            <a href="product.html" class="dropdown-item">Sản phẩm</a>
-                            <a href="food.html" class="dropdown-item">Thức ăn</a>
-                            <a href="drinks.html" class="dropdown-item">Thức uống</a>
-                            <a href="supplement.html" class="dropdown-item">Thực phẩm bổ sung</a>
-                            <a href="medicine.html" class="dropdown-item">Thuốc</a>
+                            <a href="product.jsp" class="dropdown-item">Sản phẩm</a>
+                            <a href="food.jsp" class="dropdown-item">Thức ăn</a>
+                            <a href="drinks.jsp" class="dropdown-item">Thức uống</a>
+                            <a href="supplement.jsp" class="dropdown-item">Thực phẩm bổ sung</a>
+                            <a href="medicine.jsp" class="dropdown-item">Thuốc</a>
                         </div>
                     </div>
                     <a href="recipe.jsp" class="nav-item nav-link">Khẩu phần</a>                      
@@ -116,7 +116,7 @@
                             <h1 class="display-5 text-uppercase text-white mb-0" >Giảm giá lên đến 50% cho đơn đầu tiên</h1>
                         </div>
 
-                        <a href="product.html" class="btn btn-light py-md-3 px-md-5 me-3">Xem thêm</a>
+                        <a href="product.jsp" class="btn btn-light py-md-3 px-md-5 me-3">Xem thêm</a>
                         <!--                        <a href="" class="btn btn-outline-light py-md-3 px-md-5">Read More</a>-->
                     </div>
                 </div>
@@ -207,7 +207,7 @@
                             <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
                                 <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
                                     <div style="text-align: center;">
-                                        <a href="productDetail.html" class="product-image">
+                                        <a href="productDetail.jsp" class="product-image">
                                             <img style="width: 160px;height: 190px" src="img/product-1.png" alt="product-image" />
                                         </a>
                                     </div>
@@ -226,7 +226,7 @@
                             <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
                                 <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
                                     <div style="text-align: center;">
-                                        <a href="productDetail.html" class="product-image">
+                                        <a href="productDetail.jsp" class="product-image">
                                             <img style="width: 160px;height: 190px" src="img/product-2.png" alt="product-image" />
                                         </a>
                                     </div>
@@ -245,7 +245,7 @@
                             <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
                                 <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
                                     <div style="text-align: center;">
-                                        <a href="productDetail.html" class="product-image">
+                                        <a href="productDetail.jsp" class="product-image">
                                             <img style="width: 160px;height: 190px" src="img/product-3.png" alt="product-image" />
                                         </a>
                                     </div>
@@ -264,7 +264,7 @@
                             <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
                                 <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
                                     <div style="text-align: center;">
-                                        <a href="productDetail.html" class="product-image">
+                                        <a href="productDetail.jsp" class="product-image">
                                             <img style="width: 160px;height: 190px" src="img/product-4.png" alt="product-image" />
                                         </a>
                                     </div>
@@ -283,7 +283,7 @@
                             <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
                                 <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
                                     <div style="text-align: center;">
-                                        <a href="productDetail.html" class="product-image">
+                                        <a href="productDetail.jsp" class="product-image">
                                             <img style="width: 160px;height: 190px" src="img/product-1.png" alt="product-image" />
                                         </a>
                                     </div>
@@ -302,7 +302,7 @@
                             <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
                                 <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
                                     <div style="text-align: center;">
-                                        <a href="productDetail.html" class="product-image">
+                                        <a href="productDetail.jsp" class="product-image">
                                             <img style="width: 160px;height: 190px" src="img/product-2.png" alt="product-image" />
                                         </a>
                                     </div>
@@ -321,7 +321,7 @@
                             <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
                                 <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
                                     <div style="text-align: center;">
-                                        <a href="productDetail.html" class="product-image">
+                                        <a href="productDetail.jsp" class="product-image">
                                             <img style="width: 160px;height: 190px" src="img/product-3.png" alt="product-image" />
                                         </a>
                                     </div>
@@ -340,7 +340,7 @@
                             <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
                                 <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
                                     <div style="text-align: center;">
-                                        <a href="productDetail.html" class="product-image">
+                                        <a href="productDetail.jsp" class="product-image">
                                             <img style="width: 160px;height: 190px" src="img/product-4.png" alt="product-image" />
                                         </a>
                                     </div>
@@ -359,7 +359,7 @@
                             <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
                                 <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
                                     <div style="text-align: center;">
-                                        <a href="productDetail.html" class="product-image">
+                                        <a href="productDetail.jsp" class="product-image">
                                             <img style="width: 160px;height: 190px" src="img/product-1.png" alt="product-image" />
                                         </a>
                                     </div>
@@ -378,7 +378,7 @@
                             <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
                                 <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
                                     <div style="text-align: center;">
-                                        <a href="productDetail.html" class="product-image">
+                                        <a href="productDetail.jsp" class="product-image">
                                             <img style="width: 160px;height: 190px" src="img/product-2.png" alt="product-image" />
                                         </a>
                                     </div>
@@ -397,7 +397,7 @@
                             <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
                                 <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
                                     <div style="text-align: center;">
-                                        <a href="productDetail.html" class="product-image">
+                                        <a href="productDetail.jsp" class="product-image">
                                             <img style="width: 160px;height: 190px" src="img/product-3.png" alt="product-image" />
                                         </a>
                                     </div>
@@ -416,7 +416,7 @@
                             <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
                                 <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
                                     <div style="text-align: center;">
-                                        <a href="productDetail.html" class="product-image">
+                                        <a href="productDetail.jsp" class="product-image">
                                             <img style="width: 160px;height: 190px" src="img/product-4.png" alt="product-image" />
                                         </a>
                                     </div>
@@ -454,7 +454,7 @@
                         <div class="col-lg-3 col-md-6">
                             <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">FBird</h5>
                             <div class="d-flex flex-column justify-content-start">
-                                <a class="text-body mb-2" href="index.html"><i class="bi bi-arrow-right text-primary me-2"></i>Trang chủ</a>
+                                <a class="text-body mb-2" href="index.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Trang chủ</a>
 
                                 <a class="text-body mb-2" href="team.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thành viên</a>
 
@@ -464,10 +464,10 @@
                         <div class="col-lg-3 col-md-6">
                             <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Loại hàng cho chim</h5>
                             <div class="d-flex flex-column justify-content-start">
-                                <a class="text-body mb-2" href="food.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thức ăn</a>
-                                <a class="text-body mb-2" href="drinks.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thức uống</a>
-                                <a class="text-body mb-2" href="supplement.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thực phẩm bổ sung</a>
-                                <a class="text-body mb-2" href="medicine.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thuốc</a>
+                                <a class="text-body mb-2" href="food.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thức ăn</a>
+                                <a class="text-body mb-2" href="drinks.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thức uống</a>
+                                <a class="text-body mb-2" href="supplement.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thực phẩm bổ sung</a>
+                                <a class="text-body mb-2" href="medicine.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thuốc</a>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6">

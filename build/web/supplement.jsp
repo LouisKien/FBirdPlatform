@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+        <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Fbird</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -38,13 +38,8 @@
 
     </head>
 
-<body>
-    <!-- Topbar Start -->
-    
-    <!-- Topbar End -->
-
-
-    <!-- Navbar Start -->
+    <body>
+        <!-- Navbar Start -->
         <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm py-3 py-lg-0 px-3 px-lg-0 mb-5">
             <a href="index.jsp" class="navbar-brand ms-lg-5">
                 <h1 class="m-0 text-uppercase text-dark"><i class="bi bi-shop fs-1 text-primary me-3"></i>FBird</h1>
@@ -98,17 +93,17 @@
         <!-- Navbar End -->
 
 
-    <!-- Products Start -->
-    <div class="container-fluid py-5">
-        <div class="container">
-            <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
-                <h6 class="text-primary text-uppercase">Khẩu phần</h6>
-                <h1 class="display-5 text-uppercase mb-0">Tùy chỉnh khẩu phần ăn cho chim</h1>
-            </div>
-            <div class="col-xl-12">
+        <!-- Products Start -->
+        <div class="container-fluid py-5">
+            <div class="container">
+                <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
+                    <h6 class="text-primary text-uppercase">Sản phẩm</h6>
+                    <h1 class="display-5 text-uppercase mb-0">Chim vui - chim khỏe hãy đến shop tôi</h1>
+                </div>
+        <div class="col-xl-12">
             <div class="products-area products-area3">
                 <div class="row justify-content-center">
-                    <!--<div>${requestScope.MESSAGE}</div>-->
+                    <!--                                <div>${requestScope.MESSAGE}</div>-->
 
                     
                     <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
@@ -120,12 +115,12 @@
                             </div>
                             <div class="bottom-content">
                                 <div style="text-align: center;">
-                                    <a href="" style="color: black;">Khẩu phần 1</a>
+                                    <a href="" style="color: black;">Cám chim 1</a>
                                 </div>
 
                                 <div style="text-align: center;">
-                                    <span style="text-decoration: line-through ">12000đ</span>
-                                    <span class="product-price" style="font-weight: bold; color: red;">11000đ</span>
+                                    <span style="text-decoration: line-through ">1300đ</span>
+                                    <span class="product-price" style="font-weight: bold; color: red;">1200đ</span>
                                 </div>
                             </div>
                         </div>
@@ -139,12 +134,12 @@
                             </div>
                             <div class="bottom-content">
                                 <div style="text-align: center;">
-                                    <a href="" style="color: black;">Khẩu phần 2</a>
+                                    <a href="" style="color: black;">Cám chim 2</a>
                                 </div>
 
                                 <div style="text-align: center;">
-                                    <span style="text-decoration: line-through ">10000đ</span>
-                                    <span class="product-price" style="font-weight: bold; color: red;">8000đ</span>
+                                    <span style="text-decoration: line-through ">1000đ</span>
+                                    <span class="product-price" style="font-weight: bold; color: red;">700đ</span>
                                 </div>
                             </div>
                         </div>
@@ -158,12 +153,12 @@
                             </div>
                             <div class="bottom-content">
                                 <div style="text-align: center;">
-                                    <a href="" style="color: black;">Khẩu phần 3</a>
+                                    <a href="" style="color: black;">Cám chim 3</a>
                                 </div>
 
                                 <div style="text-align: center;">
-                                    <span style="text-decoration: line-through ">5000đ</span>
-                                    <span class="product-price" style="font-weight: bold; color: red;">3000đ</span>
+                                    <span style="text-decoration: line-through ">400đ</span>
+                                    <span class="product-price" style="font-weight: bold; color: red;">300đ</span>
                                 </div>
                             </div>
                         </div>
@@ -177,12 +172,12 @@
                             </div>
                             <div class="bottom-content">
                                 <div style="text-align: center;">
-                                    <a href="" style="color: black;">Khẩu phần 4</a>
+                                    <a href="" style="color: black;">Cám chim 4</a>
                                 </div>
 
                                 <div style="text-align: center;">
-                                    <span style="text-decoration: line-through ">7000đ</span>
-                                    <span class="product-price" style="font-weight: bold; color: red;">6000đ</span>
+                                    <span style="text-decoration: line-through ">700đ</span>
+                                    <span class="product-price" style="font-weight: bold; color: red;">600đ</span>
                                 </div>
                             </div>
                         </div>
@@ -196,26 +191,164 @@
                             </div>
                             <div class="bottom-content">
                                 <div style="text-align: center;">
-                                    <a href="" style="color: black;">Khẩu phần 5</a>
+                                    <a href="" style="color: black;">Cám chim 5</a>
+                                </div>
+
+                                <div style="text-align: center;">
+                                    <span style="text-decoration: line-through ">200đ</span>
+                                    <span class="product-price" style="font-weight: bold; color: red;">120đ</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
+                        <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
+                            <div style="text-align: center;">
+                                <a href="productDetail.jsp" class="product-image">
+                                    <img style="width: 160px;height: 190px" src="img/product-2.png" alt="product-image" />
+                                </a>
+                            </div>
+                            <div class="bottom-content">
+                                <div style="text-align: center;">
+                                    <a href="" style="color: black;">Cám chim 6</a>
                                 </div>
 
                                 <div style="text-align: center;">
                                     <span style="text-decoration: line-through ">2000đ</span>
-                                    <span class="product-price" style="font-weight: bold; color: red;">1200đ</span>
+                                    <span class="product-price" style="font-weight: bold; color: red;">1800đ</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
+                        <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
+                            <div style="text-align: center;">
+                                <a href="productDetail.jsp" class="product-image">
+                                    <img style="width: 160px;height: 190px" src="img/product-3.png" alt="product-image" />
+                                </a>
+                            </div>
+                            <div class="bottom-content">
+                                <div style="text-align: center;">
+                                    <a href="" style="color: black;">Cám chim 7</a>
+                                </div>
+
+                                <div style="text-align: center;">
+                                    <span style="text-decoration: line-through ">100đ</span>
+                                    <span class="product-price" style="font-weight: bold; color: red;">75đ</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
+                        <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
+                            <div style="text-align: center;">
+                                <a href="productDetail.jsp" class="product-image">
+                                    <img style="width: 160px;height: 190px" src="img/product-4.png" alt="product-image" />
+                                </a>
+                            </div>
+                            <div class="bottom-content">
+                                <div style="text-align: center;">
+                                    <a href="" style="color: black;">Cám chim 8</a>
+                                </div>
+
+                                <div style="text-align: center;">
+                                    <span style="text-decoration: line-through ">50đ</span>
+                                    <span class="product-price" style="font-weight: bold; color: red;">35đ</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
+                        <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
+                            <div style="text-align: center;">
+                                <a href="productDetail.jsp" class="product-image">
+                                    <img style="width: 160px;height: 190px" src="img/product-1.png" alt="product-image" />
+                                </a>
+                            </div>
+                            <div class="bottom-content">
+                                <div style="text-align: center;">
+                                    <a href="" style="color: black;">Cám chim 9</a>
+                                </div>
+
+                                <div style="text-align: center;">
+                                    <span style="text-decoration: line-through ">300đ</span>
+                                    <span class="product-price" style="font-weight: bold; color: red;">255đ</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
+                        <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
+                            <div style="text-align: center;">
+                                <a href="productDetail.jsp" class="product-image">
+                                    <img style="width: 160px;height: 190px" src="img/product-2.png" alt="product-image" />
+                                </a>
+                            </div>
+                            <div class="bottom-content">
+                                <div style="text-align: center;">
+                                    <a href="" style="color: black;">Cám chim 10</a>
+                                </div>
+
+                                <div style="text-align: center;">
+                                    <span style="text-decoration: line-through ">450đ</span>
+                                    <span class="product-price" style="font-weight: bold; color: red;">434đ</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
+                        <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
+                            <div style="text-align: center;">
+                                <a href="productDetail.jsp" class="product-image">
+                                    <img style="width: 160px;height: 190px" src="img/product-3.png" alt="product-image" />
+                                </a>
+                            </div>
+                            <div class="bottom-content">
+                                <div style="text-align: center;">
+                                    <a href="" style="color: black;">Cám chim 11</a>
+                                </div>
+
+                                <div style="text-align: center;">
+                                    <span style="text-decoration: line-through ">1250đ</span>
+                                    <span class="product-price" style="font-weight: bold; color: red;">1236đ</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
+                        <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
+                            <div style="text-align: center;">
+                                <a href="productDetail.jsp" class="product-image">
+                                    <img style="width: 160px;height: 190px" src="img/product-4.png" alt="product-image" />
+                                </a>
+                            </div>
+                            <div class="bottom-content">
+                                <div style="text-align: center;">
+                                    <a href="" style="color: black;">Cám chim 12</a>
+                                </div>
+
+                                <div style="text-align: center;">
+                                    <span style="text-decoration: line-through ">450đ</span>
+                                    <span class="product-price" style="font-weight: bold; color: red;">422đ</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
                     
-                    
                 </div>
             </div>
         </div>
+            </div>
         </div>
-    </div>
-    <!-- Products End -->
-<!-- Footer Start -->
+        <!-- Products End -->
+
+
+
+
+
+
+        <!-- Footer Start -->
             <div class="container-fluid bg-light mt-5 py-5">
                 <div class="container pt-5">
                     <div class="row g-5">
@@ -292,7 +425,7 @@
 
             <!-- Template Javascript -->
             <script src="js/main.js"></script>
-</body>
+    </body>
 
 </html>
 <style>
@@ -318,7 +451,7 @@
     }
 
     .searchBar {
-        width: 100%;
+        width: 111%;
         display: flex;
         flex-direction: row;
         /*align-items: center;*/
@@ -348,16 +481,16 @@
         cursor: pointer;
     }
     .navbar-light .navbar-nav .nav-link {
-    font-family: 'Roboto', sans-serif;
-    position: relative;
-    margin-left: 30px;
-    padding: 30px 0;
-    font-size: 18px;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: var(--dark);
-    outline: none;
-    transition: .5s;
-    width: max-content;
-}
+        font-family: 'Roboto', sans-serif;
+        position: relative;
+        margin-left: 30px;
+        padding: 30px 0;
+        font-size: 18px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--dark);
+        outline: none;
+        transition: .5s;
+        width: max-content;
+    }
 </style>

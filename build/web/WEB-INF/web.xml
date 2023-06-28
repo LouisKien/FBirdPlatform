@@ -81,7 +81,6 @@
         <servlet-class>fbird.controller.DeleteReportedShopController</servlet-class>
     </servlet>
     <servlet>
-
         <servlet-name>ViewProductHomePageController</servlet-name>
         <servlet-class>fbird.controller.ViewProductHomePageController</servlet-class>
     </servlet>
@@ -92,10 +91,10 @@
     <servlet>
         <servlet-name>ViewPriceController</servlet-name>
         <servlet-class>fbird.controller.ViewPriceController</servlet-class>
-
+    </servlet>
+    <servlet>
         <servlet-name>updateUserProfileController</servlet-name>
         <servlet-class>fbird.controller.updateUserProfileController</servlet-class>
-
     </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
@@ -174,7 +173,6 @@
         <url-pattern>/DisableReportedShopController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-
         <servlet-name>ViewProductHomePageController</servlet-name>
         <url-pattern>/ViewProductHomePageController</url-pattern>
     </servlet-mapping>
@@ -185,16 +183,16 @@
     <servlet-mapping>
         <servlet-name>ViewPriceController</servlet-name>
         <url-pattern>/ViewPriceController</url-pattern>
-
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>updateUserProfileController</servlet-name>
         <url-pattern>/updateUserProfileController</url-pattern>
-
     </servlet-mapping>
-    <welcome-file-list>
-        <welcome-file>MainController</welcome-file>
-    </welcome-file-list>
     <servlet-mapping>
         <servlet-name>DeleteReportedShopController</servlet-name>
         <url-pattern>/DeleteReportedShopController</url-pattern>
     </servlet-mapping>
+    <welcome-file-list>
+        <welcome-file>MainController</welcome-file>
+    </welcome-file-list>
 </web-app>

@@ -52,6 +52,10 @@ public class FeedbackDTO {
         this.fullname = fullname;
     }
 
+    public FeedbackDTO(String feedback) {
+        this.feedback = feedback;
+    }
+
     
 
    

@@ -247,18 +247,35 @@ function updateQuantity(quantity) {
                         <div><%=LPD.getShop_name() %></div>
                         <div><a href="shopProduct.jsp">Xem ngay</a></div>
                     </div>
+                           <%
+List<ProductDTO> listShopProductItemId = (List<ProductDTO>) request.getAttribute("LIST_ShopProductItemId");
+List<FeedbackDTO> listAllFeedback = (List<FeedbackDTO>) request.getAttribute("LIST_AllFeedback");
+    int countid=0;
+    int countfeedback=0;
+    for (ProductDTO LSPII : listShopProductItemId) {
+         countid++;
+    }
+    
+    for (FeedbackDTO LAF : listAllFeedback) {
+        if (LAF != null ) {
+         countfeedback++;
+    }
+    }
+%>
                     <div style="display: flex; flex-direction: column;">
-                        <div>Đánh giá</div>
-                        <div style="color: red;">80k</div>
-                    </div>
-                    <div style="display: flex; flex-direction: column;">
-                        <div>Sản phẩm</div>
-                        <div style="color: red;">100</div>
-                    </div>
+    <div>Đánh giá</div>
+    <div style="color: red;"><%= countfeedback %></div>
+</div>
+<div style="display: flex; flex-direction: column;">
+    <div>Sản phẩm</div>
+    <div style="color: red;"><%= countid %></div>
+</div>
+
                     <div style="display: flex; flex-direction: column;">
                         <div>Số lượng đã bán</div>
                         <div style="color: red;">100k</div>
                     </div>
+           
                 </div>
             </div>
         </div>

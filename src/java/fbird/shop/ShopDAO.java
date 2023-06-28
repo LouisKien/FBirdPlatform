@@ -22,6 +22,7 @@ public class ShopDAO {
     private static final String CREATE_SHOP = "insert into shop_owner(username, shop_name, phone, email, address, registed_date, city) values(?, ?, ?, ?, ?, ?, ?)";
     private static final String VIEW_REPORTED_SHOP = "SELECT shop_owner.username, shop_name, detail, customer.fullname, account.status, reported_shop_id FROM reported_shop left join shop_owner on reported_shop.shop_id = shop_owner.shop_id left join customer on reported_shop.customer_id = customer.customer_id left join account on shop_owner.username = account.username";
     private static final String DISABLE_SHOP_ACCOUNT = "UPDATE account SET status = ? WHERE username = ?";
+    private static final String VIEW_SHOP_INFORMATION = "UPDATE account SET status = ? WHERE username = ?";
     public void createShop(String username, String shop_name, String phone, String email, String address, Date date, String city) throws SQLException{
         
         Connection conn = null;

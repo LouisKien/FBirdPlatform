@@ -33,7 +33,7 @@ public class ProductDTO {
     Double price;
     
     
-
+    
     String nameOption;
     double priceView;
 
@@ -86,12 +86,15 @@ public class ProductDTO {
         
     }
 
-    public ProductDTO(int shopProductItemID, String title, String image_1, Double price) {
+    public ProductDTO(int shopProductItemID, int shopID, String title, String image_1, Double price) {
         this.shopProductItemID = shopProductItemID;
+        this.shopID = shopID;
         this.title = title;
         this.image_1 = image_1;
         this.price = price;
     }
+
+    
 
     public ProductDTO(int shopProductItemID, int shopID, int categoryID, int typeOfBirdID, String title, String description, int inventory, Date uploadDate, byte status, Double price, String nameOption) {
         this.shopProductItemID = shopProductItemID;
@@ -106,13 +109,12 @@ public class ProductDTO {
         this.price = price;
         this.nameOption = nameOption;
     }
-    
 
-       
-    
-    
+    public ProductDTO(int shopProductItemID) {
+        this.shopProductItemID = shopProductItemID;
+    }
 
-
+    
     public int getShopProductItemID() {
         return shopProductItemID;
     }
@@ -285,7 +287,7 @@ public class ProductDTO {
 
     }
 
-    
-    
+  
+
     
 }

@@ -40,6 +40,7 @@ public class ViewProductDetailController extends HttpServlet {
         try {
 
             int shop_product_item_id = Integer.parseInt(request.getParameter("shop_product_item_id"));
+            int shop_id = Integer.parseInt(request.getParameter("shop_id"));
             
 //            int customer_id = Integer.parseInt(request.getParameter("id"));           
             ProductDAO daoproduct = new ProductDAO();              
@@ -47,12 +48,17 @@ public class ViewProductDetailController extends HttpServlet {
             OptionalshopproductitemDAO daooptional = new OptionalshopproductitemDAO();
             List<ProductDTO> ProductDetail = daoproduct.getProductDetail(shop_product_item_id);                       
            List<FeedbackDTO> listFeedback = daofeedback.getFeedback(shop_product_item_id);                              
-           List<OptionalshopproductitemDTO> listOptional = daooptional.getListOptional(shop_product_item_id);                              
-                                      
+           List<OptionalshopproductitemDTO> listOptional = daooptional.getListOptional(shop_product_item_id);
+            List<ProductDTO> ShopProductItemId = daoproduct.getShopProductItemId();
+             List<FeedbackDTO> AllFeedback = daofeedback.getAllFeedback(shop_id);
+             
                 if (!ProductDetail.isEmpty()) {
                 request.setAttribute("LIST_ProductDetail", ProductDetail);
                 request.setAttribute("LIST_Feedback", listFeedback);
                 request.setAttribute("LIST_Optional", listOptional);
+                request.setAttribute("LIST_ShopProductItemId", ShopProductItemId);
+                request.setAttribute("LIST_AllFeedback", AllFeedback);
+                
                
           
             }

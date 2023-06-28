@@ -117,16 +117,17 @@
                                                 <%
                                                     if(report.getShop_status() == 1){
                                                     %>
-                                                <a href="MainController?action=DisableShop&username=<%= report.getUsername()%>&status=0">Vô hiệu hóa tài khoản</a>
+                                                <a href="MainController?action=DisableShop&username=<%= report.getUsername()%>&status=0" style="color: black; text-decoration: none;">Vô hiệu hóa tài khoản</a>
+
                                                 <%
                                                     } else {
                                                     %>
-                                                <a href="MainController?action=DisableShop&username=<%= report.getUsername()%>&status=1">Kích hoạt lại tài khoản</a>
+                                                <a href="MainController?action=DisableShop&username=<%= report.getUsername()%>&status=1" style="color: black; text-decoration: none;">Kích hoạt lại tài khoản</a>
                                                 <%
                                                     }
                                                 %>
                                             </th>
-                                            <th><a href="MainController?action=DeleteReportedShop&reported_shop_id=<%= report.getReported_shop_id()%>">Xóa tố cáo</a></th>
+                                            <th><a href="MainController?action=DeleteReportedShop&reported_shop_id=<%= report.getReported_shop_id()%>" style="color: black; text-decoration: none;" >Xóa tố cáo</a></th>
                                         </tr>
                                         <%
                                             }

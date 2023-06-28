@@ -29,8 +29,7 @@ public class ProductDTO {
     String type_of_bird_name;
     String category_name;
     String shop_name;
-    String avatar;
-    String name;
+    String avatar;  
     Double price;
     
     
@@ -61,7 +60,7 @@ public class ProductDTO {
         this.status = status;
     }
 
-    public ProductDTO(int shopProductItemID, String title, String description, int inventory, Date uploadDate, byte status, String image_1, String image_2, String image_3, String image_4, String image_5, String type_of_bird_name, String shop_name, String avatar, String name, Double price) {
+    public ProductDTO(int shopProductItemID, String title, String description, int inventory, Date uploadDate, byte status, String image_1, String image_2, String image_3, String image_4, String image_5, String type_of_bird_name, String shop_name, String avatar) {
         this.shopProductItemID = shopProductItemID;
         this.title = title;
         this.description = description;
@@ -76,7 +75,13 @@ public class ProductDTO {
         this.type_of_bird_name = type_of_bird_name;
         this.shop_name = shop_name;
         this.avatar = avatar;
-        this.name = name;
+        
+    }
+
+    public ProductDTO(int shopProductItemID, String title, String image_1, Double price) {
+        this.shopProductItemID = shopProductItemID;
+        this.title = title;
+        this.image_1 = image_1;
         this.price = price;
     }
     
@@ -226,13 +231,7 @@ public class ProductDTO {
         this.avatar = avatar;
     }
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public Double getPrice() {
         return price;

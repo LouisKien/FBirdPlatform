@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="fbird.product.ProductDTO"%>
+<%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -43,7 +45,7 @@
     </head>
 
     <body>
-
+         
 
 
         <!-- Navbar Start -->
@@ -123,6 +125,7 @@
             </div>
         </div>
         <!-- comment -->
+        
         <div class="container-fluid py-5">
             <div class="container">
                 <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
@@ -130,64 +133,35 @@
                     <h1 class="display-5 text-uppercase mb-0">Gợi ý cho bạn</h1>
                 </div>
                 <div class="owl-carousel product-carousel">
+                    <% 
+            List<ProductDTO> listProductHomePage = (List<ProductDTO>) request.getAttribute("LIST_ProductHomePage");
+           
+            if (listProductHomePage != null && !listProductHomePage.isEmpty()) {
+          
+                for (ProductDTO listPHP : listProductHomePage) { 
+               
+            %>
                     <div class="pb-5">
                         <div class="product-item position-relative bg-light d-flex flex-column text-center">
-                            <img class="img-fluid mb-4" src="img/product-1.png" alt="">
-                            <h6 class="text-uppercase">Cám chim 20</h6>
-                            <h5 class="text-primary mb-0">1200đ</h5>
+                            <img class="img-fluid mb-4" src="<%=listPHP.getImage_1() %>" alt="">
+                            <h6 class="text-uppercase"><%=listPHP.getTitle() %></h6>
+                            <h5 class="text-primary mb-0"><%=listPHP.getPrice() %></h5>
                             <div class="btn-action d-flex justify-content-center">
                                 <a class="btn btn-primary py-2 px-3" href="addtocart.html"><i class="bi bi-cart"></i></a>
-                                <a class="btn btn-primary py-2 px-3" href="productDetail.jsp"><i class="bi bi-eye"></i></a>
+                                <a class="btn btn-primary py-2 px-3" href="MainController?action=ViewProductDetail&shop_product_item_id=<%=listPHP.getShopProductItemID() %>"><i class="bi bi-eye"></i></a>
                             </div>
                         </div>
                     </div>
-                    <div class="pb-5">
-                        <div class="product-item position-relative bg-light d-flex flex-column text-center">
-                            <img class="img-fluid mb-4" src="img/product-2.png" alt="">
-                            <h6 class="text-uppercase">Cám chim 5</h6>
-                            <h5 class="text-primary mb-0">1230đ</h5>
-                            <div class="btn-action d-flex justify-content-center">
-                                <a class="btn btn-primary py-2 px-3" href="addtocart.html"><i class="bi bi-cart"></i></a>
-                                <a class="btn btn-primary py-2 px-3" href="productDetail.jsp"><i class="bi bi-eye"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pb-5">
-                        <div class="product-item position-relative bg-light d-flex flex-column text-center">
-                            <img class="img-fluid mb-4" src="img/product-3.png" alt="">
-                            <h6 class="text-uppercase">Cám chim 6</h6>
-                            <h5 class="text-primary mb-0">1800đ</h5>
-                            <div class="btn-action d-flex justify-content-center">
-                                <a class="btn btn-primary py-2 px-3" href="addtocart.html"><i class="bi bi-cart"></i></a>
-                                <a class="btn btn-primary py-2 px-3" href="productDetail.jsp"><i class="bi bi-eye"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pb-5">
-                        <div class="product-item position-relative bg-light d-flex flex-column text-center">
-                            <img class="img-fluid mb-4" src="img/product-4.png" alt="">
-                            <h6 class="text-uppercase">Cám chim 8</h6>
-                            <h5 class="text-primary mb-0">530đ</h5>
-                            <div class="btn-action d-flex justify-content-center">
-                                <a class="btn btn-primary py-2 px-3" href="addtocart.html"><i class="bi bi-cart"></i></a>
-                                <a class="btn btn-primary py-2 px-3" href="productDetail.jsp"><i class="bi bi-eye"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pb-5">
-                        <div class="product-item position-relative bg-light d-flex flex-column text-center">
-                            <img class="img-fluid mb-4" src="img/product-2.png" alt="">
-                            <h6 class="text-uppercase">Cám chim 12</h6>
-                            <h5 class="text-primary mb-0">456đ</h5>
-                            <div class="btn-action d-flex justify-content-center">
-                                <a class="btn btn-primary py-2 px-3" href="addtocart.html"><i class="bi bi-cart"></i></a>
-                                <a class="btn btn-primary py-2 px-3" href="productDetail.jsp"><i class="bi bi-eye"></i></a>
-                            </div>
-                        </div>
-                    </div>
+               
+                                                        <% 
+                   }
+               
+   }
+            %>
                 </div>
             </div>
         </div>
+
         <!-- comment -->
         <div class="container-fluid py-5">
             <div class="container">
@@ -439,6 +413,7 @@
                 </div>
             </div>
         </div>
+
                         <!-- Footer Start -->
             <div class="container-fluid bg-light mt-5 py-5">
                 <div class="container pt-5">
@@ -516,6 +491,7 @@
 
             <!-- Template Javascript -->
             <script src="js/main.js"></script>
+            
     </body>
 
 </html> 

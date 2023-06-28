@@ -7,7 +7,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="fbird.feedback.FeedbackDTO"%>
-<%@page import="fbird.product"%>
+<%@page import="fbird.product.ProductDTO"%>
+<%@page import="fbird.optionalshopproductitem.OptionalshopproductitemDTO"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -94,24 +95,31 @@
             </nav>
             <!-- Navbar End -->
 
-            <form action="MainController" method="POST">
+             <% 
+            List<ProductDTO> listProductDetail = (List<ProductDTO>) request.getAttribute("LIST_ProductDetail");
+           
+            if (listProductDetail != null && !listProductDetail.isEmpty()) {
+          
+                for (ProductDTO LPD : listProductDetail) {
+               
+            %>
                 <div class="flex-box">
                     <div class="left">
                         <div class="big-img">
-                            <img src="img/avatar-nhat.png">
+                            <img src="<%=LPD.getImage_1() %>">
                         </div>
                         <div class="images">
                             <div class="small-img">
-                                <img src="img/product-1.png" onclick="showImg(this.src)">
+                                <img src="<%=LPD.getImage_2() %>" onclick="showImg(this.src)">
                             </div>
                             <div class="small-img">
-                                <img src="img/product-2.png" onclick="showImg(this.src)">
+                                <img src="<%=LPD.getImage_3() %>" onclick="showImg(this.src)">
                             </div>
                             <div class="small-img">
-                                <img src="img/product-3.png" onclick="showImg(this.src)">
+                                <img src="<%=LPD.getImage_4() %>" onclick="showImg(this.src)">
                             </div>
                             <div class="small-img">
-                                <img src="img/product-4.png" onclick="showImg(this.src)">
+                                <img src="<%=LPD.getImage_5() %>" onclick="showImg(this.src)">
                             </div>
                         </div>
                     </div>
@@ -131,7 +139,7 @@
                             </select>
                             <button class="confirm-button">Xác nhận</button>
                         </div>
-                        <div class="pname" style="margin-bottom: 1px;">Cám chim 1
+                        <div class="pname" style="margin-bottom: 1px;"><%=LPD.getTitle() %>
 
                         </div>
                         <input type="hidden" name="id" value="1"/>
@@ -145,29 +153,78 @@
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star-half-alt"></i>
                         </div>
-                        <div class="price">4000 đ</div>
-
-                        <div class="size">
+                        
+ 
+                        
                             <p style="margin-right: 10px;">Loại:</p>
-                            <div class="btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-primary active">
-                                    <input type="radio" name="size" id="size1" autocomplete="off" checked> 0.2kg Hạt nhỏ
-                                </label>
-                                <label class="btn btn-primary">
-                                    <input type="radio" name="size" id="size2" autocomplete="off"> 0.5kg Hạt to
-                                </label>
-                                <label class="btn btn-primary">
-                                    <input type="radio" name="size" id="size3" autocomplete="off"> 1kg Hạt nhỏ
-                                </label>
-                                <label class="btn btn-primary" style="margin-top: 2px;">
-                                    <input type="radio" name="size" id="size4" autocomplete="off"> 2kg Hạt to
-                                </label>
-                            </div>
-                        </div>
-                        <div class="quantity">
-                            <p>Số lượng :</p>
-                            <input type="number" min="1" max="5" value="1">
-                        </div>
+                 <%
+List<OptionalshopproductitemDTO> listOptional = (List<OptionalshopproductitemDTO>) request.getAttribute("LIST_Optional");
+
+if (listOptional != null && !listOptional.isEmpty()) {
+    for (OptionalshopproductitemDTO LON : listOptional) {
+%>
+       
+<div class="size">
+           
+<div class="product-item">
+            
+            <div class="product-name">
+                <label class="btn btn-primary active">
+                    <input type="radio" name="optional" autocomplete="off" onclick="updatePrice('<%=LON.getName() %>', '<%=LON.getPrice() %>')"> <%=LON.getName() %>
+                </label>
+                <div class="product-price" id="<%=LON.getName() %>Price" style="display: none;"></div>
+            </div>
+        </div>
+                </div>
+<%
+    }
+}
+%>
+                        
+<div class="quantity">
+    <p>Số lượng:</p>
+    <input type="number" min="1" max="100" value="1" onclick="updateQuantity(this.value)">
+</div>
+<div class="selected-product-price" id="selectedPrice" style="visibility: hidden"></div>
+<div class="selected-product-price" id="selectedPrice1" ></div>
+
+
+<script>
+// JavaScript function to update price when a product is selected
+function updatePrice(name, price) {
+    var priceElements = document.getElementsByClassName('product-price');
+    for (var i = 0; i < priceElements.length; i++) {
+        priceElements[i].style.display = 'none';
+    }
+    
+    var selectedPriceElement = document.getElementById('selectedPrice');
+    if (selectedPriceElement) {
+        selectedPriceElement.innerHTML = price;
+        selectedPriceElement.style.display = 'block';
+    }
+}
+
+// JavaScript function to update price based on quantity
+function updateQuantity(quantity) {
+    var selectedPriceElement = document.getElementById('selectedPrice');
+    var selectedPriceElement1 = document.getElementById('selectedPrice1');
+    
+    if (selectedPriceElement) {
+        var price = parseFloat(selectedPriceElement.innerHTML);
+        var totalPrice = price * quantity;
+        selectedPriceElement1.innerHTML = totalPrice.toFixed(2);
+    }
+}
+
+// Example usage: updatePrice(productName, price);
+</script>
+
+
+
+            
+                        
+                      
+                        
                         <div class="btn-box">
                             <button class="btn btn-primary cart-btn" name="action" value="Add">Thêm vào giỏ hàng</button>
                             <button class="btn btn-primary buy-btn">Mua ngay</button>
@@ -175,7 +232,7 @@
                     </div>
 
                 </div>
-            </form>
+           
 
             <div style="margin-left: 20%; transform: translateX(-10%);">
                 <div style="margin-top: 20px; margin-bottom: 20px; background-color: #D5CAD0; display: flex; justify-content: space-around; width: 50%; text-align: center; padding: 10px;">
@@ -185,7 +242,7 @@
                         </div>
                     </a>
                     <div class="shop-name" style="display: flex; flex-direction: column;">
-                        <div>FPT Shop</div>
+                        <div><%=LPD.getShop_name() %></div>
                         <div><a href="shopProduct.jsp">Xem ngay</a></div>
                     </div>
                     <div style="display: flex; flex-direction: column;">
@@ -203,7 +260,7 @@
                 </div>
             </div>
         </div>
-
+                
         <h1 style="text-transform: uppercase;
             color: #7ab730;">Chi tiết sản phẩm</h1>
         <h1 style="text-align: left;
@@ -211,16 +268,19 @@
             display: block;
             line-height: 1.2;
             margin-top: 30px;">
-            Cám chim là một loại thức ăn được sản xuất từ nhiều nguồn dinh dưỡng khác nhau như hạt, lúa mì, đậu nành và nhiều loại thực vật khác. 
-            Nó được thiết kế để đáp ứng nhu cầu dinh dưỡng của các loài chim khác nhau, bao gồm các loại vẹt, bồ câu, sáo và cú.
+            <%=LPD.getDescription() %>
         </h1>
 
-        <form action="ViewFeedbackController" >
+        
+<% 
+                   }
+               
+   }
+            %>
 
-
-            <input type="submit" name="shop_product_item_id" readonly="" value=1>
+            
             <h3 class="border-start border-5 border-primary ps-3 mb-4" style="margin-left: 10px;">Feedback</h3>
-            </form>
+            
             <% 
             List<FeedbackDTO> listFeedback = (List<FeedbackDTO>) request.getAttribute("LIST_Feedback");
            

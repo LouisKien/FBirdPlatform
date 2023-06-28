@@ -4,12 +4,9 @@
  */
 package fbird.controller;
 
+
 import fbird.product.ProductDAO;
 import fbird.product.ProductDTO;
-import fbird.feedback.FeedbackDTO;
-import fbird.feedback.FeedbackDAO;
-import fbird.optionalshopproductitem.OptionalshopproductitemDTO;
-import fbird.optionalshopproductitem.OptionalshopproductitemDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,7 +19,7 @@ import java.util.List;
  *
  * @author Admin
  */
-public class ViewProductDetailController extends HttpServlet {
+public class ViewProductHomePageController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,27 +30,23 @@ public class ViewProductDetailController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    public static final String ERROR = "error.jsp";
+    public static final String SUCCESS = "MainController?action=Homepage";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = "productDetail.jsp";
+        String url=ERROR;
         try {
 
-            int shop_product_item_id = Integer.parseInt(request.getParameter("shop_product_item_id"));
-            
+          
 //            int customer_id = Integer.parseInt(request.getParameter("id"));           
             ProductDAO daoproduct = new ProductDAO();              
-            FeedbackDAO daofeedback = new FeedbackDAO();    
-            OptionalshopproductitemDAO daooptional = new OptionalshopproductitemDAO();
-            List<ProductDTO> ProductDetail = daoproduct.getProductDetail(shop_product_item_id);                       
-           List<FeedbackDTO> listFeedback = daofeedback.getFeedback(shop_product_item_id);                              
-           List<OptionalshopproductitemDTO> listOptional = daooptional.getListOptional(shop_product_item_id);                              
-                                      
-                if (!ProductDetail.isEmpty()) {
-                request.setAttribute("LIST_ProductDetail", ProductDetail);
-                request.setAttribute("LIST_Feedback", listFeedback);
-                request.setAttribute("LIST_Optional", listOptional);
-               
+                        
+            List<ProductDTO> ProductHomePage = daoproduct.getProductHomePage();                       
+                                   
+                if (!ProductHomePage.isEmpty()) {
+                request.setAttribute("LIST_ProductHomePage", ProductHomePage);
+                 url=SUCCESS;
           
             }
 
@@ -64,6 +57,7 @@ public class ViewProductDetailController extends HttpServlet {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

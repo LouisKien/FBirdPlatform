@@ -17,7 +17,10 @@ import java.io.PrintWriter;
  */
 public class MainController extends HttpServlet {
 
-    public static final String WELCOME_PAGE = "index.jsp";
+    public static final String WELCOME_PAGE = "ViewProductHomePageController";
+    
+    public static final String VIEW_PRICE = "viewPrice";
+    public static final String VIEW_PRICE_CONTROLLER = "ViewPriceController";
 
     private static final String LOGIN = "Login";
     private static final String LOGIN_CONTROLLER = "LoginController";
@@ -38,6 +41,10 @@ public class MainController extends HttpServlet {
     private static final String DISABLE_REPORTED_SHOP_CONTROLLER = "DisableReportedShopController";
     private static final String DELETE_REPORTED_SHOP = "DeleteReportedShop";
     private static final String DELETE_REPORTED_SHOP_CONTROLLER = "DeleteReportedShopController";
+    private static final String HOMEPAGE = "Homepage";
+    private static final String VIEW_HOMEPAGE = "index.jsp";
+    private static final String VIEW_PRODUCT_DETAIL = "ViewProductDetail";
+    private static final String VIEW_PRODUCT_DETAIL_CONTROLLER = "ViewProductDetailController";
     
     
     private static final String CREATE_PRODUCT = "CreateProduct";
@@ -78,6 +85,14 @@ public class MainController extends HttpServlet {
                 url = DISABLE_REPORTED_SHOP_CONTROLLER;
             } else if (DELETE_REPORTED_SHOP.equals(action)) {
                 url = DELETE_REPORTED_SHOP_CONTROLLER;
+            }else if(HOMEPAGE.equals(action)){
+                url=VIEW_HOMEPAGE;
+            }else if(VIEW_PRODUCT_DETAIL.equals(action)){
+                url=VIEW_PRODUCT_DETAIL_CONTROLLER;
+            }else if(VIEW_PRICE.equals(action)){
+                url=VIEW_PRICE_CONTROLLER;
+            }else if(action==null){
+                url=WELCOME_PAGE;
             }
             else {
                 request.setAttribute("ERROR", "Your ACTION is not support");

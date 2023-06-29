@@ -181,8 +181,11 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-                                        <form action="updateUserProfileController" method="POST">
-                                        ${msg}
+                                        <form action="AddUserProfileController" method="POST">
+                                        <p class="text-danger">
+
+                                                    ${msg}
+                                        </p>
                                         <div class="form-group">
                                             <label for="username">Tên đăng nhập:</label>
                                             <input name="username" type="text" class="form-control" id="username" value="${user}">

@@ -42,6 +42,12 @@ public class CustomerDTO {
         this.registed_date = registed_date;
     }
 
+    public CustomerDTO(String username, String fullname) {
+        this.username = username;
+        this.fullname = fullname;
+    }
+    
+
     
     
     public int getCustomer_id() {

@@ -264,7 +264,7 @@ List<FeedbackDTO> listAllFeedback = (List<FeedbackDTO>) request.getAttribute("LI
 %>
                     <div style="display: flex; flex-direction: column;">
     <div>Đánh giá</div>
-    <div style="color: red;"><%= countfeedback %></div>
+    <div style="color: red;"><%= countfeedback  - 1%></div>
 </div>
 <div style="display: flex; flex-direction: column;">
     <div>Sản phẩm</div>

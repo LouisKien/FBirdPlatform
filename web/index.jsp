@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="fbird.product.ProductDTO"%>
+<%@page import="fbird.recipe.RecipeDTO"%>
 <%@page import="fbird.user.UserDTO"%>
 <%@page import="java.util.List"%>
 <!DOCTYPE html>
@@ -180,7 +181,7 @@
         <div class="container-fluid py-5">
             <div class="container">
                 <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
-                    <h6 class="text-primary text-uppercase">Sản phẩm</h6>
+                    <h6 class="text-primary text-uppercase">Khẩu phần</h6>
                     <h1 class="display-5 text-uppercase mb-0">Chim vui - chim khỏe hãy đến shop tôi</h1>
                 </div>
 
@@ -192,234 +193,38 @@
                             <!--                                <div>${requestScope.MESSAGE}</div>-->
 
 
+                            <% 
+            List<RecipeDTO> listRecipeHomePage = (List<RecipeDTO>) request.getAttribute("LIST_RecipeHomePage");
+           
+            if (listRecipeHomePage != null && !listRecipeHomePage.isEmpty()) {
+          
+                for (RecipeDTO listRHP : listRecipeHomePage) { 
+               
+                    %>
                             <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
                                 <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
                                     <div style="text-align: center;">
                                         <a href="productDetail.jsp" class="product-image">
-                                            <img style="width: 160px;height: 190px" src="img/product-1.png" alt="product-image" />
+                                            <img style="width: 160px;height: 190px" src="<%=listRHP.getSource() %>" alt="" />
                                         </a>
                                     </div>
                                     <div class="bottom-content">
                                         <div style="text-align: center;">
-                                            <a href="" style="color: black;">Cám chim 1</a>
+                                            <a href="" style="color: black;"><%=listRHP.getTitle_recipe() %></a>
                                         </div>
 
                                         <div style="text-align: center;">
-                                            <span style="text-decoration: line-through ">1300đ</span>
-                                            <span class="product-price" style="font-weight: bold; color: red;">1200đ</span>
+                                            <span style="text-decoration: line-through "><%=listRHP.getOriginal_price() %>đ</span>
+                                            <span class="product-price" style="font-weight: bold; color: red;"><%=listRHP.getSell_price() %>đ</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
-                                <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
-                                    <div style="text-align: center;">
-                                        <a href="productDetail.jsp" class="product-image">
-                                            <img style="width: 160px;height: 190px" src="img/product-2.png" alt="product-image" />
-                                        </a>
-                                    </div>
-                                    <div class="bottom-content">
-                                        <div style="text-align: center;">
-                                            <a href="" style="color: black;">Cám chim 2</a>
-                                        </div>
-
-                                        <div style="text-align: center;">
-                                            <span style="text-decoration: line-through ">1000đ</span>
-                                            <span class="product-price" style="font-weight: bold; color: red;">700đ</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
-                                <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
-                                    <div style="text-align: center;">
-                                        <a href="productDetail.jsp" class="product-image">
-                                            <img style="width: 160px;height: 190px" src="img/product-3.png" alt="product-image" />
-                                        </a>
-                                    </div>
-                                    <div class="bottom-content">
-                                        <div style="text-align: center;">
-                                            <a href="" style="color: black;">Cám chim 3</a>
-                                        </div>
-
-                                        <div style="text-align: center;">
-                                            <span style="text-decoration: line-through ">4566đ</span>
-                                            <span class="product-price" style="font-weight: bold; color: red;">4500đ</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
-                                <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
-                                    <div style="text-align: center;">
-                                        <a href="productDetail.jsp" class="product-image">
-                                            <img style="width: 160px;height: 190px" src="img/product-4.png" alt="product-image" />
-                                        </a>
-                                    </div>
-                                    <div class="bottom-content">
-                                        <div style="text-align: center;">
-                                            <a href="" style="color: black;">Cám chim 4</a>
-                                        </div>
-
-                                        <div style="text-align: center;">
-                                            <span style="text-decoration: line-through ">7000đ</span>
-                                            <span class="product-price" style="font-weight: bold; color: red;">2500đ</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
-                                <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
-                                    <div style="text-align: center;">
-                                        <a href="productDetail.jsp" class="product-image">
-                                            <img style="width: 160px;height: 190px" src="img/product-1.png" alt="product-image" />
-                                        </a>
-                                    </div>
-                                    <div class="bottom-content">
-                                        <div style="text-align: center;">
-                                            <a href="" style="color: black;">Cám chim 5</a>
-                                        </div>
-
-                                        <div style="text-align: center;">
-                                            <span style="text-decoration: line-through ">5000đ</span>
-                                            <span class="product-price" style="font-weight: bold; color: red;">300đ</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
-                                <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
-                                    <div style="text-align: center;">
-                                        <a href="productDetail.jsp" class="product-image">
-                                            <img style="width: 160px;height: 190px" src="img/product-2.png" alt="product-image" />
-                                        </a>
-                                    </div>
-                                    <div class="bottom-content">
-                                        <div style="text-align: center;">
-                                            <a href="" style="color: black;">Cám chim 6</a>
-                                        </div>
-
-                                        <div style="text-align: center;">
-                                            <span style="text-decoration: line-through ">2000đ</span>
-                                            <span class="product-price" style="font-weight: bold; color: red;">1500đ</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
-                                <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
-                                    <div style="text-align: center;">
-                                        <a href="productDetail.jsp" class="product-image">
-                                            <img style="width: 160px;height: 190px" src="img/product-3.png" alt="product-image" />
-                                        </a>
-                                    </div>
-                                    <div class="bottom-content">
-                                        <div style="text-align: center;">
-                                            <a href="" style="color: black;">Cám chim 7</a>
-                                        </div>
-
-                                        <div style="text-align: center;">
-                                            <span style="text-decoration: line-through ">1230đ</span>
-                                            <span class="product-price" style="font-weight: bold; color: red;">500đ</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
-                                <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
-                                    <div style="text-align: center;">
-                                        <a href="productDetail.jsp" class="product-image">
-                                            <img style="width: 160px;height: 190px" src="img/product-4.png" alt="product-image" />
-                                        </a>
-                                    </div>
-                                    <div class="bottom-content">
-                                        <div style="text-align: center;">
-                                            <a href="" style="color: black;">Cám chim 8</a>
-                                        </div>
-
-                                        <div style="text-align: center;">
-                                            <span style="text-decoration: line-through ">4354đ</span>
-                                            <span class="product-price" style="font-weight: bold; color: red;">2000đ</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
-                                <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
-                                    <div style="text-align: center;">
-                                        <a href="productDetail.jsp" class="product-image">
-                                            <img style="width: 160px;height: 190px" src="img/product-1.png" alt="product-image" />
-                                        </a>
-                                    </div>
-                                    <div class="bottom-content">
-                                        <div style="text-align: center;">
-                                            <a href="" style="color: black;">Cám chim 9</a>
-                                        </div>
-
-                                        <div style="text-align: center;">
-                                            <span style="text-decoration: line-through ">345đ</span>
-                                            <span class="product-price" style="font-weight: bold; color: red;">150đ</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
-                                <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
-                                    <div style="text-align: center;">
-                                        <a href="productDetail.jsp" class="product-image">
-                                            <img style="width: 160px;height: 190px" src="img/product-2.png" alt="product-image" />
-                                        </a>
-                                    </div>
-                                    <div class="bottom-content">
-                                        <div style="text-align: center;">
-                                            <a href="" style="color: black;">Cám chim 10</a>
-                                        </div>
-
-                                        <div style="text-align: center;">
-                                            <span style="text-decoration: line-through ">450đ</span>
-                                            <span class="product-price" style="font-weight: bold; color: red;">250đ</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
-                                <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
-                                    <div style="text-align: center;">
-                                        <a href="productDetail.jsp" class="product-image">
-                                            <img style="width: 160px;height: 190px" src="img/product-3.png" alt="product-image" />
-                                        </a>
-                                    </div>
-                                    <div class="bottom-content">
-                                        <div style="text-align: center;">
-                                            <a href="" style="color: black;">Cám chim 11</a>
-                                        </div>
-
-                                        <div style="text-align: center;">
-                                            <span style="text-decoration: line-through ">1520đ</span>
-                                            <span class="product-price" style="font-weight: bold; color: red;">1000đ</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
-                                <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
-                                    <div style="text-align: center;">
-                                        <a href="productDetail.jsp" class="product-image">
-                                            <img style="width: 160px;height: 190px" src="img/product-4.png" alt="product-image" />
-                                        </a>
-                                    </div>
-                                    <div class="bottom-content">
-                                        <div style="text-align: center;">
-                                            <a href="" style="color: black;">Cám chim 12</a>
-                                        </div>
-
-                                        <div style="text-align: center;">
-                                            <span style="text-decoration: line-through ">500đ</span>
-                                            <span class="product-price" style="font-weight: bold; color: red;">250đ</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <% 
+}
+               
+}
+                    %>
 
 
                         </div>

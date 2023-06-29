@@ -7,6 +7,8 @@ package fbird.controller;
 
 import fbird.product.ProductDAO;
 import fbird.product.ProductDTO;
+import fbird.recipe.RecipeDAO;
+import fbird.recipe.RecipeDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -41,10 +43,13 @@ public class ViewProductHomePageController extends HttpServlet {
           
 //            int customer_id = Integer.parseInt(request.getParameter("id"));           
             ProductDAO daoproduct = new ProductDAO();              
+            RecipeDAO daorecipe = new RecipeDAO();              
             List<ProductDTO> ProductHomePage = daoproduct.getProductHomePage();                       
+            List<RecipeDTO> RecipeHomePage = daorecipe.getRecipeHomePage();                       
                                    
                 if (!ProductHomePage.isEmpty()) {
                 request.setAttribute("LIST_ProductHomePage", ProductHomePage);
+                request.setAttribute("LIST_RecipeHomePage", RecipeHomePage);
                  url=SUCCESS;
           
             }

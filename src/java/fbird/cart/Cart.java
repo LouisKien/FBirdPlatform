@@ -9,5 +9,5 @@ package fbird.cart;
  * @author louis
  */
 public class Cart {
-    
+
 }

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="vi">
+        <%@page import="java.util.List"%>
+    <%@page import="fbird.report.ReportedProductDTO"%>
     <%@page contentType="text/html" pageEncoding="UTF-8"%>
     <head>
         <title>ban hang</title>
@@ -38,7 +40,7 @@
                 <ul class="dropdown-menu" aria-labelledby="adminDropdown">
 
                     
-                    <li><a class="dropdown-item" style="width: 239px;" href="loaiChim.jsp">Loại chim</a></li>
+                    <li><a class="dropdown-item" style="width: 239px;" href="MainController?action=ViewTypeOfBird&search=">Loại chim</a></li>
                     <li><a class="dropdown-item" style="width: 239px;" href="sanPhamKhieuNai.jsp">Sản phẩm khiếu nại</a></li>
                 </ul>
 
@@ -83,116 +85,29 @@
 
                                     </tr>
                                 </thead>
-<!--                                <tbody>
+                                <tbody>
+                                                                        <% 
+                                    List<ReportedProductDTO> ListReport = (List<ReportedProductDTO>) request.getAttribute("LIST_REPORT");
+                                    if (ListReport != null && !ListReport.isEmpty()) {
+                                        int count = 0;
+            
+                                        for (ReportedProductDTO lrp : ListReport) {
+                                        count++;
+                                    %>
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>tuanguyen</td>
-                                        <td>Người dùng</td>
-                                        <td>tuangnguyen@gmail.com</td>
-                                        <td>Hoạt động</td>
-                                        <td>0123456789</td>
-                                        <td>1/1/2023</td>
+                                 <td><%= count%></td>
+                                <td><%=lrp.getShop_product_item_id()%></td>
+                                <td><%=lrp.getCustomer_id()%></td>
+                                <td></td>
+                                    
                                     </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>namnguyen</td>
-                                        <td>Người dùng</td>
-                                        <td>namnguyen@gmail.com</td>
-                                        <td>Hoạt động</td>
-                                        <td>0123465789</td>
-                                        <td>11/1/2023</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>lannguyen</td>
-                                        <td>Người dùng</td>
-                                        <td>lannguyen@gmail.com</td>
-                                        <td>Hoạt động</td>
-                                        <td>0123456789</td>
-                                        <td>12/1/2023</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">4</th>
-                                        <td>lynguyen</td>
-                                        <td>Người dùng</td>
-                                        <td>lynguyen@gmail.com</td>
-                                        <td>Hoạt động</td>
-                                        <td>0321654987</td>
-                                        <td>16/1/2023</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">5</th>
-                                        <td>khanhnguyen</td>
-                                        <td>Người dùng</td>
-                                        <td>khanhnnguyen@gmail.com</td>
-                                        <td>Hoạt động</td>
-                                        <td>0123456897</td>
-                                        <td>15/5/2023</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">6</th>
-                                        <td>kientran</td>
-                                        <td>Người dùng</td>
-                                        <td>kientran@gmail.com</td>
-                                        <td>Hoạt động</td>
-                                        <td>0321654987</td>
-                                        <td>12/3/2023</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">7</th>
-                                        <td>duypham</td>
-                                        <td>Cửa hàng</td>
-                                        <td>duypham@gmail.com</td>
-                                        <td>Đã khóa</td>
-                                        <td>6549873210</td>
-                                        <td>21/6/2023</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">8</th>
-                                        <td>namtran</td>
-                                        <td>Cửa hàng</td>
-                                        <td>namtran@gmail.com</td>
-                                        <td>Đã khóa</td>
-                                        <td>3217896540</td>
-                                        <td>1/1/2023</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">9</th>
-                                        <td>kinhpham</td>
-                                        <td>Cửa hàng</td>
-                                        <td>kinhpham@gmail.com</td>
-                                        <td>Đã khóa</td>
-                                        <td>3217896540</td>
-                                        <td>1/1/2023</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">10</th>
-                                        <td>johnpham</td>
-                                        <td>Cửa hàng</td>
-                                        <td>johnpham@gmail.com</td>
-                                        <td>Đã khóa</td>
-                                        <td>3217896540</td>
-                                        <td>1/1/2023</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">11</th>
-                                        <td>jeconguyen</td>
-                                        <td>Cửa hàng</td>
-                                        <td>jeconguyen@gmail.com</td>
-                                        <td>Đã khóa</td>
-                                        <td>3217896540</td>
-                                        <td>1/1/2023</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">12</th>
-                                        <td>yasuonguyen</td>
-                                        <td>Cửa hàng</td>
-                                        <td>yasuonguyen@gmail.com</td>
-                                        <td>Đã khóa</td>
-                                        <td>3217896540</td>
-                                        <td>1/1/2023</td>
-                                    </tr>
-                                </tbody>-->
+                                    
+                                                                    <%
+                                    }
+                                }
+                                %>
+
+                                </tbody>
                             </table>
                         </div>
                     </div>

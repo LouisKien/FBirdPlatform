@@ -37,7 +37,7 @@ public class ViewReportedProductController extends HttpServlet {
             ReportedProductDAO dao = new ReportedProductDAO();
             List<ReportedProductDTO> listReport = dao.getReportProduct(reported_product_id);
             if(listReport.size()>0){
-                request.setAttribute("LIST_Feedback", listReport);
+                request.setAttribute("LIST_REPORT", listReport);
                 
             }
         }catch(Exception ex){

@@ -37,7 +37,7 @@
                 <ul class="dropdown-menu" aria-labelledby="adminDropdown">
 
 
-                    <li><a class="dropdown-item" style="width: 239px;" href="loaiChim.jsp">Loại chim</a></li>
+                    <li><a class="dropdown-item" style="width: 239px;" href="MainController?action=ViewTypeOfBird&search=">Loại chim</a></li>
                     <li><a class="dropdown-item" style="width: 239px;" href="sanPhamKhieuNai.jsp">Sản phẩm khiếu nại</a></li>
                 </ul>
 
@@ -87,10 +87,18 @@
 
 
                             <form action="CreateTypeOfBirdController" method="POST">
-                                <label  style="font-size: 18px; font-weight: bold;">Nhập tên chim: </label> <input type="text" name="name" placeholder="Nhập tên chim cần tạo" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left:5%;"></br>
-
+                                <label  style="font-size: 18px; font-weight: bold;">Nhập tên chim: </label> <input type="text" name="name" 
+                                                                                                                   <%
+                                                                                                                        String message = (String) request.getAttribute("ERROR");
+                                                                                                                        if(message != null){ 
+                                                                                                                   %> placeholder="${requestScope.ERROR}" 
+                                                                                                                   <% } else {
+                                                                                                                    %> placeholder="Nhập tên chim"
+                                                                                                                   <% } %>
+                                                                                                                    style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left:5%;"></br>
+                                
                                 <button type="submit" class="btn btn-primary" style="margin-left: 50%; margin-top: 30px; border-radius: 20px;">Cập nhật</button>
-
+                                
                                 </form>
                                 </div>
 

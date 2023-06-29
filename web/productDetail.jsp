@@ -186,7 +186,7 @@ if (listOptional != null && !listOptional.isEmpty()) {
 <div class="product-item">
             
             <div class="product-name">
-                <label class="btn btn-primary active">
+                <label class="btn btn-primary active" style="margin-right: -50px;">
                     <input type="radio" name="optional" autocomplete="off" onclick="updatePrice('<%=LON.getName() %>', '<%=LON.getPrice() %>')"> <%=LON.getName() %>
                 </label>
                 <div class="product-price" id="<%=LON.getName() %>Price" style="display: none;"></div>

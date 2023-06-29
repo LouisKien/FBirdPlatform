@@ -47,6 +47,16 @@
         <script src="https://kit.fontawesome.com/39834b73e4.js" crossorigin="anonymous"></script>
     </head>
     <body>
+        <div style="position: relative">
+        <div id="reportForm" style="display: none ;z-index: 10000; position: absolute; background:#00000080;top:0; bottom: 0;left: 0;right: 0">   
+            <div style="position:relative" >
+              <div style="position:absolute; top:100px; left:40%; background:#FFFFFF">
+                  <div onclick="closeReportForm()" style='cursor: pointer'>X</div>
+                  <div>
+                Bỏ gì đó vào đây...</div>
+              </div>
+            </div>
+          </div>
         <div style="background-color: #BCDAE0;">
             <!-- Navbar Start -->
             <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm py-3 py-lg-0 px-3 px-lg-0 mb-5">
@@ -145,14 +155,15 @@
 
                         </div>
                         <div class="report-option">
-                            <p style="margin-top: 11px;">Tố cáo:</p>
-                            <select>
+                            
+                            <button onclick="openReportForm()"   style="margin-top: 11px;"></button>
+<!--                            <select>
                                 <option value="spam">Spam</option>
                                 <option value="phishing">Hàng 18+</option>
                                 <option value="inappropriate-content">Hàng fake</option>
                                 <option value="other">Khác</option>
                             </select>
-                            <button class="confirm-button">Xác nhận</button>
+                            <button class="confirm-button">Xác nhận</button>-->
                         </div>
                         <div class="pname" style="margin-bottom: 1px;"><%=LPD.getTitle() %>
 
@@ -176,37 +187,54 @@
                                 <p style="margin-right: 10px;">Loại:</p>
                  <%
 List<OptionalshopproductitemDTO> listOptional = (List<OptionalshopproductitemDTO>) request.getAttribute("LIST_Optional");
+     int count=0;
+for (OptionalshopproductitemDTO lon : listOptional){
+                     count++;
+                     }
 
 if (listOptional != null && !listOptional.isEmpty()) {
-    for (OptionalshopproductitemDTO LON : listOptional) {
-%>
-       
 
-           
-<div class="product-item">
-            
+    for (int i = 0; i < count; i++) {
+        if (i == 0) {
+%>
+        <div class="product-item">
             <div class="product-name">
                 <label class="btn btn-primary active" style="margin-right: -50px;">
-                    <input type="radio" name="optional" autocomplete="off" onclick="updatePrice('<%=LON.getName() %>', '<%=LON.getPrice() %>')"> <%=LON.getName() %>
+                    <input type="radio" name="optional" autocomplete="off" checked value="<%=listOptional.get(i).getPrice() %>" onclick="updatePrice('<%=listOptional.get(i).getName() %>', '<%=listOptional.get(i).getPrice() %>')">
+                    <%=listOptional.get(i).getName() %>
                 </label>
-                <div class="product-price" id="<%=LON.getName() %>Price" style="display: none;"></div>
+                <div class="product-price" id="<%=listOptional.get(i).getName() %>Price" style="display: none;"></div>
             </div>
         </div>
-                
 <%
+        } else {
+%>
+        <div class="product-item">
+            <div class="product-name">
+                <label class="btn btn-primary active" style="margin-right: -50px;">
+                    <input type="radio" name="optional" autocomplete="off" onclick="updatePrice('<%=listOptional.get(i).getName() %>', '<%=listOptional.get(i).getPrice() %>')">
+                    <%=listOptional.get(i).getName() %>
+                </label>
+                <div class="product-price" id="<%=listOptional.get(i).getName() %>Price" style="display: none;"></div>
+            </div>
+        </div>
+<%
+        }
     }
 }
 %>
             </div>            
 <div class="quantity">
     <p>Số lượng:</p>
-    <input type="number" min="1" max="100" value="1" onclick="updateQuantity(this.value)">
+    <input type="number" name="productQuantity" min="1" max="100" value="1" onclick="updateQuantity(this.value)">
 </div>
-<div class="selected-product-price" id="selectedPrice" style="visibility: hidden"></div>
-<div class="selected-product-price" id="selectedPrice1" ></div>
+       
+<div class="selected-product-price" id="selectedPrice" style="visibility: hidden">0</div>
+<div class="selected-product-price" id="selectedPrice1">0</div>
 
 
 <script>
+    window.addEventListener('DOMContentLoaded', totalPriceDefault());
 // JavaScript function to update price when a product is selected
 function updatePrice(name, price) {
     var priceElements = document.getElementsByClassName('product-price');
@@ -219,10 +247,12 @@ function updatePrice(name, price) {
         selectedPriceElement.innerHTML = price;
         selectedPriceElement.style.display = 'block';
     }
+    updateQuantity(1);
 }
 
 // JavaScript function to update price based on quantity
 function updateQuantity(quantity) {
+    
     var selectedPriceElement = document.getElementById('selectedPrice');
     var selectedPriceElement1 = document.getElementById('selectedPrice1');
     
@@ -231,6 +261,30 @@ function updateQuantity(quantity) {
         var totalPrice = price * quantity;
         selectedPriceElement1.innerHTML = totalPrice.toFixed(2);
     }
+}
+
+function totalPriceDefault(){
+    var radioElement = document.querySelector('input[name="optional"]:checked');
+    var display=document.getElementById('selectedPrice1');
+    if(radioElement){
+     display.innerHTML=radioElement.value.toString();  
+    }else{
+        return; 
+    }
+}
+
+function openReportForm(){
+    var reportForm=document.getElementById('reportForm');
+    var bodyElement = document.body;
+    reportForm.style.display='block';
+    bodyElement.style.overflow = 'hidden';
+}
+
+function closeReportForm(){
+    var reportForm=document.getElementById('reportForm');
+    var bodyElement = document.body;
+    reportForm.style.display='none';
+    bodyElement.style.overflow = 'auto';
 }
 
 // Example usage: updatePrice(productName, price);
@@ -457,7 +511,7 @@ List<FeedbackDTO> listAllFeedback = (List<FeedbackDTO>) request.getAttribute("LI
                 </div>
             </div>
             <!-- Footer End -->
-
+</div>
             <script>
                 let bigImg = document.querySelector('.big-img img');
                 function showImg(pic) {

@@ -8,6 +8,7 @@
 <%@page import="java.util.List"%>
 <%@page import="fbird.feedback.FeedbackDTO"%>
 <%@page import="fbird.product.ProductDTO"%>
+<%@page import="fbird.user.UserDTO"%>
 <%@page import="fbird.optionalshopproductitem.OptionalshopproductitemDTO"%>
 <!DOCTYPE html>
 <html>
@@ -88,8 +89,22 @@
 
 
                         <a href="userProfile.jsp" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>  
-                        <a href="login.jsp" class="nav-item nav-link">Đăng nhập</a>
-                        <a href="register.jsp" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5">Đăng ký<i class="bi bi-arrow-right"></i></a>
+                        <%
+                UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+                if(loginUser != null) {
+            
+                        %>
+                    <div class="nav-item dropdown"> 
+                        <a href="#" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5" data-bs-toggle="dropdown"><%= loginUser.getFullname() %></a>
+                        <div class="dropdown-menu m-0">
+                            <a href="product.jsp" class="dropdown-item">View Profile</a>
+                            <a href="MainController?action=Logout" class="dropdown-item">LOG OUT</a>
+                        </div>
+                    </div>
+                    <%}else{%>
+                    <a href="login.jsp" class="nav-item nav-link">Đăng nhập</a>
+                    <a href="register.jsp" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5">Đăng ký<i class="bi bi-arrow-right"></i></a>
+                        <%}%>
                     </div>
                 </div>
             </nav>

@@ -46,13 +46,8 @@
     </head>
 
     <body>
-         
-<%
-            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-            if(loginUser != null) {
-        %>
-        Welcome: <%= loginUser.getFullname()%>
-        <%}%>
+
+
 
         <!-- Navbar Start -->
         <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm py-3 py-lg-0 px-3 px-lg-0 mb-5">
@@ -99,9 +94,22 @@
                     <a href="recipe.jsp" class="nav-item nav-link">Khẩu phần</a>                      
                     <a href="userProfile.jsp" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
                     <a href="adminDashboard.jsp" class="nav-item nav-link"><i class="fa-solid fa-user-gear"></i></a>
+                        <%
+                UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+                if(loginUser != null) {
+            
+                        %>
+                    <div class="nav-item dropdown"> 
+                        <a href="#" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5" data-bs-toggle="dropdown"><%= loginUser.getFullname() %></a>
+                        <div class="dropdown-menu m-0">
+                            <a href="product.jsp" class="dropdown-item">View Profile</a>
+                            <a href="MainController?action=Logout" class="dropdown-item">LOG OUT</a>
+                        </div>
+                    </div>
+                    <%}else{%>
                     <a href="login.jsp" class="nav-item nav-link">Đăng nhập</a>
                     <a href="register.jsp" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5">Đăng ký<i class="bi bi-arrow-right"></i></a>
-
+                        <%}%>
                 </div>
             </div>
         </nav>
@@ -131,7 +139,7 @@
             </div>
         </div>
         <!-- comment -->
-        
+
         <div class="container-fluid py-5">
             <div class="container">
                 <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
@@ -146,7 +154,7 @@
           
                 for (ProductDTO listPHP : listProductHomePage) { 
                
-            %>
+                    %>
                     <div class="pb-5">
                         <div class="product-item position-relative bg-light d-flex flex-column text-center">
                             <img class="img-fluid mb-4" src="<%=listPHP.getImage_1() %>" alt="">
@@ -158,12 +166,12 @@
                             </div>
                         </div>
                     </div>
+
+                    <% 
+}
                
-                                                        <% 
-                   }
-               
-   }
-            %>
+}
+                    %>
                 </div>
             </div>
         </div>
@@ -420,84 +428,84 @@
             </div>
         </div>
 
-                        <!-- Footer Start -->
-            <div class="container-fluid bg-light mt-5 py-5">
-                <div class="container pt-5">
-                    <div class="row g-5">
-                        <div class="col-lg-3 col-md-6">
-                            <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">PHƯƠNG THỨC LIÊN LẠC</h5>
-                            <p class="mb-4"></p>
-                            <p class="mb-2"><i class="bi bi-geo-alt text-primary me-2"></i>Lô E2a-7, Đường D1, Khu Công nghệ cao, P.Long Thạnh Mỹ, Tp. Thủ Đức, TP.HCM.</p>
-                            <p class="mb-2"><i class="bi bi-envelope-open text-primary me-2"></i>daihoc.hcm@fpt.edu.vn</p>
-                            <p class="mb-0"><i class="bi bi-telephone text-primary me-2"></i> (028) 7300 5588</p>
+        <!-- Footer Start -->
+        <div class="container-fluid bg-light mt-5 py-5">
+            <div class="container pt-5">
+                <div class="row g-5">
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">PHƯƠNG THỨC LIÊN LẠC</h5>
+                        <p class="mb-4"></p>
+                        <p class="mb-2"><i class="bi bi-geo-alt text-primary me-2"></i>Lô E2a-7, Đường D1, Khu Công nghệ cao, P.Long Thạnh Mỹ, Tp. Thủ Đức, TP.HCM.</p>
+                        <p class="mb-2"><i class="bi bi-envelope-open text-primary me-2"></i>daihoc.hcm@fpt.edu.vn</p>
+                        <p class="mb-0"><i class="bi bi-telephone text-primary me-2"></i> (028) 7300 5588</p>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">FBird</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-body mb-2" href="index.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Trang chủ</a>
+
+                            <a class="text-body mb-2" href="team.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thành viên</a>
+
+
                         </div>
-
-                        <div class="col-lg-3 col-md-6">
-                            <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">FBird</h5>
-                            <div class="d-flex flex-column justify-content-start">
-                                <a class="text-body mb-2" href="index.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Trang chủ</a>
-
-                                <a class="text-body mb-2" href="team.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thành viên</a>
-
-
-                            </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Loại hàng cho chim</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-body mb-2" href="food.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thức ăn</a>
+                            <a class="text-body mb-2" href="drinks.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thức uống</a>
+                            <a class="text-body mb-2" href="supplement.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thực phẩm bổ sung</a>
+                            <a class="text-body mb-2" href="medicine.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thuốc</a>
                         </div>
-                        <div class="col-lg-3 col-md-6">
-                            <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Loại hàng cho chim</h5>
-                            <div class="d-flex flex-column justify-content-start">
-                                <a class="text-body mb-2" href="food.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thức ăn</a>
-                                <a class="text-body mb-2" href="drinks.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thức uống</a>
-                                <a class="text-body mb-2" href="supplement.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thực phẩm bổ sung</a>
-                                <a class="text-body mb-2" href="medicine.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thuốc</a>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Phản hồi đến công ty chúng tôi</h5>
+                        <form action="">
+                            <div class="input-group">
+                                <input type="text" class="form-control p-3" placeholder="Nhập email">
+                                <button class="btn btn-primary">Đăng ký</button>
                             </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Phản hồi đến công ty chúng tôi</h5>
-                            <form action="">
-                                <div class="input-group">
-                                    <input type="text" class="form-control p-3" placeholder="Nhập email">
-                                    <button class="btn btn-primary">Đăng ký</button>
-                                </div>
-                            </form>
-                            <h6 class="text-uppercase mt-4 mb-3"> Theo dõi chúng tôi trên</h6>
-                            <div class="d-flex">
-                                <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-twitter"></i></a>
-                                <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-facebook"></i></a>
-                                <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-linkedin"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href="#"><i class="bi bi-instagram"></i></a>
-                            </div>
+                        </form>
+                        <h6 class="text-uppercase mt-4 mb-3"> Theo dõi chúng tôi trên</h6>
+                        <div class="d-flex">
+                            <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-twitter"></i></a>
+                            <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-facebook"></i></a>
+                            <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-linkedin"></i></a>
+                            <a class="btn btn-outline-primary btn-square" href="#"><i class="bi bi-instagram"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="container-fluid bg-dark text-white-50 py-4">
-                <div class="container">
-                    <div class="row g-5">
-                        <div class="col-md-6 text-center text-md-start">
-                            <p class="mb-md-0">&copy; <a class="text-white" href="index.html">Trang web được thiết kế bởi nhóm 3 </a> </p>
-                        </div>
-                        <div class="col-md-6 text-center text-md-end">
-                            <p class="mb-0">Nguồn <a class="text-white" href="https://htmlcodex.com">HTML Codex</a></p>
-                        </div>
+        <div class="container-fluid bg-dark text-white-50 py-4">
+            <div class="container">
+                <div class="row g-5">
+                    <div class="col-md-6 text-center text-md-start">
+                        <p class="mb-md-0">&copy; <a class="text-white" href="index.html">Trang web được thiết kế bởi nhóm 3 </a> </p>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <p class="mb-0">Nguồn <a class="text-white" href="https://htmlcodex.com">HTML Codex</a></p>
                     </div>
                 </div>
             </div>
-            <!-- Footer End -->
+        </div>
+        <!-- Footer End -->
 
 
-            <!-- Back to Top -->
-            <a href="#" class="btn btn-primary py-3 fs-4 back-to-top"><i class="bi bi-arrow-up"></i></a>
-            <!-- JavaScript Libraries -->
-            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="lib/easing/easing.min.js"></script>
-            <script src="lib/waypoints/waypoints.min.js"></script>
-            <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-primary py-3 fs-4 back-to-top"><i class="bi bi-arrow-up"></i></a>
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
-            <!-- Template Javascript -->
-            <script src="js/main.js"></script>
-            
+        <!-- Template Javascript -->
+        <script src="js/main.js"></script>
+
     </body>
 
 </html> 

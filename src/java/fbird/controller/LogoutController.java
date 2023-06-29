@@ -19,7 +19,7 @@ import java.io.PrintWriter;
 public class LogoutController extends HttpServlet {
 
     private static final String ERROR="error.jsp";
-    private static final String SUCCESS="index.html";
+    private static final String SUCCESS="MainController";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");

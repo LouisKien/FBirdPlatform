@@ -5,6 +5,7 @@
 package fbird.controller;
 
 import fbird.customer.CustomerDAO;
+import fbird.customer.CustomerDTO;
 import fbird.user.UserDAO;
 import fbird.user.UserDTO;
 import jakarta.servlet.ServletException;
@@ -20,7 +21,7 @@ import java.util.Date;
  *
  * @author Khanh
  */
-public class updateUserProfileController extends HttpServlet {
+public class AddUserProfileController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,38 +36,45 @@ public class updateUserProfileController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
+            boolean check;
             String username = request.getParameter("username");
             String fullName = request.getParameter("fullname");
             String email = request.getParameter("email");
             String phone = request.getParameter("phone");
             String gender = request.getParameter("gender");
             boolean genderSQL;
-            if(gender == "Nam"){
-                genderSQL = true;
-            }else{
-                genderSQL = false;
-            }
+            genderSQL = gender.equals("Nam");
             Date date = new Date();
             java.sql.Date datesql = new java.sql.Date(date.getTime());
             String dob = request.getParameter("dob");
             
+            
             UserDAO dao = new UserDAO();
             UserDTO user = dao.checkUserExist(username);
+            
             if (user == null) {
                 request.setAttribute("msg", "Bạn cần đăng kí tài khoản để sử dụng dịch vụ này");
                 request.getRequestDispatcher("userProfile.jsp").forward(request, response);
             } else {
                 CustomerDAO cusDao = new CustomerDAO();
-                cusDao.createCustomer(username, fullName, phone, email, genderSQL, dob, date);
-                request.setAttribute("msg", "Cập nhật hồ sơ thành công thành công");
-                request.getRequestDispatcher("createShop.jsp").forward(request, response);
+                CustomerDTO customer = cusDao.checkCustomerExist(username);
+                if(customer != null){
+                check = cusDao.createCustomer(username, fullName, phone, email, genderSQL, dob, datesql);
+                if(check == true){
+                request.setAttribute("msg", "Cập nhật hồ sơ thành công");
+                request.getRequestDispatcher("userProfile.jsp").forward(request, response);
+                }
+                }else{
+                    request.setAttribute("msg", "Bạn đã thêm hồ sơ trước đó rồi");
+                    request.getRequestDispatcher("userProfile.jsp").forward(request, response);
+                }
             }
             
             
             
                     
         } catch (Exception e) {
-            log("ERROR at updateUserProfileConttroller: " + toString());
+            log("ERROR at AddUserProfileConttroller: " + toString());
         }
     }
 

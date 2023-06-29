@@ -5,6 +5,7 @@
 package fbird.customer;
 
 
+import fbird.user.UserDTO;
 import fbird.utils.DBUtils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,8 +21,8 @@ import java.util.List;
  */
 public class CustomerDAO {
     private static final String VIEW = "SELECT * FROM customer WHERE customer_id= ?";
-    private static final String CREATE_SHOP = "insert into customer(username, fullname, phone, email, gender, date_of_birth, registed_date,) values(?, ?, ?, ?, ?, ?, ?)";
-    
+    private static final String UPDATE_CUSTOMER = "insert into customer(username, fullname, phone, email, gender, date_of_birth, registed_date) values(?, ?, ?, ?, ?, ?, ?)";
+    private static final String CHECK_EXIST = "SELECT fullname FROM customer WHERE username=?";
     public List<CustomerDTO> getCustomer(int customer_id) throws SQLException {
         List<CustomerDTO> list = new ArrayList<>();
         Connection conn = null;
@@ -63,22 +64,22 @@ public class CustomerDAO {
         }
         return list;
     }
-    public void createCustomer(String username, String fullname, String phone, String email, boolean gender, String dob, Date date) throws SQLException{
-        boolean check;
+    public boolean createCustomer(String username, String fullname, String phone, String email, boolean gender, String dob, Date date) throws SQLException{
+        boolean check = false;
         Connection conn = null;
         PreparedStatement ptm = null;
         
         try{
             conn = DBUtils.getConnection();
-            ptm = conn.prepareStatement(CREATE_SHOP);
+            ptm = conn.prepareStatement(UPDATE_CUSTOMER);
             ptm.setString(1, username);
             ptm.setString(2, fullname);
             ptm.setString(3, phone);
             ptm.setString(4, email);
             ptm.setBoolean(5, gender);
-            ptm.setString(6, dob);
+            ptm.setString(6,  dob);
             ptm.setDate(7, (java.sql.Date) date);
-            ptm.executeUpdate();
+            check = ptm.executeUpdate()>0?true:false;
         }catch (Exception e) {
             e.printStackTrace();
             
@@ -92,6 +93,36 @@ public class CustomerDAO {
             }
     
         }
+        return check;
+    }
+    public CustomerDTO checkCustomerExist(String username) throws SQLException {
+//        CustomerDTO customer = null;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            ptm = conn.prepareStatement(CHECK_EXIST);
+            ptm.setString(1, username);
+            
+            rs = ptm.executeQuery();
+            if (rs.next()) {
+                return new CustomerDTO(rs.getString(1), rs.getString(2));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return null;
     }
     
     }

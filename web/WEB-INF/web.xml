@@ -93,8 +93,8 @@
         <servlet-class>fbird.controller.ViewPriceController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>updateUserProfileController</servlet-name>
-        <servlet-class>fbird.controller.updateUserProfileController</servlet-class>
+        <servlet-name>AddUserProfileController</servlet-name>
+        <servlet-class>fbird.controller.AddUserProfileController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
@@ -185,8 +185,8 @@
         <url-pattern>/ViewPriceController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>updateUserProfileController</servlet-name>
-        <url-pattern>/updateUserProfileController</url-pattern>
+        <servlet-name>AddUserProfileController</servlet-name>
+        <url-pattern>/AddUserProfileController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DeleteReportedShopController</servlet-name>

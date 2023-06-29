@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="fbird.product.ProductDTO"%>
+<%@page import="fbird.user.UserDTO"%>
 <%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
@@ -46,7 +47,12 @@
 
     <body>
          
-
+<%
+            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+            if(loginUser != null) {
+        %>
+        Welcome: <%= loginUser.getFullname()%>
+        <%}%>
 
         <!-- Navbar Start -->
         <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm py-3 py-lg-0 px-3 px-lg-0 mb-5">

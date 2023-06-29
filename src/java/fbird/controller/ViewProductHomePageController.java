@@ -41,7 +41,6 @@ public class ViewProductHomePageController extends HttpServlet {
           
 //            int customer_id = Integer.parseInt(request.getParameter("id"));           
             ProductDAO daoproduct = new ProductDAO();              
-                        
             List<ProductDTO> ProductHomePage = daoproduct.getProductHomePage();                       
                                    
                 if (!ProductHomePage.isEmpty()) {

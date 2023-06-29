@@ -12,6 +12,8 @@ public class UserDTO {
     String username, password;
     int role, status;
     int shop_id;
+    int customer_id;
+    String fullname, avatar;
 
     public UserDTO() {
     }
@@ -36,6 +38,18 @@ public class UserDTO {
         this.status = status;
         this.shop_id = shop_id;
     }
+
+    public UserDTO(String username, String password, int role, int status, int customer_id, String fullname, String avatar) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+        this.status = status;
+        this.customer_id = customer_id;
+        this.fullname = fullname;
+        this.avatar = avatar;
+    }
+    
+    
     
     public String getUsername() {
         return username;
@@ -75,6 +89,30 @@ public class UserDTO {
 
     public void setShop_id(int shop_id) {
         this.shop_id = shop_id;
+    }
+
+    public int getCustomer_id() {
+        return customer_id;
+    }
+
+    public void setCustomer_id(int customer_id) {
+        this.customer_id = customer_id;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     

@@ -70,8 +70,8 @@
 
                     <div class="row my-5">
                         <h3 class="fs-4 mb-3">Tìm kiếm sản phẩm:</h3>
-                        <form action="/search" method="GET">
-                            <input type="text" name="query" placeholder="Nhập tên sản phẩm">
+                        <form action="ViewReportedProductController" method="GET">
+                            <input type="text" name="search" placeholder="Nhập tên sản phẩm">
                             <button type="submit">Tìm kiếm</button>
                         </form>
                         <div class="col">
@@ -95,11 +95,13 @@
                                         count++;
                                     %>
                                     <tr>
-                                 <td><%= count%></td>
-                                <td><%=lrp.getShop_product_item_id()%></td>
-                                <td><%=lrp.getCustomer_id()%></td>
-                                <td></td>
-                                    
+                                <td><%= count%></td>
+                                
+                                
+                                <td><%=lrp.getDetail()%></td>
+                                
+                                <td><%=lrp.getTitle() %></td>
+                                <td><%=lrp.getFullname()%></td>
                                     </tr>
                                     
                                                                     <%

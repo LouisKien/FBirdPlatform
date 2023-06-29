@@ -200,7 +200,7 @@ if (listOptional != null && !listOptional.isEmpty()) {
         <div class="product-item">
             <div class="product-name">
                 <label class="btn btn-primary active" style="margin-right: -50px;">
-                    <input type="radio" name="optional" autocomplete="off" checked value="<%=listOptional.get(i).getPrice() %>" onclick="updatePrice('<%=listOptional.get(i).getName() %>', '<%=listOptional.get(i).getPrice() %>')">
+                    <input type="radio" name="optional" autocomplete="off" checked value="<%=listOptional.get(i).getPrice() %>" onclick="updatePrice(<%=listOptional.get(i).getPrice() %>)">
                     <%=listOptional.get(i).getName() %>
                 </label>
                 <div class="product-price" id="<%=listOptional.get(i).getName() %>Price" style="display: none;"></div>
@@ -212,7 +212,7 @@ if (listOptional != null && !listOptional.isEmpty()) {
         <div class="product-item">
             <div class="product-name">
                 <label class="btn btn-primary active" style="margin-right: -50px;">
-                    <input type="radio" name="optional" autocomplete="off" onclick="updatePrice('<%=listOptional.get(i).getName() %>', '<%=listOptional.get(i).getPrice() %>')">
+                    <input type="radio" name="optional" autocomplete="off" value="<%=listOptional.get(i).getPrice() %>" onclick="updatePrice(<%=listOptional.get(i).getPrice() %>)">
                     <%=listOptional.get(i).getName() %>
                 </label>
                 <div class="product-price" id="<%=listOptional.get(i).getName() %>Price" style="display: none;"></div>
@@ -226,7 +226,7 @@ if (listOptional != null && !listOptional.isEmpty()) {
             </div>            
 <div class="quantity">
     <p>Số lượng:</p>
-    <input type="number" name="productQuantity" min="1" max="100" value="1" onclick="updateQuantity(this.value)">
+    <input type="number" name="productQuantity" min="1" max="100" value="1" onchange="totalPriceDefault()">
 </div>
        
 <div class="selected-product-price" id="selectedPrice" style="visibility: hidden">0</div>
@@ -236,38 +236,21 @@ if (listOptional != null && !listOptional.isEmpty()) {
 <script>
     window.addEventListener('DOMContentLoaded', totalPriceDefault());
 // JavaScript function to update price when a product is selected
-function updatePrice(name, price) {
-    var priceElements = document.getElementsByClassName('product-price');
-    for (var i = 0; i < priceElements.length; i++) {
-        priceElements[i].style.display = 'none';
-    }
-    
-    var selectedPriceElement = document.getElementById('selectedPrice');
-    if (selectedPriceElement) {
-        selectedPriceElement.innerHTML = price;
-        selectedPriceElement.style.display = 'block';
-    }
-    updateQuantity(1);
+function updatePrice(price) {
+    var quantity=document.getElementsByName('productQuantity');
+    var displayPrice = document.getElementById('selectedPrice1');
+        displayPrice.innerHTML = (price*quantity[0].value).toFixed(2);
 }
 
 // JavaScript function to update price based on quantity
-function updateQuantity(quantity) {
-    
-    var selectedPriceElement = document.getElementById('selectedPrice');
-    var selectedPriceElement1 = document.getElementById('selectedPrice1');
-    
-    if (selectedPriceElement) {
-        var price = parseFloat(selectedPriceElement.innerHTML);
-        var totalPrice = price * quantity;
-        selectedPriceElement1.innerHTML = totalPrice.toFixed(2);
-    }
-}
 
 function totalPriceDefault(){
     var radioElement = document.querySelector('input[name="optional"]:checked');
+    var quantity=document.getElementsByName('productQuantity');
     var display=document.getElementById('selectedPrice1');
     if(radioElement){
-     display.innerHTML=radioElement.value.toString();  
+        var total=radioElement.value * quantity[0].value;
+        display.innerHTML=total.toFixed(2);
     }else{
         return; 
     }

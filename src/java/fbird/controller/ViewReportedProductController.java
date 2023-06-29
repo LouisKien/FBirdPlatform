@@ -32,10 +32,11 @@ public class ViewReportedProductController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+//        String url ="sanPhamKhieuNai.jsp";
         try{
-            int reported_product_id = Integer.parseInt(request.getParameter("reported_product_id"));
+            String search=request.getParameter("search");
             ReportedProductDAO dao = new ReportedProductDAO();
-            List<ReportedProductDTO> listReport = dao.getReportProduct(reported_product_id);
+            List<ReportedProductDTO> listReport = dao.getReportProduct(search);
             if(listReport.size()>0){
                 request.setAttribute("LIST_REPORT", listReport);
                 
@@ -43,7 +44,7 @@ public class ViewReportedProductController extends HttpServlet {
         }catch(Exception ex){
             log("Error at Search: " + ex.toString());
         }finally{
-//            request.getRequestDispatcher(url).forward(request, response);
+            request.getRequestDispatcher("sanPhamKhieuNai.jsp").forward(request, response);
         }
     }
 

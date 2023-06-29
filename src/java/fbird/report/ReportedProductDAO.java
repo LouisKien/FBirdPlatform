@@ -17,10 +17,10 @@ import java.util.List;
  * @author Admin
  */
 public class ReportedProductDAO {
-    private static final String VIEW = "SELECT shop_product_item_id, customer_id, detail FROM reported_product WHERE reported_product_id= ?";
+    private static final String VIEW = "SELECT reported_product.detail, shop_product_item.title, customer.fullname FROM reported_product JOIN shop_product_item  ON shop_product_item.shop_product_item_id = reported_product.shop_product_item_id JOIN customer  ON customer.customer_id = reported_product.customer_id where shop_product_item.title like ?";
     private static final String ADD = "INSERT INTO reported_product (shop_product_item_id, customer_id, detail) VALUES(?,?,?)";
     
-    public List<ReportedProductDTO> getReportProduct(int reported_product_id) throws SQLException {
+    public List<ReportedProductDTO> getReportProduct(String search) throws SQLException {
         List<ReportedProductDTO> list = new ArrayList<>();
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -29,16 +29,16 @@ public class ReportedProductDAO {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 ptm = conn.prepareStatement(VIEW);
-                ptm.setInt(1, reported_product_id );
+                ptm.setString(1,"%"+ search+ "%" );
                 rs = ptm.executeQuery();
 
 
                 while (rs.next()) {
-                    int shop_id= rs.getInt("shop_product_item_id");       
-                    int customer_id= rs.getInt("customer_id");                                           
+                    String title= rs.getString("title");       
+                    String fullname = rs.getString("fullname");                                           
                     String detail =rs.getString("detail");
                     
-                   list.add(new ReportedProductDTO(shop_id, customer_id, detail));
+                   list.add(new ReportedProductDTO(title, fullname, detail));
                 }
             }
         } catch (Exception e) {

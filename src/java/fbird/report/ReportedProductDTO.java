@@ -13,7 +13,8 @@ public class ReportedProductDTO {
     int shop_product_item_id;
     int customer_id;
     String detail;
-
+    String title;
+    String fullname;
     public ReportedProductDTO() {
     }
 
@@ -29,6 +30,13 @@ public class ReportedProductDTO {
         this.customer_id = customer_id;
         this.detail = detail;
     }
+
+    public ReportedProductDTO(String detail, String title, String fullname) {
+        this.detail = detail;
+        this.title = title;
+        this.fullname = fullname;
+    }
+    
 
     public int getReport_product_id() {
         return report_product_id;
@@ -62,8 +70,20 @@ public class ReportedProductDTO {
         this.detail = detail;
     }
 
-   
+    public String getTitle() {
+        return title;
+    }
 
-    
-    
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
 }

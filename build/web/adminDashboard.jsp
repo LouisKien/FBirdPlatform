@@ -39,7 +39,7 @@
 
                     
                     <li><a class="dropdown-item" style="width: 239px;" href="MainController?action=ViewTypeOfBird&search=">Loại chim</a></li>
-                    <li><a class="dropdown-item" style="width: 239px;" href="sanPhamKhieuNai.jsp">Sản phẩm khiếu nại</a></li>
+                    <li><a class="dropdown-item" style="width: 239px;" href="MainController?action=ViewReportedProduct&search=">Sản phẩm khiếu nại</a></li>
                 </ul>
 
 

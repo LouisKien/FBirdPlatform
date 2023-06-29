@@ -58,7 +58,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="wrapper" 
-                 style="margin-right: 50px;
+                 style="
                  margin-top: 50px;
                  margin-bottom: 50px;
                  ">
@@ -75,7 +75,7 @@
 
                     <div class="nav-item nav-link" style="width: max-content">
                         <div class="shopping">
-                            <i class="fa fa-shopping-cart" style="font-size:25px; "></i>
+                            <i class="fa fa-shopping-cart" style="font-size:25px;"></i>
                             <span class="quantity">0</span>
                         </div>
                     </div>
@@ -100,8 +100,8 @@
             
                         %>
                     <div class="nav-item dropdown"> 
-                        <a href="#" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5" data-bs-toggle="dropdown"><%= loginUser.getFullname() %></a>
-                        <div class="dropdown-menu m-0">
+                        <a href="#" class="nav-item nav-link nav-contact bg-primary text-white px-3 ms-lg-3" data-bs-toggle="dropdown"><%= loginUser.getFullname() %></a>
+                        <div class="dropdown-menu m-3">
                             <a href="product.jsp" class="dropdown-item">View Profile</a>
                             <a href="MainController?action=Logout" class="dropdown-item">LOG OUT</a>
                         </div>

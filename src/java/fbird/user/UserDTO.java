@@ -11,6 +11,7 @@ package fbird.user;
 public class UserDTO {
     String username, password;
     int role, status;
+    int shop_id;
 
     public UserDTO() {
     }
@@ -28,6 +29,14 @@ public class UserDTO {
         this.status = status;
     }
 
+    public UserDTO(String username, String password, int role, int status, int shop_id) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+        this.status = status;
+        this.shop_id = shop_id;
+    }
+    
     public String getUsername() {
         return username;
     }
@@ -58,6 +67,14 @@ public class UserDTO {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public int getShop_id() {
+        return shop_id;
+    }
+
+    public void setShop_id(int shop_id) {
+        this.shop_id = shop_id;
     }
 
     

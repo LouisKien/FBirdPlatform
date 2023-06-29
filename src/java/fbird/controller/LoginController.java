@@ -27,6 +27,7 @@ public class LoginController extends HttpServlet {
     private static final String SHOP_PAGE = "accountShop.jsp";
     private static final int CUSTOMER = 3;
     private static final String CUSTOMER_PAGE = "MainController?action=";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -35,9 +36,9 @@ public class LoginController extends HttpServlet {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
             UserDAO dao = new UserDAO();
-            UserDTO loginUser =  dao.checkLogin(username, password);
+            UserDTO loginUser = dao.checkLogin(username, password);
             if (loginUser == null) {
-                request.setAttribute("ERROR", "Incorrect userID or password");
+                request.setAttribute("ERROR", "Tài khoản hoặc mật khẩu không chính xác");
             } else {
                 HttpSession session = request.getSession();
                 int role_id = loginUser.getRole();
@@ -45,8 +46,13 @@ public class LoginController extends HttpServlet {
                     url = ADMIN_PAGE;
                     session.setAttribute("LOGIN_USER", loginUser);
                 } else if (SHOP == role_id) {
-                    url = SHOP_PAGE;
-                    session.setAttribute("LOGIN_USER", loginUser);
+                    int status = loginUser.getStatus();
+                    if (status == 1) {
+                        url = SHOP_PAGE;
+                        session.setAttribute("LOGIN_USER", loginUser);
+                    } else {
+                        request.setAttribute("ERROR", "Tài khoản của bạn đã bị khóa bởi quản trị viên, vui lòng liên hệ chăm sóc khách hàng để biết thêm chi tiết");
+                    }
                 } else if (CUSTOMER == role_id) {
                     url = CUSTOMER_PAGE;
                     session.setAttribute("LOGIN_USER", loginUser);

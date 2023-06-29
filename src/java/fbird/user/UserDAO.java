@@ -21,7 +21,7 @@ import java.util.List;
  */
 public class UserDAO {
 
-    private static final String LOGIN = "SELECT role_id, status FROM account WHERE username=? AND password=?";
+    private static final String LOGIN = "SELECT role_id, status, shop_owner.shop_id FROM account left join shop_owner on account.username = shop_owner.username WHERE account.username = ? AND password = ?";
     private static final String CHECK_EXIST = "SELECT * FROM account WHERE username=?";
     private static final String SIGN_UP = "insert into account values(?, ?, 3, 1)";
     private static final String UPDATE_ROLEID = "UPDATE account SET role_id = 2 WHERE username = ?";
@@ -44,8 +44,14 @@ public class UserDAO {
             rs = ptm.executeQuery();
             if (rs.next()) {
                 int role_id = Integer.parseInt(rs.getString("role_id"));
-                int status = Integer.parseInt(rs.getString("status"));
-                user = new UserDTO(username, password, role_id, status);
+                if(role_id == 2){
+                    int status = Integer.parseInt(rs.getString("status"));
+                    int shop_id = rs.getInt("shop_id");
+                    user = new UserDTO(username, password, role_id, status, shop_id);
+                } else if (role_id == 1 || role_id == 3){
+                    int status = Integer.parseInt(rs.getString("status"));
+                    user = new UserDTO(username, password, role_id, status);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

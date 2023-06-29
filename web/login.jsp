@@ -52,6 +52,9 @@
                                         <label class="label" for="password">Mật khẩu:</label>
                                         <input type="password" class="form-control" placeholder="Password" name="password" required="">
                                     </div>
+                                    <div class="form-group mb-3" style="color: red;">
+                                        ${requestScope.ERROR}
+                                    </div>
                                     <div class="form-group">
                                         <button type="submit" class="form-control btn btn-primary rounded submit px-3" name="action" value="Login">Đăng nhập</button>
                                     </div>

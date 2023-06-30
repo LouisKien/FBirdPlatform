@@ -205,7 +205,7 @@
                                 <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
                                     <div style="text-align: center;">
                                         <a href="productDetail.jsp" class="product-image">
-                                            <img style="width: 160px;height: 190px" src="<%=listRHP.getSource() %>" alt="" />
+                                            <img style="width: 160px;height: 190px" src="<%=listRHP.getImage_1() %>" alt="" />
                                         </a>
                                     </div>
                                     <div class="bottom-content">
@@ -214,8 +214,8 @@
                                         </div>
 
                                         <div style="text-align: center;">
-                                            <span style="text-decoration: line-through "><%=listRHP.getOriginal_price() %>đ</span>
-                                            <span class="product-price" style="font-weight: bold; color: red;"><%=listRHP.getSell_price() %>đ</span>
+                                            <!--<span style="text-decoration: line-through "><//%=listRHP.getOriginal_price() %>đ</span>-->
+                                            <span class="product-price" style="font-weight: bold; color: red;"><%=listRHP.getTotal_price() %>đ</span>
                                         </div>
                                     </div>
                                 </div>

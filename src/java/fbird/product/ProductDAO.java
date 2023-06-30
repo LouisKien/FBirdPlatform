@@ -252,12 +252,12 @@ public class ProductDAO {
                     String image_2 = rs.getString("image_2");
                     String image_3 = rs.getString("image_3");
                     String image_4 = rs.getString("image_4");
-                    String image_5 = rs.getString("image_5");
+
                     String type_of_bird_name = rs.getString("type_of_bird_name");
                     String shop_name = rs.getString("shop_name");
                     String avatar = rs.getString("avatar");
 
-                    list.add(new ProductDTO(shopProductItemID, title, description, inventory, uploadDate, status, image_1, image_2, image_3, image_4, image_5, type_of_bird_name, shop_name, avatar));
+                    list.add(new ProductDTO(shopProductItemID, title, description, inventory, uploadDate, status, image_1, image_2, image_3, image_4, type_of_bird_name, shop_name, avatar));
                 }
             }
         } catch (Exception e) {

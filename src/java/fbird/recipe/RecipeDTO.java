@@ -12,21 +12,21 @@ public class RecipeDTO {
     int recipe_id;
     int shop_id;
     String title_recipe;
-    Double sell_price;
-    Double original_price;
-    String source;
+    Double total_price;
+    
+    String image_1;
     String description;
 
     public RecipeDTO() {
     }
 
-    public RecipeDTO(int recipe_id, int shop_id, String title_recipe, Double sell_price, Double original_price, String source) {
+    public RecipeDTO(int recipe_id, int shop_id, String title_recipe, Double total_price, String image_1) {
         this.recipe_id = recipe_id;
         this.shop_id = shop_id;
         this.title_recipe = title_recipe;
-        this.sell_price = sell_price;
-        this.original_price = original_price;
-        this.source = source;
+        this.total_price = total_price;
+        
+        this.image_1= image_1;
     }
 
     
@@ -55,29 +55,25 @@ public class RecipeDTO {
         this.title_recipe = title_recipe;
     }
 
-    public Double getSell_price() {
-        return sell_price;
+    public Double getTotal_price() {
+        return total_price;
     }
 
-    public void setSell_price(Double sell_price) {
-        this.sell_price = sell_price;
+    public void setTotal_price(Double total_price) {
+        this.total_price = total_price;
     }
 
-    public Double getOriginal_price() {
-        return original_price;
+    
+
+    public String getImage_1() {
+        return image_1;
     }
 
-    public void setOriginal_price(Double original_price) {
-        this.original_price = original_price;
+    public void setImage_1(String image_1) {
+        this.image_1 = image_1;
     }
 
-    public String getSource() {
-        return source;
-    }
-
-    public void setSource(String source) {
-        this.source = source;
-    }
+    
 
     public String getDescription() {
         return description;

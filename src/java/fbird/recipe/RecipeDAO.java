@@ -18,7 +18,7 @@ import java.util.List;
  * @author Admin
  */
 public class RecipeDAO {
-    private static final String VIEW_RECIPE_HOMEPAGE ="SELECT recipe.title_recipe,recipe.recipe_id, recipe.shop_id, recipe.sell_price,recipe.original_price, recipe_image.source FROM recipe JOIN recipe_image ON recipe.recipe_id = recipe_image.recipe_id";
+    private static final String VIEW_RECIPE_HOMEPAGE ="SELECT recipe.title_recipe,recipe.recipe_id, recipe.shop_id, recipe.total_price, recipe_image.image_1 FROM recipe JOIN recipe_image ON recipe.recipe_id = recipe_image.recipe_id";
      public List<RecipeDTO> getRecipeHomePage() throws SQLException {
         List<RecipeDTO> list = new ArrayList<>();
         Connection conn = null;
@@ -32,15 +32,15 @@ public class RecipeDAO {
                 while (rs.next()) {
 
                     String title_recipe = rs.getString("title_recipe");
-                    String source = rs.getString("source");
+                    String image_1 = rs.getString("image_1");
 
                     int recipe_id = rs.getInt("recipe_id");
                     int shop_id = rs.getInt("shop_id");
                     
-                    Double sell_price = rs.getDouble("sell_price");
-                    Double original_price = rs.getDouble("original_price");
+                    Double total_price = rs.getDouble("total_price");
+                   
                     
-                    list.add(new RecipeDTO(recipe_id, shop_id , title_recipe, sell_price, original_price, source ));
+                    list.add(new RecipeDTO(recipe_id, shop_id , title_recipe, total_price, image_1 ));
                 }
             }
         } catch (Exception e) {

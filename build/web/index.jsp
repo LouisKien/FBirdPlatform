@@ -248,7 +248,7 @@
                     <div class="col-lg-3 col-md-6">
                         <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">FBird</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-body mb-2" href="index.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Trang chủ</a>
+                            <a class="text-body mb-2" href="MainController"><i class="bi bi-arrow-right text-primary me-2"></i>Trang chủ</a>
 
                             <a class="text-body mb-2" href="team.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thành viên</a>
 

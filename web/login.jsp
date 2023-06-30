@@ -74,7 +74,7 @@
                                     Chưa có tài khoản? <a href="register.jsp">Đăng ký nhanh</a>
                                 </div>
                                 <div style="text-align: center">
-                                    Quay về trang chủ || <a href="index.jsp">Home</a>
+                                    Quay về trang chủ || <a href="MainController">Home</a>
                                 </div>
                             </div>
                         </div>

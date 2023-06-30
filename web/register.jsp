@@ -67,7 +67,7 @@
                                     Đã có tài khoản? <a href="login.jsp">Đăng nhập ngay</a>
                                 </div>
                                 <div style="text-align: center">
-                                    Quay về trang chủ || <a href="index.jsp">Home</a>
+                                    Quay về trang chủ || <a href="MainController">Home</a>
                                 </div>
                             </div>
                         </div>

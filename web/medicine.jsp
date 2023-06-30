@@ -41,7 +41,7 @@
     <body>
         <!-- Navbar Start -->
         <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm py-3 py-lg-0 px-3 px-lg-0 mb-5">
-            <a href="index.jsp" class="navbar-brand ms-lg-5">
+            <a href="MainController" class="navbar-brand ms-lg-5">
                 <h1 class="m-0 text-uppercase text-dark"><i class="bi bi-shop fs-1 text-primary me-3"></i>FBird</h1>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -363,7 +363,7 @@
                         <div class="col-lg-3 col-md-6">
                             <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">FBird</h5>
                             <div class="d-flex flex-column justify-content-start">
-                                <a class="text-body mb-2" href="index.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Trang chủ</a>
+                                <a class="text-body mb-2" href="MainController"><i class="bi bi-arrow-right text-primary me-2"></i>Trang chủ</a>
 
                                 <a class="text-body mb-2" href="team.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thành viên</a>
 

@@ -54,7 +54,7 @@
 
         <!-- Navbar Start -->
         <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm py-3 py-lg-0 px-3 px-lg-0 mb-5">
-            <a href="index.jsp" class="navbar-brand ms-lg-5">
+            <a href="MainController" class="navbar-brand ms-lg-5">
                 <h1 class="m-0 text-uppercase text-dark"><i class="bi bi-shop fs-1 text-primary me-3"></i>FBird</h1>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -147,7 +147,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="index.jsp">
+                                            <a href="MainController">
                                                 <div class="color-item">
                                                     <span class="color-name">Đăng xuất</span>
                                                 </div>
@@ -273,7 +273,7 @@
                         <div class="col-lg-3 col-md-6">
                             <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">FBird</h5>
                             <div class="d-flex flex-column justify-content-start">
-                                <a class="text-body mb-2" href="index.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Trang chủ</a>
+                                <a class="text-body mb-2" href="MainController"><i class="bi bi-arrow-right text-primary me-2"></i>Trang chủ</a>
 
                                 <a class="text-body mb-2" href="member.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thành viên</a>
 
@@ -313,7 +313,7 @@
                 <div class="container">
                     <div class="row g-5">
                         <div class="col-md-6 text-center text-md-start">
-                            <p class="mb-md-0">&copy; <a class="text-white" href="index.jsp">Trang web được thiết kế bởi nhóm 3 </a> </p>
+                            <p class="mb-md-0">&copy; <a class="text-white" href="MainController">Trang web được thiết kế bởi nhóm 3 </a> </p>
                         </div>
                         <div class="col-md-6 text-center text-md-end">
                             <p class="mb-0">Nguồn <a class="text-white" href="https://htmlcodex.com">HTML Codex</a></p>

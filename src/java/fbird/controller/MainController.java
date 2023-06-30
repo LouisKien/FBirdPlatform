@@ -28,6 +28,8 @@ public class MainController extends HttpServlet {
     private static final String LOGOUT_CONTROLLER = "LogoutController";
     private static final String VIEW_REPORTED_PRODUCT = "ViewReportedProduct";
     private static final String VIEW_REPORTED_PRODUCT_CONTROLLER = "ViewReportedProductController";
+    private static final String VIEW_CART= "ViewCart";
+    private static final String VIEW_CART_CONTROLLER= "ViewCartController";
     
     private static final String VIEW_ACCOUNT = "ViewAccount";
     private static final String VIEW_ACCOUNT_CONTROLLER = "ViewAccountController";
@@ -106,6 +108,8 @@ public class MainController extends HttpServlet {
                 url = VIEW_TYPE_OF_BIRD_CONTROLLER;
             }else if (VIEW_REPORTED_PRODUCT.equals(action)) {
                 url = VIEW_REPORTED_PRODUCT_CONTROLLER;
+            }else if (VIEW_CART.equals(action)) {
+                url = VIEW_CART_CONTROLLER;
             }
             else {
                 request.setAttribute("ERROR", "Your ACTION is not support");

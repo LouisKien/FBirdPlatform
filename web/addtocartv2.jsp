@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="fbird.cart.CartDTO"%>
 <html>
     <head>
         <title>TODO supply a title</title>
@@ -37,10 +39,19 @@
                                 <div class="row g-0">
                                     <div class="col-lg-8">
                                         <div class="p-5">
+                                            
                                             <div class="d-flex justify-content-between align-items-center mb-5">
                                                 <h1 class="fw-bold mb-0 text-black">Giỏ hàng</h1>
-                                                <h6 class="mb-0 text-muted">3 sản phẩm</h6>
+                                                
                                             </div>
+                                            <% 
+               List<CartDTO> listCart = (List<CartDTO>) request.getAttribute("LIST_All_Cart_Item");
+           int count = 0;
+               if (listCart != null && !listCart.isEmpty()) {
+          
+                   for (CartDTO Cart : listCart) {
+                        count++;
+                %>
                                             <hr class="my-4">
 
                                             <div class="row mb-4 d-flex justify-content-between align-items-center">
@@ -50,8 +61,9 @@
                                                         class="img-fluid rounded-3" alt="Cotton T-shirt">
                                                 </div>
                                                 <div class="col-md-3 col-lg-3 col-xl-3">
-                                                    <h6 class="text-muted">Thức ăn</h6>
-                                                    <h6 class="text-black mb-0">Cám chim 1</h6>
+                                                    <h6 class="text-muted"><%=Cart.getCategory_name() %></h6>
+                                                    <h6 class="text-black mb-0"><%=Cart.getTitle() %></h6>
+                                                    <h6 class="text-black mb-0"><%=Cart.getName() %></h6>
                                                 </div>
                                                 <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
                                                     <button class="btn btn-link px-2"
@@ -59,7 +71,7 @@
                                                         <i class="fas fa-minus"></i>
                                                     </button>
 
-                                                    <input id="form1" min="0" name="quantity" value="1" type="number"
+                                                    <input id="form1" min="1" name="quantity" value="<%=Cart.getQuantity() %>" type="number"
                                                            class="form-control form-control-sm" />
 
                                                     <button class="btn btn-link px-2"
@@ -68,14 +80,18 @@
                                                     </button>
                                                 </div>
                                                 <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                                    <h6 class="mb-0 product-price">400đ</h6>
+                                                    <h6 class="mb-0 product-price"><%=Cart.getPrice() %>đ</h6>
                                                 </div>
                                                 <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                                                     <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
                                                 </div>
                                             </div>
+                                                <%
+                                    }
+                            }
+                            %>
 
-                                            <hr class="my-4">
+<!--                                            <hr class="my-4">
 
                                             <div class="row mb-4 d-flex justify-content-between align-items-center">
                                                 <div class="col-md-2 col-lg-2 col-xl-2">
@@ -141,7 +157,7 @@
                                                 <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                                                     <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
                                                 </div>
-                                            </div>
+                                            </div>-->
 
                                             <hr class="my-4">
 
@@ -157,7 +173,7 @@
                                             <hr class="my-4">
 
                                             <div class="d-flex justify-content-between mb-4">
-                                                <h5 class="text-uppercase">Sản phẩm: 3</h5>
+                                                <h5 class="text-uppercase">Sản phẩm: <%=count %></h5>
                                                 <h5>9800đ</h5>
                                             </div>
 

@@ -96,6 +96,10 @@
         <servlet-name>AddUserProfileController</servlet-name>
         <servlet-class>fbird.controller.AddUserProfileController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewCartController</servlet-name>
+        <servlet-class>fbird.controller.ViewCartController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -191,6 +195,10 @@
     <servlet-mapping>
         <servlet-name>DeleteReportedShopController</servlet-name>
         <url-pattern>/DeleteReportedShopController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewCartController</servlet-name>
+        <url-pattern>/ViewCartController</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>MainController</welcome-file>

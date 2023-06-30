@@ -75,7 +75,12 @@
                 <div class="navbar-nav ms-auto py-0">
 
                     <div class="nav-item nav-link" style="width: max-content">
-                        <a  href="addtocartv2.jsp"class="shopping">
+                       <% 
+                           UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+                           if(loginUser != null) {
+                       %>
+                        <a  href="MainController?action=ViewCart&customer_id=<%= loginUser.getCustomer_id() %>"class="shopping">
+                            <%}%>
                             <i class="fa fa-shopping-cart" style="font-size:25px;"></i>
                             <span class="quantity">0</span>
                         </a>
@@ -96,7 +101,7 @@
                     <a href="userProfile.jsp" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
                     <a href="adminDashboard.jsp" class="nav-item nav-link"><i class="fa-solid fa-user-gear"></i></a>
                         <%
-                UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+                
                 if(loginUser != null) {
             
                         %>

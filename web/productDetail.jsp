@@ -141,6 +141,9 @@
                         </div>
                         <div class="images">
                             <div class="small-img">
+                                <img src="<%=LPD.getImage_1() %>" onclick="showImg(this.src)">
+                            </div>
+                            <div class="small-img">
                                 <img src="<%=LPD.getImage_2() %>" onclick="showImg(this.src)">
                             </div>
                             <div class="small-img">
@@ -148,9 +151,6 @@
                             </div>
                             <div class="small-img">
                                 <img src="<%=LPD.getImage_4() %>" onclick="showImg(this.src)">
-                            </div>
-                            <div class="small-img">
-                                <img src="<%=LPD.getImage_5() %>" onclick="showImg(this.src)">
                             </div>
                         </div>
                     </div>

@@ -18,7 +18,7 @@ import java.util.List;
  * @author Admin
  */
 public class OptionalshopproductitemDAO {
-      private static final String GET_OPTIONAL = "SELECT name, price FROM optional_shop_product_item WHERE shop_product_item_id=?";
+      private static final String GET_OPTIONAL = "SELECT name, price, optional_shop_product_item_id FROM optional_shop_product_item WHERE shop_product_item_id=?";
       private static final String GET_PRICE = "SELECT price FROM optional_shop_product_item WHERE name=?";
       
       
@@ -35,10 +35,10 @@ public class OptionalshopproductitemDAO {
                 ptm.setInt(1, shop_product_item_id);
                 rs = ptm.executeQuery();
                 while(rs.next()){
-                 
+                    int optional_shop_product_item_id = rs.getInt("optional_shop_product_item_id");
                     String name = rs.getString("name");
                     Double price = rs.getDouble("price");
-                    list.add(new OptionalshopproductitemDTO(name, price));
+                    list.add(new OptionalshopproductitemDTO(optional_shop_product_item_id, name, price));
                 }
             }
         }catch(Exception e){

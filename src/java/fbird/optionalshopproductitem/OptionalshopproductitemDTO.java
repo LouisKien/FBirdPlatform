@@ -9,6 +9,7 @@ package fbird.optionalshopproductitem;
  * @author Admin
  */
 public class OptionalshopproductitemDTO {
+    int optional_shop_product_item_id;
     int shop_product_item_id;
     String name;
     Double price;
@@ -16,16 +17,15 @@ public class OptionalshopproductitemDTO {
     public OptionalshopproductitemDTO() {
     }
 
-    public OptionalshopproductitemDTO(int shop_product_item_id, String name, Double price) {
-        this.shop_product_item_id = shop_product_item_id;
+    public OptionalshopproductitemDTO(int optional_shop_product_item_id, String name, Double price) {
+        this.optional_shop_product_item_id = optional_shop_product_item_id;
         this.name = name;
         this.price = price;
     }
 
-    public OptionalshopproductitemDTO(String name, Double price) {
-        this.name = name;
-        this.price = price;
-    }
+    
+
+    
 
     public OptionalshopproductitemDTO(Double price) {
         this.price = price;
@@ -54,6 +54,14 @@ public class OptionalshopproductitemDTO {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public int getOptional_shop_product_item_id() {
+        return optional_shop_product_item_id;
+    }
+
+    public void setOptional_shop_product_item_id(int optional_shop_product_item_id) {
+        this.optional_shop_product_item_id = optional_shop_product_item_id;
     }
     
 }

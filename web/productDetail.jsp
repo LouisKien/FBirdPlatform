@@ -163,26 +163,13 @@
                         <div class="report-option">
 
                             <button class='fas fa-exclamation-triangle' onclick="openReportForm()"   style="margin-top: -28px; margin-left: 550px;"></button>
-                            <!--                            <select>
-                                                            <option value="spam">Spam</option>
-                                                            <option value="phishing">Hàng 18+</option>
-                                                            <option value="inappropriate-content">Hàng fake</option>
-                                                            <option value="other">Khác</option>
-                                                        </select>
-                                                        <button class="confirm-button">Xác nhận</button>-->
+                          
                         </div>
                         <div class="pname" style="margin-bottom: 1px;"><%=LPD.getTitle() %>
 
                         </div>
 
-                        <!--                        <div class="ratings">
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star-half-alt"></i>
-                                                </div>-->
-
+                      
 
 
 
@@ -204,6 +191,7 @@
                                 <div class="product-name">
                                     <label class="btn btn-primary active" style="margin-right: -50px;">
                                         <input type="radio" name="optional" autocomplete="off" checked value="<%=listOptional.get(i).getPrice() %>" onclick="updatePrice(<%=listOptional.get(i).getPrice() %>)">
+                                        <input style="display: none" name="optional_shop_product_item_id" value="<%=listOptional.get(i).getOptional_shop_product_item_id() %>">
                                         <%=listOptional.get(i).getName() %>
                                     </label>
                                     <div class="product-price" id="<%=listOptional.get(i).getName() %>Price" style="display: none;"></div>
@@ -216,6 +204,7 @@
                                 <div class="product-name">
                                     <label class="btn btn-primary active" style="margin-right: -50px;">
                                         <input type="radio" name="optional" autocomplete="off" value="<%=listOptional.get(i).getPrice() %>" onclick="updatePrice(<%=listOptional.get(i).getPrice() %>)">
+                                        <input style="display: none" name="optional_shop_product_item_id" value="<%=listOptional.get(i).getOptional_shop_product_item_id() %>">
                                         <%=listOptional.get(i).getName() %>
                                     </label>
                                     <div class="product-price" id="<%=listOptional.get(i).getName() %>Price" style="display: none;"></div>
@@ -274,6 +263,10 @@
                                 reportForm.style.display = 'none';
                                 bodyElement.style.overflow = 'auto';
                             }
+//                            function addProduct(){
+//                                var productName = document.get
+//                                
+//                            }
 
                             // Example usage: updatePrice(productName, price);
                         </script>

@@ -97,7 +97,7 @@
                             <a href="medicine.jsp" class="dropdown-item">Thuốc</a>
                         </div>
                     </div>
-                    <a href="recipe.jsp" class="nav-item nav-link">Khẩu phần</a>                      
+                    <a href="MainController?action=ViewRecipe" class="nav-item nav-link">Khẩu phần</a>                      
                     <a href="userProfile.jsp" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
                     <a href="adminDashboard.jsp" class="nav-item nav-link"><i class="fa-solid fa-user-gear"></i></a>
                         <%

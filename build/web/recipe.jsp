@@ -1,4 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="fbird.recipe.RecipeDTO"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -45,6 +47,9 @@
 
 
     <!-- Navbar Start -->
+        <%
+        List<RecipeDTO> listRecipe = (List<RecipeDTO>) request.getAttribute("LIST_RECIPE");
+        %>
         <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm py-3 py-lg-0 px-3 px-lg-0 mb-5">
             <a href="MainController" class="navbar-brand ms-lg-5">
                 <h1 class="m-0 text-uppercase text-dark"><i class="bi bi-shop fs-1 text-primary me-3"></i>FBird</h1>
@@ -110,27 +115,32 @@
                 <div class="row justify-content-center">
                     <!--<div>${requestScope.MESSAGE}</div>-->
 
-                    
+                    <%
+                    for (RecipeDTO recipe : listRecipe){
+                    %>
                     <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
                         <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
                             <div style="text-align: center;">
                                 <a href="productDetail.jsp" class="product-image">
-                                    <img style="width: 160px;height: 190px" src="img/product-1.png" alt="product-image" />
+                                    <img style="width: 160px;height: 190px" src="<%= recipe.getImage_1() %>" alt="product-image" />
                                 </a>
                             </div>
                             <div class="bottom-content">
                                 <div style="text-align: center;">
-                                    <a href="" style="color: black;">Khẩu phần 1</a>
+                                    <a href="" style="color: black;"><%= recipe.getTitle_recipe() %></a>
                                 </div>
 
                                 <div style="text-align: center;">
-                                    <span style="text-decoration: line-through ">12000đ</span>
+                                    <span style="text-decoration: line-through "><%= recipe.getTotal_price( ) %></span>
                                     <span class="product-price" style="font-weight: bold; color: red;">11000đ</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
+                    <%
+                        }
+                    %>
+<!--                    <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
                         <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
                             <div style="text-align: center;">
                                 <a href="productDetail.jsp" class="product-image">
@@ -205,7 +215,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                     
                     
                     

@@ -58,4 +58,8 @@ public class RecipeDAO {
         }
         return list;
     }
+
+    public List<RecipeDTO> getListRecipe() {
+        
+    }
 }

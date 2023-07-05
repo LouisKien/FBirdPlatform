@@ -121,7 +121,7 @@
                     <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
                         <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
                             <div style="text-align: center;">
-                                <a href="productDetail.jsp" class="product-image">
+                                <a href="MainController?action=RecipeDetail&recipeID=<%= recipe.getRecipe_id() %>" class="product-image">
                                     <img style="width: 160px;height: 190px" src="<%= recipe.getImage_1() %>" alt="product-image" />
                                 </a>
                             </div>

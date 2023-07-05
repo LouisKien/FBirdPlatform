@@ -8,6 +8,7 @@
 <%@page import="java.util.List"%>
 <%@page import="fbird.feedback.FeedbackDTO"%>
 <%@page import="fbird.product.ProductDTO"%>
+<%@page import="fbird.recipe.RecipeDTO"%>
 <%@page import="fbird.user.UserDTO"%>
 <%@page import="fbird.optionalshopproductitem.OptionalshopproductitemDTO"%>
 <!DOCTYPE html>
@@ -47,6 +48,10 @@
         <script src="https://kit.fontawesome.com/39834b73e4.js" crossorigin="anonymous"></script>
     </head>
     <body>
+        <%
+        List<RecipeDTO> listRecipeDetail = (List<RecipeDTO>) request.getAttribute("RECIPE_DETAIL");
+        List<ProductDTO> listProductDetail = (List<ProductDTO>) request.getAttribute("LIST_ProductDetail");
+        %>
         <div style="background-color: #BCDAE0;">
         <!-- Navbar Start -->
         <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm py-3 py-lg-0 px-3 px-lg-0 mb-5">
@@ -119,7 +124,7 @@
 
             <div class="right">
                 <div class="url"><a class="url1" href="MainController">Trang chủ</a>  >   <a class="url1" href="product.html">Sản phẩm</a> >   <a class="url1" href="recipe.jsp">Khẩu phần cho chim</a></div>
-                <div class="pname">Cám chim 1</div>
+                <div class="pname"><%= listRecipeDetail.get(0).getTitle_recipe() %></div>
                 <div class="ratings">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
@@ -127,15 +132,15 @@
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star-half-alt"></i>
                 </div>
-                <div class="price">$40</div>
+                <div class="price"><%= listRecipeDetail.get(0).getTotal_price() %></div>
 
-                <div class="size">
+<!--                <div class="size">
                     <p>Loại :</p>
                     <div class="psize active">0.2kg</div>
                     <div class="psize">0.5kg</div>
                     <div class="psize">1kg</div>
                     <div class="psize">2kg</div>
-                </div>
+                </div>-->
                 <div class="quantity">
                     <p>Số lượng :</p>
                     <input type="number" min="1" max="5" value="1">
@@ -155,7 +160,7 @@
                     </div>
                 </a>
                 <div class="shop-name" style="display: flex; flex-direction: column;">
-                    <div>FPT Shop</div>
+                    <div><%= listProductDetail.get(0).getShop_name() %></div>
                     <div><a href="shopProduct.jsp">Xem ngay</a></div>
                 </div>
                 <div style="display: flex; flex-direction: column;">
@@ -180,8 +185,7 @@
                 font-size: 20px;
                 display:block;
                 line-height: 1.2;">
-                Cám chim là một loại thức ăn được sản xuất từ nhiều nguồn dinh dưỡng khác nhau như hạt, lúa mì, đậu nành và nhiều loại thực vật khác. 
-                Nó được thiết kế để đáp ứng nhu cầu dinh dưỡng của các loài chim khác nhau, bao gồm các loại vẹt, bồ câu, sáo và cú.
+                <%= listRecipeDetail.get(0).getDescription() %>
             </h1>
             <div style="margin-top: 50px;">
                 <div class="mb-5">

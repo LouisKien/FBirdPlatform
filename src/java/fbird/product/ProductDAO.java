@@ -21,7 +21,8 @@ public class ProductDAO {
 
     private static final String GET_BIRD = "SELECT [type_of_bird_id] FROM type_of_bird WHERE [name] like ?";
     private static final String ADD_PRODUCT = "INSERT INTO [shop_product_item] VALUES (?,?,?,?,?,?,?,?)";
-    private static final String UPDATE = "UPDATE shop_product_item SET title=?, description=?, inventory=?, status=? WHERE shop_product_item_id=? ";
+    private static final String UPDATE = "UPDATE shop_product_item SET title=?, description=?, inventory=?, status=? WHERE shop_product_item_id=? ";    
+    private static final String NEW_VIEW_PRODUCT = "SELECT s.shop_product_item_id, s.shop_id, t.type_of_bird_name, s.title, p.category_name, i.image_1, i.image_2, i.image_3, i.image_4 FROM shop_product_item s JOIN product_category p ON s.category_id = p.category_id LEFT JOIN type_of_bird t ON s.type_of_bird_id = t.type_of_bird_id LEFT JOIN product_image i ON s.shop_product_item_id = i.shop_product_item_id";    
     private static final String VIEW_PRODUCT = "SELECT * FROM shop_product_item";
     private static final String VIEW_SHOP_PRODUCT_ITEM_ID = "SELECT shop_product_item_id FROM shop_product_item";
 

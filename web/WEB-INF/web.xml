@@ -104,6 +104,10 @@
         <servlet-name>ViewRecipeController</servlet-name>
         <servlet-class>ViewRecipeController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewRecipeDetailController</servlet-name>
+        <servlet-class>fbird.controller.ViewRecipeDetailController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -207,6 +211,10 @@
     <servlet-mapping>
         <servlet-name>ViewRecipeController</servlet-name>
         <url-pattern>/ViewRecipeController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewRecipeDetailController</servlet-name>
+        <url-pattern>/ViewRecipeDetailController</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>MainController</welcome-file>

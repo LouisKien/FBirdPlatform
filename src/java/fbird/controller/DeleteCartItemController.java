@@ -12,12 +12,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import fbird.cart.CartDAO;
 import fbird.cart.CartDTO;
+import java.util.List;
 
 /**
  *
  * @author Admin
  */
-public class AddToCartController extends HttpServlet {
+public class DeleteCartItemController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,16 +32,26 @@ public class AddToCartController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try {
-            CartDAO dao = new CartDAO();
-            int custommer_id = Integer.parseInt(request.getParameter("cus_id"));
-            int optional_shop_product_item_id = Integer.parseInt(request.getParameter("op_id"));           
-            int quantity = Integer.parseInt(request.getParameter("qtt"));
-            CartDTO addtocart = new CartDTO(optional_shop_product_item_id,custommer_id, quantity );
-            dao.addToCart(addtocart);
-        } catch (Exception e) {
-            e.printStackTrace();
+        try  {
+            int customer_id = Integer.parseInt(request.getParameter("customer_id"));
+            int cart_item_id = Integer.parseInt(request.getParameter("cart_item_id"));
+            CartDAO dao = new CartDAO(); 
+               dao.deleteCartItem(cart_item_id);
+           List<CartDTO> All_Cart_Item = dao.getCart(customer_id);
+             
+                if (!All_Cart_Item.isEmpty()) {
 
+                request.setAttribute("LIST_All_Cart_Item", All_Cart_Item);
+                
+               
+          
+            }
+            
+             
+        }catch(Exception e){
+            log("Error at DeleteController: " + e.toString());
+        }finally{
+            request.getRequestDispatcher("addtocartv2.jsp").forward(request, response);
         }
     }
 

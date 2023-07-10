@@ -3,14 +3,31 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/COMPUTER/Desktop/Fbird-2362023/FBirdPlatform/FBirdPlatform/web/settingDeliveries.jsp</file>
-            <file>file:/C:/Users/COMPUTER/Desktop/Fbird-2362023/FBirdPlatform/FBirdPlatform/src/java/fbird/optionalshopproductitem/OptionalshopproductitemDTO.java</file>
-            <file>file:/C:/Users/COMPUTER/Desktop/Fbird-2362023/FBirdPlatform/FBirdPlatform/web/shopProfile.jsp</file>
-            <file>file:/C:/Users/COMPUTER/Desktop/Fbird-2362023/FBirdPlatform/FBirdPlatform/web/login.jsp</file>
-            <file>file:/C:/Users/COMPUTER/Desktop/Fbird-2362023/FBirdPlatform/FBirdPlatform/web/themLoaiChim.jsp</file>
-            <file>file:/C:/Users/COMPUTER/Desktop/Fbird-2362023/FBirdPlatform/FBirdPlatform/web/themSanPham.jsp</file>
-            <file>file:/C:/Users/COMPUTER/Desktop/Fbird-2362023/FBirdPlatform/FBirdPlatform/web/shopProduct.jsp</file>
-            <file>file:/C:/Users/COMPUTER/Desktop/Fbird-2362023/FBirdPlatform/FBirdPlatform/web/adminDashboard.jsp</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/FBirdPlatform/src/java/fbird/optionalshopproductitem/OptionalshopproductitemDTO.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/FBirdPlatform/web/index.jsp</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/FBirdPlatform/src/java/fbird/controller/CreateShopController.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/FBirdPlatform/web/donHuy.jsp</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/FBirdPlatform/src/java/fbird/optionalshopproductitem/OptionalshopproductitemDAO.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/FBirdPlatform/src/java/fbird/controller/LoginController.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/FBirdPlatform/src/java/fbird/typeofbird/TypeOfBirdDAO.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/FBirdPlatform/src/java/fbird/controller/AddToCartController.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/FBirdPlatform/src/java/fbird/product/ProductDAO.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/FBirdPlatform/web/productDetail.jsp</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/FBirdPlatform/src/java/fbird/controller/ViewProductDetailController.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/FBirdPlatform/src/java/fbird/cart/CartDTO.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/FBirdPlatform/src/java/fbird/user/UserDAO.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/FBirdPlatform/src/java/fbird/user/UserDTO.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/FBirdPlatform/src/java/fbird/feedback/FeedbackDAO.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/FBirdPlatform/src/java/fbird/controller/ViewRecipeDetailController.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/FBirdPlatform/src/java/fbird/controller/DeleteCartItemController.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/FBirdPlatform/web/addtocartv2.jsp</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/FBirdPlatform/src/java/fbird/controller/DeleteReportedShopController.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/FBirdPlatform/src/java/fbird/controller/MainController.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/FBirdPlatform/src/java/fbird/product/ProductDTO.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/FBirdPlatform/src/java/fbird/controller/FeedbackController.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/FBirdPlatform/src/java/fbird/controller/DeleteTypeOfBirdController.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/FBirdPlatform/src/java/fbird/cart/CartDAO.java</file>
+            <file>file:/C:/Phuongnam/Code/javar/porn/bird/FBirdPlatform/FBirdPlatform/src/java/fbird/controller/ViewCartController.java</file>
         </group>
     </open-files>
 </project-private>

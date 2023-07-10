@@ -116,6 +116,10 @@
         <servlet-name>LoginGoogleController</servlet-name>
         <servlet-class>fbird.controller.LoginGoogleController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteCartItemController</servlet-name>
+        <servlet-class>fbird.controller.DeleteCartItemController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -235,6 +239,10 @@
     <welcome-file-list>
         <welcome-file>MainController</welcome-file>
     </welcome-file-list>
+    <servlet-mapping>
+        <servlet-name>DeleteCartItemController</servlet-name>
+        <url-pattern>/DeleteCartItemController</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             120

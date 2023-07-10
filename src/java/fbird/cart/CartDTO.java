@@ -9,6 +9,7 @@ package fbird.cart;
  * @author louis
  */
 public class CartDTO {
+    int cart_item_id;
     int optional_shop_product_item_id;
     int customer_id;
     String title;
@@ -20,13 +21,14 @@ public class CartDTO {
     public CartDTO() {
     }
 
-    public CartDTO(String title, String name, Double price, int quantity, String category_name, int optional_shop_product_item_id) {
+    public CartDTO(String title, String name, Double price, int quantity, String category_name, int optional_shop_product_item_id, int cart_item_id) {
         this.title = title;
         this.name = name;
         this.price = price;
         this.quantity = quantity;
         this.category_name = category_name;
-        this.optional_shop_product_item_id = optional_shop_product_item_id;       
+        this.optional_shop_product_item_id = optional_shop_product_item_id;      
+        this.cart_item_id = cart_item_id;
     }
 
     public CartDTO(int optional_shop_product_item_id, int customer_id, int quantity) {
@@ -91,6 +93,14 @@ public class CartDTO {
 
     public void setCustomer_id(int customer_id) {
         this.customer_id = customer_id;
+    }
+
+    public int getCart_item_id() {
+        return cart_item_id;
+    }
+
+    public void setCart_item_id(int cart_item_id) {
+        this.cart_item_id = cart_item_id;
     }
     
     

@@ -31,9 +31,6 @@ public class ProductDTO {
     String shop_name;
     String avatar;  
     Double price;
-    
-    
-    
     String nameOption;
     double priceView;
 

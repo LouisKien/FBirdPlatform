@@ -2,6 +2,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="fbird.cart.CartDTO"%>
+<%@page import="fbird.user.UserDTO"%>
 <html>
     <head>
         <title>TODO supply a title</title>
@@ -46,6 +47,7 @@
                                             </div>
                                             
               <% 
+                   UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
     List<CartDTO> listCart = (List<CartDTO>) request.getAttribute("LIST_All_Cart_Item");
     int count = 0;
     if (listCart != null && !listCart.isEmpty()) {         
@@ -78,7 +80,7 @@
                     <h6 class="mb-0 product-price" id="totalprice-<%= cart.getOptional_shop_product_item_id() %>"></h6>
                 </div>
                 <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                    <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
+                    <a href="MainController?action=DeleteCartItem&cart_item_id=<%= cart.getCart_item_id() %>&customer_id=<%= loginUser.getCustomer_id() %>" class="text-muted"><i class="fas fa-times"></i></a>
                 </div>
             </div>
 <script>

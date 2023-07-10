@@ -17,12 +17,13 @@ import java.util.List;
  * @author Admin
  */
 public class CartDAO {
-    private static final String VIEW_CART= "SELECT quantity, cart_item.optional_shop_product_item_id, optional_shop_product_item.name, product_category.category_name, optional_shop_product_item.price, shop_product_item.title \n" +
+    private static final String VIEW_CART= "SELECT cart_item_id, quantity, cart_item.optional_shop_product_item_id, optional_shop_product_item.name, product_category.category_name, optional_shop_product_item.price, shop_product_item.title \n" +
 "FROM  cart_item  \n" +
 "JOIN optional_shop_product_item  ON cart_item.optional_shop_product_item_id = optional_shop_product_item.optional_shop_product_item_id \n" +
 "JOIN shop_product_item ON optional_shop_product_item.shop_product_item_id = shop_product_item.shop_product_item_id \n" +
 "JOIN product_category ON product_category.category_id = shop_product_item.category_id Where customer_id=?";
-    private static final String ADD_CART_ITEM= "INSERT INTO cart_item (optional_shop_product_item_id, customer_id, quantity) VALUE(?,?,?)";
+    private static final String ADD_CART_ITEM= "INSERT INTO cart_item (optional_shop_product_item_id, customer_id, quantity) VALUES(?,?,?)";
+    private static final String DELETE_CART_ITEM="DELETE FROM cart_item WHERE cart_item_id = ?";
     public List<CartDTO> getCart(int customer_id) throws SQLException {
         List<CartDTO> list = new ArrayList<>();
         Connection conn = null;
@@ -36,6 +37,7 @@ public class CartDAO {
                 rs = ptm.executeQuery();
                 while (rs.next()) {
                     int optional_shop_product_item_id = rs.getInt("optional_shop_product_item_id");
+                    int cart_item_id = rs.getInt("cart_item_id");
                     String title = rs.getString("title");
                     Double price = rs.getDouble("price");
                     String name = rs.getString("name");
@@ -44,7 +46,7 @@ public class CartDAO {
                    
                     
                    
-                    list.add(new CartDTO(title, name, price, quantity, category_name, optional_shop_product_item_id));
+                    list.add(new CartDTO(title, name, price, quantity, category_name, optional_shop_product_item_id, cart_item_id));
                 }
             }
         } catch (Exception e) {
@@ -62,7 +64,7 @@ public class CartDAO {
         }
         return list;
     }
-public void addFeedback(CartDTO addCartItem) throws SQLException, ClassNotFoundException{
+public void addToCart(CartDTO addCartItem) throws SQLException, ClassNotFoundException{
         
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -71,8 +73,8 @@ public void addFeedback(CartDTO addCartItem) throws SQLException, ClassNotFoundE
             if (conn != null) {
                 ptm = conn.prepareStatement(ADD_CART_ITEM);
                 ptm.setInt(1, addCartItem.getOptional_shop_product_item_id());
-                ptm.setInt(1, addCartItem.getCustomer_id());
-                ptm.setInt(1, addCartItem.getQuantity());
+                ptm.setInt(2, addCartItem.getCustomer_id());
+                ptm.setInt(3, addCartItem.getQuantity());
                 
                 ptm.executeUpdate();
                
@@ -88,5 +90,25 @@ public void addFeedback(CartDTO addCartItem) throws SQLException, ClassNotFoundE
             }
         }
         
+    }
+public boolean deleteCartItem(int cart_item_id ) throws SQLException{
+        boolean checkDelete = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try{
+            conn = DBUtils.getConnection();
+            if(conn!= null){
+                ptm = conn.prepareStatement(DELETE_CART_ITEM);
+                ptm.setInt(1, cart_item_id);
+                checkDelete = ptm.executeUpdate()>0?true:false;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            if(ptm != null) ptm.close();
+            if(ptm != null) conn.close();
+            
+        }
+        return checkDelete;
     }
 }

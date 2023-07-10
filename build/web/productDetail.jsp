@@ -117,6 +117,7 @@
                                     <a href="MainController?action=Logout" class="dropdown-item">LOG OUT</a>
                                 </div>
                             </div>
+                            <input style="display: none" name="customer_id" value="<%= loginUser.getCustomer_id() %>">
                             <%}else{%>
                             <a href="login.jsp" class="nav-item nav-link">Đăng nhập</a>
                             <a href="register.jsp" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5">Đăng ký<i class="bi bi-arrow-right"></i></a>
@@ -125,7 +126,7 @@
                     </div>
                 </nav>
                 <!-- Navbar End -->
-
+                
                 <% 
                List<ProductDTO> listProductDetail = (List<ProductDTO>) request.getAttribute("LIST_ProductDetail");
            
@@ -172,7 +173,7 @@
                       
 
 
-                         <form action="MainController">
+                         
                         <div class="size">Tùy chọn:
                            
                             <%
@@ -192,7 +193,7 @@
                             <div class="product-item">
                                 <div class="product-name">
                                     <label class="btn btn-primary active" style="margin-right: -50px;">
-                                        <input type="radio" name="optional" autocomplete="off" checked value="<%=listOptional.get(i).getPrice() %>" onclick="updatePrice(<%=listOptional.get(i).getPrice() %>)">
+                                        <input type="radio" name="optional" autocomplete="off" checked id="<%=listOptional.get(i).getOptional_shop_product_item_id() %>" value="<%=listOptional.get(i).getPrice() %>" onclick="updatePrice(<%=listOptional.get(i).getPrice() %>)">
                                         <input style="display: none" name="optional_shop_product_item_id" value="<%=listOptional.get(i).getOptional_shop_product_item_id() %>">
                                         <%=listOptional.get(i).getName() %>
                                     </label>
@@ -206,7 +207,7 @@
                             <div class="product-item">
                                 <div class="product-name">
                                     <label class="btn btn-primary active" style="margin-right: -50px;">
-                                        <input type="radio" name="optional" autocomplete="off" value="<%=listOptional.get(i).getPrice() %>" onclick="updatePrice(<%=listOptional.get(i).getPrice() %>)">
+                                        <input type="radio" name="optional" autocomplete="off" id="<%=listOptional.get(i).getOptional_shop_product_item_id() %>" value="<%=listOptional.get(i).getPrice() %>" onclick="updatePrice(<%=listOptional.get(i).getPrice() %>)">
                                         <input style="display: none" name="optional_shop_product_item_id" value="<%=listOptional.get(i).getOptional_shop_product_item_id() %>">
                                         <%=listOptional.get(i).getName() %>
                                     </label>
@@ -269,25 +270,47 @@
                                 reportForm.style.display = 'none';
                                 bodyElement.style.overflow = 'auto';
                             }
-//                            function addProduct(){
-//                                var productName = document.get
-//                                
-//                            }
+                            
+function addtocartv2() {
+     var optional_shop_product_item_id = document.querySelector('input[name="optional"]:checked').id;
+    var quantity = document.getElementsByName('productQuantity')[0].value;
+    var customer_id = document.getElementsByName('customer_id')[0].value;
 
+
+  console.log(optional_shop_product_item_id);
+  console.log(quantity);
+  console.log(customer_id);
+
+
+  
+  submitForm("AddToCart",quantity,optional_shop_product_item_id,customer_id);
+}
                             // Example usage: updatePrice(productName, price);
                         </script>
 
+                        <form action="MainController" id="myForm">
+   
+    <div class="btn-box">
+        <button class="btn btn-primary cart-btn" onclick="addtocartv2()" type="button">Thêm vào giỏ hàng</button>
+        <button class="btn btn-primary buy-btn">Mua ngay</button>
+    </div>
+</form>
 
-
-
-
-
-
-                        <div class="btn-box">
-                            <button type="submit" class="btn btn-primary cart-btn" action="AddToCart" value="Add">Thêm vào giỏ hàng</button>
-                            <button class="btn btn-primary buy-btn">Mua ngay</button>
-                        </div>
-                        </form>
+<script>
+    function submitForm(action,qtt,op_id,cus_id) {
+        var form = document.getElementById("myForm");
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "MainController?action=" + encodeURIComponent(action) + "&qtt="+encodeURIComponent(qtt)+"&op_id="+encodeURIComponent(op_id)+"&cus_id="+encodeURIComponent(cus_id), true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // Xử lý kết quả tại đây (nếu cần)
+                console.log(xhr.responseText);
+            }
+        };
+        xhr.send(new FormData(form));
+    }
+</script>
                     </div>
 
                 </div>

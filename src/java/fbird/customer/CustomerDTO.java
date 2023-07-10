@@ -46,10 +46,14 @@ public class CustomerDTO {
         this.username = username;
         this.fullname = fullname;
     }
-    
 
-    
-    
+    public CustomerDTO(String username, String phone, String email, String avatar) {
+        this.username = username;
+        this.phone = phone;
+        this.email = email;
+        this.avatar = avatar;
+    }
+
     public int getCustomer_id() {
         return customer_id;
     }
@@ -121,5 +125,5 @@ public class CustomerDTO {
     public void setRegisted_date(Date registed_date) {
         this.registed_date = registed_date;
     }
-    
+
 }

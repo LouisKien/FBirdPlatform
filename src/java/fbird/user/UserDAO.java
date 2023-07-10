@@ -22,7 +22,7 @@ import java.util.List;
 public class UserDAO {
 
     private static final String LOGIN = "SELECT role_id, status, shop_owner.shop_id, customer_id, fullname, customer.avatar FROM account left join shop_owner on account.username = shop_owner.username left join customer on account.username = customer.username WHERE account.username = ? AND password = ?";
-    private static final String CHECK_EXIST = "SELECT * FROM account WHERE username=?";
+    private static final String CHECK_EXIST = "SELECT username FROM account WHERE username=?";
     private static final String SIGN_UP = "insert into account values(?, ?, 3, 1)";
     private static final String UPDATE_ROLEID = "UPDATE account SET role_id = 2 WHERE username = ?";
 
@@ -30,6 +30,9 @@ public class UserDAO {
     private static final String GET_SHOP = "SELECT username, email, phone, registed_date from shop_owner";
     private static final String GET_CUSTOMER = "SELECT username, email, phone, registed_date from customer";
     private static final String SEARCH_ACCOUNT_ON_VIEW_ACCOUNT_PAGE = "SELECT username, role_id, status FROM account WHERE username like ?";
+    
+    private static final String INSERT_ACCOUNT = "INSERT INTO account(username, password, role_id, status) VALUES(?,?,?,?)";
+    private static final String LOGIN_GOOGLE = "SELECT fullName, roleID FROM tblUsers WHERE userID=?";
 
     public UserDTO checkLogin(String username, String password) throws SQLException {
         UserDTO user = null;
@@ -282,4 +285,91 @@ public class UserDAO {
         return listAccount;
     }
 
+    public boolean checkDublicate(String username) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            ptm = conn.prepareStatement(CHECK_EXIST);
+            ptm.setString(1, username);
+            rs = ptm.executeQuery();
+            if (rs.next()) {
+                check = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+    
+    public boolean insertAccount(UserDTO user) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(INSERT_ACCOUNT);
+                ptm.setString(1, user.getUsername());
+                ptm.setString(2, user.getPassword());
+                ptm.setInt(3, user.getRole());
+                ptm.setInt(4, user.getStatus());
+                check = ptm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+
+    public UserDTO checkGoogleLogin(String username) throws SQLException {
+        UserDTO user = null;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            ptm = conn.prepareStatement(LOGIN_GOOGLE);
+            ptm.setString(1, userID);
+            rs = ptm.executeQuery();
+            if (rs.next()) {
+                String fullName = rs.getString("fullName");
+                String roleID = rs.getString("roleID");
+                user = new UserDTO(userID, fullName, roleID);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return user;
+    }
 }

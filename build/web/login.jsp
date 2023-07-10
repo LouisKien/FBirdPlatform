@@ -65,7 +65,7 @@
                                     <div class="form-group">
 
 
-                                        <a class="form-control btn btn-outline-dark " href="/users/googleauth" role="button" style="text-transform:none">
+                                        <a class="form-control btn btn-outline-dark " href="https://accounts.google.com/o/oauth2/auth?scope=email%20profile%20openid&redirect_uri=http://localhost:8084/FBird/LoginGoogleController&response_type=code&client_id=1030788107110-b5qdutua61r96002p0r24f7jeo1det9c.apps.googleusercontent.com&approval_prompt=force" role="button" style="text-transform:none">
                                             <div style="margin-top: 5px;">
                                                 <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
                                                 <span>

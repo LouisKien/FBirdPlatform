@@ -108,31 +108,41 @@
                     <div class="row my-5">
                         <!--                        <h3 class="fs-4 mb-3">Ngày đặt hàng</h3>-->
                         <form action="MainController">
-                        <div class="col">
-                            <div class="container" style="display: grid; grid-template-rows: repeat(4,0fr); gap:10px;">
-                                <label for="productName" style="font-size: 18px; font-weight: bold;" >Tên sản phẩm:  </label> <input type="text" id="productName" name="productName" placeholder="Nhập tên sản phẩm" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-                                <label for="typeOfBird" style="font-size: 18px; font-weight: bold;">Dành cho chim: </label> <input type="text" id="typeOfBird" name="typeOfBird" placeholder="Nhập tên chim" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left:5%;"></br>
-                                <label for="typeProduct" style="font-size: 18px; font-weight: bold;">Loại hàng:</label>
-                                <select id="typeProduct" name="typeProduct" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
-                                    <option value="">Chọn loại hàng</option>
-                                    <option value="1">Thức ăn</option>
-                                    <option value="2">Thức uống</option>
-                                    <option value="3">Thực phẩm bổ sung</option>
-                                    <option value="4">Thuốc</option>
-                                </select>
-                                <label for="productPrice" style="font-size: 18px; font-weight: bold;">Giá sản phẩm: </label> <input type="text" id="productPrice" name="priceOfProduct" placeholder="Nhập giá" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-                                <label for="description" style="font-size: 18px; font-weight: bold;">Mô tả sản phẩm:</label> <input type="text" id="description" name="description" placeholder="Nhập mô tả" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                            <div class="col">
+                                <div class="container" style="display: grid; grid-template-rows: repeat(4,0fr); gap:10px;">
+                                    <label for="productName" style="font-size: 18px; font-weight: bold;" >Tên sản phẩm:  </label> <input type="text" id="productName" name="productName" placeholder="Nhập tên sản phẩm" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <label for="typeOfBird" style="font-size: 18px; font-weight: bold;">Dành cho chim: </label> <input type="text" id="typeOfBird" name="typeOfBird" placeholder="Nhập tên chim" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left:5%;"></br>
+                                    <label for="typeProduct" style="font-size: 18px; font-weight: bold;">Loại hàng:</label>
+                                    <select id="typeProduct" name="typeProduct" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
+                                        <option value="">Chọn loại hàng</option>
+                                        <option value="1">Thức ăn</option>
+                                        <option value="2">Thức uống</option>
+                                        <option value="3">Thực phẩm bổ sung</option>
+                                        <option value="4">Thuốc</option>
+                                    </select>
+                                    <span style="font-size: 18px; font-weight: bold;">Ảnh sản phẩm:</span> <input type="file" name="productImage" id="productImage" accept="image/*">
+
+                                    <label for="description" style="font-size: 18px; font-weight: bold;">Mô tả sản phẩm:</label> <input type="text" id="description" name="description" placeholder="Nhập mô tả" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <span style="font-size: 18px; font-weight: bold;">---------------------------------------------------Tạo tùy chọn--------------------------------------------------------</span>
+                                    <label for="option1" style="font-size: 18px; font-weight: bold;">Tùy chọn 1:</label> <input type="text" id="description" name="name1" placeholder="Nhập tùy chọn" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <label for="priceOption1" style="font-size: 18px; font-weight: bold;">Giá tùy chọn 1:</label> <input type="text" id="description" name="description" placeholder="Nhập giá" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <label for="option2" style="font-size: 18px; font-weight: bold;">Tùy chọn 2:</label> <input type="text" id="description" name="name1" placeholder="Nhập tùy chọn" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <label for="priceOption2" style="font-size: 18px; font-weight: bold;">Giá tùy chọn 2:</label> <input type="text" id="description" name="description" placeholder="Nhập giá" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <label for="option3" style="font-size: 18px; font-weight: bold;">Tùy chọn 3:</label> <input type="text" id="description" name="name1" placeholder="Nhập tùy chọn" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <label for="priceOption3" style="font-size: 18px; font-weight: bold;">Giá tùy chọn 3:</label> <input type="text" id="description" name="description" placeholder="Nhập giá" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <label for="option4" style="font-size: 18px; font-weight: bold;">Tùy chọn 4:</label> <input type="text" id="description" name="name1" placeholder="Nhập tùy chọn" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <label for="priceOption4" style="font-size: 18px; font-weight: bold;">Giá tùy chọn 4:</label> <input type="text" id="description" name="description" placeholder="Nhập giá" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <label for="option5" style="font-size: 18px; font-weight: bold;">Tùy chọn 5:</label> <input type="text" id="description" name="name1" placeholder="Nhập tùy chọn" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <label for="priceOption5" style="font-size: 18px; font-weight: bold;">Giá tùy chọn 5:</label> <input type="text" id="description" name="description" placeholder="Nhập giá" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    </div>
 
 
-                            </div>
+
+                                </div>
 
 
-
-                        </div>
-
-
-                            <button type="button" name="action" value="Create Product" class="btn btn-primary" style="margin-top: 30px; border-radius: 20px;">Cập nhật</button>
-                        <!--<input type="button" name="action" value="Create" style="margin-top: 30px; border-radius: 20px;/>-->
+                                <button type="button" name="action" value="Create Product" class="btn btn-primary" style="margin-top: 30px; border-radius: 20px;">Cập nhật</button>
+                                <!--<input type="button" name="action" value="Create" style="margin-top: 30px; border-radius: 20px;/>-->
                         </form>
                     </div>
                 </div>
@@ -144,6 +154,8 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+
+
 <script>
     var el = document.getElementById("wrapper");
     var toggleButton = document.getElementById("menu-toggle");
@@ -151,7 +163,23 @@
     toggleButton.onclick = function () {
         el.classList.toggle("toggled");
     };
+    // function add ảnh ở dưới 
+    function onFileSelect(event) {
+        var file = event.target.files[0];
+        var reader = new FileReader();
+
+        reader.onload = function () {
+            var image = document.getElementById("productImage");
+            image.src = reader.result;
+        };
+
+        reader.readAsDataURL(file);
+    }
+
+    document.getElementById("productImage").addEventListener("change", onFileSelect);
+
 </script>
+
 </body>
 
 </html>

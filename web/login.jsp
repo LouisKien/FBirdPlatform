@@ -18,7 +18,16 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <link rel="stylesheet" href="login-form/css/style.css">
-
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans" />
+        <!-- Minified CSS and JS -->
+        <link   rel="stylesheet" 
+                href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+                integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+                crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
+                crossorigin="anonymous">
+        </script>
     </head>
     <body>
         <section class="ftco-section">
@@ -36,12 +45,6 @@
                                     <div class="w-100">
                                         <h3 class="mb-4">Đăng nhập</h3>
                                     </div>
-                                    <div class="w-100">
-                                        <p class="social-media d-flex justify-content-end">
-                                            <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
-                                            <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
-                                        </p>
-                                    </div>
                                 </div>
                                 <form action="MainController" class="signin-form" method="POST">
                                     <div class="form-group mb-3">
@@ -58,6 +61,23 @@
                                     <div class="form-group">
                                         <button type="submit" class="form-control btn btn-primary rounded submit px-3" name="action" value="Login">Đăng nhập</button>
                                     </div>
+
+                                    <div class="form-group">
+
+
+                                        <a class="form-control btn btn-outline-dark " href="/users/googleauth" role="button" style="text-transform:none">
+                                            <div style="margin-top: 5px;">
+                                                <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                                                <span>
+                                                    Login with Google
+                                                </span>
+                                            </div>
+
+                                        </a>
+                                    </div>
+
+
+
                                     <div class="form-group d-md-flex">
                                         <div class="w-50 text-left">
                                             <label class="checkbox-wrap checkbox-primary mb-0">Nhớ mật khẩu

@@ -172,9 +172,9 @@
                       
 
 
-
+                         <form action="MainController">
                         <div class="size">Tùy chọn:
-
+                           
                             <%
            List<OptionalshopproductitemDTO> listOptional = (List<OptionalshopproductitemDTO>) request.getAttribute("LIST_Optional");
                 int count=0;
@@ -187,6 +187,8 @@
                for (int i = 0; i < count; i++) {
                    if (i == 0) {
                             %>
+                            
+                            
                             <div class="product-item">
                                 <div class="product-name">
                                     <label class="btn btn-primary active" style="margin-right: -50px;">
@@ -197,6 +199,7 @@
                                     <div class="product-price" id="<%=listOptional.get(i).getName() %>Price" style="display: none;"></div>
                                 </div>
                             </div>
+                                
                             <%
                                     } else {
                             %>
@@ -210,12 +213,15 @@
                                     <div class="product-price" id="<%=listOptional.get(i).getName() %>Price" style="display: none;"></div>
                                 </div>
                             </div>
+                                
                             <%
                                     }
                                 }
                             }
                             %>
-                        </div>            
+                        
+                        </div>    
+                        
                         <div class="quantity" >
                             <p>Số lượng: <input type="number" name="productQuantity" min="1" max="100" value="1" onchange="totalPriceDefault()"></p> 
 
@@ -225,7 +231,7 @@
                         <div class="selected-product-price" style=" font-size: 35px;" id="selectedPrice1">0
                             <!--    chữ đ sau giá tiền nằm ở style .selected-product-price-->
                         </div>
-
+                         
 
                         <script>
                             window.addEventListener('DOMContentLoaded', totalPriceDefault());
@@ -278,9 +284,10 @@
 
 
                         <div class="btn-box">
-                            <button class="btn btn-primary cart-btn" name="action" value="Add">Thêm vào giỏ hàng</button>
+                            <button type="submit" class="btn btn-primary cart-btn" action="AddToCart" value="Add">Thêm vào giỏ hàng</button>
                             <button class="btn btn-primary buy-btn">Mua ngay</button>
                         </div>
+                        </form>
                     </div>
 
                 </div>

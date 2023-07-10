@@ -44,53 +44,72 @@
                                                 <h1 class="fw-bold mb-0 text-black">Giỏ hàng</h1>
                                                 
                                             </div>
-                                            <% 
-               List<CartDTO> listCart = (List<CartDTO>) request.getAttribute("LIST_All_Cart_Item");
-           int count = 0;
-               if (listCart != null && !listCart.isEmpty()) {
-          
-                   for (CartDTO Cart : listCart) {
-                        count++;
-                %>
-                                            <hr class="my-4">
+                                            
+              <% 
+    List<CartDTO> listCart = (List<CartDTO>) request.getAttribute("LIST_All_Cart_Item");
+    int count = 0;
+    if (listCart != null && !listCart.isEmpty()) {         
+        for (CartDTO cart : listCart) {
+        count++;
+            
+%>
+            <hr class="my-4">
 
-                                            <div class="row mb-4 d-flex justify-content-between align-items-center">
-                                                <div class="col-md-2 col-lg-2 col-xl-2">
-                                                    <img
-                                                        src="img/product-2.png"
-                                                        class="img-fluid rounded-3" alt="Cotton T-shirt">
-                                                </div>
-                                                <div class="col-md-3 col-lg-3 col-xl-3">
-                                                    <h6 class="text-muted"><%=Cart.getCategory_name() %></h6>
-                                                    <h6 class="text-black mb-0"><%=Cart.getTitle() %></h6>
-                                                    <h6 class="text-black mb-0"><%=Cart.getName() %></h6>
-                                                </div>
-                                                <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                                    <button class="btn btn-link px-2"
-                                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                                        <i class="fas fa-minus"></i>
-                                                    </button>
+            <div class="row mb-4 d-flex justify-content-between align-items-center cart-items-container">
+                <div class="col-md-2 col-lg-2 col-xl-2">
+                    <img src="img/product-2.png" class="img-fluid rounded-3" alt="Cotton T-shirt">
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-3">
+                    <h6 class="text-muted"><%= cart.getCategory_name() %></h6>
+                    <h6 class="text-black mb-0"><%= cart.getTitle() %></h6>
+                    <h6 class="text-black mb-0"><%= cart.getName() %></h6>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+<!--                    <button class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                        <i class="fas fa-minus" id="down-<%= cart.getOptional_shop_product_item_id() %>"></i>
+                    </button>-->
+                    <input id="quantity-<%= cart.getOptional_shop_product_item_id() %>" min="1" name="quantity-<%= cart.getOptional_shop_product_item_id() %>" value="<%= cart.getQuantity() %>" onchange="totalPriceDefault(<%= cart.getOptional_shop_product_item_id() %>)" type="number" class="form-control form-control-sm" />
+<!--                    <button class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                        <i class="fas fa-plus"></i>
+                    </button> -->
+                </div>
+                <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                    <h6 class="mb-0 product-price" name="pricedefault" id="pricedefault-<%= cart.getOptional_shop_product_item_id() %>" style="display: none"><%= cart.getPrice() %>đ</h6>
+                    <h6 class="mb-0 product-price" id="totalprice-<%= cart.getOptional_shop_product_item_id() %>"></h6>
+                </div>
+                <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                    <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
+                </div>
+            </div>
+<script>
+window.onload = () => {
+    var cartItemsContainer = document.getElementsByClassName("cart-items-container");
+    for (var i = 0; i < cartItemsContainer.length; i++) {
+        var quantity = cartItemsContainer[i].childNodes[5].childNodes[3].value;
+        var price = cartItemsContainer[i].childNodes[7].childNodes[1].textContent.split("đ")[0];
+        cartItemsContainer[i].childNodes[7].childNodes[3].innerText= (quantity * Number.parseFloat(price)).toFixed(2) + "đ";
+    }
+    
+}
+function totalPriceDefault(itemId) {
+    var prices = document.getElementById(`pricedefault-`+itemId);
+    var quantities = document.getElementById(`quantity-`+itemId);
+    var display = document.getElementById(`totalprice-`+itemId);
 
-                                                    <input id="form1" min="1" name="quantity" value="<%=Cart.getQuantity() %>" type="number"
-                                                           class="form-control form-control-sm" />
+    var total = 0;
+    
+   
+       total=quantities.value * Number.parseFloat(prices.textContent.split("đ")[0]);
+    display.innerText = total.toFixed(2) + "đ";
+}
+                                                        </script>
+<%
+        }
+    }
+%>
 
-                                                    <button class="btn btn-link px-2"
-                                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                                        <i class="fas fa-plus"></i>
-                                                    </button>
-                                                </div>
-                                                <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                                    <h6 class="mb-0 product-price"><%=Cart.getPrice() %>đ</h6>
-                                                </div>
-                                                <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                                    <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
-                                                </div>
-                                            </div>
-                                                <%
-                                    }
-                            }
-                            %>
 
+                           
 <!--                                            <hr class="my-4">
 
                                             <div class="row mb-4 d-flex justify-content-between align-items-center">

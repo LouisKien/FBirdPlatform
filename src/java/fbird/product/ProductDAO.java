@@ -50,7 +50,7 @@ public class ProductDAO {
     private static final String UPDATE = "UPDATE shop_product_item SET title=?, description=?, inventory=?, status=? WHERE shop_product_item_id=? ";    
     private static final String NEW_VIEW_PRODUCT = "SELECT s.shop_product_item_id, s.shop_id, t.type_of_bird_name, s.title, p.category_name, i.image_1, i.image_2, i.image_3, i.image_4 FROM shop_product_item s JOIN product_category p ON s.category_id = p.category_id LEFT JOIN type_of_bird t ON s.type_of_bird_id = t.type_of_bird_id LEFT JOIN product_image i ON s.shop_product_item_id = i.shop_product_item_id";    
     private static final String VIEW_PRODUCT = "SELECT * FROM shop_product_item";
-    private static final String VIEW_SHOP_PRODUCT_ITEM_ID = "SELECT shop_product_item_id FROM shop_product_item";
+    private static final String VIEW_SHOP_PRODUCT_ITEM_ID = "SELECT shop_product_item_id FROM shop_product_item where shop_id=?";
     private static final String VIEW_PRODUCT_DETAIL = "SELECT shop_product_item.shop_product_item_id, title, description, shop_product_item.shop_id, inventory, upload_date, status, type_of_bird_name, category_name, product_image.image_1, product_image.image_2, product_image.image_3,product_image.image_4, shop_name, shop_owner.shop_id, avatar FROM shop_product_item left join shop_owner on shop_product_item.shop_id = shop_owner.shop_id left join type_of_bird on shop_product_item.type_of_bird_id = type_of_bird.type_of_bird_id left join product_image on product_image.shop_product_item_id = shop_product_item.shop_product_item_id left join product_category on shop_product_item.category_id = product_category.category_id WHERE shop_product_item.shop_product_item_id=?";
     private static final String VIEW_PRODUCT_HOMEPAGE = "SELECT\n"
             + "    spi.shop_product_item_id,\n"
@@ -341,7 +341,7 @@ public class ProductDAO {
         return list;
     }
 
-    public List<ProductDTO> getShopProductItemId() throws SQLException {
+    public List<ProductDTO> getShopProductItemId(int shop_id) throws SQLException {
         List<ProductDTO> list = new ArrayList<>();
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -350,6 +350,7 @@ public class ProductDAO {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 ptm = conn.prepareStatement(VIEW_SHOP_PRODUCT_ITEM_ID);
+                ptm.setInt(1, shop_id);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
                     int shopProductItemID = rs.getInt("shop_product_item_id");

@@ -4,6 +4,8 @@
  */
 package fbird.controller;
 
+import fbird.feedback.FeedbackDAO;
+import fbird.feedback.FeedbackDTO;
 import fbird.product.ProductDAO;
 import fbird.product.ProductDTO;
 import jakarta.servlet.ServletException;
@@ -34,10 +36,13 @@ public class ViewShopProductController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             int shop_id = Integer.parseInt(request.getParameter("shop_id"));
-            ProductDAO dao = new ProductDAO();
-                List<ProductDTO> listShopProduct = dao.getShopProduct(shop_id);
+            ProductDAO daoProduct = new ProductDAO();
+            FeedbackDAO daoFeedback = new FeedbackDAO();
+                List<ProductDTO> listShopProduct = daoProduct.getShopProduct(shop_id);
+                List<FeedbackDTO> AllFeedback = daoFeedback.getAllFeedback(shop_id);
                 if (listShopProduct.size() > 0) {
                     request.setAttribute("LIST_SHOP_PRODUCT", listShopProduct);
+                    request.setAttribute("LIST_AllFeedback", AllFeedback);
                     
                 }
         } catch (Exception e) {

@@ -21,7 +21,7 @@ import java.util.Date;
 public class FeedbackDAO {
     private static final String VIEW = "SELECT  avatar, number_of_stars, status, fullname, feedback_date, feedback.feedback FROM feedback join customer on customer.customer_id = feedback.customer_id WHERE shop_product_item_id = ?";
     private static final String ADD = "INSERT INTO feedback(customer_id, shop_product_item_id, feedback, status, number_of_stars, feedback_date) VALUES(?,?,?,?,?,?)";
-    private static final String VIEW_ALL_FEEDBACK_OF_SHOP = "SELECT feedback.feedback FROM shop_product_item LEFT JOIN feedback ON feedback.shop_product_item_id = shop_product_item.shop_product_item_id WHERE shop_product_item.shop_id = ?";
+    private static final String VIEW_ALL_FEEDBACK_OF_SHOP = "SELECT feedback.feedback FROM feedback JOIN shop_product_item ON feedback.shop_product_item_id = shop_product_item.shop_product_item_id WHERE shop_product_item.shop_id = ?";
     
     public List<FeedbackDTO> getFeedback(int shop_product_item_id) throws SQLException {
         List<FeedbackDTO> list = new ArrayList<>();

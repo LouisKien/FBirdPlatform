@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="fbird.product.ProductDTO"%>
+<%@page import="fbird.feedback.FeedbackDTO"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -105,9 +106,11 @@
                
                 <% 
                List<ProductDTO> listShopProduct = (List<ProductDTO>) request.getAttribute("LIST_SHOP_PRODUCT");
-           
+               int countproduct=0;
                if (listShopProduct != null && !listShopProduct.isEmpty()) {
-          
+                   for (ProductDTO LSP : listShopProduct) {
+                    countproduct++;
+                    }
                    
                
                 %>
@@ -123,11 +126,23 @@
                     <div>Đã tham gia: <div style="color: red; display: inline-block;">5 năm trước</div></div>
                 </div>
             </div>
-                    
-            <div style="display: flex; flex-direction: column; justify-content: space-around;">
-                <div><i class="fa-regular fa-star"></i> Đánh giá: <div style="color: red; display: inline-block;">80k</div></div>
+                    <%
 
-                <div><i class="fa-brands fa-shopify"></i> Sản phẩm: <div style="color: red; display: inline-block;">100</div></div>
+List<FeedbackDTO> listAllFeedback = (List<FeedbackDTO>) request.getAttribute("LIST_AllFeedback");
+ 
+ int countfeedback=0;
+ 
+    
+ for (FeedbackDTO LAF : listAllFeedback) {
+     if (LAF != null ) {
+      countfeedback++;
+ }
+ }
+                        %>
+            <div style="display: flex; flex-direction: column; justify-content: space-around;">
+                <div><i class="fa-regular fa-star"></i> Đánh giá: <div style="color: red; display: inline-block;"><%= countfeedback%></div></div>
+
+                <div><i class="fa-brands fa-shopify"></i> Sản phẩm: <div style="color: red; display: inline-block;"><%= countproduct%></div></div>
 
                 <div><i class="fa-solid fa-cart-shopping"></i> Số lượng đã bán: <div style="color: red; display: inline-block;">100k</div></div>
 
@@ -135,7 +150,7 @@
             </div>
             <div style="display: flex; flex-direction: column; justify-content: space-around;">
                 <div><i class="fa-solid fa-comment"></i> Bình luận: <div style="color: red; display: inline-block;">1234</div></div>
-                <div><i class="fa-solid fa-truck-fast"></i> Đang vận chuyển: <div style="color: red; display: inline-block;">80k</div></div>
+                
                 <div class="report-option">
                     <p>Tố cáo:</p>
                     <select>
@@ -204,12 +219,12 @@
                         <div class="row justify-content-center">
                             <div>${requestScope.MESSAGE}</div>
                           <% for (ProductDTO LSP : listShopProduct) {
-               
+                          
                 %>
                             <div class="col-xl-4 col-md-4 col-sm-6">
                                 <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 250px; margin: 10px;">
                                     <div style="text-align: center;">
-                                        <a href="productDetail.html" class="product-image">
+                                        <a href="MainController?action=ViewProductDetail&shop_product_item_id=<%=LSP.getShopProductItemID() %>&shop_id=<%=LSP.getShopID() %>" class="product-image">
                                             <img style="width: 191px;height: 190px" src="<%=LSP.getImage_1() %>"  />
                                         </a>
                                     </div>

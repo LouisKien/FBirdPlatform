@@ -49,7 +49,7 @@ public class ViewProductDetailController extends HttpServlet {
             List<ProductDTO> ProductDetail = daoproduct.getProductDetail(shop_product_item_id);                       
            List<FeedbackDTO> listFeedback = daofeedback.getFeedback(shop_product_item_id);                              
            List<OptionalshopproductitemDTO> listOptional = daooptional.getListOptional(shop_product_item_id);
-            List<ProductDTO> ShopProductItemId = daoproduct.getShopProductItemId();
+            List<ProductDTO> ShopProductItemId = daoproduct.getShopProductItemId(shop_id);
              List<FeedbackDTO> AllFeedback = daofeedback.getAllFeedback(shop_id);
              
                 if (!ProductDetail.isEmpty()) {

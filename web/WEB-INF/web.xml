@@ -120,6 +120,10 @@
         <servlet-name>DeleteCartItemController</servlet-name>
         <servlet-class>fbird.controller.DeleteCartItemController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewProductPageController</servlet-name>
+        <servlet-class>fbird.controller.ViewProductPageController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -242,6 +246,10 @@
     <servlet-mapping>
         <servlet-name>DeleteCartItemController</servlet-name>
         <url-pattern>/DeleteCartItemController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewProductPageController</servlet-name>
+        <url-pattern>/ViewProductPageController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

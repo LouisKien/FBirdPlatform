@@ -108,7 +108,7 @@
                     <div class="nav-item dropdown"> 
                         <a href="#" class="nav-item nav-link nav-contact bg-primary text-white px-3 ms-lg-3" data-bs-toggle="dropdown"><%= loginUser.getFullname() %></a>
                         <div class="dropdown-menu m-3">
-                            <a href="product.jsp" class="dropdown-item">View Profile</a>
+                            <a href="userProfile.jsp" class="dropdown-item">View Profile</a>
                             <a href="MainController?action=Logout" class="dropdown-item">LOG OUT</a>
                         </div>
                     </div>

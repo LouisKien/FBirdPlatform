@@ -17,10 +17,11 @@ import java.util.List;
  * @author Admin
  */
 public class CartDAO {
-    private static final String VIEW_CART= "SELECT cart_item_id, quantity, cart_item.optional_shop_product_item_id, optional_shop_product_item.name, product_category.category_name, optional_shop_product_item.price, shop_product_item.title \n" +
+    private static final String VIEW_CART= "SELECT cart_item_id, quantity, product_image.image_1, cart_item.optional_shop_product_item_id, optional_shop_product_item.name, product_category.category_name, optional_shop_product_item.price, shop_product_item.title \n" +
 "FROM  cart_item  \n" +
 "JOIN optional_shop_product_item  ON cart_item.optional_shop_product_item_id = optional_shop_product_item.optional_shop_product_item_id \n" +
-"JOIN shop_product_item ON optional_shop_product_item.shop_product_item_id = shop_product_item.shop_product_item_id \n" +
+"JOIN shop_product_item ON optional_shop_product_item.shop_product_item_id = shop_product_item.shop_product_item_id\n" +
+"JOIN product_image on optional_shop_product_item.shop_product_item_id = product_image.shop_product_item_id\n" +
 "JOIN product_category ON product_category.category_id = shop_product_item.category_id Where customer_id=?";
     private static final String ADD_CART_ITEM= "INSERT INTO cart_item (optional_shop_product_item_id, customer_id, quantity) VALUES(?,?,?)";
     private static final String DELETE_CART_ITEM="DELETE FROM cart_item WHERE cart_item_id = ?";
@@ -43,10 +44,11 @@ public class CartDAO {
                     String name = rs.getString("name");
                     int quantity = rs.getInt("quantity");
                     String category_name = rs.getString("category_name");
-                   
+                    String image_1 = rs.getString("image_1");
+                    
                     
                    
-                    list.add(new CartDTO(title, name, price, quantity, category_name, optional_shop_product_item_id, cart_item_id));
+                    list.add(new CartDTO(title,image_1, name, price, quantity, category_name, optional_shop_product_item_id, cart_item_id));
                 }
             }
         } catch (Exception e) {

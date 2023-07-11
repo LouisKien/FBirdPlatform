@@ -14,6 +14,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
@@ -53,16 +54,19 @@ public class LoginGoogleController extends HttpServlet {
                         CustomerDAO cdao = new CustomerDAO();
                         CustomerDTO googleCustomer = new CustomerDTO(username, fullname, email, avatar);
                         boolean checkInsertCustomer = cdao.insertCustomer(googleCustomer);
-                        if(checkInsertCustomer){
+                        if (checkInsertCustomer) {
                             UserDTO loginUser = dao.checkGoogleLogin(username);
+                            HttpSession session = request.getSession();
+                            session.setAttribute("LOGIN_USER", loginUser);
                             url = SUCCESS;
                         }
                     }
+                } else {
+                    UserDTO loginUser = dao.checkGoogleLogin(username);
+                    HttpSession session = request.getSession();
+                    session.setAttribute("LOGIN_USER", loginUser);
+                    url = SUCCESS;
                 }
-//                UserDTO loginUser = dao.checkGoogleLogin(userID);
-//                HttpSession session = request.getSession();
-//                session.setAttribute("LOGIN_USER", loginUser);
-//                url = US_PAGE;
             }
         } catch (Exception e) {
             log("Error at LoginGoogleController: " + e.toString());

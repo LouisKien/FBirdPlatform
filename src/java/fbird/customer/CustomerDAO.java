@@ -138,6 +138,7 @@ public class CustomerDAO {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 ptm = conn.prepareStatement(INSERT_CUSTOMER);
+                String abc = googleCustomer.getFullname();
                 ptm.setString(1, googleCustomer.getUsername());
                 ptm.setString(2, googleCustomer.getFullname());
                 ptm.setString(3, googleCustomer.getEmail());

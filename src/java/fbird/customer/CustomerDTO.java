@@ -47,9 +47,9 @@ public class CustomerDTO {
         this.fullname = fullname;
     }
 
-    public CustomerDTO(String username, String phone, String email, String avatar) {
+    public CustomerDTO(String username, String fullname, String email, String avatar) {
         this.username = username;
-        this.phone = phone;
+        this.fullname = fullname;
         this.email = email;
         this.avatar = avatar;
     }

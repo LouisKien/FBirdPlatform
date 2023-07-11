@@ -32,7 +32,7 @@ public class UserDAO {
     private static final String SEARCH_ACCOUNT_ON_VIEW_ACCOUNT_PAGE = "SELECT username, role_id, status FROM account WHERE username like ?";
     
     private static final String INSERT_ACCOUNT = "INSERT INTO account(username, password, role_id, status) VALUES(?,?,?,?)";
-    private static final String LOGIN_GOOGLE = "SELECT fullName, roleID FROM tblUsers WHERE userID=?";
+    private static final String LOGIN_GOOGLE = "select customer.username, role_id, status, customer_id, fullname, email, avatar from account join customer on account.username = customer.username WHERE account.username=?";
 
     public UserDTO checkLogin(String username, String password) throws SQLException {
         UserDTO user = null;
@@ -349,12 +349,16 @@ public class UserDAO {
         try {
             conn = DBUtils.getConnection();
             ptm = conn.prepareStatement(LOGIN_GOOGLE);
-            ptm.setString(1, userID);
+            ptm.setString(1, username);
             rs = ptm.executeQuery();
             if (rs.next()) {
-                String fullName = rs.getString("fullName");
-                String roleID = rs.getString("roleID");
-                user = new UserDTO(userID, fullName, roleID);
+                int role_id = rs.getInt("role_id");
+                int status = rs.getInt("status");
+                int customer_id = rs.getInt("customer_id");
+                String fullname = rs.getString("fullname");
+                String avatar = rs.getString("avatar");
+                String email = rs.getString("email");
+                user = new UserDTO(username, avatar, role_id, status, customer_id, fullname, avatar);
             }
 
         } catch (Exception e) {

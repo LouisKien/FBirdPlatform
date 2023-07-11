@@ -1,9 +1,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@page import="java.util.List"%>
+<%@page import="fbird.product.ProductDTO"%>
 <!DOCTYPE html>
 <html lang="en">
 
-        <head>
+    <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Fbird</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -100,245 +101,41 @@
                     <h6 class="text-primary text-uppercase">Sản phẩm</h6>
                     <h1 class="display-5 text-uppercase mb-0">Chim vui - chim khỏe hãy đến shop tôi</h1>
                 </div>
-        <div class="col-xl-12">
-            <div class="products-area products-area3">
-                <div class="row justify-content-center">
-                    <!--                                <div>${requestScope.MESSAGE}</div>-->
+                <div class="col-xl-12">
+                    <div class="products-area products-area3">
+                        <div class="row justify-content-center">
+                            <!--                                <div>${requestScope.MESSAGE}</div>-->
 
-                    
-                    <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
-                        <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
-                            <div style="text-align: center;">
-                                <a href="productDetail.jsp" class="product-image">
-                                    <img style="width: 160px;height: 190px" src="img/product-1.png" alt="product-image" />
-                                </a>
-                            </div>
-                            <div class="bottom-content">
-                                <div style="text-align: center;">
-                                    <a href="" style="color: black;">Cám chim 1</a>
-                                </div>
+                            <%
+                                List<ProductDTO> listProduct = (List<ProductDTO>) request.getAttribute("LIST_PRODUCT_PAGE");
+                                if(listProduct != null){
+                                    for(ProductDTO product: listProduct){
+                            %>
+                            <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
+                                <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
+                                    <div style="text-align: center;">
+                                        <a href="MainController?action=ViewProductDetail&shop_product_item_id=<%=product.getShopProductItemID() %>&shop_id=<%=product.getShopID() %>" class="product-image">
+                                            <img style="width: 160px;height: 190px" src="<%= product.getImage_1()%>" alt="product-image" />
+                                        </a>
+                                    </div>
+                                    <div class="bottom-content">
+                                        <div style="text-align: center;">
+                                            <a href="" style="color: black;"><%= product.getTitle()%></a>
+                                        </div>
 
-                                <div style="text-align: center;">
-                                    <span style="text-decoration: line-through ">1300đ</span>
-                                    <span class="product-price" style="font-weight: bold; color: red;">1200đ</span>
+                                        <div style="text-align: center;">
+                                            <span class="product-price" style="font-weight: bold; color: red;"><%= product.getPrice()%></span>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            </div> 
+                            <%
+                                }
+                                }
+                            %>
                         </div>
                     </div>
-                    <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
-                        <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
-                            <div style="text-align: center;">
-                                <a href="productDetail.jsp" class="product-image">
-                                    <img style="width: 160px;height: 190px" src="img/product-2.png" alt="product-image" />
-                                </a>
-                            </div>
-                            <div class="bottom-content">
-                                <div style="text-align: center;">
-                                    <a href="" style="color: black;">Cám chim 2</a>
-                                </div>
-
-                                <div style="text-align: center;">
-                                    <span style="text-decoration: line-through ">1000đ</span>
-                                    <span class="product-price" style="font-weight: bold; color: red;">700đ</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
-                        <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
-                            <div style="text-align: center;">
-                                <a href="productDetail.jsp" class="product-image">
-                                    <img style="width: 160px;height: 190px" src="img/product-3.png" alt="product-image" />
-                                </a>
-                            </div>
-                            <div class="bottom-content">
-                                <div style="text-align: center;">
-                                    <a href="" style="color: black;">Cám chim 3</a>
-                                </div>
-
-                                <div style="text-align: center;">
-                                    <span style="text-decoration: line-through ">400đ</span>
-                                    <span class="product-price" style="font-weight: bold; color: red;">300đ</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
-                        <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
-                            <div style="text-align: center;">
-                                <a href="productDetail.jsp" class="product-image">
-                                    <img style="width: 160px;height: 190px" src="img/product-4.png" alt="product-image" />
-                                </a>
-                            </div>
-                            <div class="bottom-content">
-                                <div style="text-align: center;">
-                                    <a href="" style="color: black;">Cám chim 4</a>
-                                </div>
-
-                                <div style="text-align: center;">
-                                    <span style="text-decoration: line-through ">700đ</span>
-                                    <span class="product-price" style="font-weight: bold; color: red;">600đ</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
-                        <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
-                            <div style="text-align: center;">
-                                <a href="productDetail.jsp" class="product-image">
-                                    <img style="width: 160px;height: 190px" src="img/product-1.png" alt="product-image" />
-                                </a>
-                            </div>
-                            <div class="bottom-content">
-                                <div style="text-align: center;">
-                                    <a href="" style="color: black;">Cám chim 5</a>
-                                </div>
-
-                                <div style="text-align: center;">
-                                    <span style="text-decoration: line-through ">200đ</span>
-                                    <span class="product-price" style="font-weight: bold; color: red;">120đ</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
-                        <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
-                            <div style="text-align: center;">
-                                <a href="productDetail.jsp" class="product-image">
-                                    <img style="width: 160px;height: 190px" src="img/product-2.png" alt="product-image" />
-                                </a>
-                            </div>
-                            <div class="bottom-content">
-                                <div style="text-align: center;">
-                                    <a href="" style="color: black;">Cám chim 6</a>
-                                </div>
-
-                                <div style="text-align: center;">
-                                    <span style="text-decoration: line-through ">2000đ</span>
-                                    <span class="product-price" style="font-weight: bold; color: red;">1800đ</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
-                        <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
-                            <div style="text-align: center;">
-                                <a href="productDetail.jsp" class="product-image">
-                                    <img style="width: 160px;height: 190px" src="img/product-3.png" alt="product-image" />
-                                </a>
-                            </div>
-                            <div class="bottom-content">
-                                <div style="text-align: center;">
-                                    <a href="" style="color: black;">Cám chim 7</a>
-                                </div>
-
-                                <div style="text-align: center;">
-                                    <span style="text-decoration: line-through ">100đ</span>
-                                    <span class="product-price" style="font-weight: bold; color: red;">75đ</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
-                        <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
-                            <div style="text-align: center;">
-                                <a href="productDetail.jsp" class="product-image">
-                                    <img style="width: 160px;height: 190px" src="img/product-4.png" alt="product-image" />
-                                </a>
-                            </div>
-                            <div class="bottom-content">
-                                <div style="text-align: center;">
-                                    <a href="" style="color: black;">Cám chim 8</a>
-                                </div>
-
-                                <div style="text-align: center;">
-                                    <span style="text-decoration: line-through ">50đ</span>
-                                    <span class="product-price" style="font-weight: bold; color: red;">35đ</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
-                        <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
-                            <div style="text-align: center;">
-                                <a href="productDetail.jsp" class="product-image">
-                                    <img style="width: 160px;height: 190px" src="img/product-1.png" alt="product-image" />
-                                </a>
-                            </div>
-                            <div class="bottom-content">
-                                <div style="text-align: center;">
-                                    <a href="" style="color: black;">Cám chim 9</a>
-                                </div>
-
-                                <div style="text-align: center;">
-                                    <span style="text-decoration: line-through ">300đ</span>
-                                    <span class="product-price" style="font-weight: bold; color: red;">255đ</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
-                        <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
-                            <div style="text-align: center;">
-                                <a href="productDetail.jsp" class="product-image">
-                                    <img style="width: 160px;height: 190px" src="img/product-2.png" alt="product-image" />
-                                </a>
-                            </div>
-                            <div class="bottom-content">
-                                <div style="text-align: center;">
-                                    <a href="" style="color: black;">Cám chim 10</a>
-                                </div>
-
-                                <div style="text-align: center;">
-                                    <span style="text-decoration: line-through ">450đ</span>
-                                    <span class="product-price" style="font-weight: bold; color: red;">434đ</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
-                        <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
-                            <div style="text-align: center;">
-                                <a href="productDetail.jsp" class="product-image">
-                                    <img style="width: 160px;height: 190px" src="img/product-3.png" alt="product-image" />
-                                </a>
-                            </div>
-                            <div class="bottom-content">
-                                <div style="text-align: center;">
-                                    <a href="" style="color: black;">Cám chim 11</a>
-                                </div>
-
-                                <div style="text-align: center;">
-                                    <span style="text-decoration: line-through ">1250đ</span>
-                                    <span class="product-price" style="font-weight: bold; color: red;">1236đ</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
-                        <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
-                            <div style="text-align: center;">
-                                <a href="productDetail.jsp" class="product-image">
-                                    <img style="width: 160px;height: 190px" src="img/product-4.png" alt="product-image" />
-                                </a>
-                            </div>
-                            <div class="bottom-content">
-                                <div style="text-align: center;">
-                                    <a href="" style="color: black;">Cám chim 12</a>
-                                </div>
-
-                                <div style="text-align: center;">
-                                    <span style="text-decoration: line-through ">450đ</span>
-                                    <span class="product-price" style="font-weight: bold; color: red;">422đ</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    
                 </div>
-            </div>
-        </div>
             </div>
         </div>
         <!-- Products End -->
@@ -349,82 +146,82 @@
 
 
         <!-- Footer Start -->
-            <div class="container-fluid bg-light mt-5 py-5">
-                <div class="container pt-5">
-                    <div class="row g-5">
-                        <div class="col-lg-3 col-md-6">
-                            <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">PHƯƠNG THỨC LIÊN LẠC</h5>
-                            <p class="mb-4"></p>
-                            <p class="mb-2"><i class="bi bi-geo-alt text-primary me-2"></i>Lô E2a-7, Đường D1, Khu Công nghệ cao, P.Long Thạnh Mỹ, Tp. Thủ Đức, TP.HCM.</p>
-                            <p class="mb-2"><i class="bi bi-envelope-open text-primary me-2"></i>daihoc.hcm@fpt.edu.vn</p>
-                            <p class="mb-0"><i class="bi bi-telephone text-primary me-2"></i> (028) 7300 5588</p>
+        <div class="container-fluid bg-light mt-5 py-5">
+            <div class="container pt-5">
+                <div class="row g-5">
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">PHƯƠNG THỨC LIÊN LẠC</h5>
+                        <p class="mb-4"></p>
+                        <p class="mb-2"><i class="bi bi-geo-alt text-primary me-2"></i>Lô E2a-7, Đường D1, Khu Công nghệ cao, P.Long Thạnh Mỹ, Tp. Thủ Đức, TP.HCM.</p>
+                        <p class="mb-2"><i class="bi bi-envelope-open text-primary me-2"></i>daihoc.hcm@fpt.edu.vn</p>
+                        <p class="mb-0"><i class="bi bi-telephone text-primary me-2"></i> (028) 7300 5588</p>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">FBird</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-body mb-2" href="MainController"><i class="bi bi-arrow-right text-primary me-2"></i>Trang chủ</a>
+
+                            <a class="text-body mb-2" href="team.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thành viên</a>
+
+
                         </div>
-
-                        <div class="col-lg-3 col-md-6">
-                            <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">FBird</h5>
-                            <div class="d-flex flex-column justify-content-start">
-                                <a class="text-body mb-2" href="MainController"><i class="bi bi-arrow-right text-primary me-2"></i>Trang chủ</a>
-
-                                <a class="text-body mb-2" href="team.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thành viên</a>
-
-
-                            </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Loại hàng cho chim</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-body mb-2" href="food.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thức ăn</a>
+                            <a class="text-body mb-2" href="drinks.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thức uống</a>
+                            <a class="text-body mb-2" href="supplement.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thực phẩm bổ sung</a>
+                            <a class="text-body mb-2" href="medicine.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thuốc</a>
                         </div>
-                        <div class="col-lg-3 col-md-6">
-                            <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Loại hàng cho chim</h5>
-                            <div class="d-flex flex-column justify-content-start">
-                                <a class="text-body mb-2" href="food.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thức ăn</a>
-                                <a class="text-body mb-2" href="drinks.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thức uống</a>
-                                <a class="text-body mb-2" href="supplement.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thực phẩm bổ sung</a>
-                                <a class="text-body mb-2" href="medicine.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thuốc</a>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Phản hồi đến công ty chúng tôi</h5>
+                        <form action="">
+                            <div class="input-group">
+                                <input type="text" class="form-control p-3" placeholder="Nhập email">
+                                <button class="btn btn-primary">Đăng ký</button>
                             </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Phản hồi đến công ty chúng tôi</h5>
-                            <form action="">
-                                <div class="input-group">
-                                    <input type="text" class="form-control p-3" placeholder="Nhập email">
-                                    <button class="btn btn-primary">Đăng ký</button>
-                                </div>
-                            </form>
-                            <h6 class="text-uppercase mt-4 mb-3"> Theo dõi chúng tôi trên</h6>
-                            <div class="d-flex">
-                                <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-twitter"></i></a>
-                                <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-facebook"></i></a>
-                                <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-linkedin"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href="#"><i class="bi bi-instagram"></i></a>
-                            </div>
+                        </form>
+                        <h6 class="text-uppercase mt-4 mb-3"> Theo dõi chúng tôi trên</h6>
+                        <div class="d-flex">
+                            <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-twitter"></i></a>
+                            <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-facebook"></i></a>
+                            <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-linkedin"></i></a>
+                            <a class="btn btn-outline-primary btn-square" href="#"><i class="bi bi-instagram"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="container-fluid bg-dark text-white-50 py-4">
-                <div class="container">
-                    <div class="row g-5">
-                        <div class="col-md-6 text-center text-md-start">
-                            <p class="mb-md-0">&copy; <a class="text-white" href="index.html">Trang web được thiết kế bởi nhóm 3 </a> </p>
-                        </div>
-                        <div class="col-md-6 text-center text-md-end">
-                            <p class="mb-0">Nguồn <a class="text-white" href="https://htmlcodex.com">HTML Codex</a></p>
-                        </div>
+        <div class="container-fluid bg-dark text-white-50 py-4">
+            <div class="container">
+                <div class="row g-5">
+                    <div class="col-md-6 text-center text-md-start">
+                        <p class="mb-md-0">&copy; <a class="text-white" href="index.html">Trang web được thiết kế bởi nhóm 3 </a> </p>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <p class="mb-0">Nguồn <a class="text-white" href="https://htmlcodex.com">HTML Codex</a></p>
                     </div>
                 </div>
             </div>
-            <!-- Footer End -->
+        </div>
+        <!-- Footer End -->
 
 
-       <!-- Back to Top -->
-            <a href="#" class="btn btn-primary py-3 fs-4 back-to-top"><i class="bi bi-arrow-up"></i></a>
-            <!-- JavaScript Libraries -->
-            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="lib/easing/easing.min.js"></script>
-            <script src="lib/waypoints/waypoints.min.js"></script>
-            <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-primary py-3 fs-4 back-to-top"><i class="bi bi-arrow-up"></i></a>
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
-            <!-- Template Javascript -->
-            <script src="js/main.js"></script>
+        <!-- Template Javascript -->
+        <script src="js/main.js"></script>
     </body>
 
 </html>

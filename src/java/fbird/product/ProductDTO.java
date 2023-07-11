@@ -49,6 +49,16 @@ public class ProductDTO {
         this.status = status;
     }
 
+    public ProductDTO(int shopProductItemID, int shopID, String title, String image_1, String avatar, Double price, String shop_name) {
+        this.shopProductItemID = shopProductItemID;
+        this.shopID = shopID;
+        this.title = title;
+        this.image_1 = image_1;
+        this.avatar = avatar;
+        this.price = price;
+        this.shop_name = shop_name;
+    }
+    
     public ProductDTO(int shopProductItemID, int shopID, int categoryID, int typeOfBirdID, String title, String description, int inventory, Date uploadDate, byte status) {
         this.shopProductItemID = shopProductItemID;
         this.shopID = shopID;
@@ -62,11 +72,12 @@ public class ProductDTO {
     }
 
 
-    public ProductDTO(int shopProductItemID, String title, String description, int inventory, Date uploadDate, byte status, String image_1, String image_2, String image_3, String image_4, String type_of_bird_name, String shop_name, String avatar) {
+    public ProductDTO(int shopID, int shopProductItemID, String title, String description, int inventory, Date uploadDate, byte status, String image_1, String image_2, String image_3, String image_4, String type_of_bird_name, String shop_name, String avatar) {
         this.shopProductItemID = shopProductItemID;
 
    
 
+        this.shopID = shopID;
         this.title = title;
         this.description = description;
         this.inventory = inventory;

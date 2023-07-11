@@ -124,6 +124,10 @@
         <servlet-name>ViewProductPageController</servlet-name>
         <servlet-class>fbird.controller.ViewProductPageController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewShopProductController</servlet-name>
+        <servlet-class>fbird.controller.ViewShopProductController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -250,6 +254,10 @@
     <servlet-mapping>
         <servlet-name>ViewProductPageController</servlet-name>
         <url-pattern>/ViewProductPageController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewShopProductController</servlet-name>
+        <url-pattern>/ViewShopProductController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -102,13 +102,13 @@ if(loginUser != null) {
 
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Danh mục</a>
-                                <div class="dropdown-menu m-0">
-                                    <a href="product.html" class="dropdown-item">Sản phẩm</a>
-                                    <a href="food.html" class="dropdown-item">Thức ăn</a>
-                                    <a href="drinks.html" class="dropdown-item">Thức uống</a>
-                                    <a href="supplement.html" class="dropdown-item">Thực phẩm bổ sung</a>
-                                    <a href="medicine.html" class="dropdown-item">Thuốc</a>
-                                </div>
+                        <div class="dropdown-menu m-0">
+                            <a href="MainController?action=productpage" class="dropdown-item">Sản phẩm</a>
+                            <a href="food.jsp" class="dropdown-item">Thức ăn</a>
+                            <a href="drinks.jsp" class="dropdown-item">Thức uống</a>
+                            <a href="supplement.jsp" class="dropdown-item">Thực phẩm bổ sung</a>
+                            <a href="medicine.jsp" class="dropdown-item">Thuốc</a>
+                        </div>
                             </div>
                             <a href="recipe.jsp" class="nav-item nav-link">Khẩu phần</a>  
 
@@ -336,7 +336,7 @@ if(loginUser != null) {
                         </a>
                         <div class="shop-name" style="display: flex; flex-direction: column;">
                             <div><%=LPD.getShop_name() %></div>
-                            <div><a href="shopProduct.jsp">Xem ngay</a></div>
+                            <div><a href="MainController?action=ViewShopProduct&shop_id=<%=LPD.getShopID() %>">Xem ngay</a></div>
                         </div>
                         <%
 List<ProductDTO> listShopProductItemId = (List<ProductDTO>) request.getAttribute("LIST_ShopProductItemId");

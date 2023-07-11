@@ -167,7 +167,7 @@
                             <h6 class="text-uppercase"><%=listPHP.getTitle() %></h6>
                             <h5 class="text-primary mb-0"><%=listPHP.getPrice() %></h5>
                             <div class="btn-action d-flex justify-content-center">
-                                <a class="btn btn-primary py-2 px-3" href="addtocart.html"><i class="bi bi-cart"></i></a>
+                                <a class="btn btn-primary py-2 px-3" href="addtocartv2.jsp"><i class="bi bi-cart"></i></a>
                                 <a class="btn btn-primary py-2 px-3" href="MainController?action=ViewProductDetail&shop_product_item_id=<%=listPHP.getShopProductItemID() %>&shop_id=<%=listPHP.getShopID() %>"><i class="bi bi-eye"></i></a>
                             </div>
                         </div>
@@ -182,7 +182,6 @@
             </div>
         </div>
 
-        <!-- comment -->
         <div class="container-fluid py-5">
             <div class="container">
                 <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">

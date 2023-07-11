@@ -27,7 +27,7 @@ import java.util.Date;
 public class LoginGoogleController extends HttpServlet {
 
     private static final String LOGIN_PAGE = "login.jsp";
-    private static final String SUCCESS = "index.jsp";
+    private static final String SUCCESS = "MainController?action=";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

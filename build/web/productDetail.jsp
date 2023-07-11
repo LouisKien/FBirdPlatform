@@ -65,6 +65,11 @@
             </div>
             <div style="background-color: #BCDAE0;">
                 <!-- Navbar Start -->
+                <%
+UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+if(loginUser != null) {
+            
+                %>
                 <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm py-3 py-lg-0 px-3 px-lg-0 mb-5">
                     <a href="MainController" class="navbar-brand ms-lg-5">
                         <h1 class="m-0 text-uppercase text-dark"><i class="bi bi-shop fs-1 text-primary me-3"></i>FBIRD</h1>
@@ -87,9 +92,13 @@
                     </div>
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <div class="navbar-nav ms-auto py-0">
-                            <a href="addtocart.html" class="nav-item nav-link" style="width: max-content">
-                                <i class="fa fa-shopping-cart" style="font-size:25px; "></i>
-                            </a>
+                            <div class="nav-item nav-link" style="width: max-content">
+                                <a  href="MainController?action=ViewCart&customer_id=<%= loginUser.getCustomer_id() %>"class="shopping">
+
+                                    <i class="fa fa-shopping-cart" style="font-size:25px;"></i> 
+                                </a>   
+                            </div>
+
 
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Danh mục</a>
@@ -105,11 +114,7 @@
 
 
                             <a href="userProfile.jsp" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>  
-                                <%
-                        UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-                        if(loginUser != null) {
-            
-                                %>
+
                             <div class="nav-item dropdown"> 
                                 <a href="#" class="nav-item nav-link nav-contact bg-primary text-white px-3 ms-lg-3" data-bs-toggle="dropdown"><%= loginUser.getFullname() %></a>
                                 <div class="dropdown-menu m-3">
@@ -126,7 +131,7 @@
                     </div>
                 </nav>
                 <!-- Navbar End -->
-                
+
                 <% 
                List<ProductDTO> listProductDetail = (List<ProductDTO>) request.getAttribute("LIST_ProductDetail");
            
@@ -164,18 +169,18 @@
                         <div class="report-option">
 
                             <button class='fas fa-exclamation-triangle' onclick="openReportForm()"   style="margin-top: -28px; margin-left: 550px;"></button>
-                          
+
                         </div>
                         <div class="pname" style="margin-bottom: 1px;"><%=LPD.getTitle() %>
 
                         </div>
 
-                      
 
 
-                         
+
+
                         <div class="size">Tùy chọn:
-                           
+
                             <%
            List<OptionalshopproductitemDTO> listOptional = (List<OptionalshopproductitemDTO>) request.getAttribute("LIST_Optional");
                 int count=0;
@@ -188,8 +193,8 @@
                for (int i = 0; i < count; i++) {
                    if (i == 0) {
                             %>
-                            
-                            
+
+
                             <div class="product-item">
                                 <div class="product-name">
                                     <label class="btn btn-primary active" style="margin-right: -50px;">
@@ -200,7 +205,7 @@
                                     <div class="product-price" id="<%=listOptional.get(i).getName() %>Price" style="display: none;"></div>
                                 </div>
                             </div>
-                                
+
                             <%
                                     } else {
                             %>
@@ -214,15 +219,15 @@
                                     <div class="product-price" id="<%=listOptional.get(i).getName() %>Price" style="display: none;"></div>
                                 </div>
                             </div>
-                                
+
                             <%
                                     }
                                 }
                             }
                             %>
-                        
+
                         </div>    
-                        
+
                         <div class="quantity" >
                             <p>Số lượng: <input type="number" name="productQuantity" min="1" max="100" value="1" onchange="totalPriceDefault()"></p> 
 
@@ -232,7 +237,7 @@
                         <div class="selected-product-price" style=" font-size: 35px;" id="selectedPrice1">0
                             <!--    chữ đ sau giá tiền nằm ở style .selected-product-price-->
                         </div>
-                         
+
 
                         <script>
                             window.addEventListener('DOMContentLoaded', totalPriceDefault());
@@ -270,47 +275,53 @@
                                 reportForm.style.display = 'none';
                                 bodyElement.style.overflow = 'auto';
                             }
-                            
-function addtocartv2() {
-     var optional_shop_product_item_id = document.querySelector('input[name="optional"]:checked').id;
-    var quantity = document.getElementsByName('productQuantity')[0].value;
-    var customer_id = document.getElementsByName('customer_id')[0].value;
+
+                            function addtocartv2() {
+                                 var mess = document.querySelector('div[name="mess"]');
+                                var optional_shop_product_item_id = document.querySelector('input[name="optional"]:checked').id;
+                                var quantity = document.getElementsByName('productQuantity')[0].value;
+                                var customer_id = document.getElementsByName('customer_id')[0].value;
 
 
-  console.log(optional_shop_product_item_id);
-  console.log(quantity);
-  console.log(customer_id);
+                                console.log(optional_shop_product_item_id);
+                                console.log(quantity);
+                                console.log(customer_id);
+                                
 
 
-  
-  submitForm("AddToCart",quantity,optional_shop_product_item_id,customer_id);
-}
+                                submitForm("AddToCart", quantity, optional_shop_product_item_id, customer_id);
+                                mess.innerHTML = "Đã thêm vào giỏ hàng";
+                                console.log(mess);
+                            }
                             // Example usage: updatePrice(productName, price);
                         </script>
 
                         <form action="MainController" id="myForm">
-   
-    <div class="btn-box">
-        <button class="btn btn-primary cart-btn" onclick="addtocartv2()" type="button">Thêm vào giỏ hàng</button>
-        <button class="btn btn-primary buy-btn">Mua ngay</button>
-    </div>
-</form>
 
-<script>
-    function submitForm(action,qtt,op_id,cus_id) {
-        var form = document.getElementById("myForm");
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "MainController?action=" + encodeURIComponent(action) + "&qtt="+encodeURIComponent(qtt)+"&op_id="+encodeURIComponent(op_id)+"&cus_id="+encodeURIComponent(cus_id), true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                // Xử lý kết quả tại đây (nếu cần)
-                console.log(xhr.responseText);
-            }
-        };
-        xhr.send(new FormData(form));
-    }
-</script>
+                            <div class="btn-box">
+                                <button class="btn btn-primary cart-btn" onclick="addtocartv2()" type="button">Thêm vào giỏ hàng</button>
+                                
+                                <button class="btn btn-primary buy-btn">Mua ngay</button>
+                                
+                            </div>
+                            <div name="mess" style="color: red;margin-top: 5%; font-weight: bold;"></div>
+                        </form>
+
+                        <script>
+                            function submitForm(action, qtt, op_id, cus_id) {
+                                var form = document.getElementById("myForm");
+                                var xhr = new XMLHttpRequest();
+                                xhr.open("POST", "MainController?action=" + encodeURIComponent(action) + "&qtt=" + encodeURIComponent(qtt) + "&op_id=" + encodeURIComponent(op_id) + "&cus_id=" + encodeURIComponent(cus_id), true);
+                                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                                xhr.onreadystatechange = function () {
+                                    if (xhr.readyState === 4 && xhr.status === 200) {
+                                        // Xử lý kết quả tại đây (nếu cần)
+                                        console.log(xhr.responseText);
+                                    }
+                                };
+                                xhr.send(new FormData(form));
+                            }
+                        </script>
                     </div>
 
                 </div>

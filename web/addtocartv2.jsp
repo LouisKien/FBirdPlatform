@@ -59,7 +59,7 @@
 
             <div class="row mb-4 d-flex justify-content-between align-items-center cart-items-container">
                 <div class="col-md-2 col-lg-2 col-xl-2">
-                    <img src="img/product-2.png" class="img-fluid rounded-3" alt="Cotton T-shirt">
+                    <img src="<%= cart.getImage_1() %>" class="img-fluid rounded-3" alt="Cotton T-shirt">
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-3">
                     <h6 class="text-muted"><%= cart.getCategory_name() %></h6>

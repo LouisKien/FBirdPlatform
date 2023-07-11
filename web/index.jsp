@@ -75,14 +75,14 @@
                 <div class="navbar-nav ms-auto py-0">
 
                     <div class="nav-item nav-link" style="width: max-content">
-                       <% 
-                           UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-                           if(loginUser != null) {
-                       %>
+                        <% 
+                            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+                            if(loginUser != null) {
+                        %>
                         <a  href="MainController?action=ViewCart&customer_id=<%= loginUser.getCustomer_id() %>"class="shopping">
                             <%}%>
                             <i class="fa fa-shopping-cart" style="font-size:25px;"></i>
-                            <span class="quantity">0</span>
+
                         </a>
                     </div>
 
@@ -90,7 +90,7 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Danh mục</a>
                         <div class="dropdown-menu m-0">
-                            <a href="product.jsp" class="dropdown-item">Sản phẩm</a>
+                            <a href="MainController?action=productpage" class="dropdown-item">Sản phẩm</a>
                             <a href="food.jsp" class="dropdown-item">Thức ăn</a>
                             <a href="drinks.jsp" class="dropdown-item">Thức uống</a>
                             <a href="supplement.jsp" class="dropdown-item">Thực phẩm bổ sung</a>
@@ -108,7 +108,7 @@
                     <div class="nav-item dropdown"> 
                         <a href="#" class="nav-item nav-link nav-contact bg-primary text-white px-3 ms-lg-3" data-bs-toggle="dropdown"><%= loginUser.getFullname() %></a>
                         <div class="dropdown-menu m-3">
-                            <a href="product.jsp" class="dropdown-item">View Profile</a>
+                            <a href="userProfile.jsp" class="dropdown-item">View Profile</a>
                             <a href="MainController?action=Logout" class="dropdown-item">LOG OUT</a>
                         </div>
                     </div>
@@ -205,7 +205,7 @@
           
                 for (RecipeDTO listRHP : listRecipeHomePage) { 
                
-                    %>
+                            %>
                             <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
                                 <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
                                     <div style="text-align: center;">
@@ -229,7 +229,7 @@
 }
                
 }
-                    %>
+                            %>
 
 
                         </div>

@@ -65,11 +65,7 @@
             </div>
             <div style="background-color: #BCDAE0;">
                 <!-- Navbar Start -->
-                <%
-UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-if(loginUser != null) {
-            
-                %>
+                
                 <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm py-3 py-lg-0 px-3 px-lg-0 mb-5">
                     <a href="MainController" class="navbar-brand ms-lg-5">
                         <h1 class="m-0 text-uppercase text-dark"><i class="bi bi-shop fs-1 text-primary me-3"></i>FBIRD</h1>
@@ -92,13 +88,25 @@ if(loginUser != null) {
                     </div>
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <div class="navbar-nav ms-auto py-0">
+                            <%
+UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+if(loginUser != null) {
+            
+                %>
                             <div class="nav-item nav-link" style="width: max-content">
                                 <a  href="MainController?action=ViewCart&customer_id=<%= loginUser.getCustomer_id() %>"class="shopping">
 
                                     <i class="fa fa-shopping-cart" style="font-size:25px;"></i> 
                                 </a>   
                             </div>
+                                <%}else{%>
+                                <div class="nav-item nav-link" style="width: max-content">
+                                <a  href=""class="shopping">
 
+                                    <i class="fa fa-shopping-cart" style="font-size:25px;"></i> 
+                                </a>   
+                            </div>
+                                <%}%>
 
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Danh mục</a>
@@ -114,7 +122,9 @@ if(loginUser != null) {
 
 
                             <a href="userProfile.jsp" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>  
-
+<%  if(loginUser != null) {
+            
+                %>
                             <div class="nav-item dropdown"> 
                                 <a href="#" class="nav-item nav-link nav-contact bg-primary text-white px-3 ms-lg-3" data-bs-toggle="dropdown"><%= loginUser.getFullname() %></a>
                                 <div class="dropdown-menu m-3">
@@ -122,6 +132,7 @@ if(loginUser != null) {
                                     <a href="MainController?action=Logout" class="dropdown-item">LOG OUT</a>
                                 </div>
                             </div>
+                              
                             <input style="display: none" name="customer_id" value="<%= loginUser.getCustomer_id() %>">
                             <%}else{%>
                             <a href="login.jsp" class="nav-item nav-link">Đăng nhập</a>

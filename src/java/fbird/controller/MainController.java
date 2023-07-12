@@ -72,6 +72,8 @@ public class MainController extends HttpServlet {
     private static final String DELETE_CART_ITEM_CONTROLLER= "DeleteCartItemController";
     private static final String VIEW_PRODUCT_PAGE = "productpage";
     private static final String VIEW_PRODUCT_PAGE_CONTROLLER = "ViewProductPageController";
+    private static final String SEARCH = "searchQuerySubmit";
+    private static final String SEARCH_CONTROLLER = "SearchController";
     
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -136,6 +138,8 @@ public class MainController extends HttpServlet {
                 url = VIEW_PRODUCT_PAGE_CONTROLLER;
             }else if (VIEW_SHOP_PRODUCT.equals(action)) {
                 url = VIEW_SHOP_PRODUCT_CONTROLLER;
+            }else if (SEARCH.equals(action)) {
+                url = SEARCH_CONTROLLER;
             }
             else {
                 request.setAttribute("ERROR", "Your ACTION is not support");

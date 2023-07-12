@@ -1,16 +1,9 @@
-<%-- 
-    Document   : index
-    Created on : Jun 27, 2023, 1:13:29 PM
-    Author     : Khanh
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="fbird.product.ProductDTO"%>
-<%@page import="fbird.recipe.RecipeDTO"%>
-<%@page import="fbird.user.UserDTO"%>
 <%@page import="java.util.List"%>
+<%@page import="fbird.product.ProductDTO"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Fbird</title>
@@ -47,9 +40,6 @@
     </head>
 
     <body>
-
-
-
         <!-- Navbar Start -->
         <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm py-3 py-lg-0 px-3 px-lg-0 mb-5">
             <a href="MainController" class="navbar-brand ms-lg-5">
@@ -59,7 +49,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="wrapper" 
-                 style="
+                 style="margin-right: 50px;
                  margin-top: 50px;
                  margin-bottom: 50px;
                  ">
@@ -78,167 +68,85 @@
                 <div class="navbar-nav ms-auto py-0">
 
                     <div class="nav-item nav-link" style="width: max-content">
-                        <% 
-                            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-                            if(loginUser != null) {
-                        %>
-                        <a  href="MainController?action=ViewCart&customer_id=<%= loginUser.getCustomer_id() %>"class="shopping">
-                            <%}%>
-                            <i class="fa fa-shopping-cart" style="font-size:25px;"></i>
-
-                        </a>
+                        <div class="shopping">
+                            <i class="fa fa-shopping-cart" style="font-size:25px; "></i>
+                            <span class="quantity">0</span>
+                        </div>
                     </div>
 
 
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Danh mục</a>
                         <div class="dropdown-menu m-0">
-                            <a href="MainController?action=productpage" class="dropdown-item">Sản phẩm</a>
+                            <a href="product.jsp" class="dropdown-item">Sản phẩm</a>
                             <a href="food.jsp" class="dropdown-item">Thức ăn</a>
                             <a href="drinks.jsp" class="dropdown-item">Thức uống</a>
                             <a href="supplement.jsp" class="dropdown-item">Thực phẩm bổ sung</a>
                             <a href="medicine.jsp" class="dropdown-item">Thuốc</a>
                         </div>
                     </div>
-                    <a href="MainController?action=ViewRecipe" class="nav-item nav-link">Khẩu phần</a>                      
+                    <a href="recipe.jsp" class="nav-item nav-link">Khẩu phần</a>                      
                     <a href="userProfile.jsp" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
                     <a href="adminDashboard.jsp" class="nav-item nav-link"><i class="fa-solid fa-user-gear"></i></a>
-                        <%
-                
-                if(loginUser != null) {
-            
-                        %>
-                    <div class="nav-item dropdown"> 
-                        <a href="#" class="nav-item nav-link nav-contact bg-primary text-white px-3 ms-lg-3" data-bs-toggle="dropdown"><%= loginUser.getFullname() %></a>
-                        <div class="dropdown-menu m-3">
-                            <a href="userProfile.jsp" class="dropdown-item">View Profile</a>
-                            <a href="MainController?action=Logout" class="dropdown-item">LOG OUT</a>
-                        </div>
-                    </div>
-                    <%}else{%>
                     <a href="login.jsp" class="nav-item nav-link">Đăng nhập</a>
                     <a href="register.jsp" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5">Đăng ký<i class="bi bi-arrow-right"></i></a>
-                        <%}%>
+
                 </div>
             </div>
         </nav>
         <!-- Navbar End -->
 
 
-        <!-- Hero Start -->
-        <div class="container-fluid bg-primary py-5 mb-5 hero-header">
-            <div class="container py-5">
-                <div class="row gx-5 justify-content-start">
-                    <div class="col-lg-7" >
-
-                        <div class="border-start border-5 border-dark ps-5 mb-5" style="
-                             background: rgba(0,0,0,0.4);
-                             border-radius: 10px;
-                             background-clip: padding-box; color:#000;
-                             ">
-
-
-                            <h1 class="display-5 text-uppercase text-white mb-0" >Giảm giá lên đến 50% cho đơn đầu tiên</h1>
-                        </div>
-
-                        <a href="product.jsp" class="btn btn-light py-md-3 px-md-5 me-3">Xem thêm</a>
-                        <!--                        <a href="" class="btn btn-outline-light py-md-3 px-md-5">Read More</a>-->
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- comment -->
-
+        <!-- Products Start -->
         <div class="container-fluid py-5">
             <div class="container">
                 <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
-                    <h6 class="text-primary text-uppercase">Sản phẩm bán chạy</h6>
-                    <h1 class="display-5 text-uppercase mb-0">Gợi ý cho bạn</h1>
-                </div>
-                <div class="owl-carousel product-carousel">
-                    <% 
-            List<ProductDTO> listProductHomePage = (List<ProductDTO>) request.getAttribute("LIST_ProductHomePage");
-           
-            if (listProductHomePage != null && !listProductHomePage.isEmpty()) {
-          
-                for (ProductDTO listPHP : listProductHomePage) { 
-               
-                    %>
-                    <div class="pb-5">
-                        <div class="product-item position-relative bg-light d-flex flex-column text-center">
-                            <img class="img-fluid mb-4" src="<%=listPHP.getImage_1() %>" alt="">
-                            <h6 class="text-uppercase"><%=listPHP.getTitle() %></h6>
-                            <h5 class="text-primary mb-0"><%=listPHP.getPrice() %></h5>
-                            <div class="btn-action d-flex justify-content-center">
-                                <a class="btn btn-primary py-2 px-3" href="addtocartv2.jsp"><i class="bi bi-cart"></i></a>
-                                <a class="btn btn-primary py-2 px-3" href="MainController?action=ViewProductDetail&shop_product_item_id=<%=listPHP.getShopProductItemID() %>&shop_id=<%=listPHP.getShopID() %>"><i class="bi bi-eye"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <% 
-}
-               
-}
-                    %>
-                </div>
-            </div>
-        </div>
-
-        <div class="container-fluid py-5">
-            <div class="container">
-                <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
-                    <h6 class="text-primary text-uppercase">Khẩu phần</h6>
+                    <h6 class="text-primary text-uppercase">Sản phẩm</h6>
                     <h1 class="display-5 text-uppercase mb-0">Chim vui - chim khỏe hãy đến shop tôi</h1>
                 </div>
-
-                <!-- Blog End -->
-
                 <div class="col-xl-12">
                     <div class="products-area products-area3">
                         <div class="row justify-content-center">
-                            <!--                                <div>${requestScope.MESSAGE}</div>-->
+                                                           <div>${MESSAGE}</div>
 
-
-                            <% 
-            List<RecipeDTO> listRecipeHomePage = (List<RecipeDTO>) request.getAttribute("LIST_RecipeHomePage");
-           
-            if (listRecipeHomePage != null && !listRecipeHomePage.isEmpty()) {
-          
-                for (RecipeDTO listRHP : listRecipeHomePage) { 
-               
+                            <%
+                                List<ProductDTO> listProduct = (List<ProductDTO>) request.getAttribute("PRODUCT_SEARCH_LIST");
+                                if(listProduct != null){
+                                    for(ProductDTO product: listProduct){
                             %>
                             <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
                                 <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
                                     <div style="text-align: center;">
-                                        <a href="productDetail.jsp" class="product-image">
-                                            <img style="width: 160px;height: 190px" src="<%=listRHP.getImage_1() %>" alt="" />
+                                        <a href="MainController?action=ViewProductDetail&shop_product_item_id=<%=product.getShopProductItemID() %>&shop_id=<%=product.getShopID() %>" class="product-image">
+                                            <img style="width: 160px;height: 190px" src="<%= product.getImage_1()%>" alt="product-image" />
                                         </a>
                                     </div>
                                     <div class="bottom-content">
                                         <div style="text-align: center;">
-                                            <a href="" style="color: black;"><%=listRHP.getTitle_recipe() %></a>
+                                            <a href="" style="color: black;"><%= product.getTitle()%></a>
                                         </div>
 
                                         <div style="text-align: center;">
-                                            <!--<span style="text-decoration: line-through "><//%=listRHP.getOriginal_price() %>đ</span>-->
-                                            <span class="product-price" style="font-weight: bold; color: red;"><%=listRHP.getTotal_price() %>đ</span>
+                                            <span class="product-price" style="font-weight: bold; color: red;"><%= product.getPrice()%></span>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <% 
-}
-               
-}
+                            </div> 
+                            <%
+                                }
+                                }
                             %>
-
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- Products End -->
+
+
+
+
+
 
         <!-- Footer Start -->
         <div class="container-fluid bg-light mt-5 py-5">
@@ -317,12 +225,9 @@
 
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
-
     </body>
 
-</html> 
-
-
+</html>
 <style>
     body {
         font-family: 'Roboto', Arial, sans-serif;

@@ -86,6 +86,7 @@ public class ProductDAO {
             + "    AND optional_shop_product_item.price = min_prices.min_price\n"
             + "ORDER BY optional_shop_product_item.price ASC;";
 
+    private static String SEARCH_PRODUCT = "SELECT spi.shop_product_item_id, spi.title, ospi.price, spi.shop_id, pi.image_1 FROM dbo.shop_product_item spi JOIN (SELECT shop_product_item_id, MIN(price) AS min_price FROM dbo.optional_shop_product_item GROUP BY shop_product_item_id ) AS min_prices ON spi.shop_product_item_id = min_prices.shop_product_item_id  JOIN dbo.optional_shop_product_item ospi ON min_prices.shop_product_item_id = ospi.shop_product_item_id AND ospi.price = min_prices.min_price LEFT JOIN product_image pi ON spi.shop_product_item_id = pi.shop_product_item_id WHERE title LIKE ? ORDER BY ospi.price ASC";
     public int checkTypeOfBird(String typeOfBird) throws ClassNotFoundException, SQLException {
         int id = 0;
         Connection conn = null;
@@ -410,6 +411,34 @@ public class ProductDAO {
             if (rs != null) {
                 rs.close();
             }
+        }
+        return list;
+    }
+
+    public List<ProductDTO> findByName(String search) {
+        List<ProductDTO> list = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+         try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                stm = conn.prepareStatement(SEARCH_PRODUCT);
+                stm.setString(1, "%" + search + "%");
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    String title = rs.getString("title");
+
+                    int shopProductItemID = rs.getInt("shop_product_item_id");
+                    int shopID = rs.getInt("shop_id");
+                    String image_1 = rs.getString("image_1");
+                    Double price = rs.getDouble("price");
+                    
+                    list.add(new ProductDTO(shopProductItemID, shopID , title, image_1, price));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return list;
     }

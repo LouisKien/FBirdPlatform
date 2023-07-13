@@ -18,7 +18,7 @@ import java.io.PrintWriter;
 public class MainController extends HttpServlet {
 
     public static final String WELCOME_PAGE = "ViewProductHomePageController";
-    
+
     public static final String VIEW_PRICE = "viewPrice";
     public static final String VIEW_PRICE_CONTROLLER = "ViewPriceController";
 
@@ -28,11 +28,11 @@ public class MainController extends HttpServlet {
     private static final String LOGOUT_CONTROLLER = "LogoutController";
     private static final String VIEW_REPORTED_PRODUCT = "ViewReportedProduct";
     private static final String VIEW_REPORTED_PRODUCT_CONTROLLER = "ViewReportedProductController";
-    private static final String VIEW_CART= "ViewCart";
-    private static final String VIEW_CART_CONTROLLER= "ViewCartController";
-    private static final String VIEW_SHOP_PRODUCT= "ViewShopProduct";
-    private static final String VIEW_SHOP_PRODUCT_CONTROLLER= "ViewShopProductController";
-    
+    private static final String VIEW_CART = "ViewCart";
+    private static final String VIEW_CART_CONTROLLER = "ViewCartController";
+    private static final String VIEW_SHOP_PRODUCT = "ViewShopProduct";
+    private static final String VIEW_SHOP_PRODUCT_CONTROLLER = "ViewShopProductController";
+
     private static final String VIEW_ACCOUNT = "ViewAccount";
     private static final String VIEW_ACCOUNT_CONTROLLER = "ViewAccountController";
     private static final String VIEW_CUSTOMER_ACCOUNT = "ViewCustomerAccount";
@@ -53,7 +53,7 @@ public class MainController extends HttpServlet {
     private static final String VIEW_PRODUCT_DETAIL_CONTROLLER = "ViewProductDetailController";
     private static final String VIEW_TYPE_OF_BIRD = "ViewTypeOfBird";
     private static final String VIEW_TYPE_OF_BIRD_CONTROLLER = "SearchTypeOfBirdController";
-    
+
     private static final String CREATE_PRODUCT = "Create Product";
     private static final String CREATE_PRODUCT_CONTROLLER = "AddProductController";
     private static final String VIEW_CREATE_PRODUCT = "ViewCreateProduct";
@@ -68,15 +68,19 @@ public class MainController extends HttpServlet {
     private static final String VIEW_RECIPE_CONTROLLER = "ViewRecipeController";
     private static final String VIEW_RECIPE_DETAIL = "RecipeDetail";
     private static final String VIEW_RECIPE_DETAIL_CONTROLLER = "ViewRecipeDetailController";
-    private static final String ADD_TO_CART= "AddToCart";
-    private static final String ADD_TO_CART_CONTROLLER= "AddToCartController";
-    private static final String DELETE_CART_ITEM= "DeleteCartItem";
-    private static final String DELETE_CART_ITEM_CONTROLLER= "DeleteCartItemController";
+    private static final String ADD_TO_CART = "AddToCart";
+    private static final String ADD_TO_CART_CONTROLLER = "AddToCartController";
+    private static final String DELETE_CART_ITEM = "DeleteCartItem";
+    private static final String DELETE_CART_ITEM_CONTROLLER = "DeleteCartItemController";
     private static final String VIEW_PRODUCT_PAGE = "productpage";
     private static final String VIEW_PRODUCT_PAGE_CONTROLLER = "ViewProductPageController";
     private static final String SEARCH = "searchQuerySubmit";
     private static final String SEARCH_CONTROLLER = "SearchController";
-    
+
+    private static final String FOOD_PAGE = "foodpage";
+    private static final String VIEW_FOOD_PAGE_CONTROLLER = "ViewFoodPageController";
+    private static final String MEDICINE_PAGE = "medicinepage";
+    private static final String VIEW_MEDICINE_PAGE_CONTROLLER = "ViewMedicinePageController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -110,42 +114,45 @@ public class MainController extends HttpServlet {
             } else if (DELETE_REPORTED_SHOP.equals(action)) {
                 url = DELETE_REPORTED_SHOP_CONTROLLER;
 
-            }else if(HOMEPAGE.equals(action)){
-                url=VIEW_HOMEPAGE;
-            }else if(VIEW_PRODUCT_DETAIL.equals(action)){
-                url=VIEW_PRODUCT_DETAIL_CONTROLLER;
-            }else if(VIEW_PRICE.equals(action)){
-                url=VIEW_PRICE_CONTROLLER;
-            }else if(action==null){
-                url=WELCOME_PAGE;
+            } else if (HOMEPAGE.equals(action)) {
+                url = VIEW_HOMEPAGE;
+            } else if (VIEW_PRODUCT_DETAIL.equals(action)) {
+                url = VIEW_PRODUCT_DETAIL_CONTROLLER;
+            } else if (VIEW_PRICE.equals(action)) {
+                url = VIEW_PRICE_CONTROLLER;
+            } else if (action == null) {
+                url = WELCOME_PAGE;
 
             } else if (LOGIN_SHOP.equals(action)) {
                 url = LOGIN_SHOP_CONTROLLER;
-            }else if (VIEW_TYPE_OF_BIRD.equals(action)) {
+            } else if (VIEW_TYPE_OF_BIRD.equals(action)) {
                 url = VIEW_TYPE_OF_BIRD_CONTROLLER;
-            }else if (VIEW_REPORTED_PRODUCT.equals(action)) {
+            } else if (VIEW_REPORTED_PRODUCT.equals(action)) {
                 url = VIEW_REPORTED_PRODUCT_CONTROLLER;
-            }else if (VIEW_CART.equals(action)) {
+            } else if (VIEW_CART.equals(action)) {
                 url = VIEW_CART_CONTROLLER;
-            }else if (VIEW_RECIPE.equals(action)) {
+            } else if (VIEW_RECIPE.equals(action)) {
                 url = VIEW_RECIPE_CONTROLLER;
-            }else if (VIEW_RECIPE_DETAIL.equals(action)) {
+            } else if (VIEW_RECIPE_DETAIL.equals(action)) {
                 url = VIEW_RECIPE_DETAIL_CONTROLLER;
-            }else if (ADD_TO_CART.equals(action)) {
+            } else if (ADD_TO_CART.equals(action)) {
                 url = ADD_TO_CART_CONTROLLER;
-            
-            }else if (DELETE_CART_ITEM.equals(action)) {
+
+            } else if (DELETE_CART_ITEM.equals(action)) {
                 url = DELETE_CART_ITEM_CONTROLLER;
             } else if (VIEW_PRODUCT_PAGE.equals(action)) {
                 url = VIEW_PRODUCT_PAGE_CONTROLLER;
-            }else if (VIEW_SHOP_PRODUCT.equals(action)) {
+            } else if (VIEW_SHOP_PRODUCT.equals(action)) {
                 url = VIEW_SHOP_PRODUCT_CONTROLLER;
-            }else if (SEARCH.equals(action)) {
+            } else if (SEARCH.equals(action)) {
                 url = SEARCH_CONTROLLER;
-            }    else if (VIEW_CREATE_PRODUCT.equals(action)) {
+            } else if (VIEW_CREATE_PRODUCT.equals(action)) {
                 url = VIEW_CREATE_PRODUCT_CONTROLLER;
-                    }
-            else {
+            } else if (FOOD_PAGE.equals(action)) {
+                url = VIEW_FOOD_PAGE_CONTROLLER;
+            } else if (MEDICINE_PAGE.equals(action)) {
+                url = VIEW_MEDICINE_PAGE_CONTROLLER;
+            } else {
                 request.setAttribute("ERROR", "Your ACTION is not support");
             }
         } catch (Exception e) {

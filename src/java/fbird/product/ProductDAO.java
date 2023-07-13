@@ -86,6 +86,17 @@ public class ProductDAO {
             + "JOIN dbo.optional_shop_product_item ON min_prices.shop_product_item_id = optional_shop_product_item.shop_product_item_id\n"
             + "    AND optional_shop_product_item.price = min_prices.min_price\n"
             + "ORDER BY optional_shop_product_item.price ASC;";
+    private static final String VIEW_PRODUCT_PAGE ="SELECT shop_product_item.*, image_1, optional_shop_product_item.price, optional_shop_product_item.[name]\n" +
+"            FROM dbo.shop_product_item\n" +
+"            JOIN (\n" +
+"                SELECT shop_product_item_id, MIN(price) AS min_price\n" +
+"                FROM dbo.optional_shop_product_item\n" +
+"                GROUP BY shop_product_item_id\n" +
+"            ) AS min_prices ON shop_product_item.shop_product_item_id = min_prices.shop_product_item_id\n" +
+"            JOIN dbo.optional_shop_product_item ON min_prices.shop_product_item_id = optional_shop_product_item.shop_product_item_id\n" +
+"			JOIN product_image ON shop_product_item.shop_product_item_id = product_image.shop_product_item_id\n" +
+"                AND optional_shop_product_item.price = min_prices.min_price\n" +
+"            ORDER BY optional_shop_product_item.price ASC";
 
     private static String SEARCH_PRODUCT = "SELECT spi.shop_product_item_id, spi.title, ospi.price, spi.shop_id, pi.image_1 FROM dbo.shop_product_item spi JOIN (SELECT shop_product_item_id, MIN(price) AS min_price FROM dbo.optional_shop_product_item GROUP BY shop_product_item_id ) AS min_prices ON spi.shop_product_item_id = min_prices.shop_product_item_id  JOIN dbo.optional_shop_product_item ospi ON min_prices.shop_product_item_id = ospi.shop_product_item_id AND ospi.price = min_prices.min_price LEFT JOIN product_image pi ON spi.shop_product_item_id = pi.shop_product_item_id WHERE title LIKE ? ORDER BY ospi.price ASC";
 
@@ -344,6 +355,44 @@ public class ProductDAO {
         return list;
     }
 
+    public List<ProductDTO> getProductPage() throws SQLException {
+        List<ProductDTO> list = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(VIEW_PRODUCT_PAGE);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+
+                    String title = rs.getString("title");
+                    int categoryID = rs.getInt("category_id");
+                    int shopProductItemID = rs.getInt("shop_product_item_id");
+                    int shopID = rs.getInt("shop_id");
+                    String image_1 = rs.getString("image_1");
+                    Double price = rs.getDouble("price");
+
+                    list.add(new ProductDTO(shopProductItemID, shopID, title, image_1, price, categoryID));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
+        }
+        return list;
+    }
+    
     public List<ProductDTO> getShopProductItemId(int shop_id) throws SQLException {
         List<ProductDTO> list = new ArrayList<>();
         Connection conn = null;

@@ -132,6 +132,14 @@
         <servlet-name>SearchController</servlet-name>
         <servlet-class>fbird.controller.SearchController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewFoodPageController</servlet-name>
+        <servlet-class>fbird.controller.ViewFoodPageController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewMedicinePageController</servlet-name>
+        <servlet-class>fbird.controller.ViewMedicinePageController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -266,6 +274,14 @@
     <servlet-mapping>
         <servlet-name>SearchController</servlet-name>
         <url-pattern>/SearchController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewFoodPageController</servlet-name>
+        <url-pattern>/ViewFoodPageController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewMedicinePageController</servlet-name>
+        <url-pattern>/ViewMedicinePageController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

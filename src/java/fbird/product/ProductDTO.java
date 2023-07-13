@@ -102,7 +102,14 @@ public class ProductDTO {
         this.price = price;
     }
 
-    
+    public ProductDTO(int shopProductItemID, int shopID, String title, String image_1, Double price, int categoryID) {
+        this.shopProductItemID = shopProductItemID;
+        this.shopID = shopID;
+        this.title = title;
+        this.image_1 = image_1;
+        this.price = price;
+        this.categoryID = categoryID;
+    }
 
     public ProductDTO(int shopProductItemID, int shopID, int categoryID, int typeOfBirdID, String title, String description, int inventory, Date uploadDate, byte status, Double price, String nameOption) {
         this.shopProductItemID = shopProductItemID;

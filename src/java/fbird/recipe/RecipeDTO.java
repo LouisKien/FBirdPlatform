@@ -14,6 +14,10 @@ public class RecipeDTO {
     int shop_id;
     String title_recipe;
     Double total_price;
+    String recipe_image1;
+    String recipe_image2;
+    String recipe_image3;
+    String recipe_image4;
     int recipeProductID;
     String typeOfBirdName;
     int optionalShopProductItemID;
@@ -82,6 +86,34 @@ public class RecipeDTO {
         this.description = description;
         this.price = price;
     }
+    public RecipeDTO(int recipe_id, int shop_id, String title_recipe, Double total_price, String recipe_image1, String recipe_image2, String recipe_image3, String recipe_image4, int recipeProductID, String typeOfBirdName, int optionalShopProductItemID, String nameProductOptional, int quantity, int shopProductItemID, String nameProduct, Boolean status, String category, String image_1, String image_2, String image_3, String image_4, String description, double price) {
+        this.recipe_id = recipe_id;
+        this.shop_id = shop_id;
+        this.title_recipe = title_recipe;
+        this.total_price = total_price;
+        this.recipe_image1 = recipe_image1;
+        this.recipe_image2 = recipe_image2;
+        this.recipe_image3 = recipe_image3;
+        this.recipe_image4 = recipe_image4;
+        this.recipeProductID = recipeProductID;
+        this.typeOfBirdName = typeOfBirdName;
+        this.optionalShopProductItemID = optionalShopProductItemID;
+        this.nameProductOptional = nameProductOptional;
+        this.quantity = quantity;
+        this.shopProductItemID = shopProductItemID;
+        this.nameProduct = nameProduct;
+        this.status = status;
+        this.category = category;
+        this.image_1 = image_1;
+        this.image_2 = image_2;
+        this.image_3 = image_3;
+        this.image_4 = image_4;
+        this.description = description;
+        this.price = price;
+    }
+    
+    
+
 
     public int getRecipe_id() {
         return recipe_id;
@@ -211,11 +243,11 @@ public class RecipeDTO {
         this.image_4 = image_4;
     }
 
-    public String getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -234,5 +266,38 @@ public class RecipeDTO {
     public void setCategory(String category) {
         this.category = category;
     }
+        public String getRecipe_image1() {
+        return recipe_image1;
+    }
+
+    public void setRecipe_image1(String recipe_image1) {
+        this.recipe_image1 = recipe_image1;
+    }
+
+    public String getRecipe_image2() {
+        return recipe_image2;
+    }
+
+    public void setRecipe_image2(String recipe_image2) {
+        this.recipe_image2 = recipe_image2;
+    }
+
+    public String getRecipe_image3() {
+        return recipe_image3;
+    }
+
+    public void setRecipe_image3(String recipe_image3) {
+        this.recipe_image3 = recipe_image3;
+    }
+
+    public String getRecipe_image4() {
+        return recipe_image4;
+    }
+
+    public void setRecipe_image4(String recipe_image4) {
+        this.recipe_image4 = recipe_image4;
+    }
+
+ 
 
 }

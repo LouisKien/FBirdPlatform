@@ -4,9 +4,11 @@
  */
 package fbird.controller;
 
-import fbird.product.ProductDAO;
-import fbird.recipe.RecipeDAO;
-import fbird.recipe.RecipeDTO;
+import fbird.category.CategoryDAO;
+import fbird.category.CategoryDTO;
+import fbird.optionalshopproductitem.OptionalshopproductitemDAO;
+import fbird.typeofbird.TypeOfBirdDAO;
+import fbird.typeofbird.TypeOfBirdDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,36 +17,32 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-
 /**
  *
  * @author tuan3
  */
-public class ViewRecipeDetailController extends HttpServlet {
-    
-    private static final String ERROR = "recipeDetail.jsp";
-    private static final String SUCCESS = "recipeDetail1.jsp";
+public class ViewCreateProductController extends HttpServlet {
+
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
+        String url = "themSanPham.jsp";
         try{
-            int recipeID = Integer.parseInt(request.getParameter("recipeID"));
-            RecipeDAO dao = new RecipeDAO();
-            ProductDAO daoproduct = new ProductDAO();
-            List<RecipeDTO> rec = dao.getRecipeDetail(recipeID);
-            if(!rec.isEmpty()){
-                url = SUCCESS;
-                request.setAttribute("RECIPE_DETAIL", rec);
+            TypeOfBirdDAO dao = new TypeOfBirdDAO();
+            List<TypeOfBirdDTO> listTypeOfBird = dao.getTypeOfBird();
+            CategoryDAO catedao = new CategoryDAO();
+            List<CategoryDTO> listCategory = catedao.getCategory();
+            if(listCategory.size()>0 && listTypeOfBird.size()>0){
+                request.setAttribute("CATEGORY", listCategory);
+                request.setAttribute("TYPE_OF_BIRD", listTypeOfBird);
             }
-        }catch(Exception e){
-            log("Error at ViewRecipeDetailController:" + e.toString());
+        } catch (Exception e) {
+            log("Error at ViewCreateProductController: " + e.toString());
         }finally{
             request.getRequestDispatcher(url).forward(request, response);
         }
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -85,3 +83,4 @@ public class ViewRecipeDetailController extends HttpServlet {
     }// </editor-fold>
 
 }
+

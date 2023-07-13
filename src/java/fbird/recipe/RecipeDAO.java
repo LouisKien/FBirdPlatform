@@ -94,6 +94,10 @@ public class RecipeDAO {
                     String titleRecipe = rs.getString("title_recipe");
                     String description = rs.getString("description");
                     Double total = rs.getDouble("total_price");
+                    String recipeImage_1 = rs.getString("recipe_image_1");
+                    String recipeImage_2 = rs.getString("recipe_image_2");
+                    String recipeImage_3 = rs.getString("recipe_image_3");
+                    String recipeImage_4 = rs.getString("recipe_image_4");
                     int recipeProductID = rs.getInt("recipe_product_id");
                     int optionalShopProductItemID = rs.getInt("optional_shop_product_item_id");
                     String nameProductOptional = rs.getString("name");

@@ -6,11 +6,13 @@ package fbird.controller;
 
 import fbird.product.ProductDAO;
 import fbird.product.ProductDTO;
+import fbird.user.UserDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
 
@@ -31,6 +33,9 @@ public class UpdateProductController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try{
+            HttpSession session = request.getSession();
+            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+            int shopID = loginUser.getShop_id();
             int productShopItemID = Integer.parseInt(request.getParameter("productShopItemID"));
             String productName = request.getParameter("productName");
             int inventory = Integer.parseInt(request.getParameter("inventory"));
@@ -39,7 +44,7 @@ public class UpdateProductController extends HttpServlet {
 //            priceProduct = request.getParameter("priceOfProduct");
             String description = request.getParameter("description");  
             ProductDAO dao = new ProductDAO();
-            ProductDTO product = new ProductDTO(productShopItemID, ShopID, typeProduct, typeOfBirdID, productName, description, inventory, "", 0);
+            ProductDTO product = new ProductDTO(productShopItemID, shopID, typeProduct, typeOfBirdID, productName, description, inventory, "", 0);
             boolean checkUpdate = dao.checkUpdate(product);
             if(checkUpdate){
                 url = SUCCESS;

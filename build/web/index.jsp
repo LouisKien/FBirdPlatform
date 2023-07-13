@@ -109,7 +109,7 @@
                     <div class="nav-item dropdown"> 
                         <a href="#" class="nav-item nav-link nav-contact bg-primary text-white px-3 ms-lg-3" data-bs-toggle="dropdown"><%= loginUser.getFullname() %></a>
                         <div class="dropdown-menu m-3">
-                            <a href="userProfile.jsp" class="dropdown-item">View Profile</a>
+                            <a href="MainController?action=ViewProfile&username=<%= loginUser.getUsername() %>" class="dropdown-item">View Profile</a>
                             <a href="MainController?action=Logout" class="dropdown-item">LOG OUT</a>
                         </div>
                     </div>
@@ -139,7 +139,7 @@
                             <h1 class="display-5 text-uppercase text-white mb-0" >Giảm giá lên đến 50% cho đơn đầu tiên</h1>
                         </div>
 
-                        <a href="product.jsp" class="btn btn-light py-md-3 px-md-5 me-3">Xem thêm</a>
+                        <a href="MainController?action=productpage" class="btn btn-light py-md-3 px-md-5 me-3">Xem thêm</a>
                         <!--                        <a href="" class="btn btn-outline-light py-md-3 px-md-5">Read More</a>-->
                     </div>
                 </div>

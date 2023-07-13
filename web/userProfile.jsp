@@ -1,5 +1,6 @@
 <%@page import="fbird.shop.ShopDTO"%>
-
+<%@page import="fbird.customer.CustomerDTO"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%-- 
     Document   : userProfile
@@ -89,7 +90,7 @@
                         </div>
                     </div>
                     <a href="MainController?action=ViewRecipe" class="nav-item nav-link">Khẩu phần</a>                    
-                    
+
                     <a href="login.jsp" class="nav-item nav-link">Đăng nhập</a>
                     <a href="register.jsp" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5">Đăng ký<i class="bi bi-arrow-right"></i></a>
                 </div>
@@ -176,58 +177,71 @@
                                     Quản lý thông tin hồ sơ để bảo mật tài khoản
                                 </div>
                             </div>
+                            <%
+                                    List<CustomerDTO> customer = (List<CustomerDTO>) request.getAttribute("CUSTOMER");
+                                    if(customer != null){
+                                        for(CustomerDTO c: customer){
+                            %>
                             <div class="container">
                                 <div class="row">
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                                         <form action="AddUserProfileController" method="POST">
-                                        <p class="text-danger">
+                                            <p class="text-danger">
 
-                                                    ${msg}
-                                        </p>
-                                        <div class="form-group">
-                                            <label for="username">Tên đăng nhập:</label>
-                                            <input name="username" type="text" class="form-control" id="username" value="${user}">
-                                        </div>
+                                                ${msg}
+                                            </p>
 
-                                        <div class="form-group">
-                                            <label for="name">Tên:</label>
-                                            <input name="fullname" type="text" class="form-control" id="name">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="email">Email:</label>
-                                            <input name="email" type="text" class="form-control" id="email">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="phone">SĐT:</label>
-                                            <input name="phone" type="text" class="form-control" id="phone">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label>Giới tính:</label>
-                                            <div class="form-check">
-                                                <input name="gender" class="form-check-input" type="radio" name="gender" id="male" value="Nam">
-                                                <label class="form-check-label" for="male">Nam</label>
+                                            <div class="form-group">
+                                                <label for="username">Tên đăng nhập:</label>
+                                                <input name="username" type="text" class="form-control" id="username" value="<%= c.getUsername() %>">
                                             </div>
-                                            <div class="form-check">
-                                                <input name="gender" class="form-check-input" type="radio" name="gender" id="female" value="Nữ">
-                                                <label class="form-check-label" for="female">Nữ</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input name="gender" class="form-check-input" type="radio" name="gender" id="other" value="Khác">
-                                                <label class="form-check-label" for="other">Khác</label>
-                                            </div>
-                                        </div>
 
-                                        <div class="form-group">
-                                            <label for="birthdate">Ngày sinh:</label>
-                                            <input name="dob" type="date" class="form-control" id="birthdate">
-                                        </div>
+                                            <div class="form-group">
+                                                <label for="name">Tên:</label>
+                                                <input name="fullname" type="text" class="form-control" id="name" value="<%=c.getFullname()%>">
+                                            </div>
 
-                                        <div class="form-group" style="margin-top: 10px; margin-bottom: 10px;">
-                                            <button class="btn btn-primary" type="submit">Lưu</button>
-                                        </div>
+                                            <div class="form-group">
+                                                <label for="email">Email:</label>
+                                                <input name="email" type="text" class="form-control" id="email" value="<%= c.getEmail() %>">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="phone">SĐT:</label>
+                                                <input name="phone" type="text" class="form-control" id="phone" value="<%= c.getPhone() %>">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Giới tính:</label>
+
+                                                <div class="form-check">
+                                                    <input name="gender" class="form-check-input" type="radio" id="male" value="Nam" <% if (c.isGender() == true) { %>checked="checked"<% } %>>
+                                                    <label class="form-check-label" for="male">Nam</label>
+                                                </div>
+
+                                                <div class="form-check">
+                                                    <input name="gender" class="form-check-input" type="radio" id="female" value="Nữ" <% if (c.isGender() != true) { %>checked="checked"<% } %>>
+                                                    <label class="form-check-label" for="female">Nữ</label>
+                                                </div>
+
+                                                <div class="form-check">
+                                                    <input name="gender" class="form-check-input" type="radio" name="gender" id="other" value="Khác">
+                                                    <label class="form-check-label" for="other">Khác</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="birthdate">Ngày sinh:</label>
+                                                <input name="dob" type="date" class="form-control" id="birthdate" value="<%= c.getDate_of_birth() %>">
+                                            </div>
+                                            <%
+                                                                                            }
+                                                                                            }
+                                            %>
+                                            <div class="form-group" style="margin-top: 10px; margin-bottom: 10px;">
+                                                <button class="btn btn-primary" type="submit">Lưu</button>
+                                            </div>
+
                                         </form>
                                     </div>
 
@@ -257,78 +271,78 @@
 
 
         <!-- Footer Start -->
-            <div class="container-fluid bg-light mt-5 py-5">
-                <div class="container pt-5">
-                    <div class="row g-5">
-                        <div class="col-lg-3 col-md-6">
-                            <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">PHƯƠNG THỨC LIÊN LẠC</h5>
-                            <p class="mb-4"></p>
-                            <p class="mb-2"><i class="bi bi-geo-alt text-primary me-2"></i>Lô E2a-7, Đường D1, Khu Công nghệ cao, P.Long Thạnh Mỹ, Tp. Thủ Đức, TP.HCM.</p>
-                            <p class="mb-2"><i class="bi bi-envelope-open text-primary me-2"></i>daihoc.hcm@fpt.edu.vn</p>
-                            <p class="mb-0"><i class="bi bi-telephone text-primary me-2"></i> (028) 7300 5588</p>
+        <div class="container-fluid bg-light mt-5 py-5">
+            <div class="container pt-5">
+                <div class="row g-5">
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">PHƯƠNG THỨC LIÊN LẠC</h5>
+                        <p class="mb-4"></p>
+                        <p class="mb-2"><i class="bi bi-geo-alt text-primary me-2"></i>Lô E2a-7, Đường D1, Khu Công nghệ cao, P.Long Thạnh Mỹ, Tp. Thủ Đức, TP.HCM.</p>
+                        <p class="mb-2"><i class="bi bi-envelope-open text-primary me-2"></i>daihoc.hcm@fpt.edu.vn</p>
+                        <p class="mb-0"><i class="bi bi-telephone text-primary me-2"></i> (028) 7300 5588</p>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">FBird</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-body mb-2" href="MainController"><i class="bi bi-arrow-right text-primary me-2"></i>Trang chủ</a>
+
+                            <a class="text-body mb-2" href="member.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thành viên</a>
+
+
                         </div>
-
-                        <div class="col-lg-3 col-md-6">
-                            <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">FBird</h5>
-                            <div class="d-flex flex-column justify-content-start">
-                                <a class="text-body mb-2" href="MainController"><i class="bi bi-arrow-right text-primary me-2"></i>Trang chủ</a>
-
-                                <a class="text-body mb-2" href="member.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thành viên</a>
-
-
-                            </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Loại hàng cho chim</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-body mb-2" href="food.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thức ăn</a>
+                            <a class="text-body mb-2" href="drinks.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thức uống</a>
+                            <a class="text-body mb-2" href="supplement.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thực phẩm bổ sung</a>
+                            <a class="text-body mb-2" href="medicine.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thuốc</a>
                         </div>
-                        <div class="col-lg-3 col-md-6">
-                            <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Loại hàng cho chim</h5>
-                            <div class="d-flex flex-column justify-content-start">
-                                <a class="text-body mb-2" href="food.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thức ăn</a>
-                                <a class="text-body mb-2" href="drinks.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thức uống</a>
-                                <a class="text-body mb-2" href="supplement.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thực phẩm bổ sung</a>
-                                <a class="text-body mb-2" href="medicine.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thuốc</a>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Phản hồi đến công ty chúng tôi</h5>
+                        <form action="">
+                            <div class="input-group">
+                                <input type="text" class="form-control p-3" placeholder="Nhập email">
+                                <button class="btn btn-primary">Đăng ký</button>
                             </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Phản hồi đến công ty chúng tôi</h5>
-                            <form action="">
-                                <div class="input-group">
-                                    <input type="text" class="form-control p-3" placeholder="Nhập email">
-                                    <button class="btn btn-primary">Đăng ký</button>
-                                </div>
-                            </form>
-                            <h6 class="text-uppercase mt-4 mb-3"> Theo dõi chúng tôi trên</h6>
-                            <div class="d-flex">
-                                <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-twitter"></i></a>
-                                <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-facebook"></i></a>
-                                <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-linkedin"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href="#"><i class="bi bi-instagram"></i></a>
-                            </div>
+                        </form>
+                        <h6 class="text-uppercase mt-4 mb-3"> Theo dõi chúng tôi trên</h6>
+                        <div class="d-flex">
+                            <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-twitter"></i></a>
+                            <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-facebook"></i></a>
+                            <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-linkedin"></i></a>
+                            <a class="btn btn-outline-primary btn-square" href="#"><i class="bi bi-instagram"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="container-fluid bg-dark text-white-50 py-4">
-                <div class="container">
-                    <div class="row g-5">
-                        <div class="col-md-6 text-center text-md-start">
-                            <p class="mb-md-0">&copy; <a class="text-white" href="MainController">Trang web được thiết kế bởi nhóm 3 </a> </p>
-                        </div>
-                        <div class="col-md-6 text-center text-md-end">
-                            <p class="mb-0">Nguồn <a class="text-white" href="https://htmlcodex.com">HTML Codex</a></p>
-                        </div>
+        <div class="container-fluid bg-dark text-white-50 py-4">
+            <div class="container">
+                <div class="row g-5">
+                    <div class="col-md-6 text-center text-md-start">
+                        <p class="mb-md-0">&copy; <a class="text-white" href="MainController">Trang web được thiết kế bởi nhóm 3 </a> </p>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <p class="mb-0">Nguồn <a class="text-white" href="https://htmlcodex.com">HTML Codex</a></p>
                     </div>
                 </div>
             </div>
-            <!-- Footer End -->
-            <!-- JavaScript Libraries -->
-            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="lib/easing/easing.min.js"></script>
-            <script src="lib/waypoints/waypoints.min.js"></script>
-            <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+        </div>
+        <!-- Footer End -->
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
-            <!-- Template Javascript -->
-            <script src="js/main.js"></script>
+        <!-- Template Javascript -->
+        <script src="js/main.js"></script>
     </body>
 
 </html> 

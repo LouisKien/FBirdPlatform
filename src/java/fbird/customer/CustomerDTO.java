@@ -54,6 +54,19 @@ public class CustomerDTO {
         this.avatar = avatar;
     }
 
+    public CustomerDTO(String username, String fullname, Date date_of_birth, String phone, boolean gender, String email, Date registed_date) {
+        this.username = username;
+        this.fullname = fullname;
+        this.date_of_birth = date_of_birth;
+        this.phone = phone;
+        this.gender = gender;
+        this.email = email;
+        this.registed_date = registed_date;
+    }
+
+    
+    
+
     public int getCustomer_id() {
         return customer_id;
     }

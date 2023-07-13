@@ -28,7 +28,7 @@ public class UserDAO {
 
     private static final String GET_ACCOUNT = "SELECT username, role_id, status FROM account WHERE role_id = 2 OR role_id = 3";
     private static final String GET_SHOP = "SELECT username, email, phone, registed_date from shop_owner";
-    private static final String GET_CUSTOMER = "SELECT username, email, phone, registed_date from customer";
+    private static final String GET_CUSTOMER = "SELECT username, fullname, date_of_birth, email, phone, gender, registed_date from customer";
     private static final String SEARCH_ACCOUNT_ON_VIEW_ACCOUNT_PAGE = "SELECT username, role_id, status FROM account WHERE username like ?";
     
     private static final String INSERT_ACCOUNT = "INSERT INTO account(username, password, role_id, status) VALUES(?,?,?,?)";
@@ -230,10 +230,13 @@ public class UserDAO {
             rs = ptm.executeQuery();
             while (rs.next()) {
                 String username = rs.getString("username");
+                String fullname = rs.getString("fullname");
+                Date date_of_birth = rs.getDate("date_of_birth");
                 String email = rs.getString("email");
                 String phone = rs.getString("phone");
+                boolean gender = rs.getBoolean("gender");
                 Date registed_date = rs.getDate("registed_date");
-                listCustomer.add(new CustomerDTO(username, phone, email, registed_date));
+                listCustomer.add(new CustomerDTO(username, fullname, date_of_birth, phone, gender, email, registed_date));
             }
         } catch (Exception e) {
             e.printStackTrace();

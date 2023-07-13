@@ -46,7 +46,7 @@ public class SearchController extends HttpServlet {
             if (products.isEmpty()) {
                 request.setAttribute("MESSAGE", "Product not found");
             }
-
+            request.setAttribute("SEARCH", search);
             request.setAttribute("PRODUCT_SEARCH_LIST", products);
             
         } catch (Exception e) {

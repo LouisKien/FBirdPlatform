@@ -69,7 +69,7 @@
                     <div class="nav-item nav-link" style="width: max-content">
                         <div class="shopping">
                             <i class="fa fa-shopping-cart" style="font-size:25px; "></i>
-                            <span class="quantity">0</span>
+                            
                         </div>
                     </div>
 
@@ -77,10 +77,8 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Danh mục</a>
                         <div class="dropdown-menu m-0">
-                            <a href="product.jsp" class="dropdown-item">Sản phẩm</a>
+                            <a href="MainController?action=productpage" class="dropdown-item">Sản phẩm</a>
                             <a href="food.jsp" class="dropdown-item">Thức ăn</a>
-                            <a href="drinks.jsp" class="dropdown-item">Thức uống</a>
-                            <a href="supplement.jsp" class="dropdown-item">Thực phẩm bổ sung</a>
                             <a href="medicine.jsp" class="dropdown-item">Thuốc</a>
                         </div>
                     </div>

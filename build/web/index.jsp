@@ -95,8 +95,6 @@
                         <div class="dropdown-menu m-0">
                             <a href="MainController?action=productpage" class="dropdown-item">Sản phẩm</a>
                             <a href="food.jsp" class="dropdown-item">Thức ăn</a>
-                            <a href="drinks.jsp" class="dropdown-item">Thức uống</a>
-                            <a href="supplement.jsp" class="dropdown-item">Thực phẩm bổ sung</a>
                             <a href="medicine.jsp" class="dropdown-item">Thuốc</a>
                         </div>
                     </div>
@@ -167,8 +165,8 @@
                     <div class="pb-5">
                         <div class="product-item position-relative bg-light d-flex flex-column text-center">
                             <img class="img-fluid mb-4" src="<%=listPHP.getImage_1() %>" alt="">
-                            <h6 class="text-uppercase"><%=listPHP.getTitle() %></h6>
-                            <h5 class="text-primary mb-0"><%=listPHP.getPrice() %></h5>
+                            <h6 class="text-uppercase" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;"><%=listPHP.getTitle() %></h6>
+                            <h5 class="text-primary mb-0"><%=listPHP.getPrice() %> đ</h5>
                             <div class="btn-action d-flex justify-content-center">
                                 <a class="btn btn-primary py-2 px-3" href="addtocartv2.jsp"><i class="bi bi-cart"></i></a>
                                 <a class="btn btn-primary py-2 px-3" href="MainController?action=ViewProductDetail&shop_product_item_id=<%=listPHP.getShopProductItemID() %>&shop_id=<%=listPHP.getShopID() %>"><i class="bi bi-eye"></i></a>
@@ -216,13 +214,13 @@
                                         </a>
                                     </div>
                                     <div class="bottom-content">
-                                        <div style="text-align: center;">
-                                            <a href="" style="color: black;"><%=listRHP.getTitle_recipe() %></a>
+                                        <div style="text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;">
+                                            <a href="" style="margin-top: 10px; font-weight: bold;white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;color: black;"><%=listRHP.getTitle_recipe() %></a>
                                         </div>
 
                                         <div style="text-align: center;">
                                             <!--<span style="text-decoration: line-through "><//%=listRHP.getOriginal_price() %>đ</span>-->
-                                            <span class="product-price" style="font-weight: bold; color: red;"><%=listRHP.getTotal_price() %>đ</span>
+                                            <span class="product-price" style="font-size:25px ;font-weight: bold; color: red;"><%=listRHP.getTotal_price() %>đ</span>
                                         </div>
                                     </div>
                                 </div>

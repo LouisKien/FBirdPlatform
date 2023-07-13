@@ -54,14 +54,14 @@
                  margin-bottom: 50px;
                  ">
                 <form action="MainController" method="POST">
-                
-                <div class="searchBar">
-                    <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Search" value="" />
-                    <button id="searchQuerySubmit" type="submit" name="action" value="searchQuerySubmit">
-                        <svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="#666666" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
-                        </svg>
-                    </button>
-                </div>
+
+                    <div class="searchBar">
+                        <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Search" value="${SEARCH}" />
+                        <button id="searchQuerySubmit" type="submit" name="action" value="searchQuerySubmit">
+                            <svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="#666666" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
+                            </svg>
+                        </button>
+                    </div>
                 </form>
             </div>
             <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -101,13 +101,13 @@
         <div class="container-fluid py-5">
             <div class="container">
                 <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
-                    <h6 class="text-primary text-uppercase">Sản phẩm</h6>
-                    <h1 class="display-5 text-uppercase mb-0">Chim vui - chim khỏe hãy đến shop tôi</h1>
+                    
+                    <h1 class="display-5 text-uppercase mb-0" style="font-size: 20px;">Kết quả tìm kiếm cho: <p style="color: #7AB730;">${SEARCH}</p></h1>
                 </div>
                 <div class="col-xl-12">
                     <div class="products-area products-area3">
                         <div class="row justify-content-center">
-                                                           <div>${MESSAGE}</div>
+                            <div>${MESSAGE}</div>
 
                             <%
                                 List<ProductDTO> listProduct = (List<ProductDTO>) request.getAttribute("PRODUCT_SEARCH_LIST");
@@ -122,12 +122,13 @@
                                         </a>
                                     </div>
                                     <div class="bottom-content">
-                                        <div style="text-align: center;">
-                                            <a href="" style="color: black;"><%= product.getTitle()%></a>
+                                        <div style="text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;font-weight: bold; margin-top: 10px;">
+                                            <a href="MainController?action=ViewProductDetail&shop_product_item_id=<%=product.getShopProductItemID() %>&shop_id=<%=product.getShopID() %>" style="color: black;"><%= product.getTitle()%></a>
                                         </div>
 
+
                                         <div style="text-align: center;">
-                                            <span class="product-price" style="font-weight: bold; color: red;"><%= product.getPrice()%></span>
+                                            <span class="product-price" style="font-size: 25px;font-weight: bold; color: red;"><%= product.getPrice()%> đ</span>
                                         </div>
                                     </div>
                                 </div>

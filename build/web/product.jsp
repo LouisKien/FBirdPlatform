@@ -70,7 +70,7 @@
                     <div class="nav-item nav-link" style="width: max-content">
                         <div class="shopping">
                             <i class="fa fa-shopping-cart" style="font-size:25px; "></i>
-                            <span class="quantity">0</span>
+                            
                         </div>
                     </div>
 
@@ -78,10 +78,8 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Danh mục</a>
                         <div class="dropdown-menu m-0">
-                            <a href="product.jsp" class="dropdown-item">Sản phẩm</a>
+                            <a href="MainController?action=productpage" class="dropdown-item">Sản phẩm</a>
                             <a href="food.jsp" class="dropdown-item">Thức ăn</a>
-                            <a href="drinks.jsp" class="dropdown-item">Thức uống</a>
-                            <a href="supplement.jsp" class="dropdown-item">Thực phẩm bổ sung</a>
                             <a href="medicine.jsp" class="dropdown-item">Thuốc</a>
                         </div>
                     </div>
@@ -122,12 +120,12 @@
                                         </a>
                                     </div>
                                     <div class="bottom-content">
-                                        <div style="text-align: center;">
+                                        <div style="text-align: center;white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;margin-top: 10px; font-weight: bold;">
                                             <a href="" style="color: black;"><%= product.getTitle()%></a>
                                         </div>
 
                                         <div style="text-align: center;">
-                                            <span class="product-price" style="font-weight: bold; color: red;"><%= product.getPrice()%></span>
+                                            <span class="product-price" style="font-weight: bold; color: red; font-size: 25px;"><%= product.getPrice()%> đ</span>
                                         </div>
                                     </div>
                                 </div>

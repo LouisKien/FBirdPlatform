@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="fbird.product.ProductDTO"%>
+<%@page import="fbird.user.UserDTO"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,10 +69,16 @@
                 <div class="navbar-nav ms-auto py-0">
 
                     <div class="nav-item nav-link" style="width: max-content">
-                        <div class="shopping">
-                            <i class="fa fa-shopping-cart" style="font-size:25px; "></i>
+                        <% 
+                            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+                            if(loginUser != null) {
+                        %>
+                        <a  href="MainController?action=ViewCart&customer_id=<%= loginUser.getCustomer_id() %>"class="shopping">
                             
-                        </div>
+                            <i class="fa fa-shopping-cart" style="font-size:25px;"></i>
+
+                        </a>
+                        <%}%>
                     </div>
 
 
@@ -86,9 +93,21 @@
                     <a href="MainController?action=ViewRecipe" class="nav-item nav-link">Khẩu phần</a>                      
                     <a href="userProfile.jsp" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
                     <a href="adminDashboard.jsp" class="nav-item nav-link"><i class="fa-solid fa-user-gear"></i></a>
+                    <%
+                    if(loginUser != null) {
+            
+                        %>
+                    <div class="nav-item dropdown"> 
+                        <a href="#" class="nav-item nav-link nav-contact bg-primary text-white px-3 ms-lg-3" data-bs-toggle="dropdown"><%= loginUser.getFullname() %></a>
+                        <div class="dropdown-menu m-3">
+                            <a href="MainController?action=ViewProfile&username=<%= loginUser.getUsername() %>" class="dropdown-item">View Profile</a>
+                            <a href="MainController?action=Logout" class="dropdown-item">LOG OUT</a>
+                        </div>
+                    </div>
+                    <%}else{%>
                     <a href="login.jsp" class="nav-item nav-link">Đăng nhập</a>
                     <a href="register.jsp" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5">Đăng ký<i class="bi bi-arrow-right"></i></a>
-
+                        <%}%>
                 </div>
             </div>
         </nav>

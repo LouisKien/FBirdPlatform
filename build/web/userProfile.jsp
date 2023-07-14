@@ -1,6 +1,7 @@
 <%@page import="fbird.shop.ShopDTO"%>
 <%@page import="fbird.customer.CustomerDTO"%>
 <%@page import="java.util.List"%>
+<%@page import="fbird.user.UserDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%-- 
     Document   : userProfile
@@ -77,9 +78,18 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
 
-                    <a href="addtocart.html" class="nav-item nav-link" style="width: max-content">
-                        <i class="fa fa-shopping-cart" style="font-size:25px; "></i>
-                    </a>
+                    <div class="nav-item nav-link" style="width: max-content">
+                        <% 
+                            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+                            if(loginUser != null) {
+                        %>
+                        <a  href="MainController?action=ViewCart&customer_id=<%= loginUser.getCustomer_id() %>"class="shopping">
+
+                            <i class="fa fa-shopping-cart" style="font-size:25px;"></i>
+
+                        </a>
+                        <%}%>
+                    </div>
 
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Danh mục</a>
@@ -91,8 +101,22 @@
                     </div>
                     <a href="MainController?action=ViewRecipe" class="nav-item nav-link">Khẩu phần</a>                    
 
+                    <%
+                
+                if(loginUser != null) {
+            
+                    %>
+                    <div class="nav-item dropdown"> 
+                        <a href="#" class="nav-item nav-link nav-contact bg-primary text-white px-3 ms-lg-3" data-bs-toggle="dropdown"><%= loginUser.getFullname() %></a>
+                        <div class="dropdown-menu m-3">
+                            <a href="MainController?action=ViewProfile&username=<%= loginUser.getUsername() %>" class="dropdown-item">View Profile</a>
+                            <a href="MainController?action=Logout" class="dropdown-item">LOG OUT</a>
+                        </div>
+                    </div>
+                    <%}else{%>
                     <a href="login.jsp" class="nav-item nav-link">Đăng nhập</a>
                     <a href="register.jsp" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5">Đăng ký<i class="bi bi-arrow-right"></i></a>
+                        <%}%>
                 </div>
             </div>
         </nav>
@@ -200,7 +224,7 @@
                                                 <label for="name">Tên:</label>
                                                 <input name="fullname" type="text" class="form-control" id="name" <%
                                                             if(c.getFullname() == null){
-                                                %>placeholder="Chưa có thông tin"<%
+                                                       %>placeholder="Chưa có thông tin"<%
                                                     } else {%>value="<%= c.getFullname()%>"<%}
                                                        %>">
                                             </div>
@@ -209,7 +233,7 @@
                                                 <label for="email">Email:</label>
                                                 <input name="email" type="text" class="form-control" id="email" <%
                                                             if(c.getEmail() == null){
-                                                %>placeholder="Chưa có thông tin"<%
+                                                       %>placeholder="Chưa có thông tin"<%
                                                     } else {%>value="<%= c.getEmail()%>"<%}
                                                        %>>
                                             </div>
@@ -218,7 +242,7 @@
                                                 <label for="phone">Số điện thoại:</label>
                                                 <input name="phone" type="text" class="form-control" id="phone" <%
                                                             if(c.getPhone() == null){
-                                                %>placeholder="Chưa có thông tin"<%
+                                                       %>placeholder="Chưa có thông tin"<%
                                                     } else {%>value="<%= c.getPhone()%>"<%}
                                                        %>>
                                             </div>

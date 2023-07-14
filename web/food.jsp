@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="fbird.product.ProductDTO"%>
+<%@page import="fbird.user.UserDTO"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,10 +69,16 @@
                 <div class="navbar-nav ms-auto py-0">
 
                     <div class="nav-item nav-link" style="width: max-content">
-                        <div class="shopping">
-                            <i class="fa fa-shopping-cart" style="font-size:25px; "></i>
+                        <% 
+                            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+                            if(loginUser != null) {
+                        %>
+                        <a  href="MainController?action=ViewCart&customer_id=<%= loginUser.getCustomer_id() %>"class="shopping">
                             
-                        </div>
+                            <i class="fa fa-shopping-cart" style="font-size:25px;"></i>
+
+                        </a>
+                        <%}%>
                     </div>
 
 

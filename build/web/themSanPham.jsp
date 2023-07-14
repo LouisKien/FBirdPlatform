@@ -1,3 +1,7 @@
+<%@page import="fbird.category.CategoryDTO"%>
+<%@page import="fbird.typeofbird.TypeOfBirdDTO"%>
+<%@page import="java.util.List"%>
+
 <!DOCTYPE html>
 <html lang="vi">
     <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -71,7 +75,10 @@
                 </div>
             </div>
             <!-- /#sidebar-wrapper -->
-
+            <%
+            List<CategoryDTO> listCategory = (List<CategoryDTO>) request.getAttribute("CATEGORY");
+            List<TypeOfBirdDTO> listTypeOfBird = (List<TypeOfBirdDTO>) request.getAttribute("TYPE_OF_BIRD");
+            %>
             <!-- Page Content -->
             <div id="page-content-wrapper">
                 <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
@@ -111,17 +118,30 @@
                             <div class="col">
                                 <div class="container" style="display: grid; grid-template-rows: repeat(4,0fr); gap:10px;">
                                     <label for="productName" style="font-size: 18px; font-weight: bold;" >Tên sản phẩm:  </label> <input type="text" id="productName" name="productName" placeholder="Nhập tên sản phẩm" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-                                    <label for="typeOfBird" style="font-size: 18px; font-weight: bold;">Dành cho chim: </label> <input type="text" id="typeOfBird" name="typeOfBird" placeholder="Nhập tên chim" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left:5%;"></br>
+                                    <label for="typeOfBird" style="font-size: 18px; font-weight: bold;">Dành cho chim: </label> 
+                                    <select id="typeOfBird" name="typeOfBird" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
+                                        <option value="">Chọn loại chim</option>
+                                       <%
+                                        for (TypeOfBirdDTO bird : listTypeOfBird){
+                                        %>
+                                        <option value="<%= bird.getType_of_bird_id() %>"><%= bird.getType_of_bird_name() %></option>
+                                        <%
+                                            }
+                                        %>
+                                    </select>
                                     <label for="typeProduct" style="font-size: 18px; font-weight: bold;">Loại hàng:</label>
                                     <select id="typeProduct" name="typeProduct" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
                                         <option value="">Chọn loại hàng</option>
-                                        <option value="1">Thức ăn</option>
-                                        <option value="2">Thức uống</option>
-                                        <option value="3">Thực phẩm bổ sung</option>
-                                        <option value="4">Thuốc</option>
+                                        <%
+                                        for (CategoryDTO cate : listCategory){
+                                        %>
+                                        <option value="<%= cate.getCategoryID() %>"><%= cate.getCategoryName() %></option>
+                                        <%
+                                            }
+                                        %>
                                     </select>
                                     <span style="font-size: 18px; font-weight: bold;">Ảnh sản phẩm:</span> <input type="file" name="productImage" id="productImage" accept="image/*">
-
+                                    <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng sản phẩm:  </label> <input type="text" id="productName" name="inventory" placeholder="Nhập số lượng sản phẩm" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
                                     <label for="description" style="font-size: 18px; font-weight: bold;">Mô tả sản phẩm:</label> <input type="text" id="description" name="description" placeholder="Nhập mô tả" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
                                     <span style="font-size: 18px; font-weight: bold;">---------------------------------------------------Tạo tùy chọn--------------------------------------------------------</span>
                                     <label for="option1" style="font-size: 18px; font-weight: bold;">Tùy chọn 1:</label> <input type="text" id="description" name="name1" placeholder="Nhập tùy chọn" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>

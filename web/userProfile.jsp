@@ -63,17 +63,20 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="wrapper" 
-                 style="margin-right: 50px;
+                 style="
                  margin-top: 50px;
                  margin-bottom: 50px;
                  ">
-                <div class="searchBar">
-                    <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Search" value="" />
-                    <button id="searchQuerySubmit" type="submit" name="searchQuerySubmit">
-                        <svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="#666666" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
-                        </svg>
-                    </button>
-                </div>
+                <form action="MainController" method="POST">
+
+                    <div class="searchBar">
+                        <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Tìm kiếm sản phẩm" required="" value="" />
+                        <button id="searchQuerySubmit" type="submit" name="action" value="searchQuerySubmit">
+                            <svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="#666666" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
+                            </svg>
+                        </button>
+                    </div>
+                </form>
             </div>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
@@ -91,26 +94,41 @@
                         <%}%>
                     </div>
 
+
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Danh mục</a>
                         <div class="dropdown-menu m-0">
                             <a href="MainController?action=productpage" class="dropdown-item">Sản phẩm</a>
                             <a href="MainController?action=foodpage" class="dropdown-item">Thức ăn</a>
-                            <a href="MainController?action=medicinepage" class="dropdown-item">Thuốc</a>
+                            <a href="MainController?action=medicinepage" class="dropdown-item">Thuốc - Dược phẩm</a>
                         </div>
                     </div>
-                    <a href="MainController?action=ViewRecipe" class="nav-item nav-link">Khẩu phần</a>                    
-
+                    <a href="MainController?action=ViewRecipe" class="nav-item nav-link">Khẩu phần</a>
+                    <% if(loginUser != null) {
+                            if(loginUser.getRole() == 1){
+                            loginUser.setFullname("Admin Account");
+                    %>
+                            
+                    <a href="adminDashboard.jsp" class="nav-item nav-link"><i class="fa-solid fa-user-gear"></i></a>
+                        <%
+                        } else if(loginUser.getRole() == 2){
+                        %>
+                    <a href="accountShop.jsp" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
                     <%
-                
+                        } else{
+                        %>
+                    <a href="MainController?action=ViewProfile&username=<%= loginUser.getUsername() %>" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
+                        <%
+                            }
+}
                 if(loginUser != null) {
             
-                    %>
+                        %>
                     <div class="nav-item dropdown"> 
                         <a href="#" class="nav-item nav-link nav-contact bg-primary text-white px-3 ms-lg-3" data-bs-toggle="dropdown"><%= loginUser.getFullname() %></a>
                         <div class="dropdown-menu m-3">
-                            <a href="MainController?action=ViewProfile&username=<%= loginUser.getUsername() %>" class="dropdown-item">View Profile</a>
-                            <a href="MainController?action=Logout" class="dropdown-item">LOG OUT</a>
+                            <a href="MainController?action=ViewProfile&username=<%= loginUser.getUsername() %>" class="dropdown-item">Tài khoản</a>
+                            <a href="MainController?action=Logout" class="dropdown-item">Đăng xuất</a>
                         </div>
                     </div>
                     <%}else{%>
@@ -135,11 +153,17 @@
                                     </div>
                                     <ul style="list-style-type: none;">
                                         <li>
-                                            <a href="userProfile.jsp">
+                                            <%
+                                                if(loginUser != null){
+                                            %>
+                                            <a href="MainController?action=ViewProfile&username=<%= loginUser.getUsername() %>">
                                                 <div class="color-item">
                                                     <span class="color-name">Hồ sơ</span>
                                                 </div>
                                             </a>
+                                            <%
+                                                }
+                                            %>
                                         </li>
                                         <li>
                                             <a href="createShop.jsp">
@@ -163,14 +187,14 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="thanhToan.html">
+                                            <a href="#">
                                                 <div class="color-item">
                                                     <span class="color-name">Cài đặt thanh toán</span>
                                                 </div>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="MainController">
+                                            <a href="MainController?action=Logout">
                                                 <div class="color-item">
                                                     <span class="color-name">Đăng xuất</span>
                                                 </div>
@@ -319,11 +343,11 @@
                     </div>
 
                     <div class="col-lg-3 col-md-6">
-                        <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">FBird</h5>
+                        <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">F-Bird</h5>
                         <div class="d-flex flex-column justify-content-start">
                             <a class="text-body mb-2" href="MainController"><i class="bi bi-arrow-right text-primary me-2"></i>Trang chủ</a>
 
-                            <a class="text-body mb-2" href="member.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thành viên</a>
+                            <a class="text-body mb-2" href="devteam.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thành viên</a>
 
 
                         </div>
@@ -331,19 +355,19 @@
                     <div class="col-lg-3 col-md-6">
                         <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Loại hàng cho chim</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-body mb-2" href="food.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thức ăn</a>
-                            <a class="text-body mb-2" href="medicine.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thuốc</a>
+                            <a class="text-body mb-2" href="MainController?action=foodpage"><i class="bi bi-arrow-right text-primary me-2"></i>Thức ăn</a>
+                            <a class="text-body mb-2" href="MainController?action=medicinepage"><i class="bi bi-arrow-right text-primary me-2"></i>Thuốc - Dược phẩm</a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
-                        <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Phản hồi đến công ty chúng tôi</h5>
-                        <form action="">
+                        <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Theo dõi chúng tôi trên</h5>
+<!--                        <form action="">
                             <div class="input-group">
                                 <input type="text" class="form-control p-3" placeholder="Nhập email">
                                 <button class="btn btn-primary">Đăng ký</button>
                             </div>
                         </form>
-                        <h6 class="text-uppercase mt-4 mb-3"> Theo dõi chúng tôi trên</h6>
+                        <h6 class="text-uppercase mt-4 mb-3"> Theo dõi chúng tôi trên</h6>-->
                         <div class="d-flex">
                             <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-twitter"></i></a>
                             <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-facebook"></i></a>
@@ -359,7 +383,7 @@
             <div class="container">
                 <div class="row g-5">
                     <div class="col-md-6 text-center text-md-start">
-                        <p class="mb-md-0">&copy; <a class="text-white" href="MainController">Trang web được thiết kế bởi nhóm 3 </a> </p>
+                        <p class="mb-md-0">&copy; <a class="text-white" href="MainController">Trang web được thiết kế bởi Nhóm 3 </a> </p>
                     </div>
                     <div class="col-md-6 text-center text-md-end">
                         <p class="mb-0">Nguồn <a class="text-white" href="https://htmlcodex.com">HTML Codex</a></p>

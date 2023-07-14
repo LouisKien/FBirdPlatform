@@ -31,12 +31,13 @@ public class UserDTO {
         this.status = status;
     }
 
-    public UserDTO(String username, String password, int role, int status, int shop_id) {
+    public UserDTO(String username, String password, int role, int status, int shop_id, String shop_name) {
         this.username = username;
         this.password = password;
         this.role = role;
         this.status = status;
         this.shop_id = shop_id;
+        this.fullname = shop_name;
     }
 
     public UserDTO(String username, String password, int role, int status, int customer_id, String fullname, String avatar) {

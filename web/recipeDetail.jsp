@@ -43,7 +43,7 @@
         <div style="background-color: #BCDAE0;">
         <!-- Navbar Start -->
         <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm py-3 py-lg-0 px-3 px-lg-0 mb-5">
-            <a href="index.html" class="navbar-brand ms-lg-5">
+            <a href="MainController?action=" class="navbar-brand ms-lg-5">
                 <h1 class="m-0 text-uppercase text-dark"><i class="bi bi-shop fs-1 text-primary me-3"></i>FBIRD</h1>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -150,21 +150,7 @@
                     <div><%=shop.getShopName() %></div>
                     <div><a href="shopProduct.jsp">Xem ngay</a></div>
                 </div>
-                    <%
-List<ProductDTO> listShopProductItemId = (List<ProductDTO>) request.getAttribute("LIST_ShopProductItemId");
-List<FeedbackDTO> listAllFeedback = (List<FeedbackDTO>) request.getAttribute("LIST_AllFeedback");
- int countid=0;
- int countfeedback=0;
- for (ProductDTO LSPII : listShopProductItemId) {
-      countid++;
- }
-    
- for (FeedbackDTO LAF : listAllFeedback) {
-     if (LAF != null ) {
-      countfeedback++;
- }
- }
- %>
+
                 <div style="display: flex; flex-direction: column;">
                     <div>Đánh giá</div>
                     <div style="color: red;">80k</div>
@@ -189,34 +175,7 @@ List<FeedbackDTO> listAllFeedback = (List<FeedbackDTO>) request.getAttribute("LI
                 line-height: 1.2;">
                 <%= recipe.get(0).getDescription()%>
             </h1>
-            <div style="margin-top: 50px;">
-                <div class="mb-5">
-                    <h3 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">3 Comments</h3>
-                    <div class="d-flex mb-4">
-                        <img src="img/user.jpg" class="img-fluid" style="width: 45px; height: 45px;">
-                        <div class="ps-3">
-                            <h6><a href="">John Doe</a> <small><i>01 Jan 2045</i></small></h6>
-                            <p>Giá cả hợp lí, đóng gói kĩ, shop giao hàng nhanh, mọi người yên tâm mua hàng của shop nha.</p>
-                            <button class="btn btn-sm btn-light">Phản hồi</button>
-                        </div>
-                    </div>
-                    <div class="d-flex mb-4">
-                        <img src="img/user.jpg" class="img-fluid" style="width: 45px; height: 45px;">
-                        <div class="ps-3">
-                            <h6><a href="">William</a> <small><i>01 Jan 2045</i></small></h6>
-                            <p>Cho hỏi có có ship ra nước ngoài không ạ</p>
-                            <button class="btn btn-sm btn-light">Phản hồi</button>
-                        </div>
-                    </div>
-                    <div class="d-flex ms-5 mb-4">
-                        <img src="img/user.jpg" class="img-fluid" style="width: 45px; height: 45px;">
-                        <div class="ps-3">
-                            <h6><a href="">Staff</a> <small><i>01 Jan 2045</i></small></h6>
-                            <p>Dạ shop em có hỗ trợ giao hàng ra nước ngoài ạ</p>
-                            <button class="btn btn-sm btn-light">Phản hồi</button>
-                        </div>
-                    </div>
-                </div>
+            
                 <!-- Comment List End -->
 
                 <!-- Comment Form Start -->

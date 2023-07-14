@@ -21,7 +21,7 @@ import java.util.List;
  */
 public class UserDAO {
 
-    private static final String LOGIN = "SELECT role_id, status, shop_owner.shop_id, customer_id, fullname, customer.avatar FROM account left join shop_owner on account.username = shop_owner.username left join customer on account.username = customer.username WHERE account.username = ? AND password = ?";
+    private static final String LOGIN = "SELECT role_id, status, shop_owner.shop_id, customer_id, fullname, customer.avatar, shop_name FROM account left join shop_owner on account.username = shop_owner.username left join customer on account.username = customer.username WHERE account.username = ? AND password = ?";
     private static final String CHECK_EXIST = "SELECT username FROM account WHERE username=?";
     private static final String SIGN_UP = "insert into account values(?, ?, 3, 1)";
     private static final String UPDATE_ROLEID = "UPDATE account SET role_id = 2 WHERE username = ?";
@@ -50,7 +50,8 @@ public class UserDAO {
                 if(role_id == 2){
                     int status = Integer.parseInt(rs.getString("status"));
                     int shop_id = rs.getInt("shop_id");
-                    user = new UserDTO(username, password, role_id, status, shop_id);
+                    String shop_name=  rs.getString("shop_name");
+                    user = new UserDTO(username, password, role_id, status, shop_id, shop_name);
                 } else if (role_id == 1){
                     int status = Integer.parseInt(rs.getString("status"));
                     user = new UserDTO(username, password, role_id, status);

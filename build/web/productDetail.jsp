@@ -136,8 +136,23 @@ if(loginUser != null) {
                             <a href="MainController?action=ViewRecipe" class="nav-item nav-link">Khẩu phần</a>  
 
 
-                            <a href="userProfile.jsp" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>  
-                                <%  if(loginUser != null) {
+                                <% if(loginUser != null) {
+                            if(loginUser.getRole() == 1){
+                            loginUser.setFullname("Admin Account");
+                    %>
+                            
+                    <a href="adminDashboard.jsp" class="nav-item nav-link"><i class="fa-solid fa-user-gear"></i></a>
+                        <%
+                        } else if(loginUser.getRole() == 2){
+                        %>
+                    <a href="accountShop.jsp" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
+                    <%
+                        } else{
+                        %>
+                    <a href="MainController?action=ViewProfile&username=<%= loginUser.getUsername() %>" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
+                                <%  
+                                    }}
+                                    if(loginUser != null) {
             
                                 %>
                             <div class="nav-item dropdown"> 

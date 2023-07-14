@@ -83,10 +83,11 @@
                             if(loginUser != null) {
                         %>
                         <a  href="MainController?action=ViewCart&customer_id=<%= loginUser.getCustomer_id() %>"class="shopping">
-                            <%}%>
+                            
                             <i class="fa fa-shopping-cart" style="font-size:25px;"></i>
 
                         </a>
+                        <%}%>
                     </div>
 
 

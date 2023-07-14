@@ -6,7 +6,7 @@
 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Fbird</title>
+        <title>Kết quả tìm kiếm cho: "${SEARCH}"</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Free HTML Templates" name="keywords">
         <meta content="Free HTML Templates" name="description">
@@ -173,8 +173,6 @@
                         <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Loại hàng cho chim</h5>
                         <div class="d-flex flex-column justify-content-start">
                             <a class="text-body mb-2" href="food.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thức ăn</a>
-                            <a class="text-body mb-2" href="drinks.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thức uống</a>
-                            <a class="text-body mb-2" href="supplement.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thực phẩm bổ sung</a>
                             <a class="text-body mb-2" href="medicine.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thuốc</a>
                         </div>
                     </div>

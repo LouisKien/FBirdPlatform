@@ -13,8 +13,21 @@
 <!DOCTYPE html>
 <html>
     <head>
+
         <meta charset="UTF-8">
-        <title>Product Details Page</title>
+        <% 
+            List<ProductDTO> listProductDetailHeader = (List<ProductDTO>) request.getAttribute("LIST_ProductDetail");
+           
+            if (listProductDetailHeader != null && !listProductDetailHeader.isEmpty()) {
+          
+                for (ProductDTO LPD : listProductDetailHeader) {
+               
+        %>
+        <title><%= LPD.getTitle() %></title>
+        <%
+                }
+            }
+        %>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -65,7 +78,7 @@
             </div>
             <div style="background-color: #BCDAE0;">
                 <!-- Navbar Start -->
-                
+
                 <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm py-3 py-lg-0 px-3 px-lg-0 mb-5">
                     <a href="MainController" class="navbar-brand ms-lg-5">
                         <h1 class="m-0 text-uppercase text-dark"><i class="bi bi-shop fs-1 text-primary me-3"></i>FBIRD</h1>
@@ -79,15 +92,15 @@
                          margin-bottom: 50px;
                          ">
                         <form action="MainController" method="POST">
-                
-                <div class="searchBar">
-                    <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Search" value="" />
-                    <button id="searchQuerySubmit" type="submit" name="action" value="searchQuerySubmit">
-                        <svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="#666666" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
-                        </svg>
-                    </button>
-                </div>
-                </form>
+
+                            <div class="searchBar">
+                                <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Search" value="" />
+                                <button id="searchQuerySubmit" type="submit" name="action" value="searchQuerySubmit">
+                                    <svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="#666666" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </form>
                     </div>
 
                     <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -96,37 +109,37 @@
 UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
 if(loginUser != null) {
             
-                %>
+                            %>
                             <div class="nav-item nav-link" style="width: max-content">
                                 <a  href="MainController?action=ViewCart&customer_id=<%= loginUser.getCustomer_id() %>"class="shopping">
 
                                     <i class="fa fa-shopping-cart" style="font-size:25px;"></i> 
                                 </a>   
                             </div>
-                                <%}else{%>
-                                <div class="nav-item nav-link" style="width: max-content">
+                            <%}else{%>
+                            <div class="nav-item nav-link" style="width: max-content">
                                 <a  href=""class="shopping">
 
                                     <i class="fa fa-shopping-cart" style="font-size:25px;"></i> 
                                 </a>   
                             </div>
-                                <%}%>
+                            <%}%>
 
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Danh mục</a>
-                        <div class="dropdown-menu m-0">
-                            <a href="MainController?action=productpage" class="dropdown-item">Sản phẩm</a>
-                            <a href="MainController?action=foodpage" class="dropdown-item">Thức ăn</a>
-                            <a href="MainController?action=medicinepage" class="dropdown-item">Thuốc</a>
-                        </div>
+                                <div class="dropdown-menu m-0">
+                                    <a href="MainController?action=productpage" class="dropdown-item">Sản phẩm</a>
+                                    <a href="MainController?action=foodpage" class="dropdown-item">Thức ăn</a>
+                                    <a href="MainController?action=medicinepage" class="dropdown-item">Thuốc</a>
+                                </div>
                             </div>
                             <a href="MainController?action=ViewRecipe" class="nav-item nav-link">Khẩu phần</a>  
 
 
                             <a href="userProfile.jsp" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>  
-<%  if(loginUser != null) {
+                                <%  if(loginUser != null) {
             
-                %>
+                                %>
                             <div class="nav-item dropdown"> 
                                 <a href="#" class="nav-item nav-link nav-contact bg-primary text-white px-3 ms-lg-3" data-bs-toggle="dropdown"><%= loginUser.getFullname() %></a>
                                 <div class="dropdown-menu m-3">
@@ -134,7 +147,7 @@ if(loginUser != null) {
                                     <a href="MainController?action=Logout" class="dropdown-item">LOG OUT</a>
                                 </div>
                             </div>
-                              
+
                             <input style="display: none" name="customer_id" value="<%= loginUser.getCustomer_id() %>">
                             <%}else{%>
                             <a href="login.jsp" class="nav-item nav-link">Đăng nhập</a>
@@ -290,7 +303,7 @@ if(loginUser != null) {
                             }
 
                             function addtocartv2() {
-                                 var mess = document.querySelector('div[name="mess"]');
+                                var mess = document.querySelector('div[name="mess"]');
                                 var optional_shop_product_item_id = document.querySelector('input[name="optional"]:checked').id;
                                 var quantity = document.getElementsByName('productQuantity')[0].value;
                                 var customer_id = document.getElementsByName('customer_id')[0].value;
@@ -299,7 +312,7 @@ if(loginUser != null) {
                                 console.log(optional_shop_product_item_id);
                                 console.log(quantity);
                                 console.log(customer_id);
-                                
+
 
 
                                 submitForm("AddToCart", quantity, optional_shop_product_item_id, customer_id);
@@ -313,9 +326,9 @@ if(loginUser != null) {
 
                             <div class="btn-box">
                                 <button class="btn btn-primary cart-btn" onclick="addtocartv2()" type="button">Thêm vào giỏ hàng</button>
-                                
+
                                 <button class="btn btn-primary buy-btn">Mua ngay</button>
-                                
+
                             </div>
                             <div name="mess" style="color: red;margin-top: 5%; font-weight: bold;"></div>
                         </form>
@@ -516,8 +529,6 @@ List<FeedbackDTO> listAllFeedback = (List<FeedbackDTO>) request.getAttribute("LI
                             <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Loại hàng cho chim</h5>
                             <div class="d-flex flex-column justify-content-start">
                                 <a class="text-body mb-2" href="food.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thức ăn</a>
-                                <a class="text-body mb-2" href="drinks.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thức uống</a>
-                                <a class="text-body mb-2" href="supplement.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thực phẩm bổ sung</a>
                                 <a class="text-body mb-2" href="medicine.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thuốc</a>
                             </div>
                         </div>

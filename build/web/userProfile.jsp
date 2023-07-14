@@ -13,7 +13,7 @@
 
     <head>
         <meta charset="utf-8">
-        <title>FBird</title>
+        <title>Thông tin người dùng</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Free HTML Templates" name="keywords">
         <meta content="Free HTML Templates" name="description">
@@ -193,22 +193,34 @@
 
                                             <div class="form-group">
                                                 <label for="username">Tên đăng nhập:</label>
-                                                <input name="username" type="text" class="form-control" id="username" value="<%= c.getUsername() %>">
+                                                <input name="username" type="text" class="form-control" id="username" readonly="" value="<%= c.getUsername() %>">
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="name">Tên:</label>
-                                                <input name="fullname" type="text" class="form-control" id="name" value="<%=c.getFullname()%>">
+                                                <input name="fullname" type="text" class="form-control" id="name" <%
+                                                            if(c.getFullname() == null){
+                                                %>placeholder="Chưa có thông tin"<%
+                                                    } else {%>value="<%= c.getFullname()%>"<%}
+                                                       %>">
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="email">Email:</label>
-                                                <input name="email" type="text" class="form-control" id="email" value="<%= c.getEmail() %>">
+                                                <input name="email" type="text" class="form-control" id="email" <%
+                                                            if(c.getEmail() == null){
+                                                %>placeholder="Chưa có thông tin"<%
+                                                    } else {%>value="<%= c.getEmail()%>"<%}
+                                                       %>>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="phone">SĐT:</label>
-                                                <input name="phone" type="text" class="form-control" id="phone" value="<%= c.getPhone() %>">
+                                                <label for="phone">Số điện thoại:</label>
+                                                <input name="phone" type="text" class="form-control" id="phone" <%
+                                                            if(c.getPhone() == null){
+                                                %>placeholder="Chưa có thông tin"<%
+                                                    } else {%>value="<%= c.getPhone()%>"<%}
+                                                       %>>
                                             </div>
 
                                             <div class="form-group">
@@ -296,8 +308,6 @@
                         <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Loại hàng cho chim</h5>
                         <div class="d-flex flex-column justify-content-start">
                             <a class="text-body mb-2" href="food.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thức ăn</a>
-                            <a class="text-body mb-2" href="drinks.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thức uống</a>
-                            <a class="text-body mb-2" href="supplement.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thực phẩm bổ sung</a>
                             <a class="text-body mb-2" href="medicine.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thuốc</a>
                         </div>
                     </div>

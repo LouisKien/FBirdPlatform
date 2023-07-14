@@ -9,7 +9,7 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Đăng nhập</title>
+        <title>Đăng nhập - F-Bird</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 

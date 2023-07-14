@@ -6,7 +6,7 @@
 
         <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Fbird</title>
+        <title>Thức ăn cho chim cảnh</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Free HTML Templates" name="keywords">
         <meta content="Free HTML Templates" name="description">
@@ -86,8 +86,22 @@
                     <a href="MainController?action=ViewRecipe" class="nav-item nav-link">Khẩu phần</a>                      
                     <a href="userProfile.jsp" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
                     <a href="adminDashboard.jsp" class="nav-item nav-link"><i class="fa-solid fa-user-gear"></i></a>
+                    <%
+                
+                if(loginUser != null) {
+            
+                        %>
+                    <div class="nav-item dropdown"> 
+                        <a href="#" class="nav-item nav-link nav-contact bg-primary text-white px-3 ms-lg-3" data-bs-toggle="dropdown"><%= loginUser.getFullname() %></a>
+                        <div class="dropdown-menu m-3">
+                            <a href="MainController?action=ViewProfile&username=<%= loginUser.getUsername() %>" class="dropdown-item">View Profile</a>
+                            <a href="MainController?action=Logout" class="dropdown-item">LOG OUT</a>
+                        </div>
+                    </div>
+                    <%}else{%>
                     <a href="login.jsp" class="nav-item nav-link">Đăng nhập</a>
                     <a href="register.jsp" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5">Đăng ký<i class="bi bi-arrow-right"></i></a>
+                        <%}%>
 
                 </div>
             </div>
@@ -100,7 +114,7 @@
             <div class="container">
                 <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
                     <h6 class="text-primary text-uppercase">Sản phẩm</h6>
-                    <h1 class="display-5 text-uppercase mb-0">Chim vui - chim khỏe hãy đến shop tôi</h1>
+                    <h1 class="display-5 text-uppercase mb-0" style="font-size: 30px">Thức ăn cho chim cảnh</h1>
                 </div>
         <div class="col-xl-12">
             <div class="products-area products-area3">
@@ -173,8 +187,6 @@
                             <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Loại hàng cho chim</h5>
                             <div class="d-flex flex-column justify-content-start">
                                 <a class="text-body mb-2" href="food.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thức ăn</a>
-                                <a class="text-body mb-2" href="drinks.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thức uống</a>
-                                <a class="text-body mb-2" href="supplement.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thực phẩm bổ sung</a>
                                 <a class="text-body mb-2" href="medicine.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thuốc</a>
                             </div>
                         </div>

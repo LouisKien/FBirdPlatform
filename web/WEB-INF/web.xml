@@ -293,7 +293,7 @@
     </servlet-mapping>
     <session-config>
         <session-timeout>
-            120
+            -1
         </session-timeout>
     </session-config>
 </web-app>

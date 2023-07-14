@@ -49,6 +49,13 @@ public class ShopDTO {
         this.username = username;
         this.shop_status = shop_status;
     }
+
+    public ShopDTO(String shopName, String avatar) {
+        this.shopName = shopName;
+        this.avatar = avatar;
+    }
+
+    
     
     public String getUsername() {
         return username;

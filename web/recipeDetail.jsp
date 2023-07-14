@@ -1,21 +1,13 @@
-<%-- 
-    Document   : productDetail
-    Created on : Jun 23, 2023, 1:28:03 PM
-    Author     : Khanh
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
-<%@page import="fbird.feedback.FeedbackDTO"%>
+<%@page import="fbird.cart.CartDTO"%>
+<%@page import="fbird.user.UserDTO"%>
+<%@page import="fbird.shop.ShopDTO"%>
 <%@page import="fbird.product.ProductDTO"%>
 <%@page import="fbird.recipe.RecipeDTO"%>
-<%@page import="fbird.user.UserDTO"%>
-<%@page import="fbird.optionalshopproductitem.OptionalshopproductitemDTO"%>
-<!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Recipe Details Page</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Product Details Page</title>
@@ -48,10 +40,6 @@
         <script src="https://kit.fontawesome.com/39834b73e4.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <%
-        List<RecipeDTO> listRecipeDetail = (List<RecipeDTO>) request.getAttribute("RECIPE_DETAIL");
-        List<ProductDTO> listProductDetail = (List<ProductDTO>) request.getAttribute("LIST_ProductDetail");
-        %>
         <div style="background-color: #BCDAE0;">
         <!-- Navbar Start -->
         <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm py-3 py-lg-0 px-3 px-lg-0 mb-5">
@@ -66,58 +54,41 @@
                  margin-top: 50px;
                  margin-bottom: 50px;
                  ">
-                <form action="MainController" method="POST">
-                
                 <div class="searchBar">
                     <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Search" value="" />
-                    <button id="searchQuerySubmit" type="submit" name="action" value="searchQuerySubmit">
+                    <button id="searchQuerySubmit" type="submit" name="searchQuerySubmit">
                         <svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="#666666" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
                         </svg>
                     </button>
                 </div>
-                </form>
             </div>
+            <%
+                List<RecipeDTO> recipe = (List<RecipeDTO>) request.getAttribute("RECIPE_DETAIL");
+                ShopDTO shop = (ShopDTO) request.getAttribute("SHOP_RECIPE");
+                if(recipe != null && shop != null){
+            %>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <% 
-                            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-                            if(loginUser != null) {
-                        %>
-                        <a  href="MainController?action=ViewCart&customer_id=<%= loginUser.getCustomer_id() %>"class="shopping">
-                            
-                            <i class="fa fa-shopping-cart" style="font-size:25px;"></i>
-
-                        </a>
-                        <%}%>
+                    <a href="addtocart.html" class="nav-item nav-link" style="width: max-content">
+                        <i class="fa fa-shopping-cart" style="font-size:25px; "></i>
+                    </a>
 
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Danh mục</a>
                         <div class="dropdown-menu m-0">
-                            <a href="MainController?action=productpage" class="dropdown-item">Sản phẩm</a>
-                            <a href="MainController?action=foodpage" class="dropdown-item">Thức ăn</a>
-                            <a href="MainController?action=medicinepage" class="dropdown-item">Thuốc</a>
+                            <a href="product.html" class="dropdown-item">Sản phẩm</a>
+                            <a href="food.html" class="dropdown-item">Thức ăn</a>
+                            <a href="drinks.html" class="dropdown-item">Thức uống</a>
+                            <a href="supplement.html" class="dropdown-item">Thực phẩm bổ sung</a>
+                            <a href="medicine.html" class="dropdown-item">Thuốc</a>
                         </div>
                     </div>
-                    <a href="MainController?action=ViewRecipe" class="nav-item nav-link">Khẩu phần</a>  
+                    <a href="recipe.jsp" class="nav-item nav-link">Khẩu phần</a>  
                     
                     <a href="accountShop.jsp" class="nav-item nav-link" >tài khoản shop (demo)</a>
                     <a href="userProfile.jsp" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>  
-                    <%
-                
-                if(loginUser != null) {
-            
-                        %>
-                    <div class="nav-item dropdown"> 
-                        <a href="#" class="nav-item nav-link nav-contact bg-primary text-white px-3 ms-lg-3" data-bs-toggle="dropdown"><%= loginUser.getFullname() %></a>
-                        <div class="dropdown-menu m-3">
-                            <a href="MainController?action=ViewProfile&username=<%= loginUser.getUsername() %>" class="dropdown-item">View Profile</a>
-                            <a href="MainController?action=Logout" class="dropdown-item">LOG OUT</a>
-                        </div>
-                    </div>
-                    <%}else{%>
                     <a href="login.jsp" class="nav-item nav-link">Đăng nhập</a>
                     <a href="register.jsp" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5">Đăng ký<i class="bi bi-arrow-right"></i></a>
-                        <%}%>
                 </div>
             </div>
         </nav>
@@ -130,23 +101,23 @@
                 </div>
                 <div class="images">
                     <div class="small-img">
-                        <img src="img/product-1.png" onclick="showImg(this.src)">
+                        <img src="<%=recipe.get(0).getImage_1()%>" onclick="showImg(this.src)">
                     </div>
                     <div class="small-img">
-                        <img src="img/product-2.png" onclick="showImg(this.src)">
+                        <img src="<%=recipe.get(0).getImage_2()%>" onclick="showImg(this.src)">
                     </div>
                     <div class="small-img">
-                        <img src="img/product-3.png" onclick="showImg(this.src)">
+                        <img src="<%=recipe.get(0).getImage_3()%>" onclick="showImg(this.src)">
                     </div>
                     <div class="small-img">
-                        <img src="img/product-4.png" onclick="showImg(this.src)">
+                        <img src="<%=recipe.get(0).getImage_4()%>" onclick="showImg(this.src)">
                     </div>
                 </div>
             </div>
 
             <div class="right">
-                <div class="url"><a class="url1" href="MainController">Trang chủ</a>  >   <a class="url1" href="product.html">Sản phẩm</a> >   <a class="url1" href="recipe.jsp">Khẩu phần cho chim</a></div>
-                <div class="pname"><%= listRecipeDetail.get(0).getTitle_recipe() %></div>
+                <div class="url"><a class="url1" href="index.jsp">Trang chủ</a>  >   <a class="url1" href="product.html">Sản phẩm</a> >   <a class="url1" href="recipe.jsp">Khẩu phần cho chim</a></div>
+                <div class="pname"><%= recipe.get(0).getTitle_recipe()%></div>
                 <div class="ratings">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
@@ -154,15 +125,9 @@
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star-half-alt"></i>
                 </div>
-                <div class="price"><%= listRecipeDetail.get(0).getTotal_price() %></div>
+                <div class="price"><%= recipe.get(0).getTotal_price()%> đ</div>
 
-<!--                <div class="size">
-                    <p>Loại :</p>
-                    <div class="psize active">0.2kg</div>
-                    <div class="psize">0.5kg</div>
-                    <div class="psize">1kg</div>
-                    <div class="psize">2kg</div>
-                </div>-->
+                
                 <div class="quantity">
                     <p>Số lượng :</p>
                     <input type="number" min="1" max="5" value="1">
@@ -182,9 +147,24 @@
                     </div>
                 </a>
                 <div class="shop-name" style="display: flex; flex-direction: column;">
-                    <div><%= listProductDetail.get(0).getShop_name() %></div>
+                    <div><%=shop.getShopName() %></div>
                     <div><a href="shopProduct.jsp">Xem ngay</a></div>
                 </div>
+                    <%
+List<ProductDTO> listShopProductItemId = (List<ProductDTO>) request.getAttribute("LIST_ShopProductItemId");
+List<FeedbackDTO> listAllFeedback = (List<FeedbackDTO>) request.getAttribute("LIST_AllFeedback");
+ int countid=0;
+ int countfeedback=0;
+ for (ProductDTO LSPII : listShopProductItemId) {
+      countid++;
+ }
+    
+ for (FeedbackDTO LAF : listAllFeedback) {
+     if (LAF != null ) {
+      countfeedback++;
+ }
+ }
+ %>
                 <div style="display: flex; flex-direction: column;">
                     <div>Đánh giá</div>
                     <div style="color: red;">80k</div>
@@ -200,14 +180,14 @@
             </div>
             </div>
         </div>
-
+<%}%>
             <h1 style="text-transform: uppercase;
                 color: #7ab730;">Chi tiết sản phẩm</h1>
             <h1 style="  text-align: center;
                 font-size: 20px;
                 display:block;
                 line-height: 1.2;">
-                <%= listRecipeDetail.get(0).getDescription() %>
+                <%= recipe.get(0).getDescription()%>
             </h1>
             <div style="margin-top: 50px;">
                 <div class="mb-5">

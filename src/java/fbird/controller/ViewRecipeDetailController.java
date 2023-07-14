@@ -4,9 +4,14 @@
  */
 package fbird.controller;
 
+
+import fbird.feedback.FeedbackDAO;
+import fbird.feedback.FeedbackDTO;
 import fbird.product.ProductDAO;
+import fbird.product.ProductDTO;
 import fbird.recipe.RecipeDAO;
 import fbird.recipe.RecipeDTO;
+import fbird.shop.ShopDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -23,7 +28,7 @@ import java.util.List;
 public class ViewRecipeDetailController extends HttpServlet {
     
     private static final String ERROR = "recipeDetail.jsp";
-    private static final String SUCCESS = "recipeDetail1.jsp";
+    private static final String SUCCESS = "recipeDetail.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -31,12 +36,19 @@ public class ViewRecipeDetailController extends HttpServlet {
         String url = ERROR;
         try{
             int recipeID = Integer.parseInt(request.getParameter("recipeID"));
+            ProductDAO daoproduct = new ProductDAO();              
+            FeedbackDAO daofeedback = new FeedbackDAO();
             RecipeDAO dao = new RecipeDAO();
-            ProductDAO daoproduct = new ProductDAO();
             List<RecipeDTO> rec = dao.getRecipeDetail(recipeID);
+            ShopDTO shopRecipe = dao.getShopRecipe(recipeID);
+//            List<ProductDTO> ShopProductItemId = daoproduct.getShopProductItemId(shop_id);
+//             List<FeedbackDTO> AllFeedback = daofeedback.getAllFeedback(shop_id);
             if(!rec.isEmpty()){
                 url = SUCCESS;
+                request.setAttribute("SHOP_RECIPE", shopRecipe);
                 request.setAttribute("RECIPE_DETAIL", rec);
+//                request.setAttribute("LIST_ShopProductItemId", ShopProductItemId);
+//                request.setAttribute("LIST_AllFeedback", AllFeedback);
             }
         }catch(Exception e){
             log("Error at ViewRecipeDetailController:" + e.toString());

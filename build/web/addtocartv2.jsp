@@ -225,9 +225,10 @@ function totalPriceDefault(itemId) {
                                                 <h5>10000đ</h5>
                                             </div>
 
-                                            <button type="button" class="btn btn-dark btn-block btn-lg"
-                                                    data-mdb-ripple-color="dark">Mua ngay</button>
-
+<!--                                            <button type="button" class="btn btn-dark btn-block btn-lg"
+                                                    data-mdb-ripple-color="dark">Mua ngay</button>-->
+                                                <a href="order.jsp" class="btn btn-dark btn-block btn-lg"
+                                                    data-mdb-ripple-color="dark">Mua ngay</a>
                                         </div>
                                     </div>
                                 </div>

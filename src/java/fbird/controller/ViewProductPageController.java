@@ -27,12 +27,20 @@ public class ViewProductPageController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
+            String index = request.getParameter("index");
+            if (index == null) {
+                index = "1";
+            }
+            int indexPage = Integer.parseInt(index);
+
             ProductDAO dao = new ProductDAO();
-                List<ProductDTO> listProduct = dao.getProductHomePage();
-                if (listProduct.size() > 0) {
-                    request.setAttribute("LIST_PRODUCT_PAGE", listProduct);
-                    url = SUCCESS;
-                }
+            List<ProductDTO> listProduct = dao.getProductPaging(indexPage);
+            int countPage = dao.getNumberProductPage();
+            if (listProduct.size() > 0) {
+                request.setAttribute("LIST_PRODUCT_PAGE", listProduct);
+                request.setAttribute("PAGE_NUMBER", countPage);
+                url = SUCCESS;
+            }
         } catch (Exception e) {
             log("ERROR at ViewProductPageController: " + e.toString());
         } finally {

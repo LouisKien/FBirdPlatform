@@ -53,7 +53,7 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="profileDropdown">
 
-                        <li><a class="dropdown-item" style="width: 239px;" href="tatCaSanPham.jsp">Tất cả sản phẩm</a></li>
+                        <li><a class="dropdown-item" style="width: 239px;" href="MainController?action=ViewProduct&shop_id=${sessionScope.LOGIN_USER.getShop_id()}">Tất cả sản phẩm</a></li>
                         <li><a class="dropdown-item" style="width: 239px;" href="sanPhamViPham.jsp">Sản phẩm vi phạm</a></li>
                         <li><a class="dropdown-item" style="width: 239px;" href="themSanPham.jsp">Thêm sản phẩm</a></li>
                     </ul>
@@ -93,7 +93,7 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fas fa-user me-2"></i>FPT Shop
+                                    <i class="fas fa-user me-2"></i>${sessionScope.LOGIN_USER.getFullname()}
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="hoSoShop.jsp">Hồ sơ</a></li>

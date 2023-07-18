@@ -30,8 +30,9 @@ public class ViewProductController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try{
+            int shop_id = Integer.parseInt(request.getParameter("shop_id"));
             ProductDAO dao = new ProductDAO();
-            List<ProductDTO> listProduct = dao.getListProduct();
+            List<ProductDTO> listProduct = dao.getListProduct(shop_id);
             if(listProduct.size()>0){
                 request.setAttribute("LIST_PRODUCT", listProduct);
                 url = SUCCESS;

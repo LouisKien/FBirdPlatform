@@ -32,6 +32,8 @@ public class MainController extends HttpServlet {
     private static final String VIEW_CART_CONTROLLER = "ViewCartController";
     private static final String VIEW_SHOP_PRODUCT = "ViewShopProduct";
     private static final String VIEW_SHOP_PRODUCT_CONTROLLER = "ViewShopProductController";
+    private static final String VIEW_ODER_ADDRESS = "ViewOderAddress";
+    private static final String VIEW_ODER_ADDRESS_CONTROLLER = "ViewAddressController";
 
     private static final String VIEW_ACCOUNT = "ViewAccount";
     private static final String VIEW_ACCOUNT_CONTROLLER = "ViewAccountController";
@@ -116,7 +118,8 @@ public class MainController extends HttpServlet {
             } else if (DELETE_REPORTED_SHOP.equals(action)) {
                 url = DELETE_REPORTED_SHOP_CONTROLLER;
 
-            } else if (HOMEPAGE.equals(action)) {
+            }
+            else if (HOMEPAGE.equals(action)) {
                 url = VIEW_HOMEPAGE;
             } else if (VIEW_PRODUCT_DETAIL.equals(action)) {
                 url = VIEW_PRODUCT_DETAIL_CONTROLLER;
@@ -156,6 +159,8 @@ public class MainController extends HttpServlet {
                 url = VIEW_MEDICINE_PAGE_CONTROLLER;
             } else if (VIEW_CUSTOMER_PROFILE.equals(action)) {
                 url = VIEW_CUSTOMER_PROFILE_CONTROLLER;
+            }else if (VIEW_ODER_ADDRESS.equals(action)) {
+                url = VIEW_ODER_ADDRESS_CONTROLLER;
             }
             else {
                 request.setAttribute("ERROR", "Your ACTION is not support");

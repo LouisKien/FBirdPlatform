@@ -37,7 +37,7 @@ public class CartDTO {
         this.customer_id = customer_id;
         this.quantity = quantity;
         
-    }
+    }   
 
     public String getImage_1() {
         return image_1;

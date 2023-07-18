@@ -4,22 +4,22 @@
  */
 package fbird.controller;
 
+
+import fbird.order.OrderDAO;
+import fbird.order.OrderDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import fbird.cart.CartDAO;
-import fbird.cart.CartDTO;
 import java.util.List;
-
 
 /**
  *
  * @author Admin
  */
-public class ViewCartController extends HttpServlet {
+public class ViewAddressController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,29 +33,19 @@ public class ViewCartController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-         try {
-
+        
+        try{
             int customer_id = Integer.parseInt(request.getParameter("customer_id"));
-            
-            
-//            int customer_id = Integer.parseInt(request.getParameter("id"));           
-            CartDAO dao = new CartDAO();              
-
-             List<CartDTO> All_Cart_Item = dao.getCart(customer_id);
-             
-                if (!All_Cart_Item.isEmpty()) {
-
-                request.setAttribute("LIST_All_Cart_Item", All_Cart_Item);
+            OrderDAO dao = new OrderDAO();
+            List<OrderDTO> address = dao.getAddress(customer_id);
+            if(address.size()>0){
+                request.setAttribute("ADDRESS", address);
                 
-               
-          
             }
-
-            
-        } catch (Exception ex) {
-            log("Error  " + ex.toString());
-        } finally {
-            request.getRequestDispatcher("addtocartv2.jsp").forward(request, response);
+        }catch(Exception e){
+            log("Error :" + e.toString());
+        }finally{
+            request.getRequestDispatcher("order.jsp").forward(request, response);
         }
     }
 

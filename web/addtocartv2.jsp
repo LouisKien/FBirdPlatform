@@ -58,19 +58,20 @@
             <hr class="my-4">
 
             <div class="row mb-4 d-flex justify-content-between align-items-center cart-items-container">
+                <input type="checkbox" id="myCheckbox" onchange="handleCheckboxChange()">
                 <div class="col-md-2 col-lg-2 col-xl-2">
-                    <img src="<%= cart.getImage_1() %>" class="img-fluid rounded-3" alt="Cotton T-shirt">
+                    <img src="<%= cart.getImage_1() %>" id="img-product" class="img-fluid rounded-3" alt="Cotton T-shirt">
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-3">
-                    <h6 class="text-muted"><%= cart.getCategory_name() %></h6>
-                    <h6 class="text-black mb-0"><%= cart.getTitle() %></h6>
-                    <h6 class="text-black mb-0"><%= cart.getName() %></h6>
+                    <h6  class="text-muted"><%= cart.getCategory_name() %></h6>
+                    <h6  id="name-product" class="text-black mb-0"><%= cart.getTitle() %></h6>
+                    <h6 id="title-product" class="text-black mb-0"><%= cart.getName() %></h6>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
 <!--                    <button class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
                         <i class="fas fa-minus" id="down-<%= cart.getOptional_shop_product_item_id() %>"></i>
                     </button>-->
-                    <input id="quantity-<%= cart.getOptional_shop_product_item_id() %>" min="1" name="quantity-<%= cart.getOptional_shop_product_item_id() %>" value="<%= cart.getQuantity() %>" onchange="updateTotalPrice(<%= cart.getOptional_shop_product_item_id() %>)" type="number" class="form-control form-control-sm" />
+                    <input id="quantity-<%= cart.getOptional_shop_product_item_id() %>" min="1" name="quantity-<%= cart.getOptional_shop_product_item_id() %>" value="<%= cart.getQuantity() %>" onchange="updateElementPrice(<%= cart.getOptional_shop_product_item_id() %>)" type="number" class="form-control form-control-sm" />
 <!--                    <button class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
                         <i class="fas fa-plus"></i>
                     </button> -->
@@ -84,34 +85,40 @@
                 </div>
             </div>
 <script>
-window.onload = () => {
+
+    window.onload = () => {
   var cartItemsContainer = document.getElementsByClassName("cart-items-container");
   var totalPrice = 0;
-  var allPrices = document.getElementById("allprice");
+  
   // Tính tổng giá tiền ban đầu
   for (var i = 0; i < cartItemsContainer.length; i++) {
-    var quantityInput = cartItemsContainer[i].childNodes[5].childNodes[3];
-    var priceElement = cartItemsContainer[i].childNodes[7].childNodes[1];
+    var quantityInput = cartItemsContainer[i].childNodes[7].childNodes[3];
+    var priceElement = cartItemsContainer[i].childNodes[9].childNodes[1];
     var priceText = priceElement.innerText;
     var price = parseFloat(priceText.split("đ")[0]);
-
+    
     // Lưu giá tiền ban đầu vào thuộc tính "data-price"
     quantityInput.setAttribute("data-price", price);
 
     var quantity = parseInt(quantityInput.value);
     var itemTotalPrice = quantity * price;
-    totalPrice += itemTotalPrice;
-
+   
+   
     // Hiển thị tổng giá tiền cho mỗi mục trong giỏ hàng
-    var totalElement = cartItemsContainer[i].childNodes[7].childNodes[3];
+    var totalElement = cartItemsContainer[i].childNodes[9].childNodes[3];
     totalElement.innerText = formatNumber(itemTotalPrice + "") + "đ";
-    allPrices.innerText = formatNumber(totalPrice + "") + "đ";
+    var allPrices = document.getElementById("allprice");
+    allPrices.innerText = 0 + "đ";
+    sessionStorage.setItem("allPrices", JSON.stringify(totalPrice));
   }
+   for (var i = 0; i < checkboxes.length; i++) {
+      checkboxes[i].addEventListener("change", handleCheckboxChange);
+    }
 };
-
+    
 function formatNumber(n) {
     // format number 1000000 to 1,234,567
-    return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 function ConvertToNumber(priceStr) {
     var priceParts = priceStr.split(".");
@@ -122,31 +129,74 @@ function ConvertToNumber(priceStr) {
     return Number.parseInt(price);
 }
   
+  function handleCheckboxChange() {
+      sessionStorage.clear();
+    var cartItemsContainer = document.getElementsByClassName("cart-items-container");
+    var totalPrice = 0;
+    let Allelement = [];
+    for (var i = 0; i < cartItemsContainer.length; i++) {
+      var checkbox = cartItemsContainer[i].querySelector('input[type="checkbox"]');
+      var imgElement = cartItemsContainer[i].childNodes[3].childNodes[1];
+      var name = cartItemsContainer[i].childNodes[5].childNodes[3];
+      var title = cartItemsContainer[i].childNodes[5].childNodes[5];
+      
+      var srcValue = imgElement.getAttribute("src");
+      var nameValue = name.innerText; 
+      var titleValue = title.innerText;
+  
+   
+   
+      var totalElement = cartItemsContainer[i].childNodes[9].childNodes[3];
+      var quantityInput = cartItemsContainer[i].childNodes[7].childNodes[3];
+      var quantity = parseInt(quantityInput.value);
+     var price = ConvertToNumber((totalElement.innerText));
+     
+      if (checkbox.checked) {
+          let Element = [nameValue, titleValue, srcValue, price, quantity];
+//        sessionStorage.setItem("name-"+i, JSON.stringify(nameValue));
+//        sessionStorage.setItem("title-"+i, JSON.stringify(titleValue));
+//        sessionStorage.setItem("img-"+i, JSON.stringify(srcValue));
+//        sessionStorage.setItem("priceElement-"+i, JSON.stringify(price));
+//      sessionStorage.setItem("cartQuantities-"+i, JSON.stringify(quantity));
+        Allelement.push(Element);
+      sessionStorage.setItem("Element", JSON.stringify(Allelement));
+        totalPrice += price;
+      }
+    }
 
+    var allPrices = document.getElementById("allprice");
+    allPrices.innerText = formatNumber(totalPrice + "") + "đ";
+    sessionStorage.setItem("allPrices", JSON.stringify(totalPrice));
+  }
+
+  // Function to handle checkbox change and quantity input change
+  function handleInputChange(event) {
+    updateElementPrice(event);
+    handleCheckboxChange();
+  }
+
+  // Gắn sự kiện onchange cho các input số lượng và checkbox
+  var quantityInputs = document.querySelectorAll('.cart-items-container input[type="number"]');
+  var checkboxes = document.querySelectorAll('.cart-items-container input[type="checkbox"]');
+  for (var i = 0; i < quantityInputs.length; i++) {
+    quantityInputs[i].addEventListener("change", handleInputChange);
+    checkboxes[i].addEventListener("change", handleCheckboxChange);
+  }
   // In ra tổng giá tiền của tất cả sản phẩm
   
   // Cập nhật giá tiền khi thay đổi số lượng
-  function updateTotalPrice(event) {
-      var allPrices = document.getElementById("allprice");
+  function updateElementPrice(event) {
+      
     var quantityInput = event.target;
     var price = ConvertToNumber(quantityInput.getAttribute("data-price"));
     var quantity = parseInt(quantityInput.value);
-    var totalElement = quantityInput.parentNode.parentNode.childNodes[7].childNodes[3];
+    var totalElement = quantityInput.parentNode.parentNode.childNodes[9].childNodes[3];
     var itemTotalPrice = quantity * price;
     totalElement.innerText = formatNumber(itemTotalPrice + "") + "đ";
-
-    // Cập nhật lại tổng giá tiền của tất cả sản phẩm
-    var newTotalPrice = 0;
-    var updatedTotalElements = document.getElementsByClassName("product-price");
     
-    for (var i = 0; i < updatedTotalElements.length; i++) {
-      var updatedPriceText = updatedTotalElements[i].innerText;
-      var updatedPrice = ConvertToNumber(updatedPriceText.split("đ")[0]);
-      newTotalPrice += updatedPrice;
-    }
 
-    allPrices.innerText = formatNumber(newTotalPrice + "") + "đ";
   }
+   
 
   // Gắn sự kiện onchange cho các input số lượng
   var quantityInputs = document.querySelectorAll('.cart-items-container input[type="number"]');
@@ -208,8 +258,7 @@ function ConvertToNumber(priceStr) {
                                                 <div class="allprice" id="allprice"></div>
                                             </div>
 
-                                            <button type="button" class="btn btn-dark btn-block btn-lg"
-                                                    data-mdb-ripple-color="dark">Mua ngay</button>
+                                            <a type="button" class="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark" href="MainController?action=ViewOderAddress&customer_id=<%= loginUser.getCustomer_id() %>" >Mua ngay</a>
 
                                         </div>
                                     </div>

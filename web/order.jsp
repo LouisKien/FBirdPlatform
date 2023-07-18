@@ -7,11 +7,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@page import="fbird.user.UserDTO"%>
+<%@page import="fbird.order.OrderDTO"%>
+<%@page import="java.util.List"%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        
+
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Free HTML Templates" name="keywords">
         <meta content="Free HTML Templates" name="description">
@@ -56,14 +58,14 @@
                  margin-bottom: 50px;
                  ">
                 <form action="MainController" method="POST">
-                
-                <div class="searchBar">
-                    <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Search" value="" />
-                    <button id="searchQuerySubmit" type="submit" name="action" value="searchQuerySubmit">
-                        <svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="#666666" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
-                        </svg>
-                    </button>
-                </div>
+
+                    <div class="searchBar">
+                        <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Search" value="" />
+                        <button id="searchQuerySubmit" type="submit" name="action" value="searchQuerySubmit">
+                            <svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="#666666" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
+                            </svg>
+                        </button>
+                    </div>
                 </form>
             </div>
             <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -117,52 +119,133 @@
                 <h2>Product Order Form</h2>
             </div>
             <div class="d-flex">
+                <%                                                      
+                  //        OrderDTO address = (OrderDTO) request.getAttribute("ADDRESS");
+                           
+                        %>
                 <form>
-
+                    
                     <label>
                         <span>Street Address <span class="required">*</span></span>
-                        <input type="text" name="houseadd" placeholder="House number and street name" required>
+                        <input type="text" name="houseadd"  required value="<%//= address.getPhone() %>">
                     </label>
                     
-                    <div class="row mb-4 d-flex justify-content-between align-items-center">
-                        <div class="col-md-2 col-lg-2 col-xl-2">
-                            <img
-                                src="img/product-2.png"
-                                class="img-fluid rounded-3" alt="Cotton T-shirt">
-                        </div>
-                        <div class="col-md-3 col-lg-3 col-xl-3">
-                            <h6 class="text-muted">Birdfood</h6>
-                            <h6 class="text-black mb-0">Quality Pet Foods</h6>
-                        </div>
-                        <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                            
+                    <div class="row mb-4 d-flex justify-content-between align-items-center" id="element">
 
-                            <input id="form1" min="0" name="quantity" value="1" type="number"
-                                   class="form-control form-control-sm" />
-
-                            
-                        </div>
-                        <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                            <h6 class="mb-0">€ 44.00</h6>
-                        </div>
-                        <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                            <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
-                        </div>
                     </div>
+
                 </form>
+                <script>
+                    var a = '<div></div>';
+                    
+
+
+
+                    document.addEventListener("DOMContentLoaded", function () {
+                        getDataFromSessionStorage();
+                        var shippingOptionSelect = document.getElementById("shippingOption");
+                        shippingOptionSelect.addEventListener("change", updateTotalPrice);
+                    });
+                    function getDataFromSessionStorage() {
+//                        var quantityJson = sessionStorage.getItem("cartQuantities-0");
+//                        var allPricesJson = sessionStorage.getItem("allPrices");
+//                        var priceElement = sessionStorage.getItem("priceElement-0");
+//                        var imgElement = sessionStorage.getItem("img-0");
+//                        var nameElement = sessionStorage.getItem("name-0");
+//                        var titleElement = sessionStorage.getItem("title-0");
+                        var allElement = JSON.parse(sessionStorage.getItem("Element"));
+                       
+                        if (Array.isArray(allElement)) {
+                            // Khai báo một mảng để chứa các đối tượng mới
+
+
+                            // Duyệt qua các phần tử trong elementArray và tạo các đối tượng mới
+                            for (let i = 0; i < allElement.length; i++) {
+                                const [name, title, img, price, quantity] = allElement[i];
+                                
+                                 var a = `<div class="row mt-3">
+    <div class="col-md-2 col-lg-2 col-xl-2">
+        <img src="`+ img+ `" id="imgDisplay" class="img-fluid rounded-3" alt="Cotton T-shirt">
+    </div>
+    <div class="col-md-4 col-lg-4 col-xl-4">
+        <h6 id="nameDisplay" class="text-muted">`+name+`</h6> 
+        <h6 id="titleDisplay" class="text-black mb-0">`+title+`</h6>
+    </div>
+    <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+        <p id="quantityDisplay" name="quantity" type="number"  readonly>`+quantity+`</p>
+    </div>
+    <div class="col-md-3 col-lg-2 pt-4 col-xl-2 offset-lg-1">
+        <h6 id="priceElement" >`+formatNumber(price)+` đ</h6>
+    </div>
+    
+</div>`;          
+                                console.log(title);
+                                document.getElementById('element').innerHTML += a;
+                                // Tạo một đối tượng mới và đẩy vào mảng newObjectArray
+                                
+                               
+
+                            }
+
+                            // Giờ đây, mảng newObjectArray chứa các đối tượng mới với các thuộc tính được trích xuất từ các biến khác nhau
+                           
+                        }
+                         updateTotalDisplay();
+                    }
+                    function formatNumber(n) {
+                        // format number 1000000 to 1,234,567
+                        var numberString = n.toString();
+                        return numberString.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                    }
+                    function updateTotalDisplay() {
+                        
+                        var totalPriceDisplay = document.getElementById("allPriceDisplay");
+                        
+                        var allPrice = JSON.parse(sessionStorage.getItem("allPrices"));
+                        var shippingOptionSelect = document.getElementById("shippingOption");
+                        var shippingCost = parseFloat(shippingOptionSelect.value);
+//                        console.log(data.imgElementValue);
+                       
+                        
+                        var total = allPrice + shippingCost;
+                        
+                            
+                            totalPriceDisplay.innerText = formatNumber(total) + "đ";
+                          
+//                            sessionStorage.clear();
+                        }
+                    
+
+
+
+
+
+
+
+                </script>
                 <div class="Yorder">
                     <table style="margin-left: 15%; text-align: center;">
                         <tr>
-                            <th colspan="2">Your order</th>
+                            <th colspan="2">Your order </th>
                         </tr>
-                        
-                        <tr>
-                            <td>Subtotal</td>
-                            <td style="color: #7AB730;">$88.00</td>
-                        </tr>
+
+
                         <tr>
                             <td>Shipping</td>
-                            <td style="color: #7AB730;">Free shipping</td>
+                            <td>
+                                <div onchange="updateTotalDisplay()">
+                                    <select id="shippingOption" style="min-width: 100%; border-radius: 7px;">
+
+                                        <option value="50000">Hỏa tốc - 50.000đ</option>
+                                        <option value="40000">Nhanh - 40.000đ</option>
+                                        <option value="30000">Tiết kiệm - 30.000đ</option>
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Subtotal</td>
+                            <td id="allPriceDisplay" style="color: #7AB730;"></td>
                         </tr>
                     </table><br>
                     <div>
@@ -186,7 +269,7 @@
     </body>
 </html>
 <style>
-    @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700');
+    /*@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700');*/
 
     body{
         background: url('http://all4desktop.com/data_images/original/4236532-background-images.jpg');

@@ -56,7 +56,7 @@ public class ViewProductHomePageController extends HttpServlet {
 
             
         } catch (Exception ex) {
-            log("Error at Search: " + ex.toString());
+            log("Error  " + ex.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

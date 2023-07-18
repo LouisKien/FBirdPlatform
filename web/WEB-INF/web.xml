@@ -144,6 +144,10 @@
         <servlet-name>ViewCustomerProfileController</servlet-name>
         <servlet-class>fbird.controller.ViewCustomerProfileController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewAddressController</servlet-name>
+        <servlet-class>fbird.controller.ViewAddressController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -290,6 +294,10 @@
     <servlet-mapping>
         <servlet-name>ViewCustomerProfileController</servlet-name>
         <url-pattern>/ViewCustomerProfileController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewAddressController</servlet-name>
+        <url-pattern>/ViewAddressController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

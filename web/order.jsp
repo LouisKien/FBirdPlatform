@@ -120,14 +120,18 @@
             </div>
             <div class="d-flex">
                 <%                                                      
-                  //        OrderDTO address = (OrderDTO) request.getAttribute("ADDRESS");
+                          List<OrderDTO> address = (List<OrderDTO>) request.getAttribute("ADDRESS");
+                          for (OrderDTO adr : address){
+                            
                            
                         %>
                 <form>
-                    
+                    <a href="../src/java/fbird/controller/ViewAddressController.java"></a>
                     <label>
                         <span>Street Address <span class="required">*</span></span>
-                        <input type="text" name="houseadd"  required value="<%//= address.getPhone() %>">
+                        <input type="text" name="houseadd"  required value="<%= adr.toString() %>">
+                        <input type="text" name="houseadd"  required value="<%= adr.getPhone() %>">
+                        <input type="text" name="houseadd"  required value="<%= adr.getPostal_code() %>">
                     </label>
                     
                     <div class="row mb-4 d-flex justify-content-between align-items-center" id="element">
@@ -135,8 +139,12 @@
                     </div>
 
                 </form>
+                    <%
+                        }
+                    %>
                 <script>
-                    var a = '<div></div>';
+    
+  
                     
 
 

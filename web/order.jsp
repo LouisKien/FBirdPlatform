@@ -45,7 +45,7 @@
         <script src="https://kit.fontawesome.com/39834b73e4.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm py-3 py-lg-0 px-3 px-lg-0 mb-5" style="margin-top: -50px;">
+        <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm py-3 py-lg-0 px-3 px-lg-0 mb-5" style="margin-top: -80px;">
             <a href="MainController" class="navbar-brand ms-lg-5">
                 <h1 class="m-0 text-uppercase text-dark"><i class="bi bi-shop fs-1 text-primary me-3"></i>FBird</h1>
             </a>
@@ -60,7 +60,7 @@
                 <form action="MainController" method="POST">
 
                     <div class="searchBar">
-                        <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Search" value="" />
+                        <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Tìm kiếm sản phẩm" required="" value="" />
                         <button id="searchQuerySubmit" type="submit" name="action" value="searchQuerySubmit">
                             <svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="#666666" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
                             </svg>
@@ -77,10 +77,11 @@
                             if(loginUser != null) {
                         %>
                         <a  href="MainController?action=ViewCart&customer_id=<%= loginUser.getCustomer_id() %>"class="shopping">
-                            <%}%>
+
                             <i class="fa fa-shopping-cart" style="font-size:25px;"></i>
 
                         </a>
+                        <%}%>
                     </div>
 
 
@@ -89,22 +90,35 @@
                         <div class="dropdown-menu m-0">
                             <a href="MainController?action=productpage" class="dropdown-item">Sản phẩm</a>
                             <a href="MainController?action=foodpage" class="dropdown-item">Thức ăn</a>
-                            <a href="MainController?action=medicinepage" class="dropdown-item">Thuốc</a>
+                            <a href="MainController?action=medicinepage" class="dropdown-item">Thuốc - Dược phẩm</a>
                         </div>
                     </div>
-                    <a href="MainController?action=ViewRecipe" class="nav-item nav-link">Khẩu phần</a>                      
-                    <a href="userProfile.jsp" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
+                    <a href="MainController?action=ViewRecipe" class="nav-item nav-link">Khẩu phần</a>
+                    <% if(loginUser != null) {
+                            if(loginUser.getRole() == 1){
+                            loginUser.setFullname("Admin Account");
+                    %>
+                            
                     <a href="adminDashboard.jsp" class="nav-item nav-link"><i class="fa-solid fa-user-gear"></i></a>
                         <%
-                
+                        } else if(loginUser.getRole() == 2){
+                        %>
+                    <a href="accountShop.jsp" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
+                    <%
+                        } else{
+                        %>
+                    <a href="MainController?action=ViewProfile&username=<%= loginUser.getUsername() %>" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
+                        <%
+                            }
+}
                 if(loginUser != null) {
             
                         %>
                     <div class="nav-item dropdown"> 
                         <a href="#" class="nav-item nav-link nav-contact bg-primary text-white px-3 ms-lg-3" data-bs-toggle="dropdown"><%= loginUser.getFullname() %></a>
                         <div class="dropdown-menu m-3">
-                            <a href="MainController?action=ViewProfile&username=<%= loginUser.getUsername() %>" class="dropdown-item">View Profile</a>
-                            <a href="MainController?action=Logout" class="dropdown-item">LOG OUT</a>
+                            <a href="MainController?action=ViewProfile&username=<%= loginUser.getUsername() %>" class="dropdown-item">Tài khoản</a>
+                            <a href="MainController?action=Logout" class="dropdown-item">Đăng xuất</a>
                         </div>
                     </div>
                     <%}else{%>
@@ -274,6 +288,16 @@
                 </div><!-- Yorder -->
             </div>
         </div>
+                <a href="#" class="btn btn-primary py-3 fs-4 back-to-top"><i class="bi bi-arrow-up"></i></a>
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+        <!-- Template Javascript -->
+        <script src="js/main.js"></script>
     </body>
 </html>
 <style>

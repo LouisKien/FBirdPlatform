@@ -30,10 +30,17 @@ public class ViewProductController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try{
+            String index = request.getParameter("index");
+            if (index == null) {
+                index = "1";
+            }
+            int indexPage = Integer.parseInt(index);
             int shop_id = Integer.parseInt(request.getParameter("shop_id"));
             ProductDAO dao = new ProductDAO();
-            List<ProductDTO> listProduct = dao.getListProduct(shop_id);
+            int countPage = dao.getNumberProductPageShopAccount(shop_id);
+            List<ProductDTO> listProduct = dao.getListProduct(shop_id, indexPage);
             if(listProduct.size()>0){
+                request.setAttribute("PAGE_NUMBER", countPage);
                 request.setAttribute("LIST_PRODUCT", listProduct);
                 url = SUCCESS;
             }

@@ -11,6 +11,8 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
         <link rel="stylesheet" href="dashboard-shop/styles.css" />
+        
+        <script src="https://kit.fontawesome.com/39834b73e4.js" crossorigin="anonymous"></script>
 
     </head>
 
@@ -118,15 +120,15 @@
                             <table class="table bg-white rounded shadow-sm  table-hover">
                                 <thead>
                                     <tr>
-<!--                                        <th scope="col" width="50">#</th>-->
+                                        <!--                                        <th scope="col" width="50">#</th>-->
                                         <th scope="col">Mã Sản Phẩm</th>
-                                        <th scope="col">Mã Loại Hàng</th>
-                                        <th scope="col">Mã Loại Chim</th>
+                                        
                                         <th scope="col">Tên Sản Phẩm</th>
-                                        <th scope="col">Mô Tả</th>
+                                        
                                         <th scope="col">Số Lượng</th>
                                         <th scope="col">Ngày đăng kí</th>
                                         <th scope="col">Trạng Thái</th>
+                                        <th scope="col" style="text-align: center">Tùy chọn</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -245,48 +247,68 @@
                                         int count = 1;
                                         for (ProductDTO pro : list){
                                     %>
-                                    
-                                    <form action="MainController">
-                                        <tr>
-                                            <td>
-                                                <%= pro.getShopProductItemID() %>
-                                            </td>
-                                            <td>
-                                                <%= pro.getCategoryID() %>
-                                            </td>
-                                            <td>
-                                                <%= pro.getTypeOfBirdID() %>
-                                            </td>
-                                            <td>
-                                                <input type="text" name="title" value="<%= pro.getTitle() %>"/>
-                                            </td>
-                                            <td>
-                                                <p oninput=""><%= pro.getDescription() %></p>
-                                                </input>
-                                            </td>
-                                            <td>
-                                                <input type="number" name="inventory" value="<%= pro.getInventory() %>" min="0"/>
-                                            </td>
-                                            <td>
-                                                <%= pro.getUploadDate() %>
-                                            </td>
-                                            <td>
-                                                <input type="text" name="status" value="<%= pro.getStatus() %>"/>
-                                            </td>
-                                        </tr>
-                                    </form>
+
+                                <form action="MainController">
+                                    <tr>
+                                        <td>
+                                            <%= pro.getShopProductItemID() %>
+                                        </td>
+                                        
+                                        <td>
+                                            <input type="text" name="title" value="<%= pro.getTitle() %>"/>
+                                        </td>
+                                        
+                                        <td>
+                                            <input type="number" name="inventory" value="<%= pro.getInventory() %>" min="0"/>
+                                        </td>
+                                        <td>
+                                            <%= pro.getUploadDate() %>
+                                        </td>
+                                        <td>
+                                            <input type="text" name="status" value="<%= pro.getStatus() %>"/>
+                                        </td>
+                                        <td style="text-align: center">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                            <i class="fa-solid fa-trash"></i>
+                                        <td>
+                                    </tr>
+                                </form>
                                 <%
                                     }
                                 %>
                                 </tbody>
                             </table>
-                                <%
-                                }
-                                }
-                                %>
+                            <%
+                            }
+                            }
+                            %>
                         </div>
                     </div>
 
+                </div>
+
+                <div class="container py-5">
+                    <div class="col-12">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination pagination-lg m-0">
+                                
+                                <%
+                                    int pageNumber = (int) request.getAttribute("PAGE_NUMBER");
+                                   
+                                    for(int i = 1; i <= pageNumber; i++){
+                            
+                                %>
+                                <li class="page-item"><a class="page-link" href="MainController?action=ViewProduct&shop_id=${sessionScope.LOGIN_USER.getShop_id()}&index=<%= i%>"><%= i%></a></li>
+                                    <%
+                                
+                                        }
+                                    %>
+
+
+                                
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
             </div>
         </div>

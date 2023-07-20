@@ -12,7 +12,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Trang thanh toán</title>
 
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Free HTML Templates" name="keywords">
@@ -98,14 +98,14 @@
                             if(loginUser.getRole() == 1){
                             loginUser.setFullname("Admin Account");
                     %>
-                            
+
                     <a href="adminDashboard.jsp" class="nav-item nav-link"><i class="fa-solid fa-user-gear"></i></a>
                         <%
                         } else if(loginUser.getRole() == 2){
                         %>
                     <a href="accountShop.jsp" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
-                    <%
-                        } else{
+                        <%
+                            } else{
                         %>
                     <a href="MainController?action=ViewProfile&username=<%= loginUser.getUsername() %>" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
                         <%
@@ -130,36 +130,77 @@
         </nav>
         <div class="container">
             <div class="title">
-                <h2>Product Order Form</h2>
+                <h2>Thông tin đặt hàng</h2>
             </div>
             <div class="d-flex">
-                <%                                                      
-                          List<OrderDTO> address = (List<OrderDTO>) request.getAttribute("ADDRESS");
-                          for (OrderDTO adr : address){
+
+                <form>
+                    <!--                    <a href="../src/java/fbird/controller/ViewAddressController.java"></a>-->
+
+                    <div class="address-row" id="addresstest">
+                        <label>
+                            <span>Địa chỉ <span class="required">*</span></span>
+                            <select style="height: 40px; width: 450px;" name="houseadd" required>
+                                <%-- Tạo các option cho mỗi địa chỉ trong danh sách --%>
+                                <%
+                                  List<OrderDTO> address = (List<OrderDTO>) request.getAttribute("ADDRESS");
+                                  for (OrderDTO adr : address) {
+                                %>
+                                <option value="<%= adr.toString() %>"><%= adr.toString() %></option>
+                                <%
+                                  }
+                                %>
+                                <option> Thêm địa chỉ mới</option>
+                            </select>
+                        </label>
+
+                        <script>
+                            const select = document.querySelector("select");
+                            const input = document.createElement("input");
+                            input.type = "text";
+                            input.name = "houseadd";
+                            console.log(select);
+                            select.addEventListener("change", function() {
+                                if (this.value === "Thêm địa chỉ mới") {
+                                    this.parentNode.replaceChild(input, this);
+                                }
+                            });
+                        </script>
+
+
+                        <label>
+                            <span>SĐT</span>
+                            <select style="width: 150px; height: 40px;" name="phoneadd" required>
+                                <%                                                      
+                              
+                              for (OrderDTO phone : address){
                             
                            
-                        %>
-                <form>
-                    <a href="../src/java/fbird/controller/ViewAddressController.java"></a>
-                    <label>
-                        <span>Street Address <span class="required">*</span></span>
-                        <input type="text" name="houseadd"  required value="<%= adr.toString() %>">
-                        <input type="text" name="houseadd"  required value="<%= adr.getPhone() %>">
-                        <input type="text" name="houseadd"  required value="<%= adr.getPostal_code() %>">
-                    </label>
-                    
+                                %>
+                                <option value="<%= phone.getPhone() %>"><%= phone.getPhone() %></option>
+                                <%
+}
+                                %>
+                                <option> Thêm SĐT</option>
+                            </select>
+
+                        </label>
+
+
+                    </div>
+
                     <div class="row mb-4 d-flex justify-content-between align-items-center" id="element">
 
                     </div>
 
                 </form>
-                    <%
-                        }
-                    %>
+
+
+
                 <script>
-    
-  
-                    
+
+
+
 
 
 
@@ -176,7 +217,7 @@
 //                        var nameElement = sessionStorage.getItem("name-0");
 //                        var titleElement = sessionStorage.getItem("title-0");
                         var allElement = JSON.parse(sessionStorage.getItem("Element"));
-                       
+
                         if (Array.isArray(allElement)) {
                             // Khai báo một mảng để chứa các đối tượng mới
 
@@ -184,35 +225,35 @@
                             // Duyệt qua các phần tử trong elementArray và tạo các đối tượng mới
                             for (let i = 0; i < allElement.length; i++) {
                                 const [name, title, img, price, quantity] = allElement[i];
-                                
-                                 var a = `<div class="row mt-3">
+
+                                var a = `<div class="row mt-3">
     <div class="col-md-2 col-lg-2 col-xl-2">
-        <img src="`+ img+ `" id="imgDisplay" class="img-fluid rounded-3" alt="Cotton T-shirt">
+        <img src="` + img + `" id="imgDisplay" class="img-fluid rounded-3" alt="Cotton T-shirt">
     </div>
     <div class="col-md-4 col-lg-4 col-xl-4">
-        <h6 id="nameDisplay" class="text-muted">`+name+`</h6> 
-        <h6 id="titleDisplay" class="text-black mb-0">`+title+`</h6>
+        <h6 id="nameDisplay" class="text-muted">` + name + `</h6> 
+        <h6 id="titleDisplay" class="text-black mb-0">` + title + `</h6>
     </div>
     <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-        <p id="quantityDisplay" name="quantity" type="number"  readonly>`+quantity+`</p>
+        <p id="quantityDisplay" name="quantity" type="number"  readonly>` + quantity + `</p>
     </div>
     <div class="col-md-3 col-lg-2 pt-4 col-xl-2 offset-lg-1">
-        <h6 id="priceElement" >`+formatNumber(price)+` đ</h6>
+        <h6 id="priceElement" >` + formatNumber(price) + ` đ</h6>
     </div>
     
-</div>`;          
+</div>`;
                                 console.log(title);
                                 document.getElementById('element').innerHTML += a;
                                 // Tạo một đối tượng mới và đẩy vào mảng newObjectArray
-                                
-                               
+
+
 
                             }
 
                             // Giờ đây, mảng newObjectArray chứa các đối tượng mới với các thuộc tính được trích xuất từ các biến khác nhau
-                           
+
                         }
-                         updateTotalDisplay();
+                        updateTotalDisplay();
                     }
                     function formatNumber(n) {
                         // format number 1000000 to 1,234,567
@@ -220,23 +261,23 @@
                         return numberString.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
                     }
                     function updateTotalDisplay() {
-                        
+
                         var totalPriceDisplay = document.getElementById("allPriceDisplay");
-                        
+
                         var allPrice = JSON.parse(sessionStorage.getItem("allPrices"));
                         var shippingOptionSelect = document.getElementById("shippingOption");
                         var shippingCost = parseFloat(shippingOptionSelect.value);
 //                        console.log(data.imgElementValue);
-                       
-                        
+
+
                         var total = allPrice + shippingCost;
-                        
-                            
-                            totalPriceDisplay.innerText = formatNumber(total) + "đ";
-                          
+
+
+                        totalPriceDisplay.innerText = formatNumber(total) + "đ";
+
 //                            sessionStorage.clear();
-                        }
-                    
+                    }
+
 
 
 
@@ -248,12 +289,12 @@
                 <div class="Yorder">
                     <table style="margin-left: 15%; text-align: center;">
                         <tr>
-                            <th colspan="2">Your order </th>
+                            <th colspan="2">Đơn hàng của bạn</th>
                         </tr>
 
 
                         <tr>
-                            <td>Shipping</td>
+                            <td>Vận chuyển</td>
                             <td>
                                 <div onchange="updateTotalDisplay()">
                                     <select id="shippingOption" style="min-width: 100%; border-radius: 7px;">
@@ -266,29 +307,24 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Subtotal</td>
+                            <td>Tổng giá</td>
                             <td id="allPriceDisplay" style="color: #7AB730;"></td>
                         </tr>
                     </table><br>
                     <div>
-                        <input type="radio" name="dbt" value="dbt" checked> Direct Bank Transfer
-                    </div>
-                    <p>
-                        Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.
-                    </p>
-                    <div>
-                        <input type="radio" name="dbt" value="cd"> Cash on Delivery
+                        <input type="radio" name="dbt" value="cd"> Thanh toán COD
                     </div>
                     <div>
                         <input type="radio" name="dbt" value="cd"> Paypal <span>
                             <img src="https://www.logolynx.com/images/logolynx/c3/c36093ca9fb6c250f74d319550acac4d.jpeg" alt="" width="50">
                         </span>
+                        <button type="button" >Xác nhận thanh toán</button>
                     </div>
-                    <button type="button" style="margin-bottom: 10%;">Place Order</button>
+
                 </div><!-- Yorder -->
             </div>
         </div>
-                <a href="#" class="btn btn-primary py-3 fs-4 back-to-top"><i class="bi bi-arrow-up"></i></a>
+        <a href="#" class="btn btn-primary py-3 fs-4 back-to-top"><i class="bi bi-arrow-up"></i></a>
         <!-- JavaScript Libraries -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -334,6 +370,7 @@
     }
     .Yorder{
         flex: 2;
+
     }
     .title{
         background-color: #7AB730;

@@ -138,57 +138,99 @@
                     <!--                    <a href="../src/java/fbird/controller/ViewAddressController.java"></a>-->
 
                     <div class="address-row" id="addresstest">
-                        <label>
-                            <span>Địa chỉ <span class="required">*</span></span>
-                            <select style="height: 40px; width: 450px;" name="houseadd" required>
-                                <%-- Tạo các option cho mỗi địa chỉ trong danh sách --%>
-                                <%
+                        <%
                                   List<OrderDTO> address = (List<OrderDTO>) request.getAttribute("ADDRESS");
-                                  for (OrderDTO adr : address) {
-                                %>
-                                <option value="<%= adr.toString() %>"><%= adr.toString() %></option>
-                                <%
-                                  }
-                                %>
-                                <option> Thêm địa chỉ mới</option>
-                            </select>
+                        %>
+                        <label>
+
+                            <span>Địa chỉ <span class="required">*</span></span>
+                            <div  onchange="addNewAddress()" id="houseadd">
+                                <select style="height: 40px; width: 450px;" id="addr"  required>
+                                    <%-- Tạo các option cho mỗi địa chỉ trong danh sách --%>
+                                    <%
+                                      for (OrderDTO adr : address) {
+                                    %>
+                                    <option value="<%= adr.toString() %>"><%= adr.toString() %></option>
+                                    <%
+                                      }
+                                    %>
+                                    <option> Thêm địa chỉ mới</option>
+                                </select>
+                            </div>
+                            <div onclick="oldAddress()">Tùy chọn</div>
                         </label>
 
-                        <script>
-                            const select = document.querySelector("select");
-                            const input = document.createElement("input");
-                            input.type = "text";
-                            input.name = "houseadd";
-                            console.log(select);
-                            select.addEventListener("change", function() {
-                                if (this.value === "Thêm địa chỉ mới") {
-                                    this.parentNode.replaceChild(input, this);
-                                }
-                            });
-                        </script>
+
 
 
                         <label>
                             <span>SĐT</span>
-                            <select style="width: 150px; height: 40px;" name="phoneadd" required>
-                                <%                                                      
-                              
-                              for (OrderDTO phone : address){
-                            
-                           
-                                %>
-                                <option value="<%= phone.getPhone() %>"><%= phone.getPhone() %></option>
-                                <%
-}
-                                %>
-                                <option> Thêm SĐT</option>
-                            </select>
-
+                            <div onchange="addNewPhone()" id="phoneadd">
+                                <select style="width: 150px; height: 40px;" id="phn" name="phoneadd" required>
+                                    <%                                                                                  
+                                  for (OrderDTO phone : address){                                                     
+                                    %>
+                                    <option value="<%= phone.getPhone() %>"><%= phone.getPhone() %></option>
+                                    <%
+                                    }
+                                    %>
+                                    <option> Thêm SĐT</option>
+                                </select>
+                            </div>
+                            <div onclick="oldPhone()">Tùy chọn</div>
                         </label>
 
 
                     </div>
+                    <script>
+                        function addNewAddress() {
+                            var selectaddr = document.getElementById("addr");
+                            var newAddr = document.getElementById("houseadd");
+                            var selectedOptionaddr = selectaddr.options[selectaddr.selectedIndex].value;
+                            var input = `<input type="text" name= "houseadd" placeholder="Thêm địa chỉ mới" style="height: 40px;"></input>`;
+                            if (selectedOptionaddr === "Thêm địa chỉ mới") {
+                                newAddr.innerHTML = input;
+                            }
 
+                        }
+                        function addNewPhone() {
+                            var selectphn = document.getElementById("phn");
+                            var newPhone = document.getElementById("phoneadd");
+                            var selectedOptionphn = selectphn.options[selectphn.selectedIndex].value;
+                            var inputphn = `<input type="text" name= "phoneadd" placeholder="Thêm SĐT" style="width: 150px; height: 40px;"></input>`;
+                            if (selectedOptionphn === "Thêm SĐT") {
+                                newPhone.innerHTML = inputphn;
+                            }
+                        }
+                        function oldPhone() {
+                            var a = `<select style="width: 150px; height: 40px;" id="phn" name="phoneadd" required>
+                        <%                                                                                  
+                                  for (OrderDTO phone : address){                                                     
+                        %>
+                                    <option value="<%= phone.getPhone() %>"><%= phone.getPhone() %></option>
+                        <%
+                                }
+                        %>
+                                    <option> Thêm SĐT</option>
+                                </select>`;
+                            var oldPhone = document.getElementById("phoneadd");
+                            oldPhone.innerHTML = a;
+                        }
+                        function oldAddress() {
+                            var a = `<select style="height: 40px; width: 450px;" id="addr"  required>                                  
+                        <%
+                                      for (OrderDTO adr : address) {
+                        %>
+                                    <option value="<%= adr.toString() %>"><%= adr.toString() %></option>
+                        <%
+                                      }
+                        %>
+                                    <option> Thêm địa chỉ mới</option>
+                                </select>`;
+                            var oldAddr = document.getElementById("houseadd");
+                            oldAddr.innerHTML = a;
+                        }
+                    </script>
                     <div class="row mb-4 d-flex justify-content-between align-items-center" id="element">
 
                     </div>
@@ -210,12 +252,7 @@
                         shippingOptionSelect.addEventListener("change", updateTotalPrice);
                     });
                     function getDataFromSessionStorage() {
-//                        var quantityJson = sessionStorage.getItem("cartQuantities-0");
-//                        var allPricesJson = sessionStorage.getItem("allPrices");
-//                        var priceElement = sessionStorage.getItem("priceElement-0");
-//                        var imgElement = sessionStorage.getItem("img-0");
-//                        var nameElement = sessionStorage.getItem("name-0");
-//                        var titleElement = sessionStorage.getItem("title-0");
+
                         var allElement = JSON.parse(sessionStorage.getItem("Element"));
 
                         if (Array.isArray(allElement)) {

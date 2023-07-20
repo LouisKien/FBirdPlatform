@@ -143,9 +143,9 @@
                         %>
                         <label>
 
-                            <span>Địa chỉ <span class="required">*</span></span>
+                            <span style="width: 60px;">Địa chỉ</span>
                             <div  onchange="addNewAddress()" id="houseadd">
-                                <select style="height: 40px; width: 450px;" id="addr"  required>
+                                <select style=" margin-left:1px; ;height: 40px; width: 450px;" id="addr">
                                     <%-- Tạo các option cho mỗi địa chỉ trong danh sách --%>
                                     <%
                                       for (OrderDTO adr : address) {
@@ -157,16 +157,16 @@
                                     <option> Thêm địa chỉ mới</option>
                                 </select>
                             </div>
-                            <div onclick="oldAddress()">Tùy chọn</div>
+                            
                         </label>
 
 
 
 
                         <label>
-                            <span>SĐT</span>
+                            <span style="width: 60px;" >SĐT</span>
                             <div onchange="addNewPhone()" id="phoneadd">
-                                <select style="width: 150px; height: 40px;" id="phn" name="phoneadd" required>
+                                <select style="width: 150px; height: 40px;" id="phn" name="phoneadd">
                                     <%                                                                                  
                                   for (OrderDTO phone : address){                                                     
                                     %>
@@ -177,7 +177,7 @@
                                     <option> Thêm SĐT</option>
                                 </select>
                             </div>
-                            <div onclick="oldPhone()">Tùy chọn</div>
+                            
                         </label>
 
 
@@ -187,7 +187,9 @@
                             var selectaddr = document.getElementById("addr");
                             var newAddr = document.getElementById("houseadd");
                             var selectedOptionaddr = selectaddr.options[selectaddr.selectedIndex].value;
-                            var input = `<input type="text" name= "houseadd" placeholder="Thêm địa chỉ mới" style="height: 40px;"></input>`;
+                            var input = `<input type="text" name= "houseadd" placeholder="Thêm địa chỉ mới" style="height: 40px;"></input>
+                                         <a class="btn btn-primary" onclick="oldAddress()">Tùy chọn</a>        
+            `;
                             if (selectedOptionaddr === "Thêm địa chỉ mới") {
                                 newAddr.innerHTML = input;
                             }
@@ -197,13 +199,15 @@
                             var selectphn = document.getElementById("phn");
                             var newPhone = document.getElementById("phoneadd");
                             var selectedOptionphn = selectphn.options[selectphn.selectedIndex].value;
-                            var inputphn = `<input type="text" name= "phoneadd" placeholder="Thêm SĐT" style="width: 150px; height: 40px;"></input>`;
+                            var inputphn = `<input type="text" name= "phoneadd" placeholder="Thêm SĐT" style="width: 150px; height: 40px;"></input>
+                                            <a class="btn btn-primary" onclick="oldPhone()">Tùy chọn</a>        
+            `;
                             if (selectedOptionphn === "Thêm SĐT") {
                                 newPhone.innerHTML = inputphn;
                             }
                         }
                         function oldPhone() {
-                            var a = `<select style="width: 150px; height: 40px;" id="phn" name="phoneadd" required>
+                            var a = `<select style="width: 150px; height: 40px;" id="phn" name="phoneadd" >
                         <%                                                                                  
                                   for (OrderDTO phone : address){                                                     
                         %>
@@ -217,7 +221,7 @@
                             oldPhone.innerHTML = a;
                         }
                         function oldAddress() {
-                            var a = `<select style="height: 40px; width: 450px;" id="addr"  required>                                  
+                            var a = `<select style="height: 40px; width: 450px;" id="addr"  >                                  
                         <%
                                       for (OrderDTO adr : address) {
                         %>
@@ -249,7 +253,7 @@
                     document.addEventListener("DOMContentLoaded", function () {
                         getDataFromSessionStorage();
                         var shippingOptionSelect = document.getElementById("shippingOption");
-                        shippingOptionSelect.addEventListener("change", updateTotalPrice);
+                        shippingOptionSelect.addEventListener("change", updateTotalDisplay);
                     });
                     function getDataFromSessionStorage() {
 
@@ -334,7 +338,7 @@
                             <td>Vận chuyển</td>
                             <td>
                                 <div onchange="updateTotalDisplay()">
-                                    <select id="shippingOption" style="min-width: 100%; border-radius: 7px;">
+                                    <select id="shippingOption" style="min-width: 112%; border-radius: 3px;">
 
                                         <option value="50000">Hỏa tốc - 50.000đ</option>
                                         <option value="40000">Nhanh - 40.000đ</option>
@@ -345,7 +349,7 @@
                         </tr>
                         <tr>
                             <td>Tổng giá</td>
-                            <td id="allPriceDisplay" style="color: #7AB730;"></td>
+                            <td id="allPriceDisplay" style="font-weight: bold;  text-align: center; color: black;"></td>
                         </tr>
                     </table><br>
                     <div>
@@ -377,7 +381,7 @@
     /*@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700');*/
 
     body{
-        background: url('http://all4desktop.com/data_images/original/4236532-background-images.jpg');
+        
         font-family: 'Roboto Condensed', sans-serif;
         color: #262626;
         margin: 5% 0;
@@ -498,7 +502,7 @@
     button:hover{
         cursor: pointer;
         background: #428a7d;
-    }
+    }  
     body {
         font-family: 'Roboto', Arial, sans-serif;
     }

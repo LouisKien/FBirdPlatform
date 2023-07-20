@@ -229,28 +229,7 @@
                                             <hr class="my-4">
 
                                             <div class="d-flex justify-content-between mb-4">
-                                                <h5 class="text-uppercase">Sản phẩm: <%=count %></h5>
-                                                <h5>9800đ</h5>
-                                            </div>
-
-                                            <h5 class="text-uppercase mb-3">Vận chuyển</h5>
-
-                                            <div class="mb-4 pb-2">
-                                                <select class="select " style="min-width: 100%; border-radius: 7px;">
-                                                    <option value="1">Hỏa tốc - 200đ</option>
-                                                    <option value="2">Nhanh - 0đ</option>
-                                                    <option value="3">Tiết kiệm - 0đ</option>
-
-                                                </select>
-                                            </div>
-
-                                            <h5 class="text-uppercase mb-3">Mã giảm giá</h5>
-
-                                            <div class="mb-5">
-                                                <div class="form-outline">
-                                                    <input type="text" value="45646568721" readonly="" id="form3Examplea2" class="form-control form-control-lg" />
-                                                    <!--                        <label class="form-label" for="form3Examplea2">Nhập mã giảm giá</label>-->
-                                                </div>
+                                                <h5 class="text-uppercase">Sản phẩm: <%=count %></h5>  
                                             </div>
 
                                             <hr class="my-4">

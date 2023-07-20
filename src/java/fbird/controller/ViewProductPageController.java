@@ -39,6 +39,7 @@ public class ViewProductPageController extends HttpServlet {
             if (listProduct.size() > 0) {
                 request.setAttribute("LIST_PRODUCT_PAGE", listProduct);
                 request.setAttribute("PAGE_NUMBER", countPage);
+                request.setAttribute("INDEX_PAGE", indexPage);
                 url = SUCCESS;
             }else{
                 

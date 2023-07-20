@@ -255,17 +255,17 @@
                                         </td>
                                         
                                         <td>
-                                            <input type="text" name="title" value="<%= pro.getTitle() %>"/>
+                                            <%= pro.getTitle() %>
                                         </td>
                                         
                                         <td>
-                                            <input type="number" name="inventory" value="<%= pro.getInventory() %>" min="0"/>
+                                            <%= pro.getInventory() %>
                                         </td>
                                         <td>
                                             <%= pro.getUploadDate() %>
                                         </td>
                                         <td>
-                                            <input type="text" name="status" value="<%= pro.getStatus() %>"/>
+                                            <%= pro.getStatus() %>
                                         </td>
                                         <td style="text-align: center">
                                             <i class="fa-solid fa-pen-to-square"></i>
@@ -278,10 +278,7 @@
                                 %>
                                 </tbody>
                             </table>
-                            <%
-                            }
-                            }
-                            %>
+                            
                         </div>
                     </div>
 
@@ -310,6 +307,10 @@
                         </nav>
                     </div>
                 </div>
+                                    <%
+                            }
+                            }
+                            %>
             </div>
         </div>
         <!-- /#page-content-wrapper -->

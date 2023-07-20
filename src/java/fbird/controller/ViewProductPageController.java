@@ -40,6 +40,8 @@ public class ViewProductPageController extends HttpServlet {
                 request.setAttribute("LIST_PRODUCT_PAGE", listProduct);
                 request.setAttribute("PAGE_NUMBER", countPage);
                 url = SUCCESS;
+            }else{
+                
             }
         } catch (Exception e) {
             log("ERROR at ViewProductPageController: " + e.toString());

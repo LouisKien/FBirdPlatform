@@ -51,6 +51,9 @@
 
         <!-- Template Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
+        
+        <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet1' type='text/css'>
+	<script src="js/modernizr.js"></script> <!-- Modernizr -->
         <!--Search bar-->
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="productPage/style.css">
@@ -58,6 +61,7 @@
         <link rel="stylesheet" href="css/style.css">
 
         <script src="https://kit.fontawesome.com/39834b73e4.js" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </head>
     <body>
         <div style="position: relative">
@@ -208,10 +212,11 @@ if(loginUser != null) {
 
                         </div>
                         <div class="report-option">
-
-                            <button class='fas fa-exclamation-triangle' onclick="openReportForm()"   style="margin-top: -28px; margin-left: 550px;"></button>
+                            
+                            <button class='fas fa-exclamation-triangle' onclick="callAlert()"   style="margin-top: -28px; margin-left: 550px;"></button>
 
                         </div>
+                        
                         <div class="pname" style="margin-bottom: 1px;"><%=LPD.getTitle() %>
 
                         </div>
@@ -586,6 +591,32 @@ List<FeedbackDTO> listAllFeedback = (List<FeedbackDTO>) request.getAttribute("LI
             function showImg(pic) {
                 bigImg.src = pic;
             }
+            
+            function callAlert(){
+    swal("Viết lý do khiếu nại:", {
+      content: "input"
+    })
+    .then((value) => {
+      if (value !== null && value.trim() !== '') {
+        // Hiển thị thông báo khi gửi khiếu nại thành công
+        swal({
+          title: "Gửi khiếu nại thành công!",
+          icon: "success",
+          button: "OK"
+        });
+        
+        // Tùy chỉnh các tác vụ khác dựa trên giá trị `value` ở đây nếu cần
+        // Ví dụ: Gửi giá trị đến máy chủ qua AJAX để xử lý
+        // Các tác vụ khác...
+      } else {
+        // Người dùng không nhập gì hoặc nhập lý do trống.
+        swal("Vui lòng nhập lý do khiếu nại!", {
+          icon: "error",
+          button: "Trở lại"
+        });
+      }
+    });
+            }
         </script>
 
         <!-- JavaScript Libraries -->
@@ -597,6 +628,7 @@ List<FeedbackDTO> listAllFeedback = (List<FeedbackDTO>) request.getAttribute("LI
 
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
+        
     </body>
 </html>
 <style>

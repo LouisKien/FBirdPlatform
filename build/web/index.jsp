@@ -105,14 +105,14 @@
                             if(loginUser.getRole() == 1){
                             loginUser.setFullname("Admin Account");
                     %>
-                            
+
                     <a href="adminDashboard.jsp" class="nav-item nav-link"><i class="fa-solid fa-user-gear"></i></a>
                         <%
                         } else if(loginUser.getRole() == 2){
                         %>
                     <a href="accountShop.jsp" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
-                    <%
-                        } else{
+                        <%
+                            } else{
                         %>
                     <a href="MainController?action=ViewProfile&username=<%= loginUser.getUsername() %>" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
                         <%
@@ -253,6 +253,64 @@
             </div>
         </div>
 
+        <div class="container-fluid py-5">
+            <div class="container">
+                <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
+                    <h6 class="text-primary text-uppercase">Sản phẩm</h6>
+                    <h1 class="display-5 text-uppercase mb-0">Tiêu biểu</h1>
+                </div>
+
+                <!-- Blog End -->
+
+                <div class="col-xl-12">
+                    <div class="products-area products-area3">
+                        <div class="row justify-content-center">
+                            <!--                                <div>${requestScope.MESSAGE}</div>-->
+
+
+                            <% 
+            List<ProductDTO> listProduct = (List<ProductDTO>) request.getAttribute("LIST_ProductHomePage");
+            int productsToShow = 10;
+            if (listProduct != null && !listProduct.isEmpty()) {
+          int counter = 0;
+                for (ProductDTO listP : listProduct) { 
+               if (counter >= productsToShow) {
+                    break; // If the counter reaches the desired number of products, exit the loop
+                }
+                            %>
+                            <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
+                                <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
+                                    <div style="text-align: center;">
+                                        <a href="MainController?action=ViewProductDetail&shop_product_item_id=<%=listP.getShopProductItemID() %>&shop_id=<%=listP.getShopID() %>" class="product-image">
+                                            <img style="width: 160px;height: 190px" src="<%=listP.getImage_1() %>" alt="" />
+                                        </a>
+                                    </div>
+                                    <div class="bottom-content">
+                                        <div style="text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;">
+                                            <a href="" style="margin-top: 10px; font-weight: bold;white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;color: black;"><%=listP.getTitle() %></a>
+                                        </div>
+
+                                        <div style="text-align: center;">
+                                            <!--<span style="text-decoration: line-through "><//%=listRHP.getOriginal_price() %>đ</span>-->
+                                            <span class="product-price" style="font-size:25px ;font-weight: bold; color: red;"><%=listP.getPrice() %>đ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% 
+                                counter++;
+}
+               
+}
+                            %>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Footer Start -->
         <div class="container-fluid bg-light mt-5 py-5">
             <div class="container pt-5">
@@ -284,13 +342,13 @@
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Theo dõi chúng tôi trên</h5>
-<!--                        <form action="">
-                            <div class="input-group">
-                                <input type="text" class="form-control p-3" placeholder="Nhập email">
-                                <button class="btn btn-primary">Đăng ký</button>
-                            </div>
-                        </form>
-                        <h6 class="text-uppercase mt-4 mb-3"> Theo dõi chúng tôi trên</h6>-->
+                        <!--                        <form action="">
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control p-3" placeholder="Nhập email">
+                                                        <button class="btn btn-primary">Đăng ký</button>
+                                                    </div>
+                                                </form>
+                                                <h6 class="text-uppercase mt-4 mb-3"> Theo dõi chúng tôi trên</h6>-->
                         <div class="d-flex">
                             <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-twitter"></i></a>
                             <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-facebook"></i></a>

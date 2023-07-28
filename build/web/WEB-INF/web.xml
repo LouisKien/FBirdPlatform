@@ -148,6 +148,10 @@
         <servlet-name>ViewAddressController</servlet-name>
         <servlet-class>fbird.controller.ViewAddressController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewCreateProductController</servlet-name>
+        <servlet-class>ViewCreateProductController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -298,6 +302,10 @@
     <servlet-mapping>
         <servlet-name>ViewAddressController</servlet-name>
         <url-pattern>/ViewAddressController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewCreateProductController</servlet-name>
+        <url-pattern>/ViewCreateProductController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

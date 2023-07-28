@@ -138,9 +138,9 @@
 
         <div class="card">
       <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
-        <i class="checkmark">✓</i>
+          <i class="checkmark" style="color: red;">✗</i>
       </div>
-        <h1 class="success">Success</h1> 
+        <h1 class="success" >Thất bại</h1> 
         <p class="content">We received your purchase request;<br/> we'll be in touch shortly!</p></br>
         Quay về trang chủ sau <div id="countdown"></div>
         
@@ -257,13 +257,14 @@ var downloadTimer = setInterval(function(){
         padding: 40px 0;
         background: #EBF0F5;
       }
-    .success {
-          color: #88B04B;
+.success {
+  color: #88B04B;
   font-family: "Times New Roman", "Nunito Sans", "Helvetica Neue", sans-serif;
-          font-weight: 900;
-          font-size: 40px;
-          margin-bottom: 10px;
-        }
+  font-weight: 900;
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
         .content {
           color: #404F5E;
   font-family: "Times New Roman", "Nunito Sans", "Helvetica Neue", sans-serif;

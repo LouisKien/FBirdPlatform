@@ -157,7 +157,7 @@
                                     <option> Thêm địa chỉ mới</option>
                                 </select>
                             </div>
-                            
+
                         </label>
 
 
@@ -177,7 +177,7 @@
                                     <option> Thêm SĐT</option>
                                 </select>
                             </div>
-                            
+
                         </label>
 
 
@@ -360,212 +360,214 @@
                             <img src="https://www.logolynx.com/images/logolynx/c3/c36093ca9fb6c250f74d319550acac4d.jpeg" alt="" width="50">
                         </span>
                         <button type="button" >Xác nhận thanh toán</button>
-                        <a href="orderSuccess.jsp" type="button">Xác nhận thanh toán</button>
-                    </div>
+                        <a href="orderSuccess.jsp" type="button">Xác nhận thanh toán (success test)</button>
+                        <a href="orderFail.jsp" type="button">Xác nhận thanh toán ( fail test)</button>
 
-                </div><!-- Yorder -->
-            </div>
-        </div>
-        <a href="#" class="btn btn-primary py-3 fs-4 back-to-top"><i class="bi bi-arrow-up"></i></a>
-        <!-- JavaScript Libraries -->
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="lib/easing/easing.min.js"></script>
-        <script src="lib/waypoints/waypoints.min.js"></script>
-        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+                                </div>
 
-        <!-- Template Javascript -->
-        <script src="js/main.js"></script>
-    </body>
-</html>
-<style>
-    /*@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700');*/
+                                </div><!-- Yorder -->
+                                </div>
+                                </div>
+                                <a href="#" class="btn btn-primary py-3 fs-4 back-to-top"><i class="bi bi-arrow-up"></i></a>
+                                <!-- JavaScript Libraries -->
+                                <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+                                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+                                <script src="lib/easing/easing.min.js"></script>
+                                <script src="lib/waypoints/waypoints.min.js"></script>
+                                <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
-    body{
-        
-        font-family: 'Roboto Condensed', sans-serif;
-        color: #262626;
-        margin: 5% 0;
-    }
-    .container{
-        width: 100%;
-        padding-right: 15px;
-        padding-left: 15px;
-        margin-right: auto;
-        margin-left: auto;
-    }
-    @media (min-width: 1200px)
-    {
-        .container{
-            max-width: 1140px;
-        }
-    }
-    .d-flex{
-        display: flex;
-        flex-direction: row;
-        background: #f6f6f6;
-        border-radius: 0 0 5px 5px;
-        padding: 25px;
-    }
-    form{
-        flex: 4;
-    }
-    .Yorder{
-        flex: 2;
+                                <!-- Template Javascript -->
+                                <script src="js/main.js"></script>
+                                </body>
+                                </html>
+                                <style>
+                                    /*@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700');*/
 
-    }
-    .title{
-        background-color: #7AB730;
-        border-radius:5px 5px 0 0 ;
-        padding: 20px;
-        color: #f6f6f6;
-    }
-    h2{
-        margin: 0;
-        padding-left: 15px;
-    }
-    .required{
-        color: red;
-    }
-    label, table{
-        display: block;
-        margin: 15px;
-    }
-    label>span{
-        float: left;
-        width: 25%;
-        margin-top: 12px;
-        padding-right: 10px;
-    }
-    input[type="text"], input[type="tel"], input[type="email"], select
-    {
-        width: 70%;
-        height: 30px;
-        padding: 5px 10px;
-        margin-bottom: 10px;
-        border: 1px solid #dadada;
-        color: #888;
-    }
-    select{
-        width: 72%;
-        height: 45px;
-        padding: 5px 10px;
-        margin-bottom: 10px;
-    }
-    .Yorder{
-        margin-top: 15px;
-        height: 600px;
-        padding: 20px;
-        border: 1px solid #dadada;
-    }
-    table{
-        margin: 0;
-        padding: 0;
-    }
-    th{
-        border-bottom: 1px solid #dadada;
-        padding: 10px 0;
-    }
-    tr>td:nth-child(1){
-        text-align: left;
-        color: #2d2d2a;
-    }
-    tr>td:nth-child(2){
-        text-align: right;
-        color: #52ad9c;
-    }
-    td{
-        border-bottom: 1px solid #dadada;
-        padding: 25px 25px 25px 0;
-    }
+                                    body{
 
-    p{
-        display: block;
-        color: #888;
-        margin: 0;
-        padding-left: 25px;
-    }
-    .Yorder>div{
-        padding: 15px 0;
-    }
+                                        font-family: 'Roboto Condensed', sans-serif;
+                                        color: #262626;
+                                        margin: 5% 0;
+                                    }
+                                    .container{
+                                        width: 100%;
+                                        padding-right: 15px;
+                                        padding-left: 15px;
+                                        margin-right: auto;
+                                        margin-left: auto;
+                                    }
+                                    @media (min-width: 1200px)
+                                    {
+                                        .container{
+                                            max-width: 1140px;
+                                        }
+                                    }
+                                    .d-flex{
+                                        display: flex;
+                                        flex-direction: row;
+                                        background: #f6f6f6;
+                                        border-radius: 0 0 5px 5px;
+                                        padding: 25px;
+                                    }
+                                    form{
+                                        flex: 4;
+                                    }
+                                    .Yorder{
+                                        flex: 2;
 
-    button{
-        width: 100%;
-        margin-top: 10px;
-        padding: 10px;
-        border: none;
-        border-radius: 30px;
-        background: #7AB730;
-        color: #fff;
-        font-size: 15px;
-        font-weight: bold;
-    }
-    button:hover{
-        cursor: pointer;
-        background: #428a7d;
-    }  
-    body {
-        font-family: 'Roboto', Arial, sans-serif;
-    }
+                                    }
+                                    .title{
+                                        background-color: #7AB730;
+                                        border-radius:5px 5px 0 0 ;
+                                        padding: 20px;
+                                        color: #f6f6f6;
+                                    }
+                                    h2{
+                                        margin: 0;
+                                        padding-left: 15px;
+                                    }
+                                    .required{
+                                        color: red;
+                                    }
+                                    label, table{
+                                        display: block;
+                                        margin: 15px;
+                                    }
+                                    label>span{
+                                        float: left;
+                                        width: 25%;
+                                        margin-top: 12px;
+                                        padding-right: 10px;
+                                    }
+                                    input[type="text"], input[type="tel"], input[type="email"], select
+                                    {
+                                        width: 70%;
+                                        height: 30px;
+                                        padding: 5px 10px;
+                                        margin-bottom: 10px;
+                                        border: 1px solid #dadada;
+                                        color: #888;
+                                    }
+                                    select{
+                                        width: 72%;
+                                        height: 45px;
+                                        padding: 5px 10px;
+                                        margin-bottom: 10px;
+                                    }
+                                    .Yorder{
+                                        margin-top: 15px;
+                                        height: 600px;
+                                        padding: 20px;
+                                        border: 1px solid #dadada;
+                                    }
+                                    table{
+                                        margin: 0;
+                                        padding: 0;
+                                    }
+                                    th{
+                                        border-bottom: 1px solid #dadada;
+                                        padding: 10px 0;
+                                    }
+                                    tr>td:nth-child(1){
+                                        text-align: left;
+                                        color: #2d2d2a;
+                                    }
+                                    tr>td:nth-child(2){
+                                        text-align: right;
+                                        color: #52ad9c;
+                                    }
+                                    td{
+                                        border-bottom: 1px solid #dadada;
+                                        padding: 25px 25px 25px 0;
+                                    }
 
-    .wrapper {
-        width: 100%;
-        max-width: 31.25rem;
-        /*  margin: 6rem auto;*/
-        margin-right: 50px;
-        margin-top: 50px;
-        margin-bottom: 50px;
-    }
+                                    p{
+                                        display: block;
+                                        color: #888;
+                                        margin: 0;
+                                        padding-left: 25px;
+                                    }
+                                    .Yorder>div{
+                                        padding: 15px 0;
+                                    }
 
-    .label {
-        font-size: .625rem;
-        font-weight: 400;
-        text-transform: uppercase;
-        letter-spacing: +1.3px;
-        margin-bottom: 1rem;
-    }
+                                    button{
+                                        width: 100%;
+                                        margin-top: 10px;
+                                        padding: 10px;
+                                        border: none;
+                                        border-radius: 30px;
+                                        background: #7AB730;
+                                        color: #fff;
+                                        font-size: 15px;
+                                        font-weight: bold;
+                                    }
+                                    button:hover{
+                                        cursor: pointer;
+                                        background: #428a7d;
+                                    }
+                                    body {
+                                        font-family: 'Roboto', Arial, sans-serif;
+                                    }
 
-    .searchBar {
-        width: 111%;
-        display: flex;
-        flex-direction: row;
-        /*align-items: center;*/
-    }
+                                    .wrapper {
+                                        width: 100%;
+                                        max-width: 31.25rem;
+                                        /*  margin: 6rem auto;*/
+                                        margin-right: 50px;
+                                        margin-top: 50px;
+                                        margin-bottom: 50px;
+                                    }
 
-    #searchQueryInput {
-        width: 100%;
-        height: 2.8rem;
-        background: #f5f5f5;
-        outline: none;
-        border: none;
-        border-radius: 1.625rem;
-        padding: 0 3.5rem 0 1.5rem;
-        font-size: 1rem;
-    }
+                                    .label {
+                                        font-size: .625rem;
+                                        font-weight: 400;
+                                        text-transform: uppercase;
+                                        letter-spacing: +1.3px;
+                                        margin-bottom: 1rem;
+                                    }
 
-    #searchQuerySubmit {
-        width: 3.5rem;
-        height: 2.8rem;
-        margin-left: -3.5rem;
-        background: none;
-        border: none;
-        outline: none;
-    }
+                                    .searchBar {
+                                        width: 111%;
+                                        display: flex;
+                                        flex-direction: row;
+                                        /*align-items: center;*/
+                                    }
 
-    #searchQuerySubmit:hover {
-        cursor: pointer;
-    }
-    .navbar-light .navbar-nav .nav-link {
-        font-family: 'Roboto', sans-serif;
-        position: relative;
-        margin-left: 30px;
-        padding: 30px 0;
-        font-size: 18px;
-        font-weight: 700;
-        text-transform: uppercase;
-        color: var(--dark);
-        outline: none;
-        transition: .5s;
-        width: max-content;
-    }
-</style>
+                                    #searchQueryInput {
+                                        width: 100%;
+                                        height: 2.8rem;
+                                        background: #f5f5f5;
+                                        outline: none;
+                                        border: none;
+                                        border-radius: 1.625rem;
+                                        padding: 0 3.5rem 0 1.5rem;
+                                        font-size: 1rem;
+                                    }
+
+                                    #searchQuerySubmit {
+                                        width: 3.5rem;
+                                        height: 2.8rem;
+                                        margin-left: -3.5rem;
+                                        background: none;
+                                        border: none;
+                                        outline: none;
+                                    }
+
+                                    #searchQuerySubmit:hover {
+                                        cursor: pointer;
+                                    }
+                                    .navbar-light .navbar-nav .nav-link {
+                                        font-family: 'Roboto', sans-serif;
+                                        position: relative;
+                                        margin-left: 30px;
+                                        padding: 30px 0;
+                                        font-size: 18px;
+                                        font-weight: 700;
+                                        text-transform: uppercase;
+                                        color: var(--dark);
+                                        outline: none;
+                                        transition: .5s;
+                                        width: max-content;
+                                    }
+                                </style>

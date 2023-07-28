@@ -79,8 +79,9 @@ public class UserDAO {
         return user;
     }
 
-    public UserDTO checkUserExist(String username) throws SQLException {
+    public boolean checkUserExist(String username) throws SQLException {
         //UserDTO user = null;
+        boolean USERNAME = true;
         Connection conn = null;
         PreparedStatement ptm = null;
         ResultSet rs = null;
@@ -91,7 +92,8 @@ public class UserDAO {
 
             rs = ptm.executeQuery();
             if (rs.next()) {
-                return new UserDTO(rs.getString(1), rs.getString(2), Integer.parseInt(rs.getString(3)), Integer.parseInt(rs.getString(4)));
+                
+                USERNAME = false;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -108,7 +110,7 @@ public class UserDAO {
                 rs.close();
             }
         }
-        return null;
+        return USERNAME;
     }
 
     public void singup(String username, String password) throws SQLException {

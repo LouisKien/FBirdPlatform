@@ -63,12 +63,12 @@
                                     <p class="form-group mb-2" style="color: red;">
 
                                     </p>
-<!--                                    <div class="g-recaptcha form-group mb-3" data-sitekey="6LfcOQYlAAAAAOlqYLQzLd461rhm2GIe6FVlgrbh"></div>-->
+                                    <div class="g-recaptcha form-group mb-3" data-sitekey="6LfcOQYlAAAAAOlqYLQzLd461rhm2GIe6FVlgrbh"></div>
 
                                     
                                     <div class="form-group">
                                         <button type="submit"  value="Register" class="form-control btn btn-primary rounded submit px-3">Đăng ký</button>
-<!--                                        <input name="action" value="Register" hidden=""/>-->
+                                        <input name="action" value="Register" hidden=""/>
                                     </div>
                                 </form>
                                 <div style="text-align: center">
@@ -83,7 +83,7 @@
                 </div>
             </div>
         </section>
-<!--                                            <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+                                            <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script>
     window.onload = function () {
         const form = document.getElementById("signup-form");
@@ -95,11 +95,11 @@
             if (response) {
                 form.submit();
             } else {
-                error.innerHTML = "Please confirm reCaptcha";
+                error.innerHTML = "Vui lòng nhấn recaptcha";
             }
         });
     };
-</script>-->
+</script>
 
         <script src="login-form/js/jquery.min.js"></script>
         <script src="login-form/js/popper.js"></script>

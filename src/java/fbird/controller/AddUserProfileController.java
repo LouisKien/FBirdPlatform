@@ -53,7 +53,6 @@ public class AddUserProfileController extends HttpServlet {
             UserDTO user = dao.checkUserExist(username);
             
             if (user == null) {
-                request.setAttribute("msg", "Bạn cần đăng kí tài khoản để sử dụng dịch vụ này");
                 request.getRequestDispatcher("userProfile.jsp").forward(request, response);
             } else {
                 CustomerDAO cusDao = new CustomerDAO();

@@ -151,7 +151,7 @@
                              ">
 
 
-                            <h1 class="display-5 text-uppercase text-white mb-0" >Giảm giá lên đến 50% cho đơn đầu tiên</h1>
+                            <h1 class="display-5 text-uppercase text-white mb-0" >F-Bird - Thích phải nói, đói phải ăn???</h1>
                         </div>
 
                         <a href="MainController?action=productpage" class="btn btn-light py-md-3 px-md-5 me-3">Xem thêm</a>
@@ -166,7 +166,7 @@
             <div class="container">
                 <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
                     <h6 class="text-primary text-uppercase">Sản phẩm bán chạy</h6>
-                    <h1 class="display-5 text-uppercase mb-0">Gợi ý cho bạn</h1>
+                    <h1 class="display-5 text-uppercase mb-0" style="font-size: 40px">Gợi ý cho bạn</h1>
                 </div>
                 <div class="owl-carousel product-carousel">
                     <% 
@@ -201,8 +201,8 @@
         <div class="container-fluid py-5">
             <div class="container">
                 <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
-                    <h6 class="text-primary text-uppercase">Khẩu phần</h6>
-                    <h1 class="display-5 text-uppercase mb-0">Chim vui - chim khỏe hãy đến shop tôi</h1>
+                    <h6 class="text-primary text-uppercase">Khẩu phần ăn</h6>
+                    <h1 class="display-5 text-uppercase mb-0" style="font-size: 40px">Dành cho chim của bạn</h1>
                 </div>
 
                 <!-- Blog End -->
@@ -257,7 +257,7 @@
             <div class="container">
                 <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
                     <h6 class="text-primary text-uppercase">Sản phẩm</h6>
-                    <h1 class="display-5 text-uppercase mb-0">Tiêu biểu</h1>
+                    <h1 class="display-5 text-uppercase mb-0" style="font-size: 40px">Dành cho chim của bạn</h1>
                 </div>
 
                 <!-- Blog End -->

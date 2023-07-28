@@ -41,7 +41,7 @@
 
 
                     <li><a class="dropdown-item" style="width: 239px;" href="MainController?action=ViewTypeOfBird&search=">Loại chim</a></li>
-                    <li><a class="dropdown-item" style="width: 239px;" href="sanPhamKhieuNai.jsp">Sản phẩm khiếu nại</a></li>
+                    <li><a class="dropdown-item" style="width: 239px;" href="MainController?action=ViewReportedProduct&search=">Sản phẩm khiếu nại</a></li>
                 </ul>
 
 
@@ -68,7 +68,7 @@
                 <div class="container-fluid px-4">
                     <div class="row g-3 my-2">
                         <div class="col-md-3">
-                            <a href="loaiChim.jsp" class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded fw-bold" style="text-decoration: none; color: black;">
+                            <a href="MainController?action=ViewTypeOfBird&search=" class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded fw-bold" style="text-decoration: none; color: black;">
 
                                 Xem loại chim
 

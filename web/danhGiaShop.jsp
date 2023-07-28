@@ -110,9 +110,6 @@
                         <div class="col">
                             <div class="container" style="display: grid; grid-template-rows: repeat(4,0fr);">
                                 <label for="productName" style="font-size: 18px; font-weight: bold;" >Tên sản phẩm:  </label> <input type="text" id="productName" name="productName" placeholder="Nhập tên sản phẩm" style="border-radius: 10px; margin-bottom:-20px; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-                                <label for="feebackTime" style="font-size: 18px; font-weight: bold;">Thời gian:</label> <input type="text" id="feebackTime" name="feebackTime" placeholder="Nhập thời gian đánh giá" style="border-radius: 10px; margin-bottom:-20px; width: 70%; height: 50px; font-size: 20px; margin-left:5%;"></br>
-                                <label for="typeProduct" style="font-size: 18px; font-weight: bold;">Loại hàng:     </label> <input type="text" id="typeProduct" name="typeProduct" placeholder="Nhập loại hàng" style="border-radius: 10px; margin-bottom:-20px; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-                                <label for="buyer" style="font-size: 18px; font-weight: bold;">Người mua:</label> <input type="text" id="buyer" name="buyer" placeholder="Nhập tên người mua" style="border-radius: 10px; margin-bottom:-20px; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
                             </div>
                             <button type="button" class="btn btn-primary" style="margin-top: 30px; border-radius: 20px;">Tìm kiếm</button>
                         </div>

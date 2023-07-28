@@ -1,5 +1,7 @@
 
 <%@page import="fbird.user.UserDTO"%>
+<%@page import="fbird.customer.CustomerDTO"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%-- 
     Document   : userProfile
@@ -77,7 +79,7 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
 
-                     <div class="nav-item nav-link" style="width: max-content">
+                    <div class="nav-item nav-link" style="width: max-content">
                         <% 
                             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
                             if(loginUser != null) {
@@ -104,14 +106,14 @@
                             if(loginUser.getRole() == 1){
                             loginUser.setFullname("Admin Account");
                     %>
-                            
+
                     <a href="adminDashboard.jsp" class="nav-item nav-link"><i class="fa-solid fa-user-gear"></i></a>
                         <%
                         } else if(loginUser.getRole() == 2){
                         %>
                     <a href="accountShop.jsp" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
-                    <%
-                        } else{
+                        <%
+                            } else{
                         %>
                     <a href="MainController?action=ViewProfile&username=<%= loginUser.getUsername() %>" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
                         <%
@@ -131,7 +133,7 @@
                     <a href="login.jsp" class="nav-item nav-link">Đăng nhập</a>
                     <a href="register.jsp" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5">Đăng ký<i class="bi bi-arrow-right"></i></a>
                         <%}%>
-                    
+
                 </div>
             </div>
         </nav>
@@ -228,24 +230,27 @@
                                         <form action="CreateShopController" method="POST">
                                             <div class="form-group">
                                                 <label for="username">Tên tài khoản:</label>
-                                                <input name="username" type="text" class="form-control" id="username" required="">
+                                                <input name="username" type="text" class="form-control" value="<% if(loginUser != null){
+                                                       %>${sessionScope.LOGIN_USER.username}
+                                                       <%}
+                                                       %>" readonly="" id="username" required="">
                                                 <p class="text-danger">
 
                                                     ${msg}
                                                 </p>
                                             </div>
                                             <div class="form-group">
-                                                <label for="username">Tên shop:</label>
+                                                <label for="username">Tên cửa hàng:</label>
                                                 <input name="shopName" type="text" class="form-control" id="shop" required="">
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="name">SĐT:</label>
+                                                <label for="name">Số điện thoại:</label>
                                                 <input name="phone" type="text" class="form-control" id="phone" required="">
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="email">Email:</label>
+                                                <label for="email">Địa chỉ email:</label>
                                                 <input name="email" type="text" class="form-control" id="email" required="">
                                             </div>
 
@@ -254,7 +259,7 @@
                                                 <input name="address" type="text" class="form-control" id="address" required="">
                                             </div>
                                             <div class="form-group">
-                                                <label for="phone">Thành phố:</label>
+                                                <label for="phone">Tỉnh/Thành phố:</label>
                                                 <input name="city" type="text" class="form-control" id="city" required="">
                                             </div>
 
@@ -328,13 +333,13 @@
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Theo dõi chúng tôi trên</h5>
-<!--                        <form action="">
-                            <div class="input-group">
-                                <input type="text" class="form-control p-3" placeholder="Nhập email">
-                                <button class="btn btn-primary">Đăng ký</button>
-                            </div>
-                        </form>
-                        <h6 class="text-uppercase mt-4 mb-3"> Theo dõi chúng tôi trên</h6>-->
+                        <!--                        <form action="">
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control p-3" placeholder="Nhập email">
+                                                        <button class="btn btn-primary">Đăng ký</button>
+                                                    </div>
+                                                </form>
+                                                <h6 class="text-uppercase mt-4 mb-3"> Theo dõi chúng tôi trên</h6>-->
                         <div class="d-flex">
                             <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-twitter"></i></a>
                             <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-facebook"></i></a>

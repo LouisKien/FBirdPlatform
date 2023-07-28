@@ -246,7 +246,7 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="name">Tên:</label>
+                                                <label for="name">Tên khách hàng:</label>
                                                 <input name="fullname" type="text" class="form-control" id="name" <%
                                                             if(c.getFullname() == null){
                                                        %>placeholder="Chưa có thông tin"<%
@@ -255,7 +255,7 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="email">Email:</label>
+                                                <label for="email">Địa chỉ email:</label>
                                                 <input name="email" type="text" class="form-control" id="email" <%
                                                             if(c.getEmail() == null){
                                                        %>placeholder="Chưa có thông tin"<%

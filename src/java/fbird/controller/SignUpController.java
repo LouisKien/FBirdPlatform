@@ -46,7 +46,6 @@ public class SignUpController extends HttpServlet {
             UserDAO dao = new UserDAO();
             boolean user = dao.checkUserExist(username);
             if (user == false) {
-
                 request.setAttribute("msg", "Tài khoản đã tồn tại");
                 request.getRequestDispatcher("register.jsp").forward(request, response);
             } else {

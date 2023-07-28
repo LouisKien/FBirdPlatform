@@ -21,8 +21,10 @@ import java.util.List;
 public class CustomerDAO {
 
     private static final String VIEW = "SELECT * FROM customer WHERE customer_id= ?";
-    private static final String UPDATE_CUSTOMER = "insert into customer(username, fullname, phone, email, gender, date_of_birth, registed_date) values(?, ?, ?, ?, ?, ?, ?)";
-    private static final String CHECK_EXIST = "SELECT fullname FROM customer WHERE username=?";
+    private static final String UPDATE_CUSTOMER = "UPDATE customer\n" +
+"SET fullname = ? , phone = ?, email = ?, gender = ?, date_of_birth = ?\n" +
+"WHERE username=?;";
+    private static final String CHECK_EXIST = "SELECT username, fullname FROM customer WHERE username=?";
 
     private static final String INSERT_CUSTOMER = "INSERT INTO customer(username, fullname, email, avatar, registed_date) VALUES(?,?,?,?,?)";
 
@@ -68,7 +70,7 @@ public class CustomerDAO {
         return list;
     }
 
-    public boolean createCustomer(String username, String fullname, String phone, String email, boolean gender, String dob, Date date) throws SQLException {
+    public boolean createCustomer(String username, String fullname, String phone, String email, boolean gender, String dob) throws SQLException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -76,13 +78,13 @@ public class CustomerDAO {
         try {
             conn = DBUtils.getConnection();
             ptm = conn.prepareStatement(UPDATE_CUSTOMER);
-            ptm.setString(1, username);
-            ptm.setString(2, fullname);
-            ptm.setString(3, phone);
-            ptm.setString(4, email);
-            ptm.setBoolean(5, gender);
-            ptm.setString(6, dob);
-            ptm.setDate(7, (java.sql.Date) date);
+            
+            ptm.setString(1, fullname);
+            ptm.setString(2, phone);
+            ptm.setString(3, email);
+            ptm.setBoolean(4, gender);
+            ptm.setString(5, dob);
+            ptm.setString(6, username);
             check = ptm.executeUpdate() > 0 ? true : false;
         } catch (Exception e) {
             e.printStackTrace();

@@ -109,14 +109,14 @@
                             if(loginUser.getRole() == 1){
                             loginUser.setFullname("Admin Account");
                     %>
-                            
+
                     <a href="adminDashboard.jsp" class="nav-item nav-link"><i class="fa-solid fa-user-gear"></i></a>
                         <%
                         } else if(loginUser.getRole() == 2){
                         %>
                     <a href="accountShop.jsp" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
-                    <%
-                        } else{
+                        <%
+                            } else{
                         %>
                     <a href="MainController?action=ViewProfile&username=<%= loginUser.getUsername() %>" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
                         <%
@@ -216,7 +216,10 @@
                     <div class="col-xl-9" style="border: 2px solid; border-radius: 10px; width: 750px; margin: 10px;">
 
 
+                        <p class="text-danger">
 
+                            ${msg}
+                        </p>
                         <div>
                             <div class="border-bottom">
                                 <div class="text-left font-weight-bold" style="font-size: 20px;">
@@ -226,19 +229,17 @@
                                     Quản lý thông tin hồ sơ để bảo mật tài khoản
                                 </div>
                             </div>
-                            <%
-                                    List<CustomerDTO> customer = (List<CustomerDTO>) request.getAttribute("CUSTOMER");
-                                    if(customer != null){
-                                        for(CustomerDTO c: customer){
-                            %>
+
                             <div class="container">
                                 <div class="row">
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                                        <%
+                                    List<CustomerDTO> customer = (List<CustomerDTO>) request.getAttribute("CUSTOMER");
+                                    if(customer != null){
+                                        for(CustomerDTO c: customer){
+                                        %>
                                         <form action="AddUserProfileController" method="POST">
-                                            <p class="text-danger">
 
-                                                ${msg}
-                                            </p>
 
                                             <div class="form-group">
                                                 <label for="username">Tên đăng nhập:</label>
@@ -308,9 +309,9 @@
 
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6" style="margin-top: 5px; text-align: center; position: relative;">
                                         <img class="avatar" src="https://images.unsplash.com/photo-1552728089-57bdde30beb3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=425&q=80" width="100" height="100">
-                                        <div class="d-flex mt-2 position-absolute start-50 translate-middle-x">
+<!--                                        <div class="d-flex mt-2 position-absolute start-50 translate-middle-x">
                                             <button class="btn btn-primary" type="submit">Chọn ảnh</button>
-                                        </div>
+                                        </div>-->
                                     </div>
                                 </div>
                             </div>
@@ -362,13 +363,13 @@
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Theo dõi chúng tôi trên</h5>
-<!--                        <form action="">
-                            <div class="input-group">
-                                <input type="text" class="form-control p-3" placeholder="Nhập email">
-                                <button class="btn btn-primary">Đăng ký</button>
-                            </div>
-                        </form>
-                        <h6 class="text-uppercase mt-4 mb-3"> Theo dõi chúng tôi trên</h6>-->
+                        <!--                        <form action="">
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control p-3" placeholder="Nhập email">
+                                                        <button class="btn btn-primary">Đăng ký</button>
+                                                    </div>
+                                                </form>
+                                                <h6 class="text-uppercase mt-4 mb-3"> Theo dõi chúng tôi trên</h6>-->
                         <div class="d-flex">
                             <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-twitter"></i></a>
                             <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-facebook"></i></a>

@@ -44,8 +44,8 @@ public class AddUserProfileController extends HttpServlet {
             String gender = request.getParameter("gender");
             boolean genderSQL;
             genderSQL = gender.equals("Nam");
-            Date date = new Date();
-            java.sql.Date datesql = new java.sql.Date(date.getTime());
+            //Date date = new Date();
+            //java.sql.Date datesql = new java.sql.Date(date.getTime());
             String dob = request.getParameter("dob");
             
             
@@ -53,18 +53,19 @@ public class AddUserProfileController extends HttpServlet {
             UserDTO user = dao.checkUserExist(username);
             
             if (user == null) {
+                request.setAttribute("msg", "Bạn cần đăng kí tài khoản để sử dụng dịch vụ này");
                 request.getRequestDispatcher("userProfile.jsp").forward(request, response);
             } else {
                 CustomerDAO cusDao = new CustomerDAO();
                 CustomerDTO customer = cusDao.checkCustomerExist(username);
                 if(customer != null){
-                check = cusDao.createCustomer(username, fullName, phone, email, genderSQL, dob, datesql);
+                check = cusDao.createCustomer(username, fullName, phone, email, genderSQL, dob);
                 if(check == true){
                 request.setAttribute("msg", "Cập nhật hồ sơ thành công");
                 request.getRequestDispatcher("userProfile.jsp").forward(request, response);
                 }
                 }else{
-                    request.setAttribute("msg", "Bạn đã thêm hồ sơ trước đó rồi");
+                    request.setAttribute("msg", "Cập nhật thất bại");
                     request.getRequestDispatcher("userProfile.jsp").forward(request, response);
                 }
             }

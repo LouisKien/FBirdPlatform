@@ -22,7 +22,7 @@ import java.util.List;
 public class UserDAO {
 
     private static final String LOGIN = "SELECT role_id, status, shop_owner.shop_id, customer_id, fullname, customer.avatar, shop_name FROM account left join shop_owner on account.username = shop_owner.username left join customer on account.username = customer.username WHERE account.username = ? AND password = ?";
-    private static final String CHECK_EXIST = "SELECT username FROM account WHERE username=?";
+    private static final String CHECK_EXIST = "SELECT * FROM account WHERE username=?";
     private static final String SIGN_UP = "insert into account values(?, ?, 3, 1)";
     private static final String UPDATE_ROLEID = "UPDATE account SET role_id = 2 WHERE username = ?";
 
@@ -79,9 +79,9 @@ public class UserDAO {
         return user;
     }
 
-    public boolean checkUserExist(String username) throws SQLException {
+    public UserDTO checkUserExist(String username) throws SQLException {
         //UserDTO user = null;
-        boolean USERNAME = true;
+        
         Connection conn = null;
         PreparedStatement ptm = null;
         ResultSet rs = null;
@@ -93,7 +93,7 @@ public class UserDAO {
             rs = ptm.executeQuery();
             if (rs.next()) {
                 
-                USERNAME = false;
+                return new UserDTO(rs.getString(1), rs.getString(2), Integer.parseInt(rs.getString(3)), Integer.parseInt(rs.getString(4)));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -110,7 +110,7 @@ public class UserDAO {
                 rs.close();
             }
         }
-        return USERNAME;
+        return null;
     }
 
     public void singup(String username, String password) throws SQLException {

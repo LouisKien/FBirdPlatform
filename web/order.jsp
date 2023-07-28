@@ -360,6 +360,7 @@
                             <img src="https://www.logolynx.com/images/logolynx/c3/c36093ca9fb6c250f74d319550acac4d.jpeg" alt="" width="50">
                         </span>
                         <button type="button" >Xác nhận thanh toán</button>
+                        <a href="orderSuccess.jsp" type="button">Xác nhận thanh toán</button>
                     </div>
 
                 </div><!-- Yorder -->

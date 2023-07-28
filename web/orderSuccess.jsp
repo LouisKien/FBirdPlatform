@@ -1,13 +1,19 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="java.util.List"%>
-<%@page import="fbird.product.ProductDTO"%>
-<%@page import="fbird.user.UserDTO"%>
-<!DOCTYPE html>
-<html lang="en">
+<%-- 
+    Document   : index
+    Created on : Jun 27, 2023, 1:13:29 PM
+    Author     : Khanh
+--%>
 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="fbird.product.ProductDTO"%>
+<%@page import="fbird.recipe.RecipeDTO"%>
+<%@page import="fbird.user.UserDTO"%>
+<%@page import="java.util.List"%>
+<!DOCTYPE html>
+<html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Kết quả tìm kiếm cho: "${SEARCH}"</title>
+        <title>F-Bird</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Free HTML Templates" name="keywords">
         <meta content="Free HTML Templates" name="description">
@@ -41,6 +47,9 @@
     </head>
 
     <body>
+
+
+
         <!-- Navbar Start -->
         <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm py-3 py-lg-0 px-3 px-lg-0 mb-5">
             <a href="MainController" class="navbar-brand ms-lg-5">
@@ -57,7 +66,7 @@
                 <form action="MainController" method="POST">
 
                     <div class="searchBar">
-                        <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Tìm kiếm sản phẩm" required="" value="${SEARCH}" />
+                        <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Tìm kiếm sản phẩm" required="" value="" />
                         <button id="searchQuerySubmit" type="submit" name="action" value="searchQuerySubmit">
                             <svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="#666666" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
                             </svg>
@@ -95,14 +104,14 @@
                             if(loginUser.getRole() == 1){
                             loginUser.setFullname("Admin Account");
                     %>
-                            
+
                     <a href="adminDashboard.jsp" class="nav-item nav-link"><i class="fa-solid fa-user-gear"></i></a>
                         <%
                         } else if(loginUser.getRole() == 2){
                         %>
                     <a href="accountShop.jsp" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
-                    <%
-                        } else{
+                        <%
+                            } else{
                         %>
                     <a href="MainController?action=ViewProfile&username=<%= loginUser.getUsername() %>" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
                         <%
@@ -127,120 +136,20 @@
         </nav>
         <!-- Navbar End -->
 
-
-        <!-- Products Start -->
-        <div class="container-fluid py-5">
-            <div class="container">
-                <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
-                    
-                    <h1 class="display-5 text-uppercase mb-0" style="font-size: 20px;">Kết quả tìm kiếm cho: <p style="color: #7AB730;">"${SEARCH}"</p></h1>
-                </div>
-                <div class="col-xl-12">
-                    <div class="products-area products-area3">
-                        <div class="row justify-content-center">
-                            <div>${MESSAGE}</div>
-
-                            <%
-                                List<ProductDTO> listProduct = (List<ProductDTO>) request.getAttribute("PRODUCT_SEARCH_LIST");
-                                if(listProduct != null){
-                                    for(ProductDTO product: listProduct){
-                            %>
-                            <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
-                                <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
-                                    <div style="text-align: center;">
-                                        <a href="MainController?action=ViewProductDetail&shop_product_item_id=<%=product.getShopProductItemID() %>&shop_id=<%=product.getShopID() %>" class="product-image">
-                                            <img style="width: 160px;height: 190px" src="<%= product.getImage_1()%>" alt="product-image" />
-                                        </a>
-                                    </div>
-                                    <div class="bottom-content">
-                                        <div style="text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;font-weight: bold; margin-top: 10px;">
-                                            <a href="MainController?action=ViewProductDetail&shop_product_item_id=<%=product.getShopProductItemID() %>&shop_id=<%=product.getShopID() %>" style="color: black;"><%= product.getTitle()%></a>
-                                        </div>
-
-
-                                        <div style="text-align: center;">
-                                            <span class="product-price" style="font-size: 25px;font-weight: bold; color: red;"><%= product.getPrice()%> đ</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> 
-                            <%
-                                }
-                                }
-                            %>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Products End -->
-
-
-
+        <div class="card">
+      <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
+        <i class="checkmark">✓</i>
+      </div>
+        <h1 class="success">Success</h1> 
+        <p class="content">We received your purchase request;<br/> we'll be in touch shortly!</p></br>
+        Quay về trang chủ sau <div id="countdown"></div>
+        
+      </div>
 
 
 
         <!-- Footer Start -->
-        <div class="container-fluid bg-light mt-5 py-5">
-            <div class="container pt-5">
-                <div class="row g-5">
-                    <div class="col-lg-3 col-md-6">
-                        <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">PHƯƠNG THỨC LIÊN LẠC</h5>
-                        <p class="mb-4"></p>
-                        <p class="mb-2"><i class="bi bi-geo-alt text-primary me-2"></i>Lô E2a-7, Đường D1, Khu Công nghệ cao, P.Long Thạnh Mỹ, Tp. Thủ Đức, TP.HCM.</p>
-                        <p class="mb-2"><i class="bi bi-envelope-open text-primary me-2"></i>daihoc.hcm@fpt.edu.vn</p>
-                        <p class="mb-0"><i class="bi bi-telephone text-primary me-2"></i> (028) 7300 5588</p>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">F-Bird</h5>
-                        <div class="d-flex flex-column justify-content-start">
-                            <a class="text-body mb-2" href="MainController"><i class="bi bi-arrow-right text-primary me-2"></i>Trang chủ</a>
-
-                            <a class="text-body mb-2" href="devteam.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thành viên</a>
-
-
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Loại hàng cho chim</h5>
-                        <div class="d-flex flex-column justify-content-start">
-                            <a class="text-body mb-2" href="MainController?action=foodpage"><i class="bi bi-arrow-right text-primary me-2"></i>Thức ăn</a>
-                            <a class="text-body mb-2" href="MainController?action=medicinepage"><i class="bi bi-arrow-right text-primary me-2"></i>Thuốc - Dược phẩm</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Theo dõi chúng tôi trên</h5>
-<!--                        <form action="">
-                            <div class="input-group">
-                                <input type="text" class="form-control p-3" placeholder="Nhập email">
-                                <button class="btn btn-primary">Đăng ký</button>
-                            </div>
-                        </form>
-                        <h6 class="text-uppercase mt-4 mb-3"> Theo dõi chúng tôi trên</h6>-->
-                        <div class="d-flex">
-                            <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-twitter"></i></a>
-                            <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-facebook"></i></a>
-                            <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-linkedin"></i></a>
-                            <a class="btn btn-outline-primary btn-square" href="#"><i class="bi bi-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="container-fluid bg-dark text-white-50 py-4">
-            <div class="container">
-                <div class="row g-5">
-                    <div class="col-md-6 text-center text-md-start">
-                        <p class="mb-md-0">&copy; <a class="text-white" href="MainController">Trang web được thiết kế bởi Nhóm 3 </a> </p>
-                    </div>
-                    <div class="col-md-6 text-center text-md-end">
-                        <p class="mb-0">Nguồn <a class="text-white" href="https://htmlcodex.com">HTML Codex</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
         <!-- Footer End -->
 
 
@@ -255,13 +164,33 @@
 
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
+        <script>
+var timeleft = 10;
+var downloadTimer = setInterval(function(){
+  if(timeleft <= 0){
+    clearInterval(downloadTimer);
+    document.getElementById("countdown").innerHTML = "0 giây";
+  } else {
+    document.getElementById("countdown").innerHTML = timeleft + " giây";
+  }
+  timeleft -= 1;
+}, 1000);
+        </script>
+        <script>
+            
+            $(function () {
+  setTimeout(function() {
+    window.location.replace("http://localhost:8084/FBird/");
+  }, 10000);
+});
+        </script>
     </body>
 
-</html>
+</html> 
+
+
 <style>
-    body {
-        font-family: 'Roboto', Arial, sans-serif;
-    }
+
 
     .wrapper {
         width: 100%;
@@ -323,4 +252,36 @@
         transition: .5s;
         width: max-content;
     }
+    body {
+        text-align: center;
+        padding: 40px 0;
+        background: #EBF0F5;
+      }
+    .success {
+          color: #88B04B;
+          font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+          font-weight: 900;
+          font-size: 40px;
+          margin-bottom: 10px;
+        }
+        .content {
+          color: #404F5E;
+          font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+          font-size:20px;
+          margin: 0;
+        }
+      .checkmark {
+        color: #9ABC66;
+        font-size: 100px;
+        line-height: 200px;
+        margin-left:-15px;
+      }
+      .card {
+        background: white;
+        padding: 60px;
+        border-radius: 4px;
+        box-shadow: 0 2px 3px #C8D0D8;
+        display: inline-block;
+        margin: 0 auto;
+      }
 </style>

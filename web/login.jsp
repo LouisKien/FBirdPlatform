@@ -46,7 +46,7 @@
                                         <h3 class="mb-4">Đăng nhập</h3>
                                     </div>
                                 </div>
-                                <form action="MainController" class="signin-form" method="POST">
+                                <form action="MainController" class="signin-form" method="POST" id="signin-form">
                                     <div class="form-group mb-3">
                                         <label class="label" for="name">Tên đăng nhập:</label>
                                         <input type="text" class="form-control" placeholder="Username" name="username" required="">
@@ -57,9 +57,16 @@
                                     </div>
                                     <div class="form-group mb-3" style="color: red;">
                                         ${requestScope.ERROR}
+
                                     </div>
+                                    <div class="form-group mb-2" style="color: red;">
+
+                                    </div>
+                                    <div class="g-recaptcha form-group mb-2" data-sitekey="6LfcOQYlAAAAAOlqYLQzLd461rhm2GIe6FVlgrbh"></div>
+
                                     <div class="form-group">
                                         <button type="submit" class="form-control btn btn-primary rounded submit px-3" name="action" value="Login">Đăng nhập</button>
+                                        <input name="action" value="Login" hidden=""/>
                                     </div>
 
                                     <div class="form-group">
@@ -70,7 +77,7 @@
                                                 <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
                                                 <span>
                                                     Đăng nhập bằng Google   
-                                             </span>
+                                                </span>
                                             </div>
 
                                         </a>
@@ -102,6 +109,24 @@
                 </div>
             </div>
         </section>
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script>
+    window.onload = function () {
+        const form = document.getElementById("signin-form");
+        const error = document.querySelector(".form-group.mb-2");
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+            const response = grecaptcha.getResponse();
+            if (response) {
+                form.submit();
+            } else {
+                error.innerHTML = "Please confirm reCaptcha";
+            }
+        });
+    };
+</script>
+
 
         <script src="login-form/js/jquery.min.js"></script>
         <script src="login-form/js/popper.js"></script>

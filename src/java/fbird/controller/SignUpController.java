@@ -13,38 +13,50 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-/**
- *
- * @author Khanh
- */
+
 public class SignUpController extends HttpServlet {
 
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
         response.setContentType("text/html;charset=UTF-8");
-        try{
+         try {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String confirm = request.getParameter("confirm");
-        if(!confirm.equals(password)){
-            request.setAttribute("msg", "mật khẩu không trùng khớp");
+
+      
+        if (username.length() < 5 || username.length() > 20) {
+            request.setAttribute("msg", "Tên đăng nhập phải từ 5 đến 20 ký tự");
             request.getRequestDispatcher("register.jsp").forward(request, response);
-        }else if(confirm.equals(password)){
+            return; 
+        }
+
+       
+        if (password.length() < 8 || password.length() > 12) {
+            request.setAttribute("msg", "Mật khẩu phải từ 8 đến 12 ký tự");
+            request.getRequestDispatcher("register.jsp").forward(request, response);
+            return; 
+        }
+
+        if (!confirm.equals(password)) {
+            request.setAttribute("msg", "Mật khẩu không trùng khớp");
+            request.getRequestDispatcher("register.jsp").forward(request, response);
+        } else {
             UserDAO dao = new UserDAO();
             UserDTO user = dao.checkUserExist(username);
-            if(user == null){
+            if (user == null) {
                 dao.singup(username, password);
                 request.setAttribute("user", username);
-                request.getRequestDispatcher("userProfile.jsp").forward(request, response);
-            }else{
+                request.getRequestDispatcher("login.jsp").forward(request, response);
+            } else {
                 request.setAttribute("msg", "Tài khoản đã tồn tại");
                 request.getRequestDispatcher("register.jsp").forward(request, response);
             }
         }
-        }catch (Exception e) {
-            log("ERROR at SignUpConttroller: " + toString());
-        }
+    } catch (Exception e) {
+        log("ERROR at SignUpConttroller: " + toString());
+    }
         
     }
 

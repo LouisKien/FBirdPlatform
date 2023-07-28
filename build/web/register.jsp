@@ -42,7 +42,7 @@
                                         </p>
                                     </div>
                                 </div>
-                                <form action="SignUpController" method="POST" class="signin-form">
+                                <form action="SignUpController" method="POST" class="signup-form" id="signup-form">
                                     <p class="text-danger">
                                         
                                         ${msg}
@@ -59,8 +59,15 @@
                                         <label class="label" for="password">Xác nhận mật khẩu:</label>
                                         <input name="confirm" type="password" class="form-control" placeholder="Confirm Password" required>
                                     </div>
+                                    <p class="form-group mb-2" style="color: red;">
+
+                                    </p>
+                                    <div class="g-recaptcha form-group mb-3" data-sitekey="6LfcOQYlAAAAAOlqYLQzLd461rhm2GIe6FVlgrbh"></div>
+
+                                    
                                     <div class="form-group">
-                                        <button type="submit" class="form-control btn btn-primary rounded submit px-3">Đăng ký</button>
+                                        <button type="submit"  value="Register" class="form-control btn btn-primary rounded submit px-3">Đăng ký</button>
+                                        <input name="action" value="Register" hidden=""/>
                                     </div>
                                 </form>
                                 <div style="text-align: center">
@@ -75,6 +82,23 @@
                 </div>
             </div>
         </section>
+                                            <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script>
+    window.onload = function () {
+        const form = document.getElementById("signup-form");
+        const error = document.querySelector(".form-group.mb-2");
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+            const response = grecaptcha.getResponse();
+            if (response) {
+                form.submit();
+            } else {
+                error.innerHTML = "Please confirm reCaptcha";
+            }
+        });
+    };
+</script>
 
         <script src="login-form/js/jquery.min.js"></script>
         <script src="login-form/js/popper.js"></script>

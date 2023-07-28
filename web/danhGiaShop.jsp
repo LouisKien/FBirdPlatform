@@ -90,13 +90,13 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
+                               <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fas fa-user me-2"></i>FPT Shop
+                                    <i class="fas fa-user me-2"></i>${sessionScope.LOGIN_USER.getFullname()}
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="hoSoShop.jsp">Hồ sơ</a></li>
-                                    <li><a class="dropdown-item" href="#">Cài đặt</a></li>
+                                   
                                     <li><a class="dropdown-item" href="login.jsp">Đăng xuất</a></li>
                                 </ul>
                             </li>
@@ -107,12 +107,12 @@
                 <div class="container-fluid px-4">
                     <div class="row my-5">
                         <!--                        <h3 class="fs-4 mb-3">Ngày đặt hàng</h3>-->
-                        <div class="col">
-                            <div class="container" style="display: grid; grid-template-rows: repeat(4,0fr);">
-                                <label for="productName" style="font-size: 18px; font-weight: bold;" >Tên sản phẩm:  </label> <input type="text" id="productName" name="productName" placeholder="Nhập tên sản phẩm" style="border-radius: 10px; margin-bottom:-20px; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-                            </div>
-                            <button type="button" class="btn btn-primary" style="margin-top: 30px; border-radius: 20px;">Tìm kiếm</button>
-                        </div>
+<div class="col" style="display: grid; grid-template-columns: auto 1fr auto; align-items: center;">
+    <label for="productName" style="font-size: 18px; font-weight: bold;">Tên sản phẩm:</label>
+    <input type="text" id="productName" name="productName" placeholder="Nhập tên sản phẩm" style="border-radius: 10px; height: 50px; font-size: 20px; margin-left: 5%; width: 700px;">
+    <button type="button" class="btn btn-primary" style="border-radius: 20px; margin-right: 220px;">Tìm kiếm</button>
+</div>
+
                     </div>
 
                     <div class="row g-3 my-2">

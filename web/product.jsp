@@ -2,6 +2,8 @@
 <%@page import="java.util.List"%>
 <%@page import="fbird.product.ProductDTO"%>
 <%@page import="fbird.user.UserDTO"%>
+<%@ page import="java.text.NumberFormat" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -159,7 +161,17 @@
                                         </div>
 
                                         <div style="text-align: center;">
-                                            <span class="product-price" style="font-weight: bold; color: red; font-size: 25px;"><%= product.getPrice()%> đ</span>
+                                            <%
+                                                NumberFormat numberFormat = NumberFormat.getInstance();
+                                                numberFormat.setMinimumFractionDigits(0);
+                                                numberFormat.setMaximumFractionDigits(0);
+                                                String formattedPrice = numberFormat.format(product.getPrice());
+                                            %>
+                                            <span class="product-price" style="font-weight: bold; color: red; font-size: 25px;">
+                                                <%= formattedPrice %>đ
+                                            </span>
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -209,7 +221,7 @@
                 </nav>
             </div>
         </div>
-                            <%}%>
+        <%}%>
 
 
 

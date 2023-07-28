@@ -2,10 +2,12 @@
 <%@page import="java.util.List"%>
 <%@page import="fbird.product.ProductDTO"%>
 <%@page import="fbird.user.UserDTO"%>
+<%@ page import="java.text.NumberFormat" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
-        <head>
+    <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Thuốc - Dược phẩm cho chim cảnh</title>
         <link rel="icon" href="img/logo-shop.PNG" type="image/png">
@@ -96,14 +98,14 @@
                             if(loginUser.getRole() == 1){
                             loginUser.setFullname("Admin Account");
                     %>
-                            
+
                     <a href="adminDashboard.jsp" class="nav-item nav-link"><i class="fa-solid fa-user-gear"></i></a>
                         <%
                         } else if(loginUser.getRole() == 2){
                         %>
                     <a href="accountShop.jsp" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
-                    <%
-                        } else{
+                        <%
+                            } else{
                         %>
                     <a href="MainController?action=ViewProfile&username=<%= loginUser.getUsername() %>" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
                         <%
@@ -136,16 +138,16 @@
                     <h6 class="text-primary text-uppercase">Danh mục</h6>
                     <h1 class="display-5 text-uppercase mb-0" style="font-size: 30px">Thuốc - Dược phẩm cho chim cảnh</h1>
                 </div>
-        <div class="col-xl-12">
-            <div class="products-area products-area3">
-                <div class="row justify-content-center">
-                    <!--                                <div>${requestScope.MESSAGE}</div>-->
+                <div class="col-xl-12">
+                    <div class="products-area products-area3">
+                        <div class="row justify-content-center">
+                            <!--                                <div>${requestScope.MESSAGE}</div>-->
 
-                    
-                    <%
-                                List<ProductDTO> listMedicine = (List<ProductDTO>) request.getAttribute("LIST_MEDICINE_PAGE");
-                                if(listMedicine != null){
-                                    for(ProductDTO product: listMedicine){
+
+                            <%
+                                        List<ProductDTO> listMedicine = (List<ProductDTO>) request.getAttribute("LIST_MEDICINE_PAGE");
+                                        if(listMedicine != null){
+                                            for(ProductDTO product: listMedicine){
                             %>
                             <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
                                 <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
@@ -160,7 +162,16 @@
                                         </div>
 
                                         <div style="text-align: center;">
-                                            <span class="product-price" style="font-weight: bold; color: red; font-size: 25px;"><%= product.getPrice()%> đ</span>
+                                            <%
+    NumberFormat numberFormat = NumberFormat.getInstance();
+    numberFormat.setMinimumFractionDigits(0);
+    numberFormat.setMaximumFractionDigits(0);
+    String formattedPrice = numberFormat.format(product.getPrice());
+                                            %>
+                                            <span class="product-price" style="font-weight: bold; color: red; font-size: 25px;">
+                                                <%= formattedPrice %>đ
+                                            </span>
+
                                         </div>
                                     </div>
                                 </div>
@@ -169,11 +180,11 @@
                                 }
                                 }
                             %>
-                    
-                    
+
+
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
             </div>
         </div>
         <!-- Products End -->
@@ -184,7 +195,7 @@
 
 
         <!-- Footer Start -->
-            <div class="container-fluid bg-light mt-5 py-5">
+        <div class="container-fluid bg-light mt-5 py-5">
             <div class="container pt-5">
                 <div class="row g-5">
                     <div class="col-lg-3 col-md-6">
@@ -214,13 +225,13 @@
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Theo dõi chúng tôi trên</h5>
-<!--                        <form action="">
-                            <div class="input-group">
-                                <input type="text" class="form-control p-3" placeholder="Nhập email">
-                                <button class="btn btn-primary">Đăng ký</button>
-                            </div>
-                        </form>
-                        <h6 class="text-uppercase mt-4 mb-3"> Theo dõi chúng tôi trên</h6>-->
+                        <!--                        <form action="">
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control p-3" placeholder="Nhập email">
+                                                        <button class="btn btn-primary">Đăng ký</button>
+                                                    </div>
+                                                </form>
+                                                <h6 class="text-uppercase mt-4 mb-3"> Theo dõi chúng tôi trên</h6>-->
                         <div class="d-flex">
                             <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-twitter"></i></a>
                             <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-facebook"></i></a>
@@ -244,20 +255,20 @@
                 </div>
             </div>
         </div>
-            <!-- Footer End -->
+        <!-- Footer End -->
 
 
-       <!-- Back to Top -->
-            <a href="#" class="btn btn-primary py-3 fs-4 back-to-top"><i class="bi bi-arrow-up"></i></a>
-            <!-- JavaScript Libraries -->
-            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="lib/easing/easing.min.js"></script>
-            <script src="lib/waypoints/waypoints.min.js"></script>
-            <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-primary py-3 fs-4 back-to-top"><i class="bi bi-arrow-up"></i></a>
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
-            <!-- Template Javascript -->
-            <script src="js/main.js"></script>
+        <!-- Template Javascript -->
+        <script src="js/main.js"></script>
     </body>
 
 </html>

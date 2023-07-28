@@ -87,8 +87,12 @@
                     <div class="row my-5">
                         <h3 class="fs-4 mb-3">Tìm kiếm loại chim:</h3>
                         <form action="SearchTypeOfBirdController" method="GET">
-                            <input type="text" name="search" placeholder="Nhập tên chim">
-                            <button type="submit">Tìm kiếm</button>
+                              <div class="input-container">
+    <input type="text" name="search" placeholder="Nhập tên chim">
+    <!-- Thêm nút tìm kiếm nếu cần -->
+    <button type="submit" class="search-button">Tìm kiếm</button>
+ </div>
+
                         </form>
                         <div class="col">
 
@@ -213,6 +217,57 @@
 
     .slider.round:before {
         border-radius: 50%;
+    }
+    
+    
+    
+    
+    
+/*    -------------------------------------------*/
+     /* Container cho input */
+    .input-container {
+      display: flex;
+/*      align-items: center;*/
+/*      justify-content: center;*/
+      margin-bottom: 10px;
+    }
+
+    /* Input */
+    input[type="text"] {
+      padding: 10px;
+      border: 2px solid #7ab730; /* Định dạng viền input */
+      border-radius: 5px; /* Bo tròn góc input */
+      font-size: 16px;
+      outline: none; /* Loại bỏ viền xung quanh input khi focus */
+      width: 300px; /* Độ rộng input */
+    }
+
+    /* Placeholder */
+    input[type="text"]::placeholder {
+      color: #999; /* Màu chữ của placeholder */
+      font-style: italic;
+    }
+
+    /* Hover và focus */
+    input[type="text"]:hover,
+    input[type="text"]:focus {
+      border-color: #6c963a; /* Định dạng viền input khi hover và focus */
+    }
+
+    /* Nút tìm kiếm (nếu bạn có nút tìm kiếm bên cạnh input) */
+    .search-button {
+      padding: 10px 15px;
+      background-color: #7ab730;
+      border: none;
+      color: #fff;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-left: 10px;
+      font-size: 16px;
+    }
+
+    .search-button:hover {
+      background-color: #6c963a;
     }
 </style>
 

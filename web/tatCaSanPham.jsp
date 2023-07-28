@@ -100,7 +100,7 @@
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="hoSoShop.jsp">Hồ sơ</a></li>
-                                    <li><a class="dropdown-item" href="#">Cài đặt</a></li>
+                                   
                                     <li><a class="dropdown-item" href="login.jsp">Đăng xuất</a></li>
                                 </ul>
                             </li>

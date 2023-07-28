@@ -70,14 +70,14 @@
                 <div style="position: relative;">
                     <div style="position: absolute; top: 100px; left: 40%; background: #FFFFFF; width: 300px; height: 200px;">
                         <div onclick="closeReportForm()" style="cursor: pointer;"><i class="fas fa-window-close" style="margin-left: 280px;"></i></div>
-                        <div style="display: flex; justify-content: center; align-items: center;">
+<!--                        <div style="display: flex; justify-content: center; align-items: center;">
                             <select size="4" style="width: 300px; height: 200px;">
                                 <option value="spam">Spam</option>
                                 <option value="phishing">Hàng 18+</option>
                                 <option value="inappropriate-content">Hàng fake</option>
                                 <option value="other">Khác</option>
                             </select>    
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             </div>
@@ -163,8 +163,8 @@ if(loginUser != null) {
                             <div class="nav-item dropdown"> 
                                 <a href="#" class="nav-item nav-link nav-contact bg-primary text-white px-3 ms-lg-3" data-bs-toggle="dropdown"><%= loginUser.getFullname() %></a>
                                 <div class="dropdown-menu m-3">
-                                    <a href="product.jsp" class="dropdown-item">View Profile</a>
-                                    <a href="MainController?action=Logout" class="dropdown-item">LOG OUT</a>
+                                    <a href="product.jsp" class="dropdown-item">Hồ sơ</a>
+                                    <a href="MainController?action=Logout" class="dropdown-item">Đăng xuất</a>
                                 </div>
                             </div>
 
@@ -418,14 +418,10 @@ List<FeedbackDTO> listAllFeedback = (List<FeedbackDTO>) request.getAttribute("LI
                 </div>
             </div>
 
-            <h3 class="border-start border-5 border-primary ps-3 mb-4" style=" color: #7ab730;margin-left: 48px; margin-top: 30px;">CHI TIẾT SẢN PHẨM</h3>
-            <h1 style="margin-left: 48px; text-align: left;
-                font-size: 15px;
-                display: block;
-
-                margin-top: 30px;">
-                <%=LPD.getDescription() %>
-            </h1>
+            <h3 class="border-start border-5 border-primary ps-3 mb-4" style=" color: #7ab730;margin-left: 180px; margin-top: 30px;">CHI TIẾT SẢN PHẨM</h3>
+                <div class="product-description-container">
+                     <%=LPD.getDescription() %>
+                </div>
 
 
             <% 
@@ -435,7 +431,7 @@ List<FeedbackDTO> listAllFeedback = (List<FeedbackDTO>) request.getAttribute("LI
             %>
 
 
-            <h3 class="border-start border-5 border-primary ps-3 mb-4" style="color: #7ab730;margin-left: 48px; margin-top: 30px;">FEEDBACK</h3>
+            <h3 class="border-start border-5 border-primary ps-3 mb-4" style="color: #7ab730;margin-left: 180px; margin-top: 30px;">FEEDBACK</h3>
 
             <% 
             List<FeedbackDTO> listFeedback = (List<FeedbackDTO>) request.getAttribute("LIST_Feedback");
@@ -451,7 +447,7 @@ List<FeedbackDTO> listAllFeedback = (List<FeedbackDTO>) request.getAttribute("LI
             <div style="margin-top: 50px;">
                 <div class="mb-5">
 
-                    <div class="d-flex mb-4" style="margin-left: 48px;">
+                    <div class="d-flex mb-4" style="margin-left: 180px;">
                         <img src="<%= feedback.getAvatar() %>" class="img-fluid" style="width: 45px; height: 45px;">
                         <div class="ps-3">
                             <h6><a href=""><%= feedback.getFullname() %></a> <small><i><%= feedback.getFeedback_date() %></i></small></h6>
@@ -494,7 +490,7 @@ List<FeedbackDTO> listAllFeedback = (List<FeedbackDTO>) request.getAttribute("LI
             </div>
             <!-- Comment List End -->
 
-            <!-- Comment Form Start -->
+<!--             Comment Form Start 
             <div class="bg-light rounded p-5">
                 <h3 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Bình luận</h3>
                 <form>
@@ -516,7 +512,7 @@ List<FeedbackDTO> listAllFeedback = (List<FeedbackDTO>) request.getAttribute("LI
                         </div>
                     </div>
                 </form>
-            </div>
+            </div>-->
 
 
 
@@ -746,5 +742,12 @@ List<FeedbackDTO> listAllFeedback = (List<FeedbackDTO>) request.getAttribute("LI
     .selected-product-price::after {
         content: 'đ';
     }
-
+    .product-description-container {
+      border: 3px solid #ccc; /* Định dạng viền */
+      padding: 15px; /* Khoảng cách giữa nội dung và viền của hộp */
+      margin-left: 180px; /* Khoảng cách từ lề trái */
+      margin-top: 30px; /* Khoảng cách từ lề trên */
+      font-size: 15px;
+      display: inline-block; /* Đảm bảo hộp chỉ bao bọc nội dung cần thiết */
+    }
 </style>

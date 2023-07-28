@@ -2,6 +2,8 @@
 <%@page import="java.util.List"%>
 <%@page import="fbird.recipe.RecipeDTO"%>
 <%@page import="fbird.user.UserDTO"%>
+<%@ page import="java.text.NumberFormat" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -151,10 +153,20 @@
                                     <a href="" style="color: black;"><%= recipe.getTitle_recipe() %></a>
                                 </div>
 
-                                <div style="text-align: center;">
-                                    <span style="text-decoration: line-through "><%= recipe.getTotal_price( ) %></span>
-                                    <span class="product-price" style="font-weight: bold; color: red;">11000đ</span>
-                                </div>
+<div style="text-align: center;">
+    <%-- Lấy giá tiền từ recipe.getTotal_price() --%>
+    <% double totalPrice = recipe.getTotal_price(); %>
+
+    <%-- Tạo một đối tượng NumberFormat để định dạng giá tiền --%>
+    <% NumberFormat numberFormat = NumberFormat.getInstance(); %>
+    <% numberFormat.setMinimumFractionDigits(0); %>
+    <% numberFormat.setMaximumFractionDigits(0); %>
+    <% String formattedPrice = numberFormat.format(totalPrice); %>
+
+    <%-- Hiển thị giá tiền với định dạng đã chọn --%>
+    <span class="product-price" style="font-weight: bold; color: red;"><%= formattedPrice %>đ</span>
+</div>
+
                             </div>
                         </div>
                     </div>

@@ -99,12 +99,12 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fas fa-user me-2"></i>FPT Shop
+                                    <i class="fas fa-user me-2"></i>${sessionScope.LOGIN_USER.getFullname()}
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
                                     <li><a class="dropdown-item" href="hoSoShop.jsp">Hồ sơ</a></li>
-                                    <li><a class="dropdown-item" href="#">Cài đặt</a></li>
-                                    <li><a class="dropdown-item" href="login.jsp">Đăng xuất</a></li>
+                                    <li><a class="dropdown-item" href="MainController?action=Logout">Đăng xuất</a></li>
                                 </ul>
                             </li>
                         </ul>

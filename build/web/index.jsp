@@ -9,6 +9,8 @@
 <%@page import="fbird.recipe.RecipeDTO"%>
 <%@page import="fbird.user.UserDTO"%>
 <%@page import="java.util.List"%>
+<%@ page import="java.text.NumberFormat" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -151,7 +153,7 @@
                              ">
 
 
-                            <h1 class="display-5 text-uppercase text-white mb-0" >F-Bird - Thích phải nói, đói phải ăn???</h1>
+                            <h1 class="display-5 text-uppercase text-white mb-0" >FBird - Hân hạnh được gặp bạn</h1>
                         </div>
 
                         <a href="MainController?action=productpage" class="btn btn-light py-md-3 px-md-5 me-3">Xem thêm</a>
@@ -181,7 +183,19 @@
                         <div class="product-item position-relative bg-light d-flex flex-column text-center">
                             <img class="img-fluid mb-4" src="<%=listPHP.getImage_1() %>" alt="">
                             <h6 class="text-uppercase" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;"><%=listPHP.getTitle() %></h6>
-                            <h5 class="text-primary mb-0"><%=listPHP.getPrice() %> đ</h5>
+                            <%
+    // Lấy giá tiền từ listPHP.getPrice()
+    double price = listPHP.getPrice();
+
+    // Tạo một đối tượng NumberFormat để định dạng giá tiền
+    NumberFormat numberFormat = NumberFormat.getInstance();
+    numberFormat.setMinimumFractionDigits(0);
+    numberFormat.setMaximumFractionDigits(0);
+    String formattedPrice = numberFormat.format(price);
+                            %>
+
+                            <h5 class="text-primary mb-0"><%= formattedPrice %> đ</h5>
+
                             <div class="btn-action d-flex justify-content-center">
                                 <a class="btn btn-primary py-2 px-3" href="addtocartv2.jsp"><i class="bi bi-cart"></i></a>
                                 <a class="btn btn-primary py-2 px-3" href="MainController?action=ViewProductDetail&shop_product_item_id=<%=listPHP.getShopProductItemID() %>&shop_id=<%=listPHP.getShopID() %>"><i class="bi bi-eye"></i></a>
@@ -235,7 +249,21 @@
 
                                         <div style="text-align: center;">
                                             <!--<span style="text-decoration: line-through "><//%=listRHP.getOriginal_price() %>đ</span>-->
-                                            <span class="product-price" style="font-size:25px ;font-weight: bold; color: red;"><%=listRHP.getTotal_price() %>đ</span>
+                                            <%
+    // Lấy giá tiền từ listRHP.getTotal_price()
+    double price = listRHP.getTotal_price();
+
+    // Tạo một đối tượng NumberFormat để định dạng giá tiền
+    NumberFormat numberFormat = NumberFormat.getInstance();
+    numberFormat.setMinimumFractionDigits(0);
+    numberFormat.setMaximumFractionDigits(0);
+    String formattedPrice = numberFormat.format(price);
+                                            %>
+
+                                            <span class="product-price" style="font-size: 25px; font-weight: bold; color: red;">
+                                                <%= formattedPrice %>đ
+                                            </span>
+
                                         </div>
                                     </div>
                                 </div>
@@ -292,7 +320,21 @@
 
                                         <div style="text-align: center;">
                                             <!--<span style="text-decoration: line-through "><//%=listRHP.getOriginal_price() %>đ</span>-->
-                                            <span class="product-price" style="font-size:25px ;font-weight: bold; color: red;"><%=listP.getPrice() %>đ</span>
+                                            <%
+    // Lấy giá tiền từ listP.getPrice()
+    double price = listP.getPrice();
+
+    // Tạo một đối tượng NumberFormat để định dạng giá tiền
+    NumberFormat numberFormat = NumberFormat.getInstance();
+    numberFormat.setMinimumFractionDigits(0);
+    numberFormat.setMaximumFractionDigits(0);
+    String formattedPrice = numberFormat.format(price);
+%>
+
+<span class="product-price" style="font-size: 25px; font-weight: bold; color: red;">
+    <%= formattedPrice %>đ
+</span>
+
                                         </div>
                                     </div>
                                 </div>

@@ -30,7 +30,7 @@ public class UserDAO {
     private static final String GET_SHOP = "SELECT username, email, phone, registed_date from shop_owner";
     private static final String GET_CUSTOMER = "SELECT username, fullname, date_of_birth, email, phone, gender, registed_date from customer";
     private static final String SEARCH_ACCOUNT_ON_VIEW_ACCOUNT_PAGE = "SELECT username, role_id, status FROM account WHERE username like ?";
-    
+
     private static final String INSERT_ACCOUNT = "INSERT INTO account(username, password, role_id, status) VALUES(?,?,?,?)";
     private static final String LOGIN_GOOGLE = "select customer.username, role_id, status, customer_id, fullname, email, avatar from account join customer on account.username = customer.username WHERE account.username=?";
 
@@ -47,15 +47,15 @@ public class UserDAO {
             rs = ptm.executeQuery();
             if (rs.next()) {
                 int role_id = Integer.parseInt(rs.getString("role_id"));
-                if(role_id == 2){
+                if (role_id == 2) {
                     int status = Integer.parseInt(rs.getString("status"));
                     int shop_id = rs.getInt("shop_id");
-                    String shop_name=  rs.getString("shop_name");
+                    String shop_name = rs.getString("shop_name");
                     user = new UserDTO(username, password, role_id, status, shop_id, shop_name);
-                } else if (role_id == 1){
+                } else if (role_id == 1) {
                     int status = Integer.parseInt(rs.getString("status"));
                     user = new UserDTO(username, password, role_id, status);
-                } else if (role_id == 3){
+                } else if (role_id == 3) {
                     int status = Integer.parseInt(rs.getString("status"));
                     int customer_id = rs.getInt("customer_id");
                     String fullname = rs.getString("fullname");
@@ -88,7 +88,7 @@ public class UserDAO {
             conn = DBUtils.getConnection();
             ptm = conn.prepareStatement(CHECK_EXIST);
             ptm.setString(1, username);
-            
+
             rs = ptm.executeQuery();
             if (rs.next()) {
                 return new UserDTO(rs.getString(1), rs.getString(2), Integer.parseInt(rs.getString(3)), Integer.parseInt(rs.getString(4)));
@@ -96,14 +96,16 @@ public class UserDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (rs != null) {
-                rs.close();
+
+            if (conn != null) {
+                conn.close();
             }
+
             if (ptm != null) {
                 ptm.close();
             }
-            if (conn != null) {
-                conn.close();
+            if (rs != null) {
+                rs.close();
             }
         }
         return null;
@@ -134,6 +136,7 @@ public class UserDAO {
 
         }
     }
+
     public boolean updateRoleID(String username) throws SQLException, ClassNotFoundException {
         boolean check = false;
         Connection conn = null;
@@ -144,7 +147,7 @@ public class UserDAO {
             if (conn != null) {
                 ptm = conn.prepareStatement(UPDATE_ROLEID);
                 ptm.setString(1, username);
-                check = ptm.executeUpdate()>0?true:false;
+                check = ptm.executeUpdate() > 0 ? true : false;
             }
         } finally {
             if (conn != null) {
@@ -317,7 +320,7 @@ public class UserDAO {
         }
         return check;
     }
-    
+
     public boolean insertAccount(UserDTO user) throws SQLException {
         boolean check = false;
         Connection conn = null;

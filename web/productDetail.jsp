@@ -13,7 +13,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-
+        <title>Nội dung sản phẩm</title>
+        <link rel="icon" href="img/logo-shop.PNG" type="image/png">
         <meta charset="UTF-8">
         <% 
             List<ProductDTO> listProductDetailHeader = (List<ProductDTO>) request.getAttribute("LIST_ProductDetail");

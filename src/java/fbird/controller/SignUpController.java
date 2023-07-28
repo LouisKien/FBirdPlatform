@@ -33,8 +33,8 @@ public class SignUpController extends HttpServlet {
         }
 
        
-        if (password.length() < 8 || password.length() > 12) {
-            request.setAttribute("msg", "Mật khẩu phải từ 8 đến 12 ký tự");
+        if (password.length() < 5 || password.length() > 12) {
+            request.setAttribute("msg", "Mật khẩu phải từ 5 đến 12 ký tự");
             request.getRequestDispatcher("register.jsp").forward(request, response);
             return; 
         }
@@ -45,13 +45,14 @@ public class SignUpController extends HttpServlet {
         } else {
             UserDAO dao = new UserDAO();
             UserDTO user = dao.checkUserExist(username);
-            if (user == null) {
+            if (user != null) {
+
+                request.setAttribute("msg", "Tài khoản đã tồn tại");
+                request.getRequestDispatcher("register.jsp").forward(request, response);
+            } else {
                 dao.singup(username, password);
                 request.setAttribute("user", username);
                 request.getRequestDispatcher("login.jsp").forward(request, response);
-            } else {
-                request.setAttribute("msg", "Tài khoản đã tồn tại");
-                request.getRequestDispatcher("register.jsp").forward(request, response);
             }
         }
     } catch (Exception e) {

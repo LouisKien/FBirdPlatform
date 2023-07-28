@@ -5,7 +5,8 @@
 <%@page import="fbird.user.UserDTO"%>
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Giỏ hàng</title>
+        <link rel="icon" href="img/logo-shop.PNG" type="image/png">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="add-to-cart/addtocart.css">

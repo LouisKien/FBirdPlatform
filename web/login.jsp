@@ -9,7 +9,8 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Đăng nhập - F-Bird</title>
+        <title>Đăng nhập - FBird</title>
+        <link rel="icon" href="img/logo-shop.PNG" type="image/png">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 

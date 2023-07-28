@@ -10,7 +10,8 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Product Details Page</title>
+        <title>Nội dung khẩu phần</title>
+        <link rel="icon" href="img/logo-shop.PNG" type="image/png">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <!-- Favicon -->
         <link href="img/favicon.ico" rel="icon">
@@ -85,7 +86,7 @@
                     </div>
                     <a href="recipe.jsp" class="nav-item nav-link">Khẩu phần</a>  
                     
-                    <a href="accountShop.jsp" class="nav-item nav-link" >tài khoản shop (demo)</a>
+                    
                     <a href="userProfile.jsp" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>  
                     <a href="login.jsp" class="nav-item nav-link">Đăng nhập</a>
                     <a href="register.jsp" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5">Đăng ký<i class="bi bi-arrow-right"></i></a>

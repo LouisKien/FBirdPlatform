@@ -13,6 +13,7 @@
     <head>
         <meta charset="utf-8">
         <title>FBird</title>
+        <link rel="icon" href="img/logo-shop.PNG" type="image/png">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Free HTML Templates" name="keywords">
         <meta content="Free HTML Templates" name="description">

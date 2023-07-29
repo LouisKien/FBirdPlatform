@@ -4,6 +4,8 @@
  */
 package fbird.order;
 
+import java.util.Date;
+
 /**
  *
  * @author Admin
@@ -14,10 +16,55 @@ public class OrderDTO {
     private String postal_code;
     private String phone;
     private String home_number;
+    
+    private String title, name, img;
+    private int quantity;
+    private double price;
 
+    private int order_id, optional_product_item_id;
+    double sell_price;
+    int amount;
+    private int customer_id, delivery_method_id;
+    private String order_address;
+    Date order_date;
+    private String status;
+    private double total_price_order;
+    private String paypal_transaction_id;
+    private String order_phone;
+    
+    
     public OrderDTO() {
     }
 
+    public OrderDTO(int order_id, int optional_product_item_id, double sell_price, int amount) {
+        this.order_id = order_id;
+        this.optional_product_item_id = optional_product_item_id;
+        this.sell_price = sell_price;
+        this.amount = amount;
+    }
+    
+    public OrderDTO(int customer_id, int delivery_method_id, String order_address, Date order_date, String status, double total_price_order, String paypal_transaction_id, String order_phone) {
+        this.customer_id = customer_id;
+        this.delivery_method_id = delivery_method_id;
+        this.order_address = order_address;
+        this.order_date = order_date;
+        this.status = status;
+        this.total_price_order = total_price_order;
+        this.paypal_transaction_id = paypal_transaction_id;
+        this.order_phone = order_phone;
+    } 
+    
+
+    public OrderDTO(String title, String name, String img, int quantity, double price) {
+        this.title = title;
+        this.name = name;
+        this.img = img;
+        this.quantity = quantity;
+        this.price = price;
+    }
+
+    
+    
     public OrderDTO(String street, String city, String postal_code, String phone, String home_number) {
         this.street = street;
         this.city = city;
@@ -65,6 +112,145 @@ public class OrderDTO {
     public void setHome_number(String home_number) {
         this.home_number = home_number;
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public int getOrder_id() {
+        return order_id;
+    }
+
+    public void setOrder_id(int order_id) {
+        this.order_id = order_id;
+    }
+
+    public int getOptional_product_item_id() {
+        return optional_product_item_id;
+    }
+
+    public void setOptional_product_item_id(int optional_product_item_id) {
+        this.optional_product_item_id = optional_product_item_id;
+    }
+
+    public double getSell_price() {
+        return sell_price;
+    }
+
+    public void setSell_price(double sell_price) {
+        this.sell_price = sell_price;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public int getCustomer_id() {
+        return customer_id;
+    }
+
+    public void setCustomer_id(int customer_id) {
+        this.customer_id = customer_id;
+    }
+
+    public int getDelivery_method_id() {
+        return delivery_method_id;
+    }
+
+    public void setDelivery_method_id(int delivery_method_id) {
+        this.delivery_method_id = delivery_method_id;
+    }
+
+    public String getOrder_address() {
+        return order_address;
+    }
+
+    public void setOrder_address(String order_address) {
+        this.order_address = order_address;
+    }
+
+    public Date getOrder_date() {
+        return order_date;
+    }
+
+    public void setOrder_date(Date order_date) {
+        this.order_date = order_date;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public double getTotal_price_order() {
+        return total_price_order;
+    }
+
+    public void setTotal_price_order(double total_price_order) {
+        this.total_price_order = total_price_order;
+    }
+
+    public String getPaypal_transaction_id() {
+        return paypal_transaction_id;
+    }
+
+    public void setPaypal_transaction_id(String paypal_transaction_id) {
+        this.paypal_transaction_id = paypal_transaction_id;
+    }
+
+    public String getOrder_phone() {
+        return order_phone;
+    }
+
+    public void setOrder_phone(String order_phone) {
+        this.order_phone = order_phone;
+    }
+    
+    
+    
     @Override
     public String toString() {
         return home_number + "/" + street +"/" + city;

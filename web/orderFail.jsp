@@ -140,9 +140,14 @@
       <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
           <i class="checkmark" style="color: red;">✗</i>
       </div>
-        <h1 class="success" >Thất bại</h1> 
-        <p class="content">We received your purchase request;<br/> we'll be in touch shortly!</p></br>
-        Quay về trang chủ sau <div id="countdown"></div>
+        <h1 class="success" >Thanh toán thất bại</h1> 
+        <p class="content">Yêu cầu thanh toán đã bị hủy<br/> Vui lòng kiểm tra phương thức thanh toán của bạn và thử lại!</p></br></br>
+        <% 
+                            if(loginUser != null) {
+                        %>
+        <a href="MainController?action=ViewCart&customer_id=<%= loginUser.getCustomer_id() %>">Quay lại giỏ hàng</a></br>
+        <%}%>
+        Hoặc tự động chuyển hướng sau <div id="countdown"></div>
         
       </div>
 
@@ -165,7 +170,7 @@
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
         <script>
-var timeleft = 10;
+var timeleft = 7;
 var downloadTimer = setInterval(function(){
   if(timeleft <= 0){
     clearInterval(downloadTimer);
@@ -180,8 +185,12 @@ var downloadTimer = setInterval(function(){
             
             $(function () {
   setTimeout(function() {
-    window.location.replace("http://localhost:8084/FBird/");
-  }, 10000);
+      <% 
+                            if(loginUser != null) {
+                        %>
+    window.location.replace("http://localhost:8084/FBird/MainController?action=ViewCart&customer_id=<%= loginUser.getCustomer_id() %>");
+    <%}%>
+  }, 7000);
 });
         </script>
     </body>

@@ -339,10 +339,10 @@
                             <td>
                                 <div onchange="updateTotalDisplay()">
                                     <select id="shippingOption" style="min-width: 112%; border-radius: 3px;">
+                                        <option value="12000">Tiết kiệm - 12.000đ</option>
+                                        <option value="20000">Nhanh - 20.000đ</option>
+                                        <option value="100000">Hỏa tốc - 100.000đ</option>
 
-                                        <option value="50000">Hỏa tốc - 50.000đ</option>
-                                        <option value="40000">Nhanh - 40.000đ</option>
-                                        <option value="30000">Tiết kiệm - 30.000đ</option>
                                     </select>
                                 </div>
                             </td>
@@ -352,283 +352,345 @@
                             <td id="allPriceDisplay" style="font-weight: bold;  text-align: center; color: black;"></td>
                         </tr>
                     </table><br>
+                    <div style="font-family: 'Roboto', Arial, sans-serif; text-align: center; font-weight: bold;">Phương thức thanh toán</div>
                     <div>
-                        <input type="radio" name="dbt" value="cd"> Thanh toán COD
+                        <div id="paypal-payment-button"></div>
+
                     </div>
-                    <div>
-                        <input type="radio" name="dbt" value="cd"> Paypal <span>
-                            <img src="https://www.logolynx.com/images/logolynx/c3/c36093ca9fb6c250f74d319550acac4d.jpeg" alt="" width="50">
-                        </span>
-                        <button type="button" >Xác nhận thanh toán</button>
-                        <a href="orderSuccess.jsp" type="button">Xác nhận thanh toán (success test)</button>
-                            <a href="orderFail.jsp" type="button">Xác nhận thanh toán ( fail test)</button>
 
-                                </div>
+                </div><!-- Yorder -->
+            </div>
+        </div>
 
-                                </div><!-- Yorder -->
-                                </div>
-                                </div>
+                                    <script src="https://www.paypal.com/sdk/js?client-id=Ac7kMHZaJoJw3hIlaEXI1VO3WLpTmsOHivGxlRZQbilUXOOibAXSj4YUkVl7Nvx_Kqk-wlCnA0hdtZ9f&disable-funding=credit,card"></script>
+    <script>
+                                    var presentAddressSelect = document.getElementById("addr");
+                                    var presentAddress = presentAddressSelect.options[presentAddressSelect.selectedIndex].value;
 
-                                <a href="#" class="btn btn-primary py-3 fs-4 back-to-top"><i class="bi bi-arrow-up"></i></a>
-                                <!-- JavaScript Libraries -->
-                                <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-                                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-                                <script src="lib/easing/easing.min.js"></script>
-                                <script src="lib/waypoints/waypoints.min.js"></script>
-                                <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+                                    var presentPhoneSelect = document.getElementById("phn");
+                                    var presentPhone = presentPhoneSelect.options[presentPhoneSelect.selectedIndex].value;
 
-                                <!-- Template Javascript -->
-                                <script src="js/main.js"></script>
-                                <div class="container-fluid bg-light mt-5 py-5">
-                                    <div class="container pt-5">
-                                        <div class="row g-5">
-                                            <div class="col-lg-3 col-md-6">
-                                                <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">PHƯƠNG THỨC LIÊN LẠC</h5>
-                                                <p class="mb-4"></p>
-                                                <p class="mb-2"><i class="bi bi-geo-alt text-primary me-2"></i>Lô E2a-7, Đường D1, Khu Công nghệ cao, P.Long Thạnh Mỹ, Tp. Thủ Đức, TP.HCM.</p>
-                                                <p class="mb-2"><i class="bi bi-envelope-open text-primary me-2"></i>daihoc.hcm@fpt.edu.vn</p>
-                                                <p class="mb-0"><i class="bi bi-telephone text-primary me-2"></i> (028) 7300 5588</p>
-                                            </div>
+                                    var totalPriceDisplay = document.getElementById("allPriceDisplay");
 
-                                            <div class="col-lg-3 col-md-6">
-                                                <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">F-Bird</h5>
-                                                <div class="d-flex flex-column justify-content-start">
-                                                    <a class="text-body mb-2" href="MainController"><i class="bi bi-arrow-right text-primary me-2"></i>Trang chủ</a>
+                                    var allPrice = JSON.parse(sessionStorage.getItem("allPrices"));
+                                    var shippingOptionSelect = document.getElementById("shippingOption");
+                                    var shippingCost = parseFloat(shippingOptionSelect.value);
+                                    var totalPriceInVND = allPrice + shippingCost;
 
-                                                    <a class="text-body mb-2" href="devteam.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thành viên</a>
+//                        console.log(data.imgElementValue);
 
+                                    function sendDataToServlet(details) {
+                                        var allElement = JSON.parse(sessionStorage.getItem("Element"));
 
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Loại hàng cho chim</h5>
-                                                <div class="d-flex flex-column justify-content-start">
-                                                    <a class="text-body mb-2" href="MainController?action=foodpage"><i class="bi bi-arrow-right text-primary me-2"></i>Thức ăn</a>
-                                                    <a class="text-body mb-2" href="MainController?action=medicinepage"><i class="bi bi-arrow-right text-primary me-2"></i>Thuốc - Dược phẩm</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Theo dõi chúng tôi trên</h5>
-                                                <!--                        <form action="">
-                                                                            <div class="input-group">
-                                                                                <input type="text" class="form-control p-3" placeholder="Nhập email">
-                                                                                <button class="btn btn-primary">Đăng ký</button>
-                                                                            </div>
-                                                                        </form>
-                                                                        <h6 class="text-uppercase mt-4 mb-3"> Theo dõi chúng tôi trên</h6>-->
-                                                <div class="d-flex">
-                                                    <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-twitter"></i></a>
-                                                    <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-facebook"></i></a>
-                                                    <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-linkedin"></i></a>
-                                                    <a class="btn btn-outline-primary btn-square" href="#"><i class="bi bi-instagram"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                        if (Array.isArray(allElement)) {
+                                            var dataToSend = {
+                                                allElement: allElement, // Sending the entire 'allElement' array
+                                                shippingOptionSelect: shippingOptionSelect.value,
+                                                presentAddress: presentAddress,
+                                                presentPhone: presentPhone,
+                                                totalPrice: totalPriceInVND.valueOf(),
+                                                paypalTransactionID: details.id
+                                            };
 
-                                <div class="container-fluid bg-dark text-white-50 py-4">
-                                    <div class="container">
-                                        <div class="row g-5">
-                                            <div class="col-md-6 text-center text-md-start">
-                                                <p class="mb-md-0">&copy; <a class="text-white" href="MainController">Trang web được thiết kế bởi Nhóm 3 </a> </p>
-                                            </div>
-                                            <div class="col-md-6 text-center text-md-end">
-                                                <p class="mb-0">Nguồn <a class="text-white" href="https://htmlcodex.com">HTML Codex</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                </body>
-                                </html>
-                                <style>
-                                    /*@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700');*/
+                                            // Create a new AJAX request to send data to the servlet
+                                            const xhr = new XMLHttpRequest();
+                                            xhr.open("POST", "OrderPayPalTransactionController", true);
+                                            xhr.setRequestHeader("Content-Type", "application/json");
 
-                                    body{
-
-                                        font-family: 'Roboto Condensed', sans-serif;
-                                        color: #262626;
-                                        margin: 5% 0;
-                                    }
-                                    .container{
-                                        width: 100%;
-                                        padding-right: 15px;
-                                        padding-left: 15px;
-                                        margin-right: auto;
-                                        margin-left: auto;
-                                    }
-                                    @media (min-width: 1200px)
-                                    {
-                                        .container{
-                                            max-width: 1140px;
+                                            // Convert the data to JSON and send it to the servlet
+                                            xhr.send(JSON.stringify(dataToSend));
+                                            console.log(allElement);
                                         }
                                     }
-                                    .d-flex{
-                                        display: flex;
-                                        flex-direction: row;
-                                        background: #f6f6f6;
-                                        border-radius: 0 0 5px 5px;
-                                        padding: 25px;
-                                    }
-                                    form{
-                                        flex: 4;
-                                    }
-                                    .Yorder{
-                                        flex: 2;
 
-                                    }
-                                    .title{
-                                        background-color: #7AB730;
-                                        border-radius:5px 5px 0 0 ;
-                                        padding: 20px;
-                                        color: #f6f6f6;
-                                    }
-                                    h2{
-                                        margin: 0;
-                                        padding-left: 15px;
-                                    }
-                                    .required{
-                                        color: red;
-                                    }
-                                    label, table{
-                                        display: block;
-                                        margin: 15px;
-                                    }
-                                    label>span{
-                                        float: left;
-                                        width: 25%;
-                                        margin-top: 12px;
-                                        padding-right: 10px;
-                                    }
-                                    input[type="text"], input[type="tel"], input[type="email"], select
-                                    {
-                                        width: 70%;
-                                        height: 30px;
-                                        padding: 5px 10px;
-                                        margin-bottom: 10px;
-                                        border: 1px solid #dadada;
-                                        color: #888;
-                                    }
-                                    select{
-                                        width: 72%;
-                                        height: 45px;
-                                        padding: 5px 10px;
-                                        margin-bottom: 10px;
-                                    }
-                                    .Yorder{
-                                        margin-top: 15px;
-                                        height: 600px;
-                                        padding: 20px;
-                                        border: 1px solid #dadada;
-                                    }
-                                    table{
-                                        margin: 0;
-                                        padding: 0;
-                                    }
-                                    th{
-                                        border-bottom: 1px solid #dadada;
-                                        padding: 10px 0;
-                                    }
-                                    tr>td:nth-child(1){
-                                        text-align: left;
-                                        color: #2d2d2a;
-                                    }
-                                    tr>td:nth-child(2){
-                                        text-align: right;
-                                        color: #52ad9c;
-                                    }
-                                    td{
-                                        border-bottom: 1px solid #dadada;
-                                        padding: 25px 25px 25px 0;
-                                    }
+                                    var total = (allPrice + shippingCost) / 23500;
+                                    paypal.Buttons({
+                                        style: {
+                                            color: 'blue',
+                                            shape: 'pill'
+                                        },
+                                        createOrder: function (data, actions) {
+                                            return actions.order.create({
+                                                purchase_units: [{
+                                                        amount: {
+                                                            value: total.toFixed(2)
+                                                        }
+                                                    }]
+                                            });
+                                        },
+                                        onApprove: function (data, actions) {
+                                            return actions.order.capture().then(function (details) {
+                                                console.log(details)
+                                                sendDataToServlet(details)
+                                                window.location.replace("http://localhost:8084/FBird/orderSuccess.jsp")
+                                            })
+                                        },
+                                        onCancel: function (data) {
+                                            window.location.replace("http://localhost:8084/FBird/orderFail.jsp")
+                                        }
+                                    }).render('#paypal-payment-button');
+    </script>
+                                    
+        <a href="#" class="btn btn-primary py-3 fs-4 back-to-top"><i class="bi bi-arrow-up"></i></a>
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
-                                    p{
-                                        display: block;
-                                        color: #888;
-                                        margin: 0;
-                                        padding-left: 25px;
-                                    }
-                                    .Yorder>div{
-                                        padding: 15px 0;
-                                    }
+        <!-- Template Javascript -->
+        <script src="js/main.js"></script>
+        <div class="container-fluid bg-light mt-5 py-5">
+            <div class="container pt-5">
+                <div class="row g-5">
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">PHƯƠNG THỨC LIÊN LẠC</h5>
+                        <p class="mb-4"></p>
+                        <p class="mb-2"><i class="bi bi-geo-alt text-primary me-2"></i>Lô E2a-7, Đường D1, Khu Công nghệ cao, P.Long Thạnh Mỹ, Tp. Thủ Đức, TP.HCM.</p>
+                        <p class="mb-2"><i class="bi bi-envelope-open text-primary me-2"></i>daihoc.hcm@fpt.edu.vn</p>
+                        <p class="mb-0"><i class="bi bi-telephone text-primary me-2"></i> (028) 7300 5588</p>
+                    </div>
 
-                                    button{
-                                        width: 100%;
-                                        margin-top: 10px;
-                                        padding: 10px;
-                                        border: none;
-                                        border-radius: 30px;
-                                        background: #7AB730;
-                                        color: #fff;
-                                        font-size: 15px;
-                                        font-weight: bold;
-                                    }
-                                    button:hover{
-                                        cursor: pointer;
-                                        background: #428a7d;
-                                    }
-                                    body {
-                                        font-family: 'Roboto', Arial, sans-serif;
-                                    }
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">F-Bird</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-body mb-2" href="MainController"><i class="bi bi-arrow-right text-primary me-2"></i>Trang chủ</a>
 
-                                    .wrapper {
-                                        width: 100%;
-                                        max-width: 31.25rem;
-                                        /*  margin: 6rem auto;*/
-                                        margin-right: 50px;
-                                        margin-top: 50px;
-                                        margin-bottom: 50px;
-                                    }
+                            <a class="text-body mb-2" href="devteam.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thành viên</a>
 
-                                    .label {
-                                        font-size: .625rem;
-                                        font-weight: 400;
-                                        text-transform: uppercase;
-                                        letter-spacing: +1.3px;
-                                        margin-bottom: 1rem;
-                                    }
 
-                                    .searchBar {
-                                        width: 111%;
-                                        display: flex;
-                                        flex-direction: row;
-                                        /*align-items: center;*/
-                                    }
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Loại hàng cho chim</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-body mb-2" href="MainController?action=foodpage"><i class="bi bi-arrow-right text-primary me-2"></i>Thức ăn</a>
+                            <a class="text-body mb-2" href="MainController?action=medicinepage"><i class="bi bi-arrow-right text-primary me-2"></i>Thuốc - Dược phẩm</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Theo dõi chúng tôi trên</h5>
+                        <!--                        <form action="">
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control p-3" placeholder="Nhập email">
+                                                        <button class="btn btn-primary">Đăng ký</button>
+                                                    </div>
+                                                </form>
+                                                <h6 class="text-uppercase mt-4 mb-3"> Theo dõi chúng tôi trên</h6>-->
+                        <div class="d-flex">
+                            <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-twitter"></i></a>
+                            <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-facebook"></i></a>
+                            <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-linkedin"></i></a>
+                            <a class="btn btn-outline-primary btn-square" href="#"><i class="bi bi-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                                    #searchQueryInput {
-                                        width: 100%;
-                                        height: 2.8rem;
-                                        background: #f5f5f5;
-                                        outline: none;
-                                        border: none;
-                                        border-radius: 1.625rem;
-                                        padding: 0 3.5rem 0 1.5rem;
-                                        font-size: 1rem;
-                                    }
+        <div class="container-fluid bg-dark text-white-50 py-4">
+            <div class="container">
+                <div class="row g-5">
+                    <div class="col-md-6 text-center text-md-start">
+                        <p class="mb-md-0">&copy; <a class="text-white" href="MainController">Trang web được thiết kế bởi Nhóm 3 </a> </p>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <p class="mb-0">Nguồn <a class="text-white" href="https://htmlcodex.com">HTML Codex</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+<style>
+    /*@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700');*/
 
-                                    #searchQuerySubmit {
-                                        width: 3.5rem;
-                                        height: 2.8rem;
-                                        margin-left: -3.5rem;
-                                        background: none;
-                                        border: none;
-                                        outline: none;
-                                    }
+    body{
 
-                                    #searchQuerySubmit:hover {
-                                        cursor: pointer;
-                                    }
-                                    .navbar-light .navbar-nav .nav-link {
-                                        font-family: 'Roboto', sans-serif;
-                                        position: relative;
-                                        margin-left: 30px;
-                                        padding: 30px 0;
-                                        font-size: 18px;
-                                        font-weight: 700;
-                                        text-transform: uppercase;
-                                        color: var(--dark);
-                                        outline: none;
-                                        transition: .5s;
-                                        width: max-content;
-                                    }
-                                </style>
+        font-family: 'Roboto Condensed', sans-serif;
+        color: #262626;
+        margin: 5% 0;
+    }
+    .container{
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    @media (min-width: 1200px)
+    {
+        .container{
+            max-width: 1140px;
+        }
+    }
+    .d-flex{
+        display: flex;
+        flex-direction: row;
+        background: #f6f6f6;
+        border-radius: 0 0 5px 5px;
+        padding: 25px;
+    }
+    form{
+        flex: 4;
+    }
+    .Yorder{
+        flex: 2;
+
+    }
+    .title{
+        background-color: #7AB730;
+        border-radius:5px 5px 0 0 ;
+        padding: 20px;
+        color: #f6f6f6;
+    }
+    h2{
+        margin: 0;
+        padding-left: 15px;
+    }
+    .required{
+        color: red;
+    }
+    label, table{
+        display: block;
+        margin: 15px;
+    }
+    label>span{
+        float: left;
+        width: 25%;
+        margin-top: 12px;
+        padding-right: 10px;
+    }
+    input[type="text"], input[type="tel"], input[type="email"], select
+    {
+        width: 70%;
+        height: 30px;
+        padding: 5px 10px;
+        margin-bottom: 10px;
+        border: 1px solid #dadada;
+        color: #888;
+    }
+    select{
+        width: 72%;
+        height: 45px;
+        padding: 5px 10px;
+        margin-bottom: 10px;
+    }
+    .Yorder{
+        margin-top: 15px;
+        height: 600px;
+        padding: 20px;
+        border: 1px solid #dadada;
+    }
+    table{
+        margin: 0;
+        padding: 0;
+    }
+    th{
+        border-bottom: 1px solid #dadada;
+        padding: 10px 0;
+    }
+    tr>td:nth-child(1){
+        text-align: left;
+        color: #2d2d2a;
+    }
+    tr>td:nth-child(2){
+        text-align: right;
+        color: #52ad9c;
+    }
+    td{
+        border-bottom: 1px solid #dadada;
+        padding: 25px 25px 25px 0;
+    }
+
+    p{
+        display: block;
+        color: #888;
+        margin: 0;
+        padding-left: 25px;
+    }
+    .Yorder>div{
+        padding: 15px 0;
+    }
+
+    button{
+        width: 100%;
+        margin-top: 10px;
+        padding: 10px;
+        border: none;
+        border-radius: 30px;
+        background: #7AB730;
+        color: #fff;
+        font-size: 15px;
+        font-weight: bold;
+    }
+    button:hover{
+        cursor: pointer;
+        background: #428a7d;
+    }
+    body {
+        font-family: 'Roboto', Arial, sans-serif;
+    }
+
+    .wrapper {
+        width: 100%;
+        max-width: 31.25rem;
+        /*  margin: 6rem auto;*/
+        margin-right: 50px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    .label {
+        font-size: .625rem;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: +1.3px;
+        margin-bottom: 1rem;
+    }
+
+    .searchBar {
+        width: 111%;
+        display: flex;
+        flex-direction: row;
+        /*align-items: center;*/
+    }
+
+    #searchQueryInput {
+        width: 100%;
+        height: 2.8rem;
+        background: #f5f5f5;
+        outline: none;
+        border: none;
+        border-radius: 1.625rem;
+        padding: 0 3.5rem 0 1.5rem;
+        font-size: 1rem;
+    }
+
+    #searchQuerySubmit {
+        width: 3.5rem;
+        height: 2.8rem;
+        margin-left: -3.5rem;
+        background: none;
+        border: none;
+        outline: none;
+    }
+
+    #searchQuerySubmit:hover {
+        cursor: pointer;
+    }
+    .navbar-light .navbar-nav .nav-link {
+        font-family: 'Roboto', sans-serif;
+        position: relative;
+        margin-left: 30px;
+        padding: 30px 0;
+        font-size: 18px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--dark);
+        outline: none;
+        transition: .5s;
+        width: max-content;
+    }
+</style>

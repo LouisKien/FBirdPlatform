@@ -140,9 +140,11 @@
       <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
         <i class="checkmark">✓</i>
       </div>
-        <h1 class="success">Success</h1> 
-        <p class="content">We received your purchase request;<br/> we'll be in touch shortly!</p></br>
-        Quay về trang chủ sau <div id="countdown"></div>
+        <h1 class="success">Thanh toán thành công</h1> 
+        <p class="content">Quá trình thanh toán đã hoàn tất<br/> cửa hàng bạn mua sẽ giao trong thời gian sớm nhất!</p></br></br>
+        
+        <a href="MainController">Tiếp tục mua sắm</a></br>
+        Hoặc tự động chuyển hướng sau <div id="countdown"></div>
         
       </div>
 
@@ -165,7 +167,7 @@
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
         <script>
-var timeleft = 10;
+var timeleft = 7;
 var downloadTimer = setInterval(function(){
   if(timeleft <= 0){
     clearInterval(downloadTimer);
@@ -181,7 +183,7 @@ var downloadTimer = setInterval(function(){
             $(function () {
   setTimeout(function() {
     window.location.replace("http://localhost:8084/FBird/");
-  }, 10000);
+  }, 7000);
 });
         </script>
     </body>

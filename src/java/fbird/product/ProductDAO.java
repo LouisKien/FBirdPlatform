@@ -20,6 +20,9 @@ import java.util.List;
 public class ProductDAO {
 
     private static final String GET_BIRD = "SELECT [type_of_bird_id] FROM type_of_bird WHERE [name] like ?";
+    private static final String GET_ID1 = "SELECT TOP 1 shop_product_item_id\n"
+            + "FROM shop_product_item\n"
+            + "ORDER BY shop_product_item_id DESC;";
     private static final String VIEW_SHOP_PRODUCT = "SELECT\n"
             + "    shop_name, shop_owner.avatar,\n"
             + "    spi.shop_product_item_id,\n"
@@ -839,5 +842,36 @@ public class ProductDAO {
             }
         }
         return list;
+    }
+
+    public int getID1() throws SQLException, ClassNotFoundException {
+        int shopProductItemID = 0;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(GET_ID1);
+                rs = ptm.executeQuery();
+                if (rs.next()) {
+                    shopProductItemID = rs.getInt("shop_product_item_id");
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return shopProductItemID;
     }
 }

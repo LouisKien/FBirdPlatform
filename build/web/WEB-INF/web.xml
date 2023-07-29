@@ -102,7 +102,7 @@
     </servlet>
     <servlet>
         <servlet-name>ViewRecipeController</servlet-name>
-        <servlet-class>ViewRecipeController</servlet-class>
+        <servlet-class>fbird.controller.ViewRecipeController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ViewRecipeDetailController</servlet-name>
@@ -150,7 +150,7 @@
     </servlet>
     <servlet>
         <servlet-name>ViewCreateProductController</servlet-name>
-        <servlet-class>ViewCreateProductController</servlet-class>
+        <servlet-class>fbird.controller.ViewCreateProductController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>

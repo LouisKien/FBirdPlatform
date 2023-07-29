@@ -89,7 +89,7 @@ public class OptionalshopproductitemDAO {
             if(conn != null){
                 for(OptionalshopproductitemDTO option : listOptional){
                 ptm = conn.prepareStatement(ADD_OPTIONAL);
-                ptm.setInt(1, option.getShop_product_item_id());
+                ptm.setInt(1, option.getOptional_shop_product_item_id());
                 ptm.setString(2, option.getName());
                 ptm.setDouble(3, option.getPrice());
                 check = ptm.executeUpdate()>0?true:false;

@@ -361,13 +361,14 @@
                         </span>
                         <button type="button" >Xác nhận thanh toán</button>
                         <a href="orderSuccess.jsp" type="button">Xác nhận thanh toán (success test)</button>
-                        <a href="orderFail.jsp" type="button">Xác nhận thanh toán ( fail test)</button>
+                            <a href="orderFail.jsp" type="button">Xác nhận thanh toán ( fail test)</button>
 
                                 </div>
 
                                 </div><!-- Yorder -->
                                 </div>
                                 </div>
+
                                 <a href="#" class="btn btn-primary py-3 fs-4 back-to-top"><i class="bi bi-arrow-up"></i></a>
                                 <!-- JavaScript Libraries -->
                                 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -378,6 +379,66 @@
 
                                 <!-- Template Javascript -->
                                 <script src="js/main.js"></script>
+                                <div class="container-fluid bg-light mt-5 py-5">
+                                    <div class="container pt-5">
+                                        <div class="row g-5">
+                                            <div class="col-lg-3 col-md-6">
+                                                <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">PHƯƠNG THỨC LIÊN LẠC</h5>
+                                                <p class="mb-4"></p>
+                                                <p class="mb-2"><i class="bi bi-geo-alt text-primary me-2"></i>Lô E2a-7, Đường D1, Khu Công nghệ cao, P.Long Thạnh Mỹ, Tp. Thủ Đức, TP.HCM.</p>
+                                                <p class="mb-2"><i class="bi bi-envelope-open text-primary me-2"></i>daihoc.hcm@fpt.edu.vn</p>
+                                                <p class="mb-0"><i class="bi bi-telephone text-primary me-2"></i> (028) 7300 5588</p>
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-6">
+                                                <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">F-Bird</h5>
+                                                <div class="d-flex flex-column justify-content-start">
+                                                    <a class="text-body mb-2" href="MainController"><i class="bi bi-arrow-right text-primary me-2"></i>Trang chủ</a>
+
+                                                    <a class="text-body mb-2" href="devteam.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thành viên</a>
+
+
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-6">
+                                                <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Loại hàng cho chim</h5>
+                                                <div class="d-flex flex-column justify-content-start">
+                                                    <a class="text-body mb-2" href="MainController?action=foodpage"><i class="bi bi-arrow-right text-primary me-2"></i>Thức ăn</a>
+                                                    <a class="text-body mb-2" href="MainController?action=medicinepage"><i class="bi bi-arrow-right text-primary me-2"></i>Thuốc - Dược phẩm</a>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-6">
+                                                <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Theo dõi chúng tôi trên</h5>
+                                                <!--                        <form action="">
+                                                                            <div class="input-group">
+                                                                                <input type="text" class="form-control p-3" placeholder="Nhập email">
+                                                                                <button class="btn btn-primary">Đăng ký</button>
+                                                                            </div>
+                                                                        </form>
+                                                                        <h6 class="text-uppercase mt-4 mb-3"> Theo dõi chúng tôi trên</h6>-->
+                                                <div class="d-flex">
+                                                    <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-twitter"></i></a>
+                                                    <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-facebook"></i></a>
+                                                    <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-linkedin"></i></a>
+                                                    <a class="btn btn-outline-primary btn-square" href="#"><i class="bi bi-instagram"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="container-fluid bg-dark text-white-50 py-4">
+                                    <div class="container">
+                                        <div class="row g-5">
+                                            <div class="col-md-6 text-center text-md-start">
+                                                <p class="mb-md-0">&copy; <a class="text-white" href="MainController">Trang web được thiết kế bởi Nhóm 3 </a> </p>
+                                            </div>
+                                            <div class="col-md-6 text-center text-md-end">
+                                                <p class="mb-0">Nguồn <a class="text-white" href="https://htmlcodex.com">HTML Codex</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 </body>
                                 </html>
                                 <style>

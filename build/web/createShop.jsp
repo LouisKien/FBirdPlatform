@@ -97,8 +97,8 @@
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Danh mục</a>
                         <div class="dropdown-menu m-0">
                             <a href="MainController?action=productpage" class="dropdown-item">Sản phẩm</a>
-                            <a href="MainController?action=foodpage" class="dropdown-item">Thức ăn</a>
-                            <a href="MainController?action=medicinepage" class="dropdown-item">Thuốc - Dược phẩm</a>
+                            <a href="MainController?action=foodpage&categoryID=1" class="dropdown-item">Thức ăn</a>
+                            <a href="MainController?action=foodpage&categoryID=4" class="dropdown-item">Thuốc - Dược phẩm</a>
                         </div>
                     </div>
                     <a href="MainController?action=ViewRecipe" class="nav-item nav-link">Khẩu phần</a>

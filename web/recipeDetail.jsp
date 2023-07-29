@@ -79,14 +79,13 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Danh mục</a>
                         <div class="dropdown-menu m-0">
-                            <a href="product.html" class="dropdown-item">Sản phẩm</a>
-                            <a href="food.html" class="dropdown-item">Thức ăn</a>
-                            <a href="drinks.html" class="dropdown-item">Thức uống</a>
-                            <a href="supplement.html" class="dropdown-item">Thực phẩm bổ sung</a>
-                            <a href="medicine.html" class="dropdown-item">Thuốc</a>
+                            <a href="MainController?action=productpage" class="dropdown-item">Sản phẩm</a>
+                            <a href="MainController?action=foodpage&categoryID=1" class="dropdown-item">Thức ăn</a>
+                            
+                            <a href="MainController?action=foodpage&categoryID=4" class="dropdown-item">Thuốc</a>
                         </div>
                     </div>
-                    <a href="recipe.jsp" class="nav-item nav-link">Khẩu phần</a>  
+                    <a href="MainController?action=ViewRecipe" class="nav-item nav-link">Khẩu phần</a>  
                     
                     
                     <a href="userProfile.jsp" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>  

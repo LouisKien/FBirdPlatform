@@ -22,7 +22,7 @@ import java.util.List;
  */
 public class ViewCustomerProfileController extends HttpServlet {
 
-    private static final String ERROR = "MainController?action=";
+    private static final String ERROR = "userProfile.jsp";
     private static final String SUCCESS = "userProfile.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -45,7 +45,7 @@ public class ViewCustomerProfileController extends HttpServlet {
                 if (customer.size() > 0) {
                     
                     request.setAttribute("CUSTOMER", customer);
-                    url = "userProfile.jsp";
+                    url = SUCCESS;
                 }
 
             }

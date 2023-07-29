@@ -29,19 +29,23 @@ public class ViewFoodPageController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
+            String index = request.getParameter("index");
+            if (index == null) {
+                index = "1";
+            }
+            int indexPage = Integer.parseInt(index);
+            
+            int categoryID = Integer.parseInt(request.getParameter("categoryID"));
+            
             ProductDAO dao = new ProductDAO();
-            List<ProductDTO> listProduct = dao.getProductPage();
+            List<ProductDTO> listProduct = dao.getCategoryPaging(indexPage, categoryID);
+            int numberPage = dao.getNumberCategoryPage(categoryID);
             if (listProduct.size() > 0) {
-                List<ProductDTO> listFood = new ArrayList<>();
-                for (ProductDTO list : listProduct) {
-                    if (list.getCategoryID() == 1) {
-                        listFood.add(list);
-                    }
-                }
-                if (listFood.size() > 0) {
-                    request.setAttribute("LIST_FOOD_PAGE", listFood);
-                    url = SUCCESS;
-                }
+                request.setAttribute("LIST_CATEGORY_PAGE", listProduct);
+                request.setAttribute("PAGE_NUMBER", numberPage);
+                request.setAttribute("INDEX_PAGE", indexPage); 
+                request.setAttribute("CATEGORY_ID", categoryID);
+                url = SUCCESS;
             }
         } catch (Exception e) {
             log("ERROR at ViewProductPageController: " + e.toString());

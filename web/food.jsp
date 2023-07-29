@@ -89,8 +89,8 @@
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Danh mục</a>
                         <div class="dropdown-menu m-0">
                             <a href="MainController?action=productpage" class="dropdown-item">Sản phẩm</a>
-                            <a href="MainController?action=foodpage" class="dropdown-item">Thức ăn</a>
-                            <a href="MainController?action=medicinepage" class="dropdown-item">Thuốc - Dược phẩm</a>
+                            <a href="MainController?action=foodpage&categoryID=1" class="dropdown-item">Thức ăn</a>
+                            <a href="MainController?action=foodpage&categoryID=4" class="dropdown-item">Thuốc - Dược phẩm</a>
                         </div>
                     </div>
                     <a href="MainController?action=ViewRecipe" class="nav-item nav-link">Khẩu phần</a>
@@ -144,9 +144,9 @@
                             <!--                                <div>${requestScope.MESSAGE}</div>-->
 
                             <%
-                                        List<ProductDTO> listFood = (List<ProductDTO>) request.getAttribute("LIST_FOOD_PAGE");
-                                        if(listFood != null){
-                                            for(ProductDTO product: listFood){
+                                        List<ProductDTO> listCategory = (List<ProductDTO>) request.getAttribute("LIST_CATEGORY_PAGE");
+                                        if(listCategory != null){
+                                            for(ProductDTO product: listCategory){
                             %>
                             <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
                                 <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
@@ -177,7 +177,7 @@
                             </div> 
                             <%
                                 }
-                                }
+                                
                             %>
 
                         </div>
@@ -186,7 +186,43 @@
             </div>
         </div>
         <!-- Products End -->
+        <div class="container py-5">
+            <div class="col-12">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination pagination-lg m-0">
+                        <%
+                            
+                            int pageNumber = (int) request.getAttribute("PAGE_NUMBER");
+                            int indexPage = (int) request.getAttribute("INDEX_PAGE");
+                            int categoryID = (int) request.getAttribute("CATEGORY_ID");
+                            
+                        %>
+                        <li class="page-item <% if (indexPage == 1) { %>disabled<% } %>">
+                            <a class="page-link rounded-0" href="MainController?action=foodpage&index=<%= indexPage - 1%>&categoryID=<%= categoryID%>" aria-label="Previous">
+                                <span aria-hidden="true"><i class="bi bi-arrow-left"></i></span>
+                            </a>
+                        </li>
+                        <%
+                        for(int i = 1; i <= pageNumber; i++){
+                        %>
+                        <li class="page-item"><a class="page-link" href="MainController?action=foodpage&index=<%= i%>&categoryID=<%= categoryID%>"><%= i%></a></li>
+                            <%
+                                
+                                    }
+                            %>
 
+
+                        <li class="page-item <% if (indexPage == pageNumber) { %>disabled<% } %>">
+                            <a class="page-link rounded-0" href="MainController?action=foodpage&index=<%= indexPage + 1%>&categoryID=<%= categoryID%>" aria-label="Next">
+                                <span aria-hidden="true"><i class="bi bi-arrow-right"></i></span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </nav>
+            </div>
+        </div>
+<%}%>
 
 
 

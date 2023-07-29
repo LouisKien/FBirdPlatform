@@ -166,13 +166,50 @@
                             </div> 
                             <%
                                 }
-                                }
+                                
                             %>
                         </div>
                     </div>
                 </div>
+                        
+            <div class="col-xl-12">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination pagination-lg m-0">
+                        <%
+                            int pageNumber = (int) request.getAttribute("PAGE_NUMBER");
+                            int indexPage = (int) request.getAttribute("INDEX_PAGE");
+                            String search = (String) request.getAttribute("SEARCH");
+                        %>
+                        <li class="page-item <% if (indexPage == 1) { %>disabled<% } %>">
+                            <a class="page-link rounded-0" href="MainController?action=searchQuerySubmit&index=<%= indexPage - 1%>&searchQueryInput=<%= search%>" aria-label="Previous">
+                                <span aria-hidden="true"><i class="bi bi-arrow-left"></i></span>
+                            </a>
+                        </li>
+                        
+                        <%
+                        for(int i = 1; i <= pageNumber; i++){
+                        %>
+                        <li class="page-item"><a class="page-link" href="MainController?action=searchQuerySubmit&index=<%= i%>&searchQueryInput=<%= search%>"><%= i%></a></li>
+                            <%
+                                
+                                    }
+                            %>
+                            
+
+
+                        <li class="page-item <% if (indexPage == pageNumber) { %>disabled<% } %>">
+                            <a class="page-link rounded-0" href="MainController?action=searchQuerySubmit&index=<%= indexPage + 1%>&searchQueryInput=<%= search%>" aria-label="Next">
+                                <span aria-hidden="true"><i class="bi bi-arrow-right"></i></span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </nav>
+            </div>
+        
             </div>
         </div>
+                        <%}%>
         <!-- Products End -->
 
 

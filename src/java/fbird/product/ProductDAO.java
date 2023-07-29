@@ -101,8 +101,10 @@ public class ProductDAO {
 "                AND optional_shop_product_item.price = min_prices.min_price\n" +
 "            ORDER BY optional_shop_product_item.price ASC";
 
-    private static final String SEARCH_PRODUCT = "SELECT spi.shop_product_item_id, spi.title, ospi.price, spi.shop_id, pi.image_1 FROM dbo.shop_product_item spi JOIN (SELECT shop_product_item_id, MIN(price) AS min_price FROM dbo.optional_shop_product_item GROUP BY shop_product_item_id ) AS min_prices ON spi.shop_product_item_id = min_prices.shop_product_item_id  JOIN dbo.optional_shop_product_item ospi ON min_prices.shop_product_item_id = ospi.shop_product_item_id AND ospi.price = min_prices.min_price LEFT JOIN product_image pi ON spi.shop_product_item_id = pi.shop_product_item_id WHERE title LIKE ? ORDER BY ospi.price ASC";
+    private static final String SEARCH_PRODUCT = "SELECT spi.shop_product_item_id, spi.title, ospi.price, spi.shop_id, pi.image_1 FROM dbo.shop_product_item spi JOIN (SELECT shop_product_item_id, MIN(price) AS min_price FROM dbo.optional_shop_product_item GROUP BY shop_product_item_id ) AS min_prices ON spi.shop_product_item_id = min_prices.shop_product_item_id  JOIN dbo.optional_shop_product_item ospi ON min_prices.shop_product_item_id = ospi.shop_product_item_id AND ospi.price = min_prices.min_price LEFT JOIN product_image pi ON spi.shop_product_item_id = pi.shop_product_item_id WHERE title LIKE ? ORDER BY ospi.price ASC OFFSET ? ROWS FETCH FIRST 10 ROWS ONLY;";
 
+    private static final String COUNT_SEARCH_PRODUCT_PAGE = "SELECT count(spi.shop_product_item_id) FROM dbo.shop_product_item spi JOIN (SELECT shop_product_item_id, MIN(price) AS min_price FROM dbo.optional_shop_product_item GROUP BY shop_product_item_id ) AS min_prices ON spi.shop_product_item_id = min_prices.shop_product_item_id  JOIN dbo.optional_shop_product_item ospi ON min_prices.shop_product_item_id = ospi.shop_product_item_id AND ospi.price = min_prices.min_price LEFT JOIN product_image pi ON spi.shop_product_item_id = pi.shop_product_item_id WHERE title LIKE ? ";
+    
     private static final String PRODUCT_PAGE_NUMBERPAGE = "SELECT\n"
             + "                count(spi.shop_product_item_id)\n"
             + "            FROM\n"
@@ -666,7 +668,7 @@ public class ProductDAO {
         return list;
     }
 
-    public List<ProductDTO> findByName(String search) {
+    public List<ProductDTO> findByName(String search, int index) {
         List<ProductDTO> list = new ArrayList<>();
         Connection conn = null;
         PreparedStatement stm = null;
@@ -676,6 +678,7 @@ public class ProductDAO {
             if (conn != null) {
                 stm = conn.prepareStatement(SEARCH_PRODUCT);
                 stm.setString(1, "%" + search + "%");
+                stm.setInt(2, (index - 1) * 10);
                 rs = stm.executeQuery();
                 while (rs.next()) {
                     String title = rs.getString("title");
@@ -692,6 +695,43 @@ public class ProductDAO {
             e.printStackTrace();
         }
         return list;
+    }
+    
+    public int getNumberSearchPage(String search) throws SQLException {
+        
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(COUNT_SEARCH_PRODUCT_PAGE);
+                ptm.setString(1, "%" + search + "%");
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    int total = rs.getInt(1);
+                    int countPage = 0;
+                    countPage = total/10;
+                    if(total % 5 != 0){
+                        countPage++;
+                    }
+                    return countPage;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
+        }
+        return 0;
     }
     
     public int getID(ProductDTO product) throws SQLException, ClassNotFoundException {

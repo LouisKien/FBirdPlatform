@@ -37,10 +37,17 @@ public class SearchController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             String search = request.getParameter("searchQueryInput");
+            String index = request.getParameter("index");
+            if (index == null) {
+                index = "1";
+            }
+            int indexPage = Integer.parseInt(index);
             ProductDAO pdao = new ProductDAO();
             List<ProductDTO> products = null;
+            int countPage = 0;
             if (search != null) {
-                products = pdao.findByName(search);
+                products = pdao.findByName(search, indexPage);
+                countPage = pdao.getNumberSearchPage(search);
             }
 
             if (products.isEmpty()) {
@@ -48,6 +55,8 @@ public class SearchController extends HttpServlet {
             }
             request.setAttribute("SEARCH", search);
             request.setAttribute("PRODUCT_SEARCH_LIST", products);
+            request.setAttribute("PAGE_NUMBER", countPage);
+            request.setAttribute("INDEX_PAGE", indexPage);
             
         } catch (Exception e) {
             log("ERROR at SearchController: " + e.toString());

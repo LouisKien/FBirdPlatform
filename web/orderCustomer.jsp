@@ -162,12 +162,13 @@
                                             %>
                                         </li>
                                         <li>
-                                            <a href="accountShop.jsp">
+                                            <a href="createShop.jsp">
                                                 <div class="color-item">
-                                                    <span class="color-name">Kênh người bán</span>
+                                                    <span class="color-name">Đăng kí shop</span>
                                                 </div>
                                             </a>
                                         </li>
+                                        
                                         <li>
                                             <a href="orderCustomer.jsp">
                                                 <div class="color-item">
@@ -175,13 +176,7 @@
                                                 </div>
                                             </a>
                                         </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="color-item">
-                                                    <span class="color-name">Cài đặt thanh toán</span>
-                                                </div>
-                                            </a>
-                                        </li>
+                                        
                                         <li>
                                             <a href="MainController?action=Logout">
                                                 <div class="color-item">

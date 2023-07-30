@@ -73,6 +73,15 @@ public class OrderDTO {
         this.home_number = home_number;
     }
 
+    public OrderDTO(String title, String name, Date order_date, String status, double total_price_order) {
+        this.title = title;
+        this.name = name;
+        this.order_date = order_date;
+        this.status = status;
+        this.total_price_order = total_price_order;
+    }
+
+    
     public String getStreet() {
         return street;
     }

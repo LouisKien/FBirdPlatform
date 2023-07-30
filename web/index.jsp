@@ -83,9 +83,15 @@
                     <div class="nav-item nav-link" style="width: max-content">
                         <% 
                             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-                            if(loginUser != null) {
+                            if(loginUser != null) {                           
                         %>
                         <a  href="MainController?action=ViewCart&customer_id=<%= loginUser.getCustomer_id() %>"class="shopping">
+
+                            <i class="fa fa-shopping-cart" style="font-size:25px;"></i>
+
+                        </a>
+                        <%}else{ %>
+                          <a  href="login.jsp"class="shopping">
 
                             <i class="fa fa-shopping-cart" style="font-size:25px;"></i>
 

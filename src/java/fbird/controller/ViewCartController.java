@@ -21,22 +21,21 @@ import java.util.List;
  */
 public class ViewCartController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    private static final String ERROR="error.jsp";
+    private static final String SUCCESS="addtocartv2.jsp";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         response.setContentType("text/html;charset=UTF-8");
+        String url = ERROR;
          try {
 
             int customer_id = Integer.parseInt(request.getParameter("customer_id"));
-            
+                          if(customer_id != 0){
+                             request.getRequestDispatcher(url).forward(request, response);
+
+                          }
+
             
 //            int customer_id = Integer.parseInt(request.getParameter("id"));           
             CartDAO dao = new CartDAO();              
@@ -44,9 +43,8 @@ public class ViewCartController extends HttpServlet {
              List<CartDTO> All_Cart_Item = dao.getCart(customer_id);
              
                 if (!All_Cart_Item.isEmpty()) {
-
                 request.setAttribute("LIST_All_Cart_Item", All_Cart_Item);
-                
+                    url = SUCCESS;
                
           
             }
@@ -55,7 +53,8 @@ public class ViewCartController extends HttpServlet {
         } catch (Exception ex) {
             log("Error  " + ex.toString());
         } finally {
-            request.getRequestDispatcher("addtocartv2.jsp").forward(request, response);
+            request.getRequestDispatcher(url).forward(request, response);
+            
         }
     }
 

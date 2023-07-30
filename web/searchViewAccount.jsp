@@ -7,7 +7,7 @@
 <html lang="vi">
     <%@page contentType="text/html" pageEncoding="UTF-8"%>
     <head>
-        <title>Shop Dashboard</title>
+        <title>Admin Dashboard</title>
         <link rel="icon" href="img/logo-shop.PNG" type="image/png">
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />

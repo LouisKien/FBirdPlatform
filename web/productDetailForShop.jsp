@@ -57,9 +57,9 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="profileDropdown">
 
-                        <li><a class="dropdown-item" style="width: 239px;" href="MainController?action=ViewProduct&shop_id=${sessionScope.LOGIN_USER.getShop_id()}">Tất cả sản phẩm</a></li>
+                        <li><a class="dropdown-item" style="width: 239px;" href="tatCaSanPham.jsp">Tất cả sản phẩm</a></li>
                         <li><a class="dropdown-item" style="width: 239px;" href="sanPhamViPham.jsp">Sản phẩm vi phạm</a></li>
-                        <li><a class="dropdown-item" style="width: 239px;" href="MainController?action=ViewCreateProduct">Thêm sản phẩm</a></li>
+                        <li><a class="dropdown-item" style="width: 239px;" href="themSanPham.jsp">Thêm sản phẩm</a></li>
                     </ul>
                     <!--------------------------------------------------------------------------------------------------------------------------------------------------------->
                     <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold dropdown-toggle" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -77,16 +77,13 @@
                 </div>
             </div>
             <!-- /#sidebar-wrapper -->
-            <%
-            List<CategoryDTO> listCategory = (List<CategoryDTO>) request.getAttribute("CATEGORY");
-            List<TypeOfBirdDTO> listTypeOfBird = (List<TypeOfBirdDTO>) request.getAttribute("TYPE_OF_BIRD");
-            %>
+            
             <!-- Page Content -->
             <div id="page-content-wrapper">
                 <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
                     <div class="d-flex align-items-center">
                         <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-                        <h2 class="fs-2 m-0">Thêm sản phẩm</h2>
+                        <h2 class="fs-2 m-0">Cập nhật sản phẩm</h2>
                     </div>
 
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -119,28 +116,16 @@
                         <form action="MainController">
                             <div class="col">
                                 <div class="container" style="display: grid; grid-template-rows: repeat(4,0fr); gap:10px;">
-                                    <label for="productName" style="font-size: 18px; font-weight: bold;" >Tên sản phẩm:  </label> <input type="text" id="productName" name="productName" placeholder="Nhập tên sản phẩm" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <label for="productName" style="font-size: 18px; font-weight: bold;" >Tên sản phẩm:  </label> <input type="text" id="productName" name="productName" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
                                     <label for="typeOfBird" style="font-size: 18px; font-weight: bold;">Dành cho chim: </label> 
                                     <select id="typeOfBird" name="typeOfBird" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
-                                        <option value="">Chọn loại chim</option>
-                                       <%
-                                        for (TypeOfBirdDTO bird : listTypeOfBird){
-                                        %>
-                                        <option value="<%= bird.getType_of_bird_id() %>"><%= bird.getType_of_bird_name() %></option>
-                                        <%
-                                            }
-                                        %>
+                                        <option value="">Loại chim</option>
+                                       
                                     </select>
                                     <label for="typeProduct" style="font-size: 18px; font-weight: bold;">Loại hàng:</label>
                                     <select id="typeProduct" name="typeProduct" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
-                                        <option value="">Chọn loại hàng</option>
-                                        <%
-                                        for (CategoryDTO cate : listCategory){
-                                        %>
-                                        <option value="<%= cate.getCategoryID() %>"><%= cate.getCategoryName() %></option>
-                                        <%
-                                            }
-                                        %>
+                                        <option value="">Loại hàng</option>
+                                        
                                     </select>
                                     <span style="font-size: 18px; font-weight: bold;">Ảnh sản phẩm:</span> <input type="file" name="productImage" id="productImage" accept="image/*">
                                         <script>
@@ -148,9 +133,9 @@
                                                 selector: '#productImage'
                                             });
                                                 </script>
-                                    <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng sản phẩm:  </label> <input type="text" id="productName" name="inventory" placeholder="Nhập số lượng sản phẩm" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-                                    <label for="description" style="font-size: 18px; font-weight: bold;">Mô tả sản phẩm:</label> <input type="text" id="description" name="description" placeholder="Nhập mô tả" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-                                    <span style="font-size: 18px; font-weight: bold;">---------------------------------------------------Tạo tùy chọn--------------------------------------------------------</span>
+                                    <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng sản phẩm:  </label> <input type="text" id="productName" name="inventory" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <label for="description" style="font-size: 18px; font-weight: bold;">Mô tả sản phẩm:</label> <input type="text" id="description" name="description" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <span style="font-size: 18px; font-weight: bold;">---------------------------------------------------Tùy chọn--------------------------------------------------------</span>
                                     <label for="option1" style="font-size: 18px; font-weight: bold;">Tùy chọn 1:</label> <input type="text" id="description" name="option1" placeholder="Nhập tùy chọn" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
                                     <label for="priceOption1" style="font-size: 18px; font-weight: bold;">Giá tùy chọn 1:</label> <input type="number" id="description" name="priceOption1" placeholder="Nhập giá" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
                                     <label for="option2" style="font-size: 18px; font-weight: bold;">Tùy chọn 2:</label> <input type="text" id="description" name="option2" placeholder="Nhập tùy chọn" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
@@ -168,7 +153,7 @@
                                 </div>
 
 
-                                <button type="submit" name="action" value="Create Product" class="btn btn-primary" style="margin-top: 30px; border-radius: 20px;">Thêm sản phẩm</button>
+                                <button type="submit" name="action" value="Create Product" class="btn btn-primary" style="margin-top: 30px; border-radius: 20px;">Cập nhật</button>
                                 <!--<input type="button" name="action" value="Create" style="margin-top: 30px; border-radius: 20px;/>-->
                         </form>
                     </div>

@@ -61,12 +61,14 @@ public class AddUserProfileController extends HttpServlet {
                 if(customer != null){
                 check = cusDao.createCustomer(username, fullName, phone, email, genderSQL, dob);
                 if(check == true){
+                request.setAttribute("username", username);
                 request.setAttribute("msg", "Cập nhật hồ sơ thành công");
-                request.getRequestDispatcher("userProfile.jsp").forward(request, response);
+                request.getRequestDispatcher("ViewCustomerProfileController").forward(request, response);
                 }
                 }else{
+                    request.setAttribute("username", username);
                     request.setAttribute("msg", "Cập nhật thất bại");
-                    request.getRequestDispatcher("userProfile.jsp").forward(request, response);
+                    request.getRequestDispatcher("ViewCustomerProfileController").forward(request, response);
                 }
             }
             

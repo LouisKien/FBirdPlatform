@@ -54,7 +54,7 @@
                 <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
                     <div class="d-flex align-items-center">
                         <i class="fas fa-solid fa-dove primary-text fs-4 me-3" id="menu-toggle"></i>
-                        <h2 class="fs-2 m-0">Hello: ADMIN</h2>
+                        <h2 class="fs-2 m-0">Hello: ${sessionScope.LOGIN_USER.getUsername()}</h2>
                     </div>
 
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -69,7 +69,7 @@
 
 
                     <div class="row my-5">
-                        <h3 class=" fas fa-solid fa-star fs-4 mb-3">Trang chức năng giành cho Admin</h3>
+                        <h3 class=" fas fa-solid fa-star fs-4 mb-3">Trang chức năng giành cho ${sessionScope.LOGIN_USER.getUsername()}</h3>
 
 
                     </div>

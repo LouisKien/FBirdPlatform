@@ -173,13 +173,7 @@
                                                 </div>
                                             </a>
                                         </li>
-                                        <li>
-                                            <a href="MainController?action=LoginShop&username=<!--%= user.getUsername() %-->">
-                                                <div class="color-item">
-                                                    <span class="color-name">Kênh người bán</span>
-                                                </div>
-                                            </a>
-                                        </li>
+
                                         <li>
                                             <a href="orderCustomer.jsp">
                                                 <div class="color-item">
@@ -187,13 +181,7 @@
                                                 </div>
                                             </a>
                                         </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="color-item">
-                                                    <span class="color-name">Cài đặt thanh toán</span>
-                                                </div>
-                                            </a>
-                                        </li>
+
                                         <li>
                                             <a href="MainController?action=Logout">
                                                 <div class="color-item">
@@ -216,10 +204,7 @@
                     <div class="col-xl-9" style="border: 2px solid; border-radius: 10px; width: 750px; margin: 10px;">
 
 
-                        <p class="text-danger">
 
-                            ${msg}
-                        </p>
                         <div>
                             <div class="border-bottom">
                                 <div class="text-left font-weight-bold" style="font-size: 20px;">
@@ -242,7 +227,7 @@
 
                                             <div class="form-group">
                                                 <label for="username">Tên đăng nhập:</label>
-                                                <input name="username" type="text" class="form-control" id="username" value="<%= c.getUsername() %>">
+                                                <input name="username" type="text" class="form-control" readonly="" id="username" value="${sessionScope.LOGIN_USER.getUsername()}">
                                             </div>
 
                                             <div class="form-group">
@@ -295,19 +280,27 @@
                                                 <label for="birthdate">Ngày sinh:</label>
                                                 <input name="dob" type="date" class="form-control" id="birthdate" value="<%= c.getDate_of_birth() %>">
                                             </div>
-                                            
+
                                             <div class="form-group" style="margin-top: 10px; margin-bottom: 10px;">
                                                 <button class="btn btn-primary" type="submit">Lưu</button>
                                             </div>
+                                            <p class="text-danger">
+
+                                                ${msg}
+                                            </p>
 
                                         </form>
                                     </div>
 
+
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6" style="margin-top: 5px; text-align: center; position: relative;">
                                         <img class="avatar" src="https://images.unsplash.com/photo-1552728089-57bdde30beb3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=425&q=80" width="100" height="100">
-<!--                                        <div class="d-flex mt-2 position-absolute start-50 translate-middle-x">
-                                            <button class="btn btn-primary" type="submit">Chọn ảnh</button>
-                                        </div>-->
+                                        <div class="d-flex mt-2 position-absolute start-50 translate-middle-x">
+                                            <a href="createAddress.jsp" class="btn btn-primary" type="submit">Thêm địa chỉ</a>
+
+                                        </div>
+
+                                        
                                     </div>
                                 </div>
                             </div>

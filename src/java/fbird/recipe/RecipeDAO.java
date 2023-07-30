@@ -4,6 +4,7 @@
  */
 package fbird.recipe;
 
+import fbird.product.ProductDTO;
 import fbird.recipe.RecipeDTO;
 import fbird.shop.ShopDTO;
 import fbird.utils.DBUtils;
@@ -19,29 +20,32 @@ import java.util.List;
  * @author Admin
  */
 public class RecipeDAO {
-    
-    
-    private static final String VIEW_RECIPE_HOMEPAGE ="SELECT recipe.title_recipe,recipe.recipe_id, recipe.shop_id, recipe.total_price, recipe_image.image_1 FROM recipe JOIN recipe_image ON recipe.recipe_id = recipe_image.recipe_id";
-    private static final String VIEW_RECIPE_DETAIL = "SELECT r.recipe_id, t.type_of_bird_name, r.shop_id, r.title_recipe, r.[description], r.total_price, reimg.image_1 , reimg.image_2 , reimg.image_3 , reimg.image_4 , p.recipe_product_id, p.optional_shop_product_item_id, op.[name], p.quantity, new.*\n" +
-"FROM recipe r\n" +
-"LEFT JOIN recipe_image reimg ON r.recipe_id = reimg.recipe_id\n" +
-"LEFT JOIN recipe_product p ON r.recipe_id = p.recipe_id\n" +
-"LEFT JOIN type_of_bird t ON r.type_of_bird_id = t.type_of_bird_id\n" +
-"LEFT JOIN optional_shop_product_item op ON op.optional_shop_product_item_id = p.optional_shop_product_item_id\n" +
-"LEFT JOIN (\n" +
-"    SELECT s.shop_product_item_id, s.shop_id, t.type_of_bird_name, s.title, s.[status], p.category_name, i.image_1 as recipe_image_1, i.image_2 as recipe_image_2, i.image_3 as recipe_image_3, i.image_4 as recipe_image_4, o.optional_shop_product_item_id, o.[name], o.price\n" +
-"    FROM shop_product_item s\n" +
-"    JOIN product_category p ON s.category_id = p.category_id\n" +
-"    LEFT JOIN type_of_bird t ON s.type_of_bird_id = t.type_of_bird_id\n" +
-"    LEFT JOIN product_image i ON s.shop_product_item_id = i.shop_product_item_id\n" +
-"    JOIN optional_shop_product_item o ON s.shop_product_item_id = o.shop_product_item_id\n" +
-"    WHERE o.optional_shop_product_item_id IN (SELECT recipe_product.optional_shop_product_item_id FROM recipe_product)\n" +
-") new ON op.optional_shop_product_item_id = new.optional_shop_product_item_id\n" +
-"WHERE r.recipe_id = ?";
-    private static final String VIEW_SHOP_RECIPE ="SELECT s.shop_name, s.avatar FROM recipe r\n" +
-"LEFT JOIN shop_owner s ON s.shop_id = r.shop_id\n" +
-"WHERE r.recipe_id = ?";
-    
+
+    private static final String VIEW_RECIPE_HOMEPAGE = "SELECT recipe.title_recipe,recipe.recipe_id, recipe.shop_id, recipe.total_price, recipe_image.image_1 FROM recipe JOIN recipe_image ON recipe.recipe_id = recipe_image.recipe_id";
+    private static final String VIEW_RECIPE_DETAIL = "SELECT r.recipe_id, t.type_of_bird_name, r.shop_id, r.title_recipe, r.[description], r.total_price, reimg.image_1 , reimg.image_2 , reimg.image_3 , reimg.image_4 , p.recipe_product_id, p.optional_shop_product_item_id, op.[name], p.quantity, new.*\n"
+            + "FROM recipe r\n"
+            + "LEFT JOIN recipe_image reimg ON r.recipe_id = reimg.recipe_id\n"
+            + "LEFT JOIN recipe_product p ON r.recipe_id = p.recipe_id\n"
+            + "LEFT JOIN type_of_bird t ON r.type_of_bird_id = t.type_of_bird_id\n"
+            + "LEFT JOIN optional_shop_product_item op ON op.optional_shop_product_item_id = p.optional_shop_product_item_id\n"
+            + "LEFT JOIN (\n"
+            + "    SELECT s.shop_product_item_id, s.shop_id, t.type_of_bird_name, s.title, s.[status], p.category_name, i.image_1 as recipe_image_1, i.image_2 as recipe_image_2, i.image_3 as recipe_image_3, i.image_4 as recipe_image_4, o.optional_shop_product_item_id, o.[name], o.price\n"
+            + "    FROM shop_product_item s\n"
+            + "    JOIN product_category p ON s.category_id = p.category_id\n"
+            + "    LEFT JOIN type_of_bird t ON s.type_of_bird_id = t.type_of_bird_id\n"
+            + "    LEFT JOIN product_image i ON s.shop_product_item_id = i.shop_product_item_id\n"
+            + "    JOIN optional_shop_product_item o ON s.shop_product_item_id = o.shop_product_item_id\n"
+            + "    WHERE o.optional_shop_product_item_id IN (SELECT recipe_product.optional_shop_product_item_id FROM recipe_product)\n"
+            + ") new ON op.optional_shop_product_item_id = new.optional_shop_product_item_id\n"
+            + "WHERE r.recipe_id = ?";
+    private static final String VIEW_SHOP_RECIPE = "SELECT s.shop_name, s.avatar FROM recipe r\n"
+            + "LEFT JOIN shop_owner s ON s.shop_id = r.shop_id\n"
+            + "WHERE r.recipe_id = ?";
+
+    private static final String GET_RECIPE_PRODUCT = "SELECT title, name, quantity, image_1, shop_product_item.shop_product_item_id,shop_product_item.shop_id FROM recipe_product JOIN optional_shop_product_item ON optional_shop_product_item.optional_shop_product_item_id = recipe_product.optional_shop_product_item_id JOIN shop_product_item ON optional_shop_product_item.shop_product_item_id = shop_product_item.shop_product_item_id JOIN product_image ON shop_product_item.shop_product_item_id = product_image.shop_product_item_id JOIN shop_owner ON shop_product_item.shop_id = shop_owner.shop_id WHERE recipe_id = ?";
+    private static final String GET_RECIPE_PRODUCT_TO_ADD = "SELECT quantity, optional_shop_product_item.optional_shop_product_item_id FROM recipe_product JOIN optional_shop_product_item ON optional_shop_product_item.optional_shop_product_item_id = recipe_product.optional_shop_product_item_id JOIN shop_product_item ON optional_shop_product_item.shop_product_item_id = shop_product_item.shop_product_item_id JOIN product_image ON shop_product_item.shop_product_item_id = product_image.shop_product_item_id JOIN shop_owner ON shop_product_item.shop_id = shop_owner.shop_id WHERE recipe_product.recipe_id = ?";
+    private static final String ADD_TO_CART = "INSERT cart_item(customer_id, optional_shop_product_item_id, quantity) VALUES (?,?,?)";
+
     public List<RecipeDTO> getRecipeHomePage() throws SQLException {
         List<RecipeDTO> list = new ArrayList<>();
         Connection conn = null;
@@ -59,11 +63,10 @@ public class RecipeDAO {
 
                     int recipe_id = rs.getInt("recipe_id");
                     int shop_id = rs.getInt("shop_id");
-                    
+
                     Double total_price = rs.getDouble("total_price");
-                   
-                    
-                    list.add(new RecipeDTO(recipe_id, shop_id , title_recipe, total_price, image_1 ));
+
+                    list.add(new RecipeDTO(recipe_id, shop_id, title_recipe, total_price, image_1));
                 }
             }
         } catch (Exception e) {
@@ -87,13 +90,13 @@ public class RecipeDAO {
         Connection conn = null;
         PreparedStatement ptm = null;
         ResultSet rs = null;
-        try{
+        try {
             conn = DBUtils.getConnection();
-            if(conn != null){
+            if (conn != null) {
                 ptm = conn.prepareStatement(VIEW_RECIPE_DETAIL);
                 ptm.setInt(1, recipeID);
                 rs = ptm.executeQuery();
-                while(rs.next()){
+                while (rs.next()) {
                     String typeOfBirdName = rs.getString(2);
                     int shopID = rs.getInt(3);
                     String titleRecipe = rs.getString(4);
@@ -119,13 +122,19 @@ public class RecipeDAO {
                     list.add(new RecipeDTO(recipeID, shopID, titleRecipe, total, recipeImage_1, recipeImage_2, recipeImage_3, recipeImage_4, recipeProductID, typeOfBirdName, optionalShopProductItemID, nameProductOptional, quantity, shopProductItemID, nameProduct, status, categoryName, image_1, image_2, image_3, image_4, description, priceProduct));
                 }
             }
-            
-        }catch(Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally{
-            if(rs != null) rs.close();
-            if(ptm != null) ptm.close();
-            if(conn != null) conn.close();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return list;
     }
@@ -135,27 +144,136 @@ public class RecipeDAO {
         Connection conn = null;
         PreparedStatement ptm = null;
         ResultSet rs = null;
-        try{
+        try {
             conn = DBUtils.getConnection();
-            if(conn != null){
+            if (conn != null) {
                 ptm = conn.prepareStatement(VIEW_SHOP_RECIPE);
                 ptm.setInt(1, recipeID);
                 rs = ptm.executeQuery();
-                if(rs.next()){
+                if (rs.next()) {
                     String shopName = rs.getString("shop_name");
                     String avatar = rs.getString("avatar");
                     shop = new ShopDTO(shopName, avatar);
                 }
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally{
-            if(rs != null) rs.close();
-            if(ptm != null) ptm.close();
-            if(conn != null) conn.close();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return shop;
     }
 
+    public List<RecipeDTO> getRecipeProduct(int recipeID) throws SQLException {
+        List<RecipeDTO> list = new ArrayList();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(GET_RECIPE_PRODUCT);
+                ptm.setInt(1, recipeID);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    String title = rs.getString("title");
+                    String name = rs.getString("name");
+                    int quantity = rs.getInt("quantity");
+                    String product_image = rs.getString("image_1");
+                    int shop_product_item_id = rs.getInt("shop_product_item_id");
+                    int shop_id = rs.getInt("shop_id");
+                    list.add(new RecipeDTO(title, name, product_image, quantity, shop_product_item_id, shop_id));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return list;
+    }
+    
+    
+    
+    public List<RecipeDTO> getRecipeProductToAdd(int recipe_id) throws SQLException {
+        List<RecipeDTO> list = new ArrayList();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(GET_RECIPE_PRODUCT_TO_ADD);
+                ptm.setInt(1, recipe_id);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    int optional_shop_product_item_id = rs.getInt("optional_shop_product_item_id");
+                    int quantity = rs.getInt("quantity");
+                    list.add(new RecipeDTO(optional_shop_product_item_id, quantity));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return list;
+    }
+
+    public boolean addToCart(List<RecipeDTO> listRecipeProduct, int customer_id) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                for (RecipeDTO rp : listRecipeProduct) {
+                    ptm = conn.prepareStatement(ADD_TO_CART);
+                    ptm.setInt(1, customer_id);
+                    ptm.setInt(2, rp.getOptionalShopProductItemID());
+                    ptm.setInt(3, rp.getQuantity());
+                    check = ptm.executeUpdate() > 0 ? true : false;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
 
 }

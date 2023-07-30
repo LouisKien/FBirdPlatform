@@ -4,57 +4,59 @@
  */
 package fbird.controller;
 
-
-import fbird.feedback.FeedbackDAO;
-import fbird.feedback.FeedbackDTO;
-import fbird.product.ProductDAO;
-import fbird.product.ProductDTO;
-import fbird.recipe.RecipeDAO;
-import fbird.recipe.RecipeDTO;
-import fbird.shop.ShopDTO;
+import fbird.customer.CustomerDAO;
+import fbird.customer.CustomerDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
-
 
 /**
  *
- * @author tuan3
+ * @author Khanh
  */
-public class ViewRecipeDetailController extends HttpServlet {
-    
-    private static final String ERROR = "recipeDetail.jsp";
-    private static final String SUCCESS = "recipeDetail.jsp";
-    
+public class AddUserAddressController extends HttpServlet {
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
-        try{
-            int recipeID = Integer.parseInt(request.getParameter("recipeID"));
-            ProductDAO daoproduct = new ProductDAO();              
-            FeedbackDAO daofeedback = new FeedbackDAO();
-            RecipeDAO dao = new RecipeDAO();
-            List<RecipeDTO> rec = dao.getRecipeDetail(recipeID);
-            ShopDTO shopRecipe = dao.getShopRecipe(recipeID);
-            List<RecipeDTO> listRecipeProduct = dao.getRecipeProduct(recipeID);
-//             List<FeedbackDTO> AllFeedback = daofeedback.getAllFeedback(shop_id);
-            if(!rec.isEmpty()){
-                url = SUCCESS;
-                request.setAttribute("SHOP_RECIPE", shopRecipe);
-                request.setAttribute("RECIPE_DETAIL", rec);
-                request.setAttribute("RECIPE_PRODUCT", listRecipeProduct);
-//                request.setAttribute("LIST_ShopProductItemId", ShopProductItemId);
-//                request.setAttribute("LIST_AllFeedback", AllFeedback);
+        try {
+            boolean check;
+            int customer_id = Integer.parseInt(request.getParameter("customer_id"));
+            String username = request.getParameter("username");
+            String home_number = request.getParameter("home_number");
+            String city = request.getParameter("city");
+            String street = request.getParameter("street");
+
+            CustomerDAO cusDao = new CustomerDAO();
+            CustomerDTO customer = cusDao.checkCustomerExist(username);
+            if (customer != null) {
+                check = cusDao.createAddress(customer_id, home_number, city, street);
+                if (check == true) {
+                    request.setAttribute("msg", "Cập nhật địa chỉ thành công");
+                    request.getRequestDispatcher("createAddress.jsp").forward(request, response);
+                }else{
+                    request.setAttribute("msg", "Cập nhật địa chỉ thất bại");
+                    request.getRequestDispatcher("createAddress.jsp").forward(request, response);
+                }
+            }else{
+                request.setAttribute("msg", "Tài khoản không tồn tại");
+                request.getRequestDispatcher("createAddress.jsp").forward(request, response);
             }
-        }catch(Exception e){
-            log("Error at ViewRecipeDetailController:" + e.toString());
-        }finally{
-            request.getRequestDispatcher(url).forward(request, response);
+
+        } catch (Exception e) {
+            log("ERROR at AddUserProfileConttroller: " + toString());
         }
     }
 

@@ -10,30 +10,47 @@ package fbird.recipe;
  */
 public class RecipeDTO {
 
-    int recipe_id;
-    int shop_id;
-    String title_recipe;
-    Double total_price;
-    String recipe_image1;
-    String recipe_image2;
-    String recipe_image3;
-    String recipe_image4;
-    int recipeProductID;
-    String typeOfBirdName;
-    int optionalShopProductItemID;
-    String nameProductOptional;
-    int quantity;
-    int shopProductItemID;
-    String nameProduct;
-    Boolean status;
-    String category;
-    String image_1;
-    String image_2;
-    String image_3;
-    String image_4;
-    String description;
-    double price;
+    private int recipe_id;
+    private int shop_id;
+    private String title_recipe;
+    private Double total_price;
+    private String recipe_image1;
+    private String recipe_image2;
+    private String recipe_image3;
+    private String recipe_image4;
+    private int recipeProductID;
+    private String typeOfBirdName;
+    private int optionalShopProductItemID;
+    private String nameProductOptional;
+    private int quantity;
+    private int shopProductItemID;
+    private String nameProduct;
+    private Boolean status;
+    private String category;
+    private String image_1;
+    private String image_2;
+    private String image_3;
+    private String image_4;
+    private String description;
+    private double price;
 
+    private String title, name, product_image;
+    private int shop_product_item_id;
+    
+    public RecipeDTO(String title, String name, String product_image, int quantity, int shop_product_item_id, int shop_id) {
+        this.title = title;
+        this.name = name;
+        this.product_image = product_image;
+        this.quantity = quantity;
+        this.shop_product_item_id = shop_product_item_id;
+        this.shop_id = shop_id;
+    }
+    
+    public RecipeDTO(int optionalShopProductItemID, int quantity) {
+        this.optionalShopProductItemID = optionalShopProductItemID;
+        this.quantity = quantity;
+    }
+    
     public RecipeDTO() {
     }
 
@@ -298,6 +315,38 @@ public class RecipeDTO {
         this.recipe_image4 = recipe_image4;
     }
 
- 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getProduct_image() {
+        return product_image;
+    }
+
+    public void setProduct_image(String product_image) {
+        this.product_image = product_image;
+    }
+
+    public int getShop_product_item_id() {
+        return shop_product_item_id;
+    }
+
+    public void setShop_product_item_id(int shop_product_item_id) {
+        this.shop_product_item_id = shop_product_item_id;
+    }
+
+    
 
 }

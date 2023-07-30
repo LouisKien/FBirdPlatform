@@ -31,6 +31,8 @@ public class CustomerDAO {
     private static final String INSERT_CUSTOMER = "INSERT INTO customer(username, fullname, email, avatar, registed_date) VALUES(?,?,?,?,?)";
 
     private static final String GET_CUSTOMER = "SELECT username, fullname, date_of_birth, email, phone, gender, registed_date from customer where username = ?";
+    
+    private static final String INSERT_CUSTOMER_ADDRESS = "INSERT INTO customer_address(customer_id, home_number, city, street) VALUES(?,?,?,?)";
     public List<CustomerDTO> getCustomer(int customer_id) throws SQLException {
         List<CustomerDTO> list = new ArrayList<>();
         Connection conn = null;
@@ -234,6 +236,39 @@ public class CustomerDAO {
             }
         }
         return customer;
+    }
+
+    public boolean createAddress(int customer_id, String home_number, String city, String street) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+
+        try{
+            conn = DBUtils.getConnection();
+            
+            ptm = conn.prepareStatement(INSERT_CUSTOMER_ADDRESS);
+            ptm.setInt(1, customer_id);
+            ptm.setString(2, home_number);
+            ptm.setString(3, city);
+            ptm.setString(4, street);
+            
+            check = ptm.executeUpdate()>0?true:false;
+        }catch (Exception e) {
+            e.printStackTrace();
+
+
+        }
+        finally {
+
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+
+        }
+            return check;
     }
 
 }

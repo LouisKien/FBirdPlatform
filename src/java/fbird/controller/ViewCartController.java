@@ -14,47 +14,35 @@ import fbird.cart.CartDAO;
 import fbird.cart.CartDTO;
 import java.util.List;
 
-
 /**
  *
  * @author Admin
  */
 public class ViewCartController extends HttpServlet {
 
-    private static final String ERROR="error.jsp";
-    private static final String SUCCESS="addtocartv2.jsp";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
-         try {
+        try {
 
             int customer_id = Integer.parseInt(request.getParameter("customer_id"));
-                          if(customer_id != 0){
-                             request.getRequestDispatcher(url).forward(request, response);
 
-                          }
-
-            
 //            int customer_id = Integer.parseInt(request.getParameter("id"));           
-            CartDAO dao = new CartDAO();              
+            CartDAO dao = new CartDAO();
 
-             List<CartDTO> All_Cart_Item = dao.getCart(customer_id);
-             
-                if (!All_Cart_Item.isEmpty()) {
+            List<CartDTO> All_Cart_Item = dao.getCart(customer_id);
+
+            if (!All_Cart_Item.isEmpty()) {
                 request.setAttribute("LIST_All_Cart_Item", All_Cart_Item);
-                    url = SUCCESS;
-               
-          
+
             }
 
-            
         } catch (Exception ex) {
             log("Error  " + ex.toString());
         } finally {
-            request.getRequestDispatcher(url).forward(request, response);
-            
+            request.getRequestDispatcher("addtocartv2.jsp").forward(request, response);
+
         }
     }
 

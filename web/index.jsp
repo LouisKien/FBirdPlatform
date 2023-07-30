@@ -90,12 +90,6 @@
                             <i class="fa fa-shopping-cart" style="font-size:25px;"></i>
 
                         </a>
-                        <%}else{ %>
-                          <a  href="login.jsp"class="shopping">
-
-                            <i class="fa fa-shopping-cart" style="font-size:25px;"></i>
-
-                        </a>
                         <%}%>
                     </div>
 

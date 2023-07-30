@@ -42,7 +42,9 @@
                     <li><a class="dropdown-item" style="width: 239px;" href="MainController?action=ViewTypeOfBird&search=">Loại chim</a></li>
                     <li><a class="dropdown-item" style="width: 239px;" href="MainController?action=ViewReportedProduct&search=">Sản phẩm khiếu nại</a></li>
                 </ul>
-
+                <a href="MainController?action=Logout" class="list-group-item list-group-item-action bg-transparent second-text fw-bold" >
+                    <i class="fas fa-sign-out-alt me-2"></i>Đăng xuất
+                </a>
 
             </div>
             <!-- /#sidebar-wrapper -->
@@ -51,7 +53,7 @@
             <div id="page-content-wrapper">
                 <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
                     <div class="d-flex align-items-center">
-                        <i class="fas fa-solid fa-skull primary-text fs-4 me-3" id="menu-toggle"></i>
+                        <i class="fas fa-solid fa-dove primary-text fs-4 me-3" id="menu-toggle"></i>
                         <h2 class="fs-2 m-0">Hello: ADMIN</h2>
                     </div>
 
@@ -67,7 +69,7 @@
 
 
                     <div class="row my-5">
-                        <h3 class=" fas fa-solid fa-star fs-4 mb-3">Xin lỗi, một số tính năng vẫn đang phát triển :<< </h3>
+                        <h3 class=" fas fa-solid fa-star fs-4 mb-3">Trang chức năng giành cho Admin</h3>
 
 
                     </div>

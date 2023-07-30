@@ -234,16 +234,15 @@
                                 <div class="row">
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                                         <%
-                                    List<CustomerDTO> customer = (List<CustomerDTO>) request.getAttribute("CUSTOMER");
-                                    if(customer != null){
-                                        for(CustomerDTO c: customer){
+                                    CustomerDTO c = (CustomerDTO) request.getAttribute("CUSTOMER");
+                                    
                                         %>
                                         <form action="AddUserProfileController" method="POST">
 
 
                                             <div class="form-group">
                                                 <label for="username">Tên đăng nhập:</label>
-                                                <input name="username" type="text" class="form-control" id="username" readonly="" value="<%= c.getUsername() %>">
+                                                <input name="username" type="text" class="form-control" id="username" value="<%= c.getUsername() %>">
                                             </div>
 
                                             <div class="form-group">
@@ -296,10 +295,7 @@
                                                 <label for="birthdate">Ngày sinh:</label>
                                                 <input name="dob" type="date" class="form-control" id="birthdate" value="<%= c.getDate_of_birth() %>">
                                             </div>
-                                            <%
-                                                                                            }
-                                                                                            }
-                                            %>
+                                            
                                             <div class="form-group" style="margin-top: 10px; margin-bottom: 10px;">
                                                 <button class="btn btn-primary" type="submit">Lưu</button>
                                             </div>

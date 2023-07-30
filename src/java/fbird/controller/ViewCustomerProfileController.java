@@ -4,6 +4,7 @@
  */
 package fbird.controller;
 
+import fbird.customer.CustomerDAO;
 import fbird.customer.CustomerDTO;
 import fbird.user.UserDAO;
 import fbird.user.UserDTO;
@@ -32,21 +33,14 @@ public class ViewCustomerProfileController extends HttpServlet {
         try {
 
             String username = request.getParameter("username");
-            UserDAO udao = new UserDAO();
-            List<CustomerDTO> listCustomer = udao.listAccountForCustomer();
-            if (listCustomer.size() > 0) {
-                List<CustomerDTO> customer = new ArrayList<>();
-                for (CustomerDTO list : listCustomer) {
-                    if (list.getUsername().equals(username)) {
-                        customer.add(list);
-                        break;
-                    }
-                }
-                if (customer.size() > 0) {
+            CustomerDAO cdao = new CustomerDAO();
+            CustomerDTO customerDTO = cdao.getCustomer(username);
+            if (customerDTO != null) {
+                
                     
-                    request.setAttribute("CUSTOMER", customer);
-                    url = SUCCESS;
-                }
+                request.setAttribute("CUSTOMER", customerDTO);
+                url = SUCCESS;
+                
 
             }
 

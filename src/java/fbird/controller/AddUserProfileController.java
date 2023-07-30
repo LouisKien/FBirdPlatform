@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 
-
 /**
  *
  * @author Khanh
@@ -44,37 +43,45 @@ public class AddUserProfileController extends HttpServlet {
             String gender = request.getParameter("gender");
             boolean genderSQL;
             genderSQL = gender.equals("Nam");
-            //Date date = new Date();
-            //java.sql.Date datesql = new java.sql.Date(date.getTime());
+            Date date = new Date();
+            java.sql.Date datesql = new java.sql.Date(date.getTime());
             String dob = request.getParameter("dob");
-            
-            
+
             UserDAO dao = new UserDAO();
             UserDTO user = dao.checkUserExist(username);
-            
+
             if (user == null) {
-                request.setAttribute("msg", "Bạn cần đăng kí tài khoản để sử dụng dịch vụ này");
+                request.setAttribute("msg", "Bạn cần nhập đúng username bạn đăng kí");
                 request.getRequestDispatcher("userProfile.jsp").forward(request, response);
             } else {
                 CustomerDAO cusDao = new CustomerDAO();
                 CustomerDTO customer = cusDao.checkCustomerExist(username);
-                if(customer != null){
-                check = cusDao.createCustomer(username, fullName, phone, email, genderSQL, dob);
-                if(check == true){
-                request.setAttribute("username", username);
-                request.setAttribute("msg", "Cập nhật hồ sơ thành công");
-                request.getRequestDispatcher("ViewCustomerProfileController").forward(request, response);
-                }
-                }else{
+                if (customer != null) {
+                    check = cusDao.updateCustomer(username, fullName, phone, email, genderSQL, dob);
+                    if (check == true) {
+                        request.setAttribute("username", username);
+                        request.setAttribute("msg", "Cập nhật hồ sơ thành công");
+                        request.getRequestDispatcher("ViewCustomerProfileController").forward(request, response);
+                    } else {
+
+                        request.setAttribute("username", username);
+                        request.setAttribute("msg", "Cập nhật thất bại");
+                        request.getRequestDispatcher("ViewCustomerProfileController").forward(request, response);
+                    }
+                } else {
+                    check = cusDao.createCustomer(username, fullName, phone, email, genderSQL, dob, datesql);
+                    if(check == true){
                     request.setAttribute("username", username);
-                    request.setAttribute("msg", "Cập nhật thất bại");
+                    request.setAttribute("msg", "Thêm hồ sơ thành công");
                     request.getRequestDispatcher("ViewCustomerProfileController").forward(request, response);
+                    }else{
+                        request.setAttribute("username", username);
+                    request.setAttribute("msg", "Thêm hồ sơ thất bại");
+                    request.getRequestDispatcher("ViewCustomerProfileController").forward(request, response);
+                    }
                 }
             }
-            
-            
-            
-                    
+
         } catch (Exception e) {
             log("ERROR at AddUserProfileConttroller: " + toString());
         }

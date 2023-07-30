@@ -24,10 +24,13 @@ public class CustomerDAO {
     private static final String UPDATE_CUSTOMER = "UPDATE customer\n" +
 "SET fullname = ? , phone = ?, email = ?, gender = ?, date_of_birth = ?\n" +
 "WHERE username=?;";
+    
+    private static final String CREATE_CUSTOMER = "insert into customer(username, fullname, phone, email, gender, date_of_birth, registed_date) values(?, ?, ?, ?, ?, ?, ?)";
     private static final String CHECK_EXIST = "SELECT username, fullname FROM customer WHERE username=?";
 
     private static final String INSERT_CUSTOMER = "INSERT INTO customer(username, fullname, email, avatar, registed_date) VALUES(?,?,?,?,?)";
 
+    private static final String GET_CUSTOMER = "SELECT username, fullname, date_of_birth, email, phone, gender, registed_date from customer where username = ?";
     public List<CustomerDTO> getCustomer(int customer_id) throws SQLException {
         List<CustomerDTO> list = new ArrayList<>();
         Connection conn = null;
@@ -70,7 +73,7 @@ public class CustomerDAO {
         return list;
     }
 
-    public boolean createCustomer(String username, String fullname, String phone, String email, boolean gender, String dob) throws SQLException {
+    public boolean updateCustomer(String username, String fullname, String phone, String email, boolean gender, String dob) throws SQLException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -101,6 +104,42 @@ public class CustomerDAO {
         }
         return check;
     }
+    public boolean createCustomer(String username, String fullname, String phone, String email, boolean gender, String dob, Date date) throws SQLException{
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+
+        try{
+            conn = DBUtils.getConnection();
+            
+            ptm = conn.prepareStatement(CREATE_CUSTOMER);
+            ptm.setString(1, username);
+            ptm.setString(2, fullname);
+            ptm.setString(3, phone);
+            ptm.setString(4, email);
+            ptm.setBoolean(5, gender);
+            ptm.setString(6, dob);
+            ptm.setDate(7, (java.sql.Date) date);
+            ptm.executeUpdate();
+            check = ptm.executeUpdate()>0?true:false;
+        }catch (Exception e) {
+            e.printStackTrace();
+
+
+        }
+        finally {
+
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+
+        }
+            return check;
+        }
+    
 
     public CustomerDTO checkCustomerExist(String username) throws SQLException {
 //        CustomerDTO customer = null;
@@ -159,6 +198,42 @@ public class CustomerDAO {
             }
         }
         return check;
+    }
+    
+    public CustomerDTO getCustomer(String username) throws SQLException {
+        CustomerDTO customer = new CustomerDTO();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            ptm = conn.prepareStatement(GET_CUSTOMER);
+            ptm.setString(1, username);
+            rs = ptm.executeQuery();
+            while (rs.next()) {
+                String usernameDAO = rs.getString("username");
+                String fullname = rs.getString("fullname");
+                Date date_of_birth = rs.getDate("date_of_birth");
+                String email = rs.getString("email");
+                String phone = rs.getString("phone");
+                boolean gender = rs.getBoolean("gender");
+                Date registed_date = rs.getDate("registed_date");
+                customer = new CustomerDTO(usernameDAO, fullname, date_of_birth, phone, gender, email, registed_date);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return customer;
     }
 
 }

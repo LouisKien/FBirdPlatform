@@ -142,12 +142,6 @@
                         <%= formattedPrice %>đ
                     </div>
 
-
-
-                    <div class="quantity">
-                        <p>Số lượng :</p>
-                        <input type="number" min="1" max="5" value="1">
-                    </div>
                     <div class="btn-box">
                         <% if(loginUser != null && loginUser.getRole() == 3) {%>
                         <form action="MainController" method="POST">

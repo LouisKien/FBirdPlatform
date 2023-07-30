@@ -28,8 +28,9 @@ public class AddRecipeToCartController extends HttpServlet {
             int recipe_id = Integer.parseInt(request.getParameter("recipe"));
             RecipeDAO dao = new RecipeDAO();
             List<RecipeDTO> listRecipeProduct = dao.getRecipeProductToAdd(recipe_id);
+            List<Integer> listProductId = dao.getCartItemId(customer_id);
             if(listRecipeProduct.size() > 0){
-                dao.addToCart(listRecipeProduct, customer_id);
+                dao.addToCart(listRecipeProduct, customer_id, listProductId);
             }
         } catch (Exception e) {
             log("Error at AddRecipeToCartController: " + e.toString());

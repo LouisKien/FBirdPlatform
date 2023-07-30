@@ -44,7 +44,10 @@ public class RecipeDAO {
 
     private static final String GET_RECIPE_PRODUCT = "SELECT title, name, quantity, image_1, shop_product_item.shop_product_item_id,shop_product_item.shop_id FROM recipe_product JOIN optional_shop_product_item ON optional_shop_product_item.optional_shop_product_item_id = recipe_product.optional_shop_product_item_id JOIN shop_product_item ON optional_shop_product_item.shop_product_item_id = shop_product_item.shop_product_item_id JOIN product_image ON shop_product_item.shop_product_item_id = product_image.shop_product_item_id JOIN shop_owner ON shop_product_item.shop_id = shop_owner.shop_id WHERE recipe_id = ?";
     private static final String GET_RECIPE_PRODUCT_TO_ADD = "SELECT quantity, optional_shop_product_item.optional_shop_product_item_id FROM recipe_product JOIN optional_shop_product_item ON optional_shop_product_item.optional_shop_product_item_id = recipe_product.optional_shop_product_item_id JOIN shop_product_item ON optional_shop_product_item.shop_product_item_id = shop_product_item.shop_product_item_id JOIN product_image ON shop_product_item.shop_product_item_id = product_image.shop_product_item_id JOIN shop_owner ON shop_product_item.shop_id = shop_owner.shop_id WHERE recipe_product.recipe_id = ?";
-    private static final String ADD_TO_CART = "INSERT cart_item(customer_id, optional_shop_product_item_id, quantity) VALUES (?,?,?)";
+    private static final String ADD_TO_CART = "INSERT cart_item(quantity, customer_id, optional_shop_product_item_id) VALUES (?,?,?)";
+    private static final String ADD_TO_CART_QUANTITY = "UPDATE cart_item SET quantity = quantity + ? WHERE cart_item_id = (SELECT cart_item_id FROM cart_item WHERE customer_id = ? AND optional_shop_product_item_id = ?)";
+    private static final String LIST_PRODUCT_ID = "SELECT optional_shop_product_item_id FROM cart_item WHERE customer_id = ?";
+    
 
     public List<RecipeDTO> getRecipeHomePage() throws SQLException {
         List<RecipeDTO> list = new ArrayList<>();
@@ -243,27 +246,62 @@ public class RecipeDAO {
         }
         return list;
     }
-
-    public boolean addToCart(List<RecipeDTO> listRecipeProduct, int customer_id) throws SQLException {
+    
+    public boolean addToCart(List<RecipeDTO> listRecipeProduct, int customer_id, List<Integer> listProductId) throws SQLException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement ptm = null;
-        ResultSet rs = null;
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 for (RecipeDTO rp : listRecipeProduct) {
                     ptm = conn.prepareStatement(ADD_TO_CART);
-                    ptm.setInt(1, customer_id);
-                    ptm.setInt(2, rp.getOptionalShopProductItemID());
-                    ptm.setInt(3, rp.getQuantity());
+                    for(Integer id: listProductId){
+                        if(rp.getOptionalShopProductItemID() == id.intValue()){
+                            ptm = conn.prepareStatement(ADD_TO_CART_QUANTITY);
+                            break;
+                        }
+                    }
+                    ptm.setInt(1, rp.getQuantity());
+                    ptm.setInt(2, customer_id);
+                    ptm.setInt(3, rp.getOptionalShopProductItemID());
+                    
                     check = ptm.executeUpdate() > 0 ? true : false;
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (rs != null) {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+
+    public List<Integer> getCartItemId(int customer_id) throws SQLException {
+        List<Integer> listID = new ArrayList();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try{
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(LIST_PRODUCT_ID);
+                ptm.setInt(1, customer_id);
+                rs = ptm.executeQuery();
+                while(rs.next()){
+                    int optional_shop_product_item_id = rs.getInt("optional_shop_product_item_id");
+                    listID.add(optional_shop_product_item_id);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if(rs != null){
                 rs.close();
             }
             if (ptm != null) {
@@ -273,7 +311,7 @@ public class RecipeDAO {
                 conn.close();
             }
         }
-        return check;
+        return listID;
     }
 
 }

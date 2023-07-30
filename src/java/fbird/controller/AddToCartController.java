@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import fbird.cart.CartDAO;
 import fbird.cart.CartDTO;
+import java.util.List;
 
 /**
  *
@@ -36,8 +37,9 @@ public class AddToCartController extends HttpServlet {
             int custommer_id = Integer.parseInt(request.getParameter("cus_id"));
             int optional_shop_product_item_id = Integer.parseInt(request.getParameter("op_id"));           
             int quantity = Integer.parseInt(request.getParameter("qtt"));
-            CartDTO addtocart = new CartDTO(optional_shop_product_item_id,custommer_id, quantity );
-            dao.addToCart(addtocart);
+            List<Integer> listProductInCart = dao.getCartItemId(custommer_id);
+            CartDTO addtocart = new CartDTO(optional_shop_product_item_id,custommer_id, quantity);
+            dao.addToCart(addtocart, listProductInCart);
         } catch (Exception e) {
             e.printStackTrace();
 

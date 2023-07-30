@@ -23,8 +23,12 @@ public class CartDAO {
 "JOIN shop_product_item ON optional_shop_product_item.shop_product_item_id = shop_product_item.shop_product_item_id\n" +
 "JOIN product_image on optional_shop_product_item.shop_product_item_id = product_image.shop_product_item_id\n" +
 "JOIN product_category ON product_category.category_id = shop_product_item.category_id Where customer_id=?";
-    private static final String ADD_CART_ITEM= "INSERT INTO cart_item (optional_shop_product_item_id, customer_id, quantity) VALUES(?,?,?)";
+    private static final String ADD_CART_ITEM= "INSERT INTO cart_item (quantity, customer_id, optional_shop_product_item_id) VALUES(?,?,?)";
     private static final String DELETE_CART_ITEM="DELETE FROM cart_item WHERE cart_item_id = ?";
+    
+    private static final String ADD_QUANTITY_IN_CART = "UPDATE cart_item SET quantity = quantity + ? WHERE cart_item_id = (SELECT cart_item_id FROM cart_item WHERE customer_id = ? AND optional_shop_product_item_id = ?)";
+    private static final String GET_LIST_OPTIONAL_PRODUCT_ID = "SELECT optional_shop_product_item_id FROM cart_item WHERE customer_id = ?";
+    
     public List<CartDTO> getCart(int customer_id) throws SQLException {
         List<CartDTO> list = new ArrayList<>();
         Connection conn = null;
@@ -66,7 +70,7 @@ public class CartDAO {
         }
         return list;
     }
-public void addToCart(CartDTO addCartItem) throws SQLException, ClassNotFoundException{
+public void addToCart(CartDTO addCartItem, List<Integer> listProductInCart) throws SQLException, ClassNotFoundException{
         
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -74,10 +78,15 @@ public void addToCart(CartDTO addCartItem) throws SQLException, ClassNotFoundExc
             conn = DBUtils.getConnection();
             if (conn != null) {
                 ptm = conn.prepareStatement(ADD_CART_ITEM);
-                ptm.setInt(1, addCartItem.getOptional_shop_product_item_id());
+                for(Integer x: listProductInCart){
+                    if(addCartItem.getOptional_shop_product_item_id() == x.intValue()){
+                        ptm = conn.prepareStatement(ADD_QUANTITY_IN_CART);
+                        break;
+                    }
+                }
+                ptm.setInt(1, addCartItem.getQuantity());
                 ptm.setInt(2, addCartItem.getCustomer_id());
-                ptm.setInt(3, addCartItem.getQuantity());
-                
+                ptm.setInt(3, addCartItem.getOptional_shop_product_item_id());
                 ptm.executeUpdate();
                
             }
@@ -112,5 +121,37 @@ public boolean deleteCartItem(int cart_item_id ) throws SQLException{
             
         }
         return checkDelete;
+    }
+
+    public List<Integer> getCartItemId(int customer_id) throws SQLException {
+        List<Integer> listID = new ArrayList();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try{
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(GET_LIST_OPTIONAL_PRODUCT_ID);
+                ptm.setInt(1, customer_id);
+                rs = ptm.executeQuery();
+                while(rs.next()){
+                    int optional_shop_product_item_id = rs.getInt("optional_shop_product_item_id");
+                    listID.add(optional_shop_product_item_id);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if(rs != null){
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return listID;
     }
 }

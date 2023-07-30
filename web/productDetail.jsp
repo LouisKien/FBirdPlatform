@@ -193,7 +193,7 @@ if(loginUser != null) {
                         </div>
                         <div class="images">
                             <div class="small-img">
-                                <img src="<%=LPD.getImage_1() %>" onclick="showImg(this.src)">
+                                <img src="<%=LPD.getImage_1() %>" onclick="showImg(this.src)" id="imgbuynow">
                             </div>
                             <div class="small-img">
                                 <img src="<%=LPD.getImage_2() %>" onclick="showImg(this.src)">
@@ -209,16 +209,26 @@ if(loginUser != null) {
 
                     <div class="right">
                         <div class="url">
-                            <a class="url1" href="MainController">Trang chủ</a> > <a class="url1" href="product.html">Sản phẩm</a> > <a class="url1" href="recipe.jsp">Khẩu phần cho chim</a>
+                            <a class="url1" href="MainController"> Trang chủ</a> > <a class="url1" href="product.html">Sản phẩm</a> > <a class="url1" href="recipe.jsp">Khẩu phần cho chim</a>
 
                         </div>
-                        <div class="report-option">
-                            
-                            <button class='fas fa-exclamation-triangle' onclick="callAlert()"   style="margin-top: -28px; margin-left: 550px;"></button>
-
-                        </div>
+                        <%if(loginUser != null) {%>
+                        <form action="MainController" id="myForm1">
                         
-                        <div class="pname" style="margin-bottom: 1px;"><%=LPD.getTitle() %>
+                        <div class="report-option" >
+                            
+                            <a type="button" class='fas fa-exclamation-triangle' onclick="callAlert(<%=request.getAttribute("shop_product_item_id")%>, <%= loginUser.getCustomer_id() %>)"   style="margin-top: -28px; margin-left: 550px;"></a>
+
+                        </div>
+                        </form>
+                        <%}else{%>
+                        <div class="report-option" >
+                            
+                            <a class='fas fa-exclamation-triangle' href="login.jsp"   style="margin-top: -28px; margin-left: 550px;"></a>
+
+                        </div>
+                        <%}%>
+                        <div class="pname" style="margin-bottom: 1px;" id="titleproduct"><%=LPD.getTitle() %>
 
                         </div>
 
@@ -244,10 +254,12 @@ if(loginUser != null) {
 
                             <div class="product-item">
                                 <div class="product-name">
-                                    <label class="btn btn-primary active" style="margin-right: -50px;">
+                                    <label class="btn btn-primary active optionalName" style="margin-right: -50px;" id="optionalName">
+                                         
                                         <input type="radio" name="optional" autocomplete="off" checked id="<%=listOptional.get(i).getOptional_shop_product_item_id() %>" value="<%=listOptional.get(i).getPrice() %>" onclick="updatePrice(<%=listOptional.get(i).getPrice() %>)">
                                         <input style="display: none" name="optional_shop_product_item_id" value="<%=listOptional.get(i).getOptional_shop_product_item_id() %>">
                                         <%=listOptional.get(i).getName() %>
+                                        
                                     </label>
                                     <div class="product-price" id="<%=listOptional.get(i).getName() %>Price" style="display: none;"></div>
                                 </div>
@@ -258,10 +270,12 @@ if(loginUser != null) {
                             %>
                             <div class="product-item">
                                 <div class="product-name">
-                                    <label class="btn btn-primary active" style="margin-right: -50px;">
+                                    <label class="btn btn-primary active optionalName" style="margin-right: -50px;" id="optionalName">
+                                       
                                         <input type="radio" name="optional" autocomplete="off" id="<%=listOptional.get(i).getOptional_shop_product_item_id() %>" value="<%=listOptional.get(i).getPrice() %>" onclick="updatePrice(<%=listOptional.get(i).getPrice() %>)">
                                         <input style="display: none" name="optional_shop_product_item_id" value="<%=listOptional.get(i).getOptional_shop_product_item_id() %>">
                                         <%=listOptional.get(i).getName() %>
+                                      
                                     </label>
                                     <div class="product-price" id="<%=listOptional.get(i).getName() %>Price" style="display: none;"></div>
                                 </div>
@@ -292,7 +306,7 @@ if(loginUser != null) {
                             function updatePrice(price) {
                                 var quantity = document.getElementsByName('productQuantity');
                                 var displayPrice = document.getElementById('selectedPrice1');
-                                displayPrice.innerHTML = (price * quantity[0].value).toFixed(2);
+                                displayPrice.innerHTML = (price * quantity[0].value);
                             }
 
                             // JavaScript function to update price based on quantity
@@ -303,7 +317,7 @@ if(loginUser != null) {
                                 var display = document.getElementById('selectedPrice1');
                                 if (radioElement) {
                                     var total = radioElement.value * quantity[0].value;
-                                    display.innerHTML = total.toFixed(2);
+                                    display.innerHTML = total;
                                 } else {
                                     return;
                                 }
@@ -340,16 +354,73 @@ if(loginUser != null) {
                                 mess.innerHTML = "Đã thêm vào giỏ hàng";
                                 console.log(mess);
                             }
+                           
                             // Example usage: updatePrice(productName, price);
+                        </script>
+                        <script>
+                           function formatNumber(n) {
+                                                    // format number 1000000 to 1,234,567
+                                                    return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                                                }
+                                                function ConvertToNumber(priceStr) {
+                                                    var priceParts = priceStr.split(".");
+                                                    var price = "";
+                                                    for (var i = 0; i < priceParts.length; i++) {
+                                                        price += priceParts[i];
+                                                    }
+                                                    return Number.parseInt(price);
+                                                }
+    function buynow(){
+                                sessionStorage.clear();
+                                var titleproduct = document.getElementById('titleproduct').innerText;
+                                
+                             var optionname = document.getElementsByClassName('optionalName'); // Use getElementsByClassName
+    for (var i = 0; i < optionname.length; i++) {
+        var a = optionname[i]; // Use 'optionname' instead of 'optionalname'
+        var b = a.querySelector("input[type=radio]");
+        if (b.checked) {
+            var optional = a.innerText;
+         
+        }
+    }
+    
+                                var quantity = document.getElementsByName('productQuantity')[0].value;
+                                var price = ConvertToNumber(document.getElementById('selectedPrice1').innerText);
+                                var imgbuynow = document.getElementById('imgbuynow');
+                                
+                                var img = imgbuynow.getAttribute("src");
+                                let Allelement = [];
+                                console.log(titleproduct);
+                                console.log(optional);
+                                console.log(price);
+                                console.log(quantity);
+                                console.log(img);
+                                let Element = [optional, titleproduct, img, price, quantity];
+                                 Allelement.push(Element);
+                                sessionStorage.setItem("Element", JSON.stringify(Allelement));
+                                sessionStorage.setItem("allPrices", JSON.stringify(price));
+//                                sessionStorage.clear();
+//                                sessionStorage.setItem("title", JSON.stringify(titleproduct));
+//                                sessionStorage.setItem("name", JSON.stringify(optionname));
+//                                sessionStorage.setItem("img", JSON.stringify(imgbuynow));
+//                                sessionStorage.setItem("quantity", JSON.stringify(quantity));
+//                                sessionStorage.setItem("price", JSON.stringify(price));
+                                
+                            }
                         </script>
 
                         <form action="MainController" id="myForm">
 
                             <div class="btn-box">
+                               <%if(loginUser != null) {%>
+                                
                                 <button class="btn btn-primary cart-btn" onclick="addtocartv2()" type="button">Thêm vào giỏ hàng</button>
-
-                                <button class="btn btn-primary buy-btn">Mua ngay</button>
-
+                                
+                                <a type="button" class="btn btn-primary buy-btn"  href="MainController?action=ViewOderAddress&customer_id=<%= loginUser.getCustomer_id() %>" onclick="buynow()">Mua ngay</a>
+                                <%}else{%>
+                                <a class="btn btn-primary cart-btn" href="login.jsp" type="button">Thêm vào giỏ hàng</a>
+                                <a type="button" class="btn btn-primary buy-btn"  href="login.jsp" >Mua ngay</a>
+                                <%}%>
                             </div>
                             <div name="mess" style="color: red;margin-top: 5%; font-weight: bold;"></div>
                         </form>
@@ -359,6 +430,19 @@ if(loginUser != null) {
                                 var form = document.getElementById("myForm");
                                 var xhr = new XMLHttpRequest();
                                 xhr.open("POST", "MainController?action=" + encodeURIComponent(action) + "&qtt=" + encodeURIComponent(qtt) + "&op_id=" + encodeURIComponent(op_id) + "&cus_id=" + encodeURIComponent(cus_id), true);
+                                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                                xhr.onreadystatechange = function () {
+                                    if (xhr.readyState === 4 && xhr.status === 200) {
+                                        // Xử lý kết quả tại đây (nếu cần)
+                                        console.log(xhr.responseText);
+                                    }
+                                };
+                                xhr.send(new FormData(form));
+                            }
+                            function submitForm1(action, shop_product_item_id, customer_id, value) {
+                                var form = document.getElementById("myForm1");
+                                var xhr = new XMLHttpRequest();
+                                xhr.open("POST", "MainController?action=" + encodeURIComponent(action) + "&shop_product_item_id=" + encodeURIComponent(shop_product_item_id) + "&customer_id=" + encodeURIComponent(customer_id) + "&value=" + encodeURIComponent(value), true);
                                 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                                 xhr.onreadystatechange = function () {
                                     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -589,7 +673,7 @@ List<FeedbackDTO> listAllFeedback = (List<FeedbackDTO>) request.getAttribute("LI
                 bigImg.src = pic;
             }
             
-            function callAlert(){
+            function callAlert(shop_product_item_id, customer_id){
     swal("Viết lý do khiếu nại:", {
       content: "input"
     })
@@ -601,7 +685,7 @@ List<FeedbackDTO> listAllFeedback = (List<FeedbackDTO>) request.getAttribute("LI
           icon: "success",
           button: "OK"
         });
-        
+        submitForm1("ReportProduct", shop_product_item_id, customer_id, value);
         // Tùy chỉnh các tác vụ khác dựa trên giá trị `value` ở đây nếu cần
         // Ví dụ: Gửi giá trị đến máy chủ qua AJAX để xử lý
         // Các tác vụ khác...

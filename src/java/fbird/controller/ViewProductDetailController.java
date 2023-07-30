@@ -58,6 +58,7 @@ public class ViewProductDetailController extends HttpServlet {
                 request.setAttribute("LIST_Optional", listOptional);
                 request.setAttribute("LIST_ShopProductItemId", ShopProductItemId);
                 request.setAttribute("LIST_AllFeedback", AllFeedback);
+                request.setAttribute("shop_product_item_id", shop_product_item_id);
                 
                
           

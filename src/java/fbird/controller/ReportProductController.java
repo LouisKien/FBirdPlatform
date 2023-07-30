@@ -37,10 +37,13 @@ public class ReportProductController extends HttpServlet {
             ReportedProductDAO dao = new ReportedProductDAO();
             int shop_product_item_id = Integer.parseInt(request.getParameter("shop_product_item_id"));
             int customer_id = Integer.parseInt(request.getParameter("customer_id"));
-            String detail = request.getParameter("detail");
+            String detail = request.getParameter("value");
+            
            
             
             ReportedProductDTO addreportproduct = new ReportedProductDTO(shop_product_item_id, customer_id, detail);
+            request.setAttribute("shop_product_item_id", shop_product_item_id);
+            
             dao.addReportProduct(addreportproduct);
         } catch (Exception e) {
             e.printStackTrace();

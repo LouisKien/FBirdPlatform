@@ -46,24 +46,27 @@
         <div style="background-color: #BCDAE0;">
             <!-- Navbar Start -->
             <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm py-3 py-lg-0 px-3 px-lg-0 mb-5">
-                <a href="MainController?action=" class="navbar-brand ms-lg-5">
+                <a href="MainController" class="navbar-brand ms-lg-5">
                     <h1 class="m-0 text-uppercase text-dark"><i class="bi bi-shop fs-1 text-primary me-3"></i>FBIRD</h1>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="wrapper" 
-                     style="margin-right: 50px;
+                     style="
                      margin-top: 50px;
                      margin-bottom: 50px;
                      ">
-                    <div class="searchBar">
-                        <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Search" value="" />
-                        <button id="searchQuerySubmit" type="submit" name="searchQuerySubmit">
-                            <svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="#666666" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
-                            </svg>
-                        </button>
-                    </div>
+                    <form action="MainController" method="POST">
+
+                        <div class="searchBar">
+                            <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Tìm kiếm sản phẩm" required="" value="" />
+                            <button id="searchQuerySubmit" type="submit" name="action" value="searchQuerySubmit">
+                                <svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="#666666" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </form>
                 </div>
                 <%
                     UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
@@ -73,25 +76,60 @@
                 %>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
-                        <a href="addtocart.html" class="nav-item nav-link" style="width: max-content">
-                            <i class="fa fa-shopping-cart" style="font-size:25px; "></i>
-                        </a>
+                        <div class="nav-item nav-link" style="width: max-content">
+                            <% 
+                                if(loginUser != null) {                           
+                            %>
+                            <a  href="MainController?action=ViewCart&customer_id=<%= loginUser.getCustomer_id() %>"class="shopping">
+
+                                <i class="fa fa-shopping-cart" style="font-size:25px;"></i>
+
+                            </a>
+                            <%}%>
+                        </div>
 
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Danh mục</a>
                             <div class="dropdown-menu m-0">
                                 <a href="MainController?action=productpage" class="dropdown-item">Sản phẩm</a>
                                 <a href="MainController?action=foodpage&categoryID=1" class="dropdown-item">Thức ăn</a>
-
-                                <a href="MainController?action=foodpage&categoryID=4" class="dropdown-item">Thuốc</a>
+                                <a href="MainController?action=foodpage&categoryID=4" class="dropdown-item">Thuốc - Dược phẩm</a>
                             </div>
                         </div>
-                        <a href="MainController?action=ViewRecipe" class="nav-item nav-link">Khẩu phần</a>  
+                        <a href="MainController?action=ViewRecipe" class="nav-item nav-link">Khẩu phần</a>
+                        <% if(loginUser != null) {
+                                if(loginUser.getRole() == 1){
+                                loginUser.setFullname("Admin Account");
+                        %>
 
-
-                        <a href="userProfile.jsp" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>  
+                        <a href="adminDashboard.jsp" class="nav-item nav-link"><i class="fa-solid fa-user-gear"></i></a>
+                            <%
+                            } else if(loginUser.getRole() == 2){
+                            %>
+                        <a href="accountShop.jsp" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
+                            <%
+                                } else{
+                            %>
+                        <a href="MainController?action=ViewProfile&username=<%= loginUser.getUsername() %>" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
+                            <%
+                                }
+    }
+                    if(loginUser != null) {
+            
+                            %>
+                        <div class="nav-item dropdown"> 
+                            <a href="#" class="nav-item nav-link nav-contact bg-primary text-white px-3 ms-lg-3" data-bs-toggle="dropdown"><%= loginUser.getFullname() %></a>
+                            <div class="dropdown-menu m-3">
+                                <% if(loginUser.getRole() == 3){%>
+                                <a href="MainController?action=ViewProfile&username=<%= loginUser.getUsername() %>" class="dropdown-item">Tài khoản</a>
+                                <%}%>
+                                <a href="MainController?action=Logout" class="dropdown-item">Đăng xuất</a>
+                            </div>
+                        </div>
+                        <%}else{%>
                         <a href="login.jsp" class="nav-item nav-link">Đăng nhập</a>
                         <a href="register.jsp" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5">Đăng ký<i class="bi bi-arrow-right"></i></a>
+                            <%}%>
                     </div>
                 </div>
             </nav>
@@ -149,12 +187,12 @@
                             <input type="hidden" name="customer" value="<%= loginUser.getCustomer_id()%>"/>
                             <button class="cart-btn" name="action" value="AddRecipeToCart">Thêm vào giỏ hàng</button>
                         </form>
-                            
-                            <%} else if(loginUser != null && loginUser.getRole() != 3){%>
-                            <button class="cart-btn"><a href="#" style="color: white;">Phân quyền của bạn không được mua hàng</a></button>
-                            <%} else {%>
-                            <button class="cart-btn"><a href="login.jsp" style="color: white;">Thêm vào giỏ hàng</a></button>
-                            <%}%>
+
+                        <%} else if(loginUser != null && loginUser.getRole() != 3){%>
+                        <button class="cart-btn"><a href="#" style="color: white;">Phân quyền của bạn không được mua hàng</a></button>
+                        <%} else {%>
+                        <button class="cart-btn"><a href="login.jsp" style="color: white;">Thêm vào giỏ hàng</a></button>
+                        <%}%>
                     </div>
                 </div>
             </div>
@@ -187,9 +225,9 @@
             </div>
         </div>
         <%}%>
-        
 
-        
+
+
         <h2 class="border-start border-5 border-primary ps-3 mb-4" style="color: #7ab730;margin-left: 180px; margin-top: 30px;"">THÀNH PHẦN</h2>
         <div class="col-xl-12">
             <div class="products-area products-area3">
@@ -197,7 +235,7 @@
                     <%
                             List<RecipeDTO> listRecipeProduct = (List<RecipeDTO>) request.getAttribute("RECIPE_PRODUCT");
                             for(RecipeDTO rp: listRecipeProduct){
-                        %>
+                    %>
                     <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
                         <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
                             <div style="text-align: center;">
@@ -218,7 +256,7 @@
 
 
                                 </div>
-                                
+
                                 <div style="text-align: center;">
 
                                     <span class="product-price" style=" color: black; font-size: 15px;">
@@ -231,21 +269,21 @@
                         </div>
                     </div> 
                     <%}%>
-                     
+
                 </div>
             </div>
         </div>
         <h3 class="border-start border-5 border-primary ps-3 mb-4" style=" color: #7ab730;margin-left: 180px; margin-top: 30px;">MÔ TẢ KHẨU PHẦN</h3>
-                <div class="product-description-container">
-                     <%= recipe.get(0).getDescription()%>
-                </div>
+        <div class="product-description-container">
+            <%= recipe.get(0).getDescription()%>
+        </div>
         <h3 class="border-start border-5 border-primary ps-3 mb-4" style="color: #7ab730;margin-left: 180px; margin-top: 30px;">FEEDBACK</h3>
 
 
         <!-- Comment List End -->
 
         <!-- Comment Form Start -->
-        
+
     </div>
 
 
@@ -255,65 +293,65 @@
     <!-- Topbar End -->
     <!-- Footer Start -->
     <div class="container-fluid bg-light mt-5 py-5">
-                <div class="container pt-5">
-                    <div class="row g-5">
-                        <div class="col-lg-3 col-md-6">
-                            <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">PHƯƠNG THỨC LIÊN LẠC</h5>
-                            <p class="mb-4"></p>
-                            <p class="mb-2"><i class="bi bi-geo-alt text-primary me-2"></i>Lô E2a-7, Đường D1, Khu Công nghệ cao, P.Long Thạnh Mỹ, Tp. Thủ Đức, TP.HCM.</p>
-                            <p class="mb-2"><i class="bi bi-envelope-open text-primary me-2"></i>daihoc.hcm@fpt.edu.vn</p>
-                            <p class="mb-0"><i class="bi bi-telephone text-primary me-2"></i> (028) 7300 5588</p>
-                        </div>
+        <div class="container pt-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">PHƯƠNG THỨC LIÊN LẠC</h5>
+                    <p class="mb-4"></p>
+                    <p class="mb-2"><i class="bi bi-geo-alt text-primary me-2"></i>Lô E2a-7, Đường D1, Khu Công nghệ cao, P.Long Thạnh Mỹ, Tp. Thủ Đức, TP.HCM.</p>
+                    <p class="mb-2"><i class="bi bi-envelope-open text-primary me-2"></i>daihoc.hcm@fpt.edu.vn</p>
+                    <p class="mb-0"><i class="bi bi-telephone text-primary me-2"></i> (028) 7300 5588</p>
+                </div>
 
-                        <div class="col-lg-3 col-md-6">
-                            <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">FBird</h5>
-                            <div class="d-flex flex-column justify-content-start">
-                                <a class="text-body mb-2" href="MainController"><i class="bi bi-arrow-right text-primary me-2"></i>Trang chủ</a>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">F-Bird</h5>
+                    <div class="d-flex flex-column justify-content-start">
+                        <a class="text-body mb-2" href="MainController"><i class="bi bi-arrow-right text-primary me-2"></i>Trang chủ</a>
 
-                                <a class="text-body mb-2" href="member.html"><i class="bi bi-arrow-right text-primary me-2"></i>Thành viên</a>
+                        <a class="text-body mb-2" href="devteam.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thành viên</a>
 
 
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Loại hàng cho chim</h5>
-                            <div class="d-flex flex-column justify-content-start">
-                                <a class="text-body mb-2" href="food.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thức ăn</a>
-                                <a class="text-body mb-2" href="medicine.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thuốc</a>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Phản hồi đến công ty chúng tôi</h5>
-                            <form action="">
-                                <div class="input-group">
-                                    <input type="text" class="form-control p-3" placeholder="Nhập email">
-                                    <button class="btn btn-primary">Đăng ký</button>
-                                </div>
-                            </form>
-                            <h6 class="text-uppercase mt-4 mb-3"> Theo dõi chúng tôi trên</h6>
-                            <div class="d-flex">
-                                <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-twitter"></i></a>
-                                <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-facebook"></i></a>
-                                <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-linkedin"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href="#"><i class="bi bi-instagram"></i></a>
-                            </div>
-                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Loại hàng cho chim</h5>
+                    <div class="d-flex flex-column justify-content-start">
+                        <a class="text-body mb-2" href="MainController?action=foodpage"><i class="bi bi-arrow-right text-primary me-2"></i>Thức ăn</a>
+                        <a class="text-body mb-2" href="MainController?action=medicinepage"><i class="bi bi-arrow-right text-primary me-2"></i>Thuốc - Dược phẩm</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Theo dõi chúng tôi trên</h5>
+                    <!--                        <form action="">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control p-3" placeholder="Nhập email">
+                                                    <button class="btn btn-primary">Đăng ký</button>
+                                                </div>
+                                            </form>
+                                            <h6 class="text-uppercase mt-4 mb-3"> Theo dõi chúng tôi trên</h6>-->
+                    <div class="d-flex">
+                        <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-twitter"></i></a>
+                        <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-facebook"></i></a>
+                        <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-linkedin"></i></a>
+                        <a class="btn btn-outline-primary btn-square" href="#"><i class="bi bi-instagram"></i></a>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <div class="container-fluid bg-dark text-white-50 py-4">
-                <div class="container">
-                    <div class="row g-5">
-                        <div class="col-md-6 text-center text-md-start">
-                            <p class="mb-md-0">&copy; <a class="text-white" href="MainController">Trang web được thiết kế bởi nhóm 3 </a> </p>
-                        </div>
-                        <div class="col-md-6 text-center text-md-end">
-                            <p class="mb-0">Nguồn <a class="text-white" href="https://htmlcodex.com">HTML Codex</a></p>
-                        </div>
-                    </div>
+    <div class="container-fluid bg-dark text-white-50 py-4">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-md-0">&copy; <a class="text-white" href="MainController">Trang web được thiết kế bởi Nhóm 3 </a> </p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0">Nguồn <a class="text-white" href="https://htmlcodex.com">HTML Codex</a></p>
                 </div>
             </div>
+        </div>
+    </div>
 
     <script>
         let bigImg = document.querySelector('.big-img img');
@@ -414,11 +452,11 @@
         width: max-content;
     }
     .product-description-container {
-      border: 3px solid #ccc; /* Định dạng viền */
-      padding: 15px; /* Khoảng cách giữa nội dung và viền của hộp */
-      margin-left: 180px; /* Khoảng cách từ lề trái */
-      margin-top: 30px; /* Khoảng cách từ lề trên */
-      font-size: 15px;
-      display: inline-block; /* Đảm bảo hộp chỉ bao bọc nội dung cần thiết */
+        border: 3px solid #ccc; /* Định dạng viền */
+        padding: 15px; /* Khoảng cách giữa nội dung và viền của hộp */
+        margin-left: 180px; /* Khoảng cách từ lề trái */
+        margin-top: 30px; /* Khoảng cách từ lề trên */
+        font-size: 15px;
+        display: inline-block; /* Đảm bảo hộp chỉ bao bọc nội dung cần thiết */
     }
 </style>

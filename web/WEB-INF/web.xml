@@ -160,6 +160,10 @@
         <servlet-name>AddUserAddressController</servlet-name>
         <servlet-class>fbird.controller.AddUserAddressController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddRecipeToCartController</servlet-name>
+        <servlet-class>fbird.controller.AddRecipeToCartController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -322,6 +326,10 @@
     <servlet-mapping>
         <servlet-name>AddUserAddressController</servlet-name>
         <url-pattern>/AddUserAddressController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddRecipeToCartController</servlet-name>
+        <url-pattern>/AddRecipeToCartController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

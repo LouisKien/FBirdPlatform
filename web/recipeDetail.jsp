@@ -66,6 +66,7 @@
                     </div>
                 </div>
                 <%
+                    UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
                     List<RecipeDTO> recipe = (List<RecipeDTO>) request.getAttribute("RECIPE_DETAIL");
                     ShopDTO shop = (ShopDTO) request.getAttribute("SHOP_RECIPE");
                     if(recipe != null && shop != null){
@@ -118,7 +119,7 @@
                 </div>
 
                 <div class="right">
-                    <div class="url"><a class="url1" href="index.jsp">Trang chủ</a>  >   <a class="url1" href="product.html">Sản phẩm</a> >   <a class="url1" href="recipe.jsp">Khẩu phần cho chim</a></div>
+                    <div class="url"><a class="url1" href="MainController">Trang chủ &nbsp</a>  >   <a class="url1" href="MainController?action=ViewRecipe">&nbsp Khẩu phần</a> </div>
                     <div class="pname"><%= recipe.get(0).getTitle_recipe()%></div>
                     <div class="ratings">
                         <i class="fas fa-star"></i>
@@ -148,8 +149,18 @@
                         <input type="number" min="1" max="5" value="1">
                     </div>
                     <div class="btn-box">
-                        <button class="cart-btn">Thêm vào giỏ hàng</button>
-                        <button class="buy-btn">Mua ngay</button>
+                        <% if(loginUser != null && loginUser.getRole() == 3) {%>
+                        <form action="MainController" method="POST">
+                            <input type="hidden" name="recipe" value="<%= recipe.get(0).getRecipe_id()%>"/>   
+                            <input type="hidden" name="customer" value="<%= loginUser.getCustomer_id()%>"/>
+                            <button class="cart-btn" name="action" value="AddRecipeToCart">Thêm vào giỏ hàng</button>
+                        </form>
+                            
+                            <%} else if(loginUser != null && loginUser.getRole() != 3){%>
+                            <button class="cart-btn"><a href="#" style="color: white;">Phân quyền của bạn không được mua hàng</a></button>
+                            <%} else {%>
+                            <button class="cart-btn"><a href="login.jsp" style="color: white;">Thêm vào giỏ hàng</a></button>
+                            <%}%>
                     </div>
                 </div>
             </div>
@@ -189,22 +200,35 @@
         <div class="col-xl-12">
             <div class="products-area products-area3">
                 <div class="row justify-content-center">
+                    <%
+                            List<RecipeDTO> listRecipeProduct = (List<RecipeDTO>) request.getAttribute("RECIPE_PRODUCT");
+                            for(RecipeDTO rp: listRecipeProduct){
+                        %>
                     <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
                         <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
                             <div style="text-align: center;">
-                                <a href="#" class="product-image">
-                                    <img style="width: 160px;height: 190px" src="img/bird.jpg" alt="product-image" />
+                                <a href="MainController?action=ViewProductDetail&shop_product_item_id=<%= rp.getShop_product_item_id()%>&shop_id=<%= rp.getShop_id()%>" class="product-image">
+                                    <img style="width: 160px;height: 190px" src="<%= rp.getProduct_image()%>" alt="product-image" />
                                 </a>
                             </div>
                             <div class="bottom-content">
                                 <div style="text-align: center;white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;margin-top: 10px; font-weight: bold;">
-                                    <a href="" style="color: black;">abcdxyz</a>
+                                    <a href="MainController?action=ViewProductDetail&shop_product_item_id=<%= rp.getShop_product_item_id()%>&shop_id=<%= rp.getShop_id()%>" style="color: black;"><%= rp.getTitle()%></a>
                                 </div>
 
                                 <div style="text-align: center;">
 
-                                    <span class="product-price" style="font-weight: bold; color: red; font-size: 25px;">
-                                        5000đ
+                                    <span class="product-price" style=" color: black; font-size: 15px;">
+                                        <%= rp.getName()%>
+                                    </span>
+
+
+                                </div>
+                                
+                                <div style="text-align: center;">
+
+                                    <span class="product-price" style=" color: black; font-size: 15px;">
+                                        Số lượng: <%= rp.getQuantity()%>
                                     </span>
 
 
@@ -212,75 +236,8 @@
                             </div>
                         </div>
                     </div> 
-                    <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
-                        <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
-                            <div style="text-align: center;">
-                                <a href="#" class="product-image">
-                                    <img style="width: 160px;height: 190px" src="img/bird.jpg" alt="product-image" />
-                                </a>
-                            </div>
-                            <div class="bottom-content">
-                                <div style="text-align: center;white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;margin-top: 10px; font-weight: bold;">
-                                    <a href="" style="color: black;">abcdxyz</a>
-                                </div>
-
-                                <div style="text-align: center;">
-
-                                    <span class="product-price" style="font-weight: bold; color: red; font-size: 25px;">
-                                        5000đ
-                                    </span>
-
-
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
-                        <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
-                            <div style="text-align: center;">
-                                <a href="#" class="product-image">
-                                    <img style="width: 160px;height: 190px" src="img/bird.jpg" alt="product-image" />
-                                </a>
-                            </div>
-                            <div class="bottom-content">
-                                <div style="text-align: center;white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;margin-top: 10px; font-weight: bold;">
-                                    <a href="" style="color: black;">abcdxyz</a>
-                                </div>
-
-                                <div style="text-align: center;">
-
-                                    <span class="product-price" style="font-weight: bold; color: red; font-size: 25px;">
-                                        5000đ
-                                    </span>
-
-
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
-                        <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
-                            <div style="text-align: center;">
-                                <a href="#" class="product-image">
-                                    <img style="width: 160px;height: 190px" src="img/bird.jpg" alt="product-image" />
-                                </a>
-                            </div>
-                            <div class="bottom-content">
-                                <div style="text-align: center;white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;margin-top: 10px; font-weight: bold;">
-                                    <a href="" style="color: black;">abcdxyz</a>
-                                </div>
-
-                                <div style="text-align: center;">
-
-                                    <span class="product-price" style="font-weight: bold; color: red; font-size: 25px;">
-                                        5000đ
-                                    </span>
-
-
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
+                    <%}%>
+                     
                 </div>
             </div>
         </div>

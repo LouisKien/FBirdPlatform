@@ -85,6 +85,8 @@ public class MainController extends HttpServlet {
     private static final String VIEW_MEDICINE_PAGE_CONTROLLER = "ViewMedicinePageController";
     private static final String VIEW_CUSTOMER_PROFILE = "ViewProfile";
     private static final String VIEW_CUSTOMER_PROFILE_CONTROLLER = "ViewCustomerProfileController";
+    private static final String ADD_RECIPE_TO_CART = "AddRecipeToCart";
+    private static final String ADD_RECIPE_TO_CART_CONTROLLER = "AddRecipeToCartController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -159,8 +161,10 @@ public class MainController extends HttpServlet {
                 url = VIEW_MEDICINE_PAGE_CONTROLLER;
             } else if (VIEW_CUSTOMER_PROFILE.equals(action)) {
                 url = VIEW_CUSTOMER_PROFILE_CONTROLLER;
-            }else if (VIEW_ODER_ADDRESS.equals(action)) {
+            } else if (VIEW_ODER_ADDRESS.equals(action)) {
                 url = VIEW_ODER_ADDRESS_CONTROLLER;
+            } else if (ADD_RECIPE_TO_CART.equals(action)) {
+                url = ADD_RECIPE_TO_CART_CONTROLLER;
             }
             else {
                 request.setAttribute("ERROR", "Your ACTION is not support");

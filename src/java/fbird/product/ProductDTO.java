@@ -148,6 +148,29 @@ public class ProductDTO {
         this.priceView = priceView;
     }
 
+    public ProductDTO(int shopProductItemID, String title, String description, int inventory, byte status, String image_1, String image_2, String image_3, String image_4, String type_of_bird_name, String category_name, Double price, String nameOption, double priceView) {
+        this.shopProductItemID = shopProductItemID;
+        this.shopID = shopID;
+        this.categoryID = categoryID;
+        this.typeOfBirdID = typeOfBirdID;
+        this.title = title;
+        this.description = description;
+        this.inventory = inventory;
+        this.uploadDate = uploadDate;
+        this.status = status;
+        this.image_1 = image_1;
+        this.image_2 = image_2;
+        this.image_3 = image_3;
+        this.image_4 = image_4;
+        this.type_of_bird_name = type_of_bird_name;
+        this.category_name = category_name;
+        this.shop_name = shop_name;
+        this.avatar = avatar;
+        this.price = price;
+        this.nameOption = nameOption;
+        this.priceView = priceView;
+    }
+
     
     
     public ProductDTO(int shopProductItemID) {

@@ -164,6 +164,10 @@
         <servlet-name>AddRecipeToCartController</servlet-name>
         <servlet-class>fbird.controller.AddRecipeToCartController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewProductDetailInShopDashboardController</servlet-name>
+        <servlet-class>fbird.controller.ViewProductDetailInShopDashboardController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -330,6 +334,10 @@
     <servlet-mapping>
         <servlet-name>AddRecipeToCartController</servlet-name>
         <url-pattern>/AddRecipeToCartController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewProductDetailInShopDashboardController</servlet-name>
+        <url-pattern>/ViewProductDetailInShopDashboardController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

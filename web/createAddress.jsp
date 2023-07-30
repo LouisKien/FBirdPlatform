@@ -1,15 +1,20 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="fbird.shop.ShopDTO"%>
+<%@page import="fbird.customer.CustomerDTO"%>
 <%@page import="java.util.List"%>
-<%@page import="fbird.product.ProductDTO"%>
 <%@page import="fbird.user.UserDTO"%>
-<%@ page import="java.text.NumberFormat" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%-- 
+    Document   : userProfile
+    Created on : Jun 13, 2023, 1:18:21 PM
+    Author     : Khanh
+--%>
 
-<!DOCTYPE html>
+
 <html lang="en">
 
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Thuốc - Dược phẩm cho chim cảnh</title>
+        <meta charset="utf-8">
+        <title>Địa chỉ người dùng</title>
         <link rel="icon" href="img/logo-shop.PNG" type="image/png">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Free HTML Templates" name="keywords">
@@ -44,6 +49,12 @@
     </head>
 
     <body>
+        <!--%
+        UserDTO user = session.getAttribute("USER");
+        %-->
+
+
+
         <!-- Navbar Start -->
         <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm py-3 py-lg-0 px-3 px-lg-0 mb-5">
             <a href="MainController" class="navbar-brand ms-lg-5">
@@ -89,8 +100,8 @@
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Danh mục</a>
                         <div class="dropdown-menu m-0">
                             <a href="MainController?action=productpage" class="dropdown-item">Sản phẩm</a>
-                            <a href="MainController?action=foodpage" class="dropdown-item">Thức ăn</a>
-                            <a href="MainController?action=medicinepage" class="dropdown-item">Thuốc - Dược phẩm</a>
+                            <a href="MainController?action=foodpage&categoryID=1" class="dropdown-item">Thức ăn</a>
+                            <a href="MainController?action=foodpage&categoryID=4" class="dropdown-item">Thuốc - Dược phẩm</a>
                         </div>
                     </div>
                     <a href="MainController?action=ViewRecipe" class="nav-item nav-link">Khẩu phần</a>
@@ -117,9 +128,7 @@
                     <div class="nav-item dropdown"> 
                         <a href="#" class="nav-item nav-link nav-contact bg-primary text-white px-3 ms-lg-3" data-bs-toggle="dropdown"><%= loginUser.getFullname() %></a>
                         <div class="dropdown-menu m-3">
-                            <% if(loginUser.getRole() == 3){%>
                             <a href="MainController?action=ViewProfile&username=<%= loginUser.getUsername() %>" class="dropdown-item">Tài khoản</a>
-                            <%}%>
                             <a href="MainController?action=Logout" class="dropdown-item">Đăng xuất</a>
                         </div>
                     </div>
@@ -130,66 +139,139 @@
                 </div>
             </div>
         </nav>
-        <!-- Navbar End -->
 
 
-        <!-- Products Start -->
-        <div class="container-fluid py-5">
+
+        <div class="rts-shop-section section-gap">
             <div class="container">
-                <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
-                    <h6 class="text-primary text-uppercase">Danh mục</h6>
-                    <h1 class="display-5 text-uppercase mb-0" style="font-size: 30px">Thuốc - Dược phẩm cho chim cảnh</h1>
-                </div>
-                <div class="col-xl-12">
-                    <div class="products-area products-area3">
-                        <div class="row justify-content-center">
-                            <!--                                <div>${requestScope.MESSAGE}</div>-->
-
-
-                            <%
-                                        List<ProductDTO> listMedicine = (List<ProductDTO>) request.getAttribute("LIST_MEDICINE_PAGE");
-                                        if(listMedicine != null){
-                                            for(ProductDTO product: listMedicine){
-                            %>
-                            <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
-                                <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
-                                    <div style="text-align: center;">
-                                        <a href="MainController?action=ViewProductDetail&shop_product_item_id=<%=product.getShopProductItemID() %>&shop_id=<%=product.getShopID() %>" class="product-image">
-                                            <img style="width: 160px;height: 190px" src="<%= product.getImage_1()%>" alt="product-image" />
-                                        </a>
+                <div class="row">
+                    <div class="col-xl-3">
+                        <div class="side-sticky">
+                            <div class="shop-side-action">
+                                <div class="action-item" >
+                                    <div class="action-top">
+                                        <span class="action-title"><i class="fa-sharp fa-solid fa-user"></i> Tài khoản của tôi</span>   
                                     </div>
-                                    <div class="bottom-content">
-                                        <div style="text-align: center;white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;margin-top: 10px; font-weight: bold;">
-                                            <a href="" style="color: black;"><%= product.getTitle()%></a>
-                                        </div>
-
-                                        <div style="text-align: center;">
+                                    <ul style="list-style-type: none;">
+                                        <li>
                                             <%
-    NumberFormat numberFormat = NumberFormat.getInstance();
-    numberFormat.setMinimumFractionDigits(0);
-    numberFormat.setMaximumFractionDigits(0);
-    String formattedPrice = numberFormat.format(product.getPrice());
+                                                if(loginUser != null){
                                             %>
-                                            <span class="product-price" style="font-weight: bold; color: red; font-size: 25px;">
-                                                <%= formattedPrice %>đ
-                                            </span>
+                                            <a href="MainController?action=ViewProfile&username=<%= loginUser.getUsername() %>">
+                                                <div class="color-item">
+                                                    <span class="color-name">Hồ sơ</span>
+                                                </div>
+                                            </a>
+                                            <%
+                                                }
+                                            %>
+                                        </li>
+                                        <li>
+                                            <a href="createShop.jsp">
+                                                <div class="color-item">
+                                                    <span class="color-name">Đăng kí shop</span>
+                                                </div>
+                                            </a>
+                                        </li>
 
-                                        </div>
+                                        <li>
+                                            <a href="orderCustomer.jsp">
+                                                <div class="color-item">
+                                                    <span class="color-name">Đơn hàng của bạn</span>
+                                                </div>
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="MainController?action=Logout">
+                                                <div class="color-item">
+                                                    <span class="color-name">Đăng xuất</span>
+                                                </div>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+
+
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-9" style="border: 2px solid; border-radius: 10px; width: 750px; margin: 10px;">
+
+
+
+                        <div>
+                            <div class="border-bottom">
+                                <div class="text-left font-weight-bold" style="font-size: 20px;">
+                                    Địa chỉ
+                                </div>
+                                <div class="text-muted" style="width: 400px;">
+                                    Quản lý thông tin địa chỉ để mua hàng
+                                </div>
+                            </div>
+
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                                        
+                                        <form action="AddUserAddressController?customer_id=${sessionScope.LOGIN_USER.getCustomer_id()}&username=${sessionScope.LOGIN_USER.getUsername()}" method="POST">
+
+
+                                            <div class="form-group">
+                                                <label for="home_number">Số nhà:</label>
+                                                <input name="home_number" type="text" class="form-control" id="username" placeholder="Số nhà" required="">
+                                            </div>
+
+                                            
+
+                                            <div class="form-group">
+                                                <label for="city">Thành phố:</label>
+                                                <input name="city" type="text" class="form-control" id="email" placeholder="Thành phố" required="">
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="street">Đường:</label>
+                                                <input name="street" type="text" class="form-control" id="email" placeholder="Đường" required="">
+                                            </div>
+
+                                            
+
+                                            <div class="form-group" style="margin-top: 10px; margin-bottom: 10px;">
+                                                <button class="btn btn-primary" type="submit">Cập nhật</button>
+                                            </div>
+                                            <p class="text-danger">
+
+                                                ${msg}
+                                            </p>
+
+                                        </form>
+                                    </div>
+
+
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6" style="margin-top: 5px; text-align: center; position: relative;">
+                                        <img class="avatar" src="https://images.unsplash.com/photo-1552728089-57bdde30beb3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=425&q=80" width="100" height="100">
+                                        
+
+                                        
                                     </div>
                                 </div>
-                            </div> 
-                            <%
-                                }
-                                }
-                            %>
-
-
+                            </div>
                         </div>
+
+
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Products End -->
+
+
+
+
 
 
 
@@ -258,10 +340,6 @@
             </div>
         </div>
         <!-- Footer End -->
-
-
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-primary py-3 fs-4 back-to-top"><i class="bi bi-arrow-up"></i></a>
         <!-- JavaScript Libraries -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -273,8 +351,32 @@
         <script src="js/main.js"></script>
     </body>
 
-</html>
+</html> 
+
+
 <style>
+    .avatar{
+
+
+        border-radius: 50%;
+        -moz-border-radius:50%;
+        -webkit-border-radius: 50%;
+    }
+
+    .button:hover{
+        background-color: #67f528;
+    }
+    .button{
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 10px 25px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+    }
+
     body {
         font-family: 'Roboto', Arial, sans-serif;
     }
@@ -340,3 +442,4 @@
         width: max-content;
     }
 </style>
+

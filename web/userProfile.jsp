@@ -296,7 +296,7 @@
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6" style="margin-top: 5px; text-align: center; position: relative;">
                                         <img class="avatar" src="https://images.unsplash.com/photo-1552728089-57bdde30beb3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=425&q=80" width="100" height="100">
                                         <div class="d-flex mt-2 position-absolute start-50 translate-middle-x">
-                                            <a href="#" class="btn btn-primary" type="submit">Thêm địa chỉ</a>
+                                            <a href="createAddress.jsp" class="btn btn-primary" type="submit">Thêm địa chỉ</a>
 
                                         </div>
 

@@ -29,8 +29,8 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="adminDropdown">
 
-                    <li><a class="dropdown-item" style="width: 239px;" href="xemTaiKhoan.jsp">Xem tài khoản</a></li>
-                    <li><a class="dropdown-item" style="width: 239px;" href="xoaTaiKhoan.jsp">Xóa tài khoản</a></li>
+                    <li><a class="dropdown-item" style="width: 239px;" href="MainController?action=ViewAccount">Xem tài khoản</a></li>
+                    <li><a class="dropdown-item" style="width: 239px;" href="MainController?action=ViewReportedShop">Xóa tài khoản</a></li>
                 </ul>
                 <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold dropdown-toggle" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-regular fa-briefcase me-2"></i>Cài đặt sản phẩm
@@ -38,9 +38,12 @@
                 <ul class="dropdown-menu" aria-labelledby="adminDropdown">
 
                     
-                    <li><a class="dropdown-item" style="width: 239px;" href="loaiChim.jsp">Loại chim</a></li>
-                    <li><a class="dropdown-item" style="width: 239px;" href="sanPhamKhieuNai.jsp">Sản phẩm khiếu nại</a></li>
+                    <li><a class="dropdown-item" style="width: 239px;" href="MainController?action=ViewTypeOfBird&search=">Loại chim</a></li>
+                    <li><a class="dropdown-item" style="width: 239px;" href="MainController?action=ViewReportedProduct&search=">Sản phẩm khiếu nại</a></li>
                 </ul>
+                <a href="MainController?action=Logout" class="list-group-item list-group-item-action bg-transparent second-text fw-bold" >
+                    <i class="fas fa-sign-out-alt me-2"></i>Đăng xuất
+                </a>
 
 
             </div>

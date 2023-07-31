@@ -1048,6 +1048,7 @@ public class ProductDAO {
                 total_order = rs.getInt("total_order");
                 total_unit_sell = rs.getInt("total_unit_sell");
                 revenue = rs.getDouble("revenue");
+                dashboard = new ProductDTO(total_product, total_order, total_unit_sell, revenue);
             }
 
         } catch (Exception e) {

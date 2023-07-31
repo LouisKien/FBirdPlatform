@@ -65,7 +65,11 @@ public class LoginGoogleController extends HttpServlet {
                     UserDTO loginUser = dao.checkGoogleLogin(username);
                     HttpSession session = request.getSession();
                     session.setAttribute("LOGIN_USER", loginUser);
-                    url = SUCCESS;
+                    if(loginUser.getRole() == 2){
+                        url = "MainController?action=ViewShopDashboard";
+                    } else {
+                        url = SUCCESS;
+                    }
                 }
             }
         } catch (Exception e) {

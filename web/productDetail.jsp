@@ -113,7 +113,7 @@
                         <div class="navbar-nav ms-auto py-0">
                             <%
 UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-if(loginUser != null) {
+if(loginUser != null && loginUser.getRole() == 3) {
             
                             %>
                             <div class="nav-item nav-link" style="width: max-content">
@@ -151,7 +151,7 @@ if(loginUser != null) {
                                 <%
                                 } else if(loginUser.getRole() == 2){
                                 %>
-                            <a href="accountShop.jsp" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
+                            <a href="MainController?action=ViewShopDashboard" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
                                 <%
                                     } else{
                                 %>
@@ -413,12 +413,16 @@ if(loginUser != null) {
                         <form action="MainController" id="myForm">
 
                             <div class="btn-box">
-                                <%if(loginUser != null) {%>
+                                <%if(loginUser != null) {
+                                if(loginUser.getRole() == 3){
+                                %>
 
                                 <button class="btn btn-primary cart-btn" onclick="addtocartv2()" type="button">Thêm vào giỏ hàng</button>
 
                                 <a type="button" class="btn btn-primary buy-btn"  href="MainController?action=ViewOderAddress&customer_id=<%= loginUser.getCustomer_id() %>" onclick="buynow()">Mua ngay</a>
-                                <%}else{%>
+                                <%} else {%>
+                                <button class="cart-btn"><a href="#" style="color: white;">Phân quyền của bạn không được mua hàng</a></button>
+                                <%}}else{%>
                                 <a class="btn btn-primary cart-btn" href="login.jsp" type="button">Thêm vào giỏ hàng</a>
                                 <a type="button" class="btn btn-primary buy-btn"  href="login.jsp" >Mua ngay</a>
                                 <%}%>

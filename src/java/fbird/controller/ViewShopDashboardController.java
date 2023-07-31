@@ -38,7 +38,7 @@ public class ViewShopDashboardController extends HttpServlet {
             ProductDTO dashboard = pdao.getDashboard(shop_id);
             if(listOrderItem.size()>0) {
                 request.setAttribute("SHOP_ORDER_ITEM", listOrderItem);
-                
+                request.setAttribute("SHOP_DASHBOARD", dashboard);
             }
         } catch (Exception e) {
             log("Error at ViewShopDashboardController: " + e.toString());

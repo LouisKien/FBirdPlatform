@@ -1,5 +1,6 @@
 <%@page import="java.util.List"%>
 <%@page import="fbird.product.ProductDTO"%>
+<%@page import="fbird.recipe.RecipeDTO"%>
 <!DOCTYPE html>
 <html lang="vi">
     <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -128,6 +129,26 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                     <% 
+                                    List<RecipeDTO> listRecipe = (List<RecipeDTO>) request.getAttribute("LIST_RECIPE");
+                                    if (listRecipe != null && !listRecipe.isEmpty()) {
+                                        int count = 0;
+            
+                                        for (RecipeDTO listRC : listRecipe) {
+                                        count++;
+                                    %>
+                                
+                                    <tr>
+                                        <th scope="row"><%=count%></th>
+                                        <td><%=listRC.getTitle_recipe()%></td>
+                                        
+                                        <td style="text-align: center">
+                                            <a href=""><i class="fa-solid fa-pen-to-square"></i></a>
+                                            <i class="fa-solid fa-trash"></i>
+                                        <td>
+                                    </tr>
+                                    <%}}
+                                    %>
                                     <!--                                    <tr>
                                                                             <th scope="row">1</th>
                                                                             <td>Cám chim 1</td>
@@ -144,24 +165,7 @@
 //                                        for (ProductDTO pro : list){
                                     %>
 
-                                <form action="MainController">
-                                    <tr>
-                                        <td>
-                                        </td>
-
-                                        <td>
-                                        </td>
-
-
-                                        <td style="text-align: center">
-
-                                            <a href="#"><i class="fa-solid fa-trash"></i></a>
-
-
-                                        <td>
-                                    </tr>
-                                </form>
-
+                              
                                 </tbody>
                             </table>
 

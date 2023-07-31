@@ -128,6 +128,11 @@ public class RecipeDTO {
         this.description = description;
         this.price = price;
     }
+
+    public RecipeDTO(int recipe_id,String title_recipe) {
+        this.recipe_id = recipe_id;
+        this.title_recipe = title_recipe;
+    }
     
     
 

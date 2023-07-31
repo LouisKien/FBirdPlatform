@@ -22,7 +22,7 @@ public class OptionalshopproductitemDAO {
       private static final String GET_PRICE = "SELECT price FROM optional_shop_product_item WHERE name=?";
       private static final String ADD_OPTIONAL = "INSERT INTO optional_shop_product_item(shop_product_item_id, name, price) VALUES (?,?,?)";
       private static final String UPDATE_OPTIONAL = "UPDATE optional_shop_product_item SET name=?, price=? WHERE shop_product_item_id=? AND optional_shop_product_item_id=?";
-      
+      private static final String GET_OPTIONAL_ADD = "select shop_product_item.title, name From optional_shop_product_item JOIN shop_product_item on shop_product_item.shop_product_item_id = optional_shop_product_item.shop_product_item_id where shop_product_item.shop_id=?";
       
       public List<OptionalshopproductitemDTO> getListOptional(int shop_product_item_id) throws SQLException {
         List<OptionalshopproductitemDTO> list = new ArrayList<>();
@@ -125,5 +125,33 @@ public class OptionalshopproductitemDAO {
             if(conn != null) conn.close();
         }
         return check;
+    }
+    public List<OptionalshopproductitemDTO> getListOptionalAdd(int shop_id) throws SQLException {
+        List<OptionalshopproductitemDTO> list = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try{
+            conn = DBUtils.getConnection();
+            if(conn!=null){
+                ptm = conn.prepareStatement(GET_OPTIONAL_ADD);
+                ptm.setInt(1, shop_id);
+                rs = ptm.executeQuery();
+                while(rs.next()){
+                  
+                    String name = rs.getString("name");
+                    String title = rs.getString("title");
+                   
+                    list.add(new OptionalshopproductitemDTO(title, name ));
+                }
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            if(conn!=null) conn.close();
+            if(ptm!=null) ptm.close();
+            if(rs!=null) rs.close();
+        }
+        return list;
     }
 }

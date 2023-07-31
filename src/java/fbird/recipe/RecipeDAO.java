@@ -41,6 +41,7 @@ public class RecipeDAO {
     private static final String VIEW_SHOP_RECIPE = "SELECT s.shop_name, s.avatar FROM recipe r\n"
             + "LEFT JOIN shop_owner s ON s.shop_id = r.shop_id\n"
             + "WHERE r.recipe_id = ?";
+    private static final String VIEW_RECIPE="select recipe_id, title_recipe from recipe Where shop_id = ?";
 
     private static final String GET_RECIPE_PRODUCT = "SELECT title, name, quantity, image_1, shop_product_item.shop_product_item_id,shop_product_item.shop_id FROM recipe_product JOIN optional_shop_product_item ON optional_shop_product_item.optional_shop_product_item_id = recipe_product.optional_shop_product_item_id JOIN shop_product_item ON optional_shop_product_item.shop_product_item_id = shop_product_item.shop_product_item_id JOIN product_image ON shop_product_item.shop_product_item_id = product_image.shop_product_item_id JOIN shop_owner ON shop_product_item.shop_id = shop_owner.shop_id WHERE recipe_id = ?";
     private static final String GET_RECIPE_PRODUCT_TO_ADD = "SELECT quantity, optional_shop_product_item.optional_shop_product_item_id FROM recipe_product JOIN optional_shop_product_item ON optional_shop_product_item.optional_shop_product_item_id = recipe_product.optional_shop_product_item_id JOIN shop_product_item ON optional_shop_product_item.shop_product_item_id = shop_product_item.shop_product_item_id JOIN product_image ON shop_product_item.shop_product_item_id = product_image.shop_product_item_id JOIN shop_owner ON shop_product_item.shop_id = shop_owner.shop_id WHERE recipe_product.recipe_id = ?";
@@ -212,7 +213,39 @@ public class RecipeDAO {
         return list;
     }
     
-    
+    public List<RecipeDTO> getRecipe(int shop_id) throws SQLException {
+        List<RecipeDTO> list = new ArrayList();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(VIEW_RECIPE);
+                ptm.setInt(1, shop_id);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    int recipe_id = Integer.parseInt(rs.getString("recipe_id"));
+                    String title_recipe = rs.getString("title_recipe");
+                   
+                    list.add(new RecipeDTO(recipe_id,title_recipe));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return list;
+    }
     
     public List<RecipeDTO> getRecipeProductToAdd(int recipe_id) throws SQLException {
         List<RecipeDTO> list = new ArrayList();

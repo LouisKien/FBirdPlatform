@@ -82,6 +82,11 @@ public class MainController extends HttpServlet {
     private static final String VIEW_PRODUCT_PAGE_CONTROLLER = "ViewProductPageController";
     private static final String SEARCH = "searchQuerySubmit";
     private static final String SEARCH_CONTROLLER = "SearchController";
+    private static final String VIEW_RECIPE_ON_SHOP = "ViewRecipeOnShop";
+    private static final String VIEW_RECIPE_ON_SHOP_CONTROLLER = "ViewRecipeOnShopController";
+    private static final String ADD_RECIPE = "AddRecipe";
+    private static final String ADD_RECIPE_CONTROLLER = "AddRecipeController";
+    
 
     private static final String FOOD_PAGE = "foodpage";
     private static final String VIEW_FOOD_PAGE_CONTROLLER = "ViewFoodPageController";
@@ -192,6 +197,12 @@ public class MainController extends HttpServlet {
 
             }else if (VIEW_SHOP_DASHBOARD.equals(action)) {
                 url = VIEW_SHOP_DASHBOARD_CONTROLLER;
+
+            }else if (VIEW_RECIPE_ON_SHOP.equals(action)) {
+                url = VIEW_RECIPE_ON_SHOP_CONTROLLER;
+
+            }else if (ADD_RECIPE.equals(action)) {
+                url = ADD_RECIPE_CONTROLLER;
 
             }
             

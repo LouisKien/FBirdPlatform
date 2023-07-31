@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<%@page import="fbird.product.ProductDTO"%>
+<%@page import="fbird.recipe.RecipeDTO"%>
+<%@page import="fbird.user.UserDTO"%>
+<%@page import="java.util.List"%>
 <html lang="vi">
     <%@page contentType="text/html" pageEncoding="UTF-8"%>
     <head>
@@ -22,9 +26,9 @@
                     <a href="MainController" class="home-link" style="color: #009d63; text-decoration: none; ">Fbird
                     </a>
                 </div>
-<!--------------------------------------------------------------------------------------------------------------------------------------------------------->
+                <!--------------------------------------------------------------------------------------------------------------------------------------------------------->
 
-                                <div class="list-group list-group-flush my-3">
+                <div class="list-group list-group-flush my-3">
                     <a href="accountShop.jsp" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                             class="fas fa-tachometer-alt me-2"></i>Thống kê</a>
                     <!--------------------------------------------------------------------------------------------------------------------------------------------------------->
@@ -140,7 +144,7 @@
                         <div class="col-md-3">
                             <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                                 <div>
-                                    <h3 class="fs-2">%25</h3>
+                                    <h3 class="fs-2">N/A</h3>
                                     <p class="fs-5">Lợi nhuận</p>
                                 </div>
                                 <i class="fas fa-chart-line fs-1 primary-text border rounded-full secondary-bg p-3"></i>
@@ -155,84 +159,34 @@
                                 <thead>
                                     <tr>
                                         <th scope="col" width="50">#</th>
-                                        <th scope="col">Sản phẩm</th>
+                                        <th scope="col">Tên sản phẩm</th>
+                                        <th scope="col">Loại sản phẩm</th>
+                                        <th scope="col">Giá bán mỗi đơn vị</th>
+                                        <th scope="col">Số lượng</th>
                                         <th scope="col">Khách hàng</th>
-                                        <th scope="col">Giá</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <%
+                                        List<ProductDTO> listOrderItem = (List<ProductDTO>) request.getAttribute("SHOP_ORDER_ITEM");
+                                        int count = 0;
+                                        if(listOrderItem != null){
+                                        if (listOrderItem.size() > 0){
+                                        for(ProductDTO o: listOrderItem){
+                                        count++;
+                                    %>
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>Cám chim 1</td>
-                                        <td>Jonny</td>
-                                        <td>$1200</td>
+                                        <th scope="row"><%= count%></th>
+                                        <td><%= o.getTitle()%></td>
+                                        <td><%= o.getNameOption()%></td>
+                                        <td><%= o.getSell_price()%></td>
+                                        <td><%= o.getAmount()%></td>
+                                         <td><%= o.getFullname()%></td>
+
                                     </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Cám chim 2</td>
-                                        <td>Kenny</td>
-                                        <td>$750</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Cám chim 3</td>
-                                        <td>Jenny</td>
-                                        <td>$600</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">4</th>
-                                        <td>Cám chim 4</td>
-                                        <td>Killy</td>
-                                        <td>$300</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">5</th>
-                                        <td>Cám chim 5</td>
-                                        <td>Filly</td>
-                                        <td>$120</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">6</th>
-                                        <td>Cám chim 6</td>
-                                        <td>Bumbo</td>
-                                        <td>$1800</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">7</th>
-                                        <td>Cám chim 7</td>
-                                        <td>Bilbo</td>
-                                        <td>$75</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">8</th>
-                                        <td>Cám chim 8</td>
-                                        <td>Frodo</td>
-                                        <td>$36</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">9</th>
-                                        <td>Cám chim 9</td>
-                                        <td>Kimo</td>
-                                        <td>$255</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">10</th>
-                                        <td>Cám chim 10</td>
-                                        <td>Zico</td>
-                                        <td>$434</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">11</th>
-                                        <td>Cám chim 11</td>
-                                        <td>Jeco</td>
-                                        <td>$1236</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">12</th>
-                                        <td>Cám chim 12</td>
-                                        <td>Haso</td>
-                                        <td>$422</td>
-                                    </tr>
+                                    <%
+                                        }}}
+                                    %>
                                 </tbody>
                             </table>
                         </div>

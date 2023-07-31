@@ -24,7 +24,7 @@ public class LoginController extends HttpServlet {
     private static final int ADMIN = 1;
     private static final String ADMIN_PAGE = "adminDashboard.jsp";
     private static final int SHOP = 2;
-    private static final String SHOP_PAGE = "accountShop.jsp";
+    private static final String SHOP_PAGE = "MainController?action=ViewShopDashboard";
     private static final int CUSTOMER = 3;
     private static final String CUSTOMER_PAGE = "MainController?action=";
 

@@ -194,6 +194,8 @@ public class ProductDAO {
 "				OFFSET ? ROWS\n" +
 "				FETCH FIRST 10 ROWS ONLY;";
     private static final String SINGLE_PRODUCT_ITEM = "select title, type_of_bird_name, category_name, image_1, image_2, image_3, image_4, inventory, description, optional_shop_product_item.name, price, status from shop_product_item join optional_shop_product_item on optional_shop_product_item.shop_product_item_id = shop_product_item.shop_product_item_id join product_category on product_category.category_id = shop_product_item.category_id join type_of_bird on type_of_bird.type_of_bird_id = shop_product_item.type_of_bird_id join product_image on product_image.shop_product_item_id = shop_product_item.shop_product_item_id where shop_product_item.shop_product_item_id = ?";
+    private static final String GET_LIST_SHOP_ORDER_ITEM = "SELECT title, optional_shop_product_item.name, sell_price, amount, fullname FROM order_item JOIN optional_shop_product_item ON order_item.optional_shop_product_item_id = optional_shop_product_item.optional_shop_product_item_id JOIN shop_product_item ON optional_shop_product_item.shop_product_item_id = shop_product_item.shop_product_item_id JOIN customer_order ON order_item.order_id = customer_order.order_id JOIN customer ON customer_order.customer_id = customer.customer_id where shop_id = ?";
+    private static final String GET_DASHBOARD = "SELECT (SELECT count(shop_product_item_id) FROM shop_product_item WHERE shop_id = ?) as total_product, (SELECT count(order_item_id) FROM order_item JOIN optional_shop_product_item ON optional_shop_product_item.optional_shop_product_item_id = order_item.optional_shop_product_item_id JOIN shop_product_item ON shop_product_item.shop_product_item_id = optional_shop_product_item.shop_product_item_id WHERE shop_id = ?) as total_order, (SELECT SUM(amount) FROM order_item JOIN optional_shop_product_item ON optional_shop_product_item.optional_shop_product_item_id = order_item.optional_shop_product_item_id JOIN shop_product_item ON shop_product_item.shop_product_item_id = optional_shop_product_item.shop_product_item_id WHERE shop_id = ?) as total_unit_sell, (SELECT SUM(sell_price * amount) FROM order_item JOIN optional_shop_product_item ON optional_shop_product_item.optional_shop_product_item_id = order_item.optional_shop_product_item_id JOIN shop_product_item ON shop_product_item.shop_product_item_id = optional_shop_product_item.shop_product_item_id WHERE shop_id = ?) as revenue";
     
     public int checkTypeOfBird(String typeOfBird) throws ClassNotFoundException, SQLException {
         int id = 0;
@@ -942,5 +944,79 @@ public class ProductDAO {
             }
         }
         return check;
+    }
+
+    public List<ProductDTO> getListShopOrderItem(int shop_id) throws SQLException {
+        List<ProductDTO> list = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            ptm = conn.prepareStatement(GET_LIST_SHOP_ORDER_ITEM);
+            ptm.setInt(1, shop_id);
+            rs = ptm.executeQuery();
+            while(rs.next()){
+                String title = rs.getString("title");
+                String name = rs.getString("name");
+                double sell_price = rs.getDouble("sell_price");
+                int amount = rs.getInt("amount");
+                String fullname = rs.getString("fullname");
+                list.add(new ProductDTO(title, name, sell_price, amount, fullname));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return list;
+    }
+
+    public ProductDTO getDashboard(int shop_id) throws SQLException {
+        ProductDTO dashboard = null;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        int total_product;
+        int total_unit_sell;
+        int total_order;
+        double revenue;
+        try {
+            conn = DBUtils.getConnection();
+            ptm = conn.prepareStatement(GET_DASHBOARD);
+            ptm.setInt(1, shop_id);
+            ptm.setInt(2, shop_id);
+            ptm.setInt(3, shop_id);
+            ptm.setInt(4, shop_id);
+            rs = ptm.executeQuery();
+            if(rs.next()){
+                total_product = rs.getInt("total_product");
+                total_order = rs.getInt("total_order");
+                total_unit_sell = rs.getInt("total_unit_sell");
+                revenue = rs.getDouble("revenue");
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return dashboard;
     }
 }

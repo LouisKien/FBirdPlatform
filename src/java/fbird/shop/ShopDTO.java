@@ -8,12 +8,12 @@ import java.util.Date;
 
 public class ShopDTO {
 
-    String username, shopName, phone, address, avatar, email, city;
-    Date registed_date;
+    private String username, shopName, phone, address, avatar, email, city;
+    private Date registed_date;
 
-    String report_detail, customer_fullname;
-    int shop_status;
-    int reported_shop_id;
+    private String report_detail, customer_fullname;
+    private int shop_status;
+    private int reported_shop_id;
     
     public ShopDTO() {
     }

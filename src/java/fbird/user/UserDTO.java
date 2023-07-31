@@ -9,11 +9,11 @@ package fbird.user;
  * @author louis
  */
 public class UserDTO {
-    String username, password;
-    int role, status;
-    int shop_id;
-    int customer_id;
-    String fullname, avatar;
+    private String username, password;
+    private int role, status;
+    private int shop_id;
+    private int customer_id;
+    private String fullname, avatar;
 
     public UserDTO() {
     }

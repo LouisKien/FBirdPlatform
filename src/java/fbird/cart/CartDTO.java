@@ -9,15 +9,15 @@ package fbird.cart;
  * @author louis
  */
 public class CartDTO {
-    int cart_item_id;
-    int optional_shop_product_item_id;
-    int customer_id;
-    String title;
-    String name;
-    Double price;
-    int quantity;
-    String category_name;
-    String image_1;
+    private int cart_item_id;
+    private int optional_shop_product_item_id;
+    private int customer_id;
+    private String title;
+    private String name;
+    private Double price;
+    private int quantity;
+    private String category_name;
+    private String image_1;
     public CartDTO() {
     }
 

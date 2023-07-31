@@ -43,6 +43,7 @@ public class ViewRecipeDetailController extends HttpServlet {
             ShopDTO shopRecipe = dao.getShopRecipe(recipeID);
             List<RecipeDTO> listRecipeProduct = dao.getRecipeProduct(recipeID);
 //             List<FeedbackDTO> AllFeedback = daofeedback.getAllFeedback(shop_id);
+            List<ProductDTO> AllProduct = daoproduct.getProductHomePage();
             if(!rec.isEmpty()){
                 url = SUCCESS;
                 request.setAttribute("SHOP_RECIPE", shopRecipe);
@@ -50,6 +51,7 @@ public class ViewRecipeDetailController extends HttpServlet {
                 request.setAttribute("RECIPE_PRODUCT", listRecipeProduct);
 //                request.setAttribute("LIST_ShopProductItemId", ShopProductItemId);
 //                request.setAttribute("LIST_AllFeedback", AllFeedback);
+                request.setAttribute("LIST_PRODUCT", AllProduct);
             }
         }catch(Exception e){
             log("Error at ViewRecipeDetailController:" + e.toString());

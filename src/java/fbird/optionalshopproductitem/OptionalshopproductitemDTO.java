@@ -9,10 +9,10 @@ package fbird.optionalshopproductitem;
  * @author Admin
  */
 public class OptionalshopproductitemDTO {
-    int optional_shop_product_item_id;
-    int shop_product_item_id;
-    String name;
-    Double price;
+    private int optional_shop_product_item_id;
+    private int shop_product_item_id;
+    private String name;
+    private Double price;
 
     public OptionalshopproductitemDTO() {
     }

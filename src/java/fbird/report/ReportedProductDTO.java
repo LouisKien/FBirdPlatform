@@ -9,12 +9,12 @@ package fbird.report;
  * @author Admin
  */
 public class ReportedProductDTO {
-    int report_product_id;
-    int shop_product_item_id;
-    int customer_id;
-    String detail;
-    String title;
-    String fullname;
+    private int report_product_id;
+    private int shop_product_item_id;
+    private int customer_id;
+    private String detail;
+    private String title;
+    private String fullname;
     public ReportedProductDTO() {
     }
 

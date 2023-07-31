@@ -51,6 +51,7 @@ public class ViewProductDetailController extends HttpServlet {
            List<OptionalshopproductitemDTO> listOptional = daooptional.getListOptional(shop_product_item_id);
             List<ProductDTO> ShopProductItemId = daoproduct.getShopProductItemId(shop_id);
              List<FeedbackDTO> AllFeedback = daofeedback.getAllFeedback(shop_id);
+             List<ProductDTO> AllProduct = daoproduct.getProductHomePage();
              
                 if (!ProductDetail.isEmpty()) {
                 request.setAttribute("LIST_ProductDetail", ProductDetail);
@@ -59,6 +60,7 @@ public class ViewProductDetailController extends HttpServlet {
                 request.setAttribute("LIST_ShopProductItemId", ShopProductItemId);
                 request.setAttribute("LIST_AllFeedback", AllFeedback);
                 request.setAttribute("shop_product_item_id", shop_product_item_id);
+                request.setAttribute("LIST_PRODUCT", AllProduct);
                 
                
           

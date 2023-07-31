@@ -279,6 +279,73 @@
         </div>
         <h3 class="border-start border-5 border-primary ps-3 mb-4" style="color: #7ab730;margin-left: 180px; margin-top: 30px;">FEEDBACK</h3>
 
+        
+        <div class="container-fluid py-5">
+                <div class="container">
+                    <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
+                        <h6 class="text-primary text-uppercase">Sản phẩm</h6>
+                        <h1 class="display-5 text-uppercase mb-0" style="font-size: 40px">Dành cho chim của bạn</h1>
+                    </div>
+                    <div class="col-xl-12">
+                        <div class="products-area products-area3">
+                            <div class="row justify-content-center">
+                                <!--                                <div>${requestScope.MESSAGE}</div>-->
+
+
+                                <% 
+                List<ProductDTO> listProduct = (List<ProductDTO>) request.getAttribute("LIST_PRODUCT");
+                
+                if (listProduct != null && !listProduct.isEmpty()) {
+              
+                    for (ProductDTO listP : listProduct) { 
+                   
+                                %>
+                                <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
+                                    <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
+                                        <div style="text-align: center;">
+                                            <a href="MainController?action=ViewProductDetail&shop_product_item_id=<%=listP.getShopProductItemID() %>&shop_id=<%=listP.getShopID() %>" class="product-image">
+                                                <img style="width: 160px;height: 190px" src="<%=listP.getImage_1() %>" alt="" />
+                                            </a>
+                                        </div>
+                                        <div class="bottom-content">
+                                            <div style="text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;">
+                                                <a href="" style="margin-top: 10px; font-weight: bold;white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;color: black;"><%=listP.getTitle() %></a>
+                                            </div>
+
+                                            <div style="text-align: center;">
+                                                <!--<span style="text-decoration: line-through "><//%=listRHP.getOriginal_price() %>đ</span>-->
+                                                <%
+        // Lấy giá tiền từ listP.getPrice()
+        double price = listP.getPrice();
+
+        // Tạo một đối tượng NumberFormat để định dạng giá tiền
+        NumberFormat numberFormat = NumberFormat.getInstance();
+        numberFormat.setMinimumFractionDigits(0);
+        numberFormat.setMaximumFractionDigits(0);
+        String formattedPrice = numberFormat.format(price);
+                                                %>
+
+                                                <span class="product-price" style="font-size: 25px; font-weight: bold; color: red;">
+                                                    <%= formattedPrice %>đ
+                                                </span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% 
+                                    
+        }
+               
+        }
+                                %>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         <!-- Comment List End -->
 

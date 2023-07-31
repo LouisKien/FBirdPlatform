@@ -9,8 +9,8 @@ package fbird.category;
  * @author tuan3
  */
 public class CategoryDTO {
-    int categoryID;
-    String categoryName;
+    private int categoryID;
+    private String categoryName;
 
     public CategoryDTO() {
     }

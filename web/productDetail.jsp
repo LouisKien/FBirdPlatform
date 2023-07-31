@@ -10,6 +10,7 @@
 <%@page import="fbird.product.ProductDTO"%>
 <%@page import="fbird.user.UserDTO"%>
 <%@page import="fbird.optionalshopproductitem.OptionalshopproductitemDTO"%>
+<%@ page import="java.text.NumberFormat" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -52,9 +53,9 @@
 
         <!-- Template Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
-        
+
         <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet1' type='text/css'>
-	<script src="js/modernizr.js"></script> <!-- Modernizr -->
+        <script src="js/modernizr.js"></script> <!-- Modernizr -->
         <!--Search bar-->
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="productPage/style.css">
@@ -70,14 +71,14 @@
                 <div style="position: relative;">
                     <div style="position: absolute; top: 100px; left: 40%; background: #FFFFFF; width: 300px; height: 200px;">
                         <div onclick="closeReportForm()" style="cursor: pointer;"><i class="fas fa-window-close" style="margin-left: 280px;"></i></div>
-<!--                        <div style="display: flex; justify-content: center; align-items: center;">
-                            <select size="4" style="width: 300px; height: 200px;">
-                                <option value="spam">Spam</option>
-                                <option value="phishing">Hàng 18+</option>
-                                <option value="inappropriate-content">Hàng fake</option>
-                                <option value="other">Khác</option>
-                            </select>    
-                        </div>-->
+                        <!--                        <div style="display: flex; justify-content: center; align-items: center;">
+                                                    <select size="4" style="width: 300px; height: 200px;">
+                                                        <option value="spam">Spam</option>
+                                                        <option value="phishing">Hàng 18+</option>
+                                                        <option value="inappropriate-content">Hàng fake</option>
+                                                        <option value="other">Khác</option>
+                                                    </select>    
+                                                </div>-->
                     </div>
                 </div>
             </div>
@@ -141,20 +142,20 @@ if(loginUser != null) {
                             <a href="MainController?action=ViewRecipe" class="nav-item nav-link">Khẩu phần</a>  
 
 
-                                <% if(loginUser != null) {
-                            if(loginUser.getRole() == 1){
-                            loginUser.setFullname("Admin Account");
-                    %>
-                            
-                    <a href="adminDashboard.jsp" class="nav-item nav-link"><i class="fa-solid fa-user-gear"></i></a>
-                        <%
-                        } else if(loginUser.getRole() == 2){
-                        %>
-                    <a href="accountShop.jsp" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
-                    <%
-                        } else{
-                        %>
-                    <a href="MainController?action=ViewProfile&username=<%= loginUser.getUsername() %>" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
+                            <% if(loginUser != null) {
+                        if(loginUser.getRole() == 1){
+                        loginUser.setFullname("Admin Account");
+                            %>
+
+                            <a href="adminDashboard.jsp" class="nav-item nav-link"><i class="fa-solid fa-user-gear"></i></a>
+                                <%
+                                } else if(loginUser.getRole() == 2){
+                                %>
+                            <a href="accountShop.jsp" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
+                                <%
+                                    } else{
+                                %>
+                            <a href="MainController?action=ViewProfile&username=<%= loginUser.getUsername() %>" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
                                 <%  
                                     }}
                                     if(loginUser != null) {
@@ -214,16 +215,16 @@ if(loginUser != null) {
                         </div>
                         <%if(loginUser != null) {%>
                         <form action="MainController" id="myForm1">
-                        
-                        <div class="report-option" >
-                            
-                            <a type="button" class='fas fa-exclamation-triangle' onclick="callAlert(<%=request.getAttribute("shop_product_item_id")%>, <%= loginUser.getCustomer_id() %>)"   style="margin-top: -28px; margin-left: 550px;"></a>
 
-                        </div>
+                            <div class="report-option" >
+
+                                <a type="button" class='fas fa-exclamation-triangle' onclick="callAlert(<%=request.getAttribute("shop_product_item_id")%>, <%= loginUser.getCustomer_id() %>)"   style="margin-top: -28px; margin-left: 550px;"></a>
+
+                            </div>
                         </form>
                         <%}else{%>
                         <div class="report-option" >
-                            
+
                             <a class='fas fa-exclamation-triangle' href="login.jsp"   style="margin-top: -28px; margin-left: 550px;"></a>
 
                         </div>
@@ -255,11 +256,11 @@ if(loginUser != null) {
                             <div class="product-item">
                                 <div class="product-name">
                                     <label class="btn btn-primary active optionalName" style="margin-right: -50px;" id="optionalName">
-                                         
+
                                         <input type="radio" name="optional" autocomplete="off" checked id="<%=listOptional.get(i).getOptional_shop_product_item_id() %>" value="<%=listOptional.get(i).getPrice() %>" onclick="updatePrice(<%=listOptional.get(i).getPrice() %>)">
                                         <input style="display: none" name="optional_shop_product_item_id" value="<%=listOptional.get(i).getOptional_shop_product_item_id() %>">
                                         <%=listOptional.get(i).getName() %>
-                                        
+
                                     </label>
                                     <div class="product-price" id="<%=listOptional.get(i).getName() %>Price" style="display: none;"></div>
                                 </div>
@@ -271,11 +272,11 @@ if(loginUser != null) {
                             <div class="product-item">
                                 <div class="product-name">
                                     <label class="btn btn-primary active optionalName" style="margin-right: -50px;" id="optionalName">
-                                       
+
                                         <input type="radio" name="optional" autocomplete="off" id="<%=listOptional.get(i).getOptional_shop_product_item_id() %>" value="<%=listOptional.get(i).getPrice() %>" onclick="updatePrice(<%=listOptional.get(i).getPrice() %>)">
                                         <input style="display: none" name="optional_shop_product_item_id" value="<%=listOptional.get(i).getOptional_shop_product_item_id() %>">
                                         <%=listOptional.get(i).getName() %>
-                                      
+
                                     </label>
                                     <div class="product-price" id="<%=listOptional.get(i).getName() %>Price" style="display: none;"></div>
                                 </div>
@@ -354,40 +355,40 @@ if(loginUser != null) {
                                 mess.innerHTML = "Đã thêm vào giỏ hàng";
                                 console.log(mess);
                             }
-                           
+
                             // Example usage: updatePrice(productName, price);
                         </script>
                         <script>
-                           function formatNumber(n) {
-                                                    // format number 1000000 to 1,234,567
-                                                    return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                                                }
-                                                function ConvertToNumber(priceStr) {
-                                                    var priceParts = priceStr.split(".");
-                                                    var price = "";
-                                                    for (var i = 0; i < priceParts.length; i++) {
-                                                        price += priceParts[i];
-                                                    }
-                                                    return Number.parseInt(price);
-                                                }
-    function buynow(){
+                            function formatNumber(n) {
+                                // format number 1000000 to 1,234,567
+                                return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                            }
+                            function ConvertToNumber(priceStr) {
+                                var priceParts = priceStr.split(".");
+                                var price = "";
+                                for (var i = 0; i < priceParts.length; i++) {
+                                    price += priceParts[i];
+                                }
+                                return Number.parseInt(price);
+                            }
+                            function buynow() {
                                 sessionStorage.clear();
                                 var titleproduct = document.getElementById('titleproduct').innerText;
-                                
-                             var optionname = document.getElementsByClassName('optionalName'); // Use getElementsByClassName
-    for (var i = 0; i < optionname.length; i++) {
-        var a = optionname[i]; // Use 'optionname' instead of 'optionalname'
-        var b = a.querySelector("input[type=radio]");
-        if (b.checked) {
-            var optional = a.innerText;
-         
-        }
-    }
-    
+
+                                var optionname = document.getElementsByClassName('optionalName'); // Use getElementsByClassName
+                                for (var i = 0; i < optionname.length; i++) {
+                                    var a = optionname[i]; // Use 'optionname' instead of 'optionalname'
+                                    var b = a.querySelector("input[type=radio]");
+                                    if (b.checked) {
+                                        var optional = a.innerText;
+
+                                    }
+                                }
+
                                 var quantity = document.getElementsByName('productQuantity')[0].value;
                                 var price = ConvertToNumber(document.getElementById('selectedPrice1').innerText);
                                 var imgbuynow = document.getElementById('imgbuynow');
-                                
+
                                 var img = imgbuynow.getAttribute("src");
                                 let Allelement = [];
                                 console.log(titleproduct);
@@ -396,7 +397,7 @@ if(loginUser != null) {
                                 console.log(quantity);
                                 console.log(img);
                                 let Element = [optional, titleproduct, img, price, quantity];
-                                 Allelement.push(Element);
+                                Allelement.push(Element);
                                 sessionStorage.setItem("Element", JSON.stringify(Allelement));
                                 sessionStorage.setItem("allPrices", JSON.stringify(price));
 //                                sessionStorage.clear();
@@ -405,17 +406,17 @@ if(loginUser != null) {
 //                                sessionStorage.setItem("img", JSON.stringify(imgbuynow));
 //                                sessionStorage.setItem("quantity", JSON.stringify(quantity));
 //                                sessionStorage.setItem("price", JSON.stringify(price));
-                                
+
                             }
                         </script>
 
                         <form action="MainController" id="myForm">
 
                             <div class="btn-box">
-                               <%if(loginUser != null) {%>
-                                
+                                <%if(loginUser != null) {%>
+
                                 <button class="btn btn-primary cart-btn" onclick="addtocartv2()" type="button">Thêm vào giỏ hàng</button>
-                                
+
                                 <a type="button" class="btn btn-primary buy-btn"  href="MainController?action=ViewOderAddress&customer_id=<%= loginUser.getCustomer_id() %>" onclick="buynow()">Mua ngay</a>
                                 <%}else{%>
                                 <a class="btn btn-primary cart-btn" href="login.jsp" type="button">Thêm vào giỏ hàng</a>
@@ -503,9 +504,9 @@ List<FeedbackDTO> listAllFeedback = (List<FeedbackDTO>) request.getAttribute("LI
             </div>
 
             <h3 class="border-start border-5 border-primary ps-3 mb-4" style=" color: #7ab730;margin-left: 180px; margin-top: 30px;">CHI TIẾT SẢN PHẨM</h3>
-                <div class="product-description-container">
-                     <%=LPD.getDescription() %>
-                </div>
+            <div class="product-description-container">
+                <%=LPD.getDescription() %>
+            </div>
 
 
             <% 
@@ -574,30 +575,96 @@ List<FeedbackDTO> listAllFeedback = (List<FeedbackDTO>) request.getAttribute("LI
             </div>
             <!-- Comment List End -->
 
-<!--             Comment Form Start 
-            <div class="bg-light rounded p-5">
-                <h3 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Bình luận</h3>
-                <form>
-                    <div class="row g-3">
-                        <div class="col-12 col-sm-4">
-                            <input type="text" class="form-control bg-white border-0" placeholder="Tên của bạn" style="height: 55px;">
-                        </div>
-                        <div class="col-12 col-sm-4">
-                            <input type="email" class="form-control bg-white border-0" placeholder="Email của bạn" style="height: 55px;">
-                        </div>
-                        <div class="col-12 col-sm-8">
-                            <input type="text" class="form-control bg-white border-0" placeholder="Website" style="height: 55px;">
-                        </div>
-                        <div class="col-12 col-sm-8">
-                            <textarea class="form-control bg-white border-0" rows="5" placeholder="Bình luận"></textarea>
-                        </div>
-                        <div class="col-12 col-sm-8">
-                            <button class="btn btn-primary w-100 py-3" type="submit">Bình luận</button>
+            <!--             Comment Form Start 
+                        <div class="bg-light rounded p-5">
+                            <h3 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Bình luận</h3>
+                            <form>
+                                <div class="row g-3">
+                                    <div class="col-12 col-sm-4">
+                                        <input type="text" class="form-control bg-white border-0" placeholder="Tên của bạn" style="height: 55px;">
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <input type="email" class="form-control bg-white border-0" placeholder="Email của bạn" style="height: 55px;">
+                                    </div>
+                                    <div class="col-12 col-sm-8">
+                                        <input type="text" class="form-control bg-white border-0" placeholder="Website" style="height: 55px;">
+                                    </div>
+                                    <div class="col-12 col-sm-8">
+                                        <textarea class="form-control bg-white border-0" rows="5" placeholder="Bình luận"></textarea>
+                                    </div>
+                                    <div class="col-12 col-sm-8">
+                                        <button class="btn btn-primary w-100 py-3" type="submit">Bình luận</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>-->
+
+            <div class="container-fluid py-5">
+                <div class="container">
+                    <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
+                        <h6 class="text-primary text-uppercase">Sản phẩm</h6>
+                        <h1 class="display-5 text-uppercase mb-0" style="font-size: 40px">Dành cho chim của bạn</h1>
+                    </div>
+                    <div class="col-xl-12">
+                        <div class="products-area products-area3">
+                            <div class="row justify-content-center">
+                                <!--                                <div>${requestScope.MESSAGE}</div>-->
+
+
+                                <% 
+                List<ProductDTO> listProduct = (List<ProductDTO>) request.getAttribute("LIST_PRODUCT");
+                
+                if (listProduct != null && !listProduct.isEmpty()) {
+              
+                    for (ProductDTO listP : listProduct) { 
+                   
+                                %>
+                                <div class=" col-lg-3 col-xl-2 col-md-4 col-sm-6" style="margin: 10px;">
+                                    <div class="product-item product-item2 element-item3 sidebar-left" style="border: 2px solid; border-radius: 10px; width: 220px;">
+                                        <div style="text-align: center;">
+                                            <a href="MainController?action=ViewProductDetail&shop_product_item_id=<%=listP.getShopProductItemID() %>&shop_id=<%=listP.getShopID() %>" class="product-image">
+                                                <img style="width: 160px;height: 190px" src="<%=listP.getImage_1() %>" alt="" />
+                                            </a>
+                                        </div>
+                                        <div class="bottom-content">
+                                            <div style="text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;">
+                                                <a href="" style="margin-top: 10px; font-weight: bold;white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;color: black;"><%=listP.getTitle() %></a>
+                                            </div>
+
+                                            <div style="text-align: center;">
+                                                <!--<span style="text-decoration: line-through "><//%=listRHP.getOriginal_price() %>đ</span>-->
+                                                <%
+        // Lấy giá tiền từ listP.getPrice()
+        double price = listP.getPrice();
+
+        // Tạo một đối tượng NumberFormat để định dạng giá tiền
+        NumberFormat numberFormat = NumberFormat.getInstance();
+        numberFormat.setMinimumFractionDigits(0);
+        numberFormat.setMaximumFractionDigits(0);
+        String formattedPrice = numberFormat.format(price);
+                                                %>
+
+                                                <span class="product-price" style="font-size: 25px; font-weight: bold; color: red;">
+                                                    <%= formattedPrice %>đ
+                                                </span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% 
+                                    
+        }
+               
+        }
+                                %>
+
+
+                            </div>
                         </div>
                     </div>
-                </form>
-            </div>-->
-
+                </div>
+            </div>
 
 
             <!-- Comment Form End -->
@@ -672,31 +739,31 @@ List<FeedbackDTO> listAllFeedback = (List<FeedbackDTO>) request.getAttribute("LI
             function showImg(pic) {
                 bigImg.src = pic;
             }
-            
-            function callAlert(shop_product_item_id, customer_id){
-    swal("Viết lý do khiếu nại:", {
-      content: "input"
-    })
-    .then((value) => {
-      if (value !== null && value.trim() !== '') {
-        // Hiển thị thông báo khi gửi khiếu nại thành công
-        swal({
-          title: "Gửi khiếu nại thành công!",
-          icon: "success",
-          button: "OK"
-        });
-        submitForm1("ReportProduct", shop_product_item_id, customer_id, value);
-        // Tùy chỉnh các tác vụ khác dựa trên giá trị `value` ở đây nếu cần
-        // Ví dụ: Gửi giá trị đến máy chủ qua AJAX để xử lý
-        // Các tác vụ khác...
-      } else {
-        // Người dùng không nhập gì hoặc nhập lý do trống.
-        swal("Vui lòng nhập lý do khiếu nại!", {
-          icon: "error",
-          button: "Trở lại"
-        });
-      }
-    });
+
+            function callAlert(shop_product_item_id, customer_id) {
+                swal("Viết lý do khiếu nại:", {
+                    content: "input"
+                })
+                        .then((value) => {
+                            if (value !== null && value.trim() !== '') {
+                                // Hiển thị thông báo khi gửi khiếu nại thành công
+                                swal({
+                                    title: "Gửi khiếu nại thành công!",
+                                    icon: "success",
+                                    button: "OK"
+                                });
+                                submitForm1("ReportProduct", shop_product_item_id, customer_id, value);
+                                // Tùy chỉnh các tác vụ khác dựa trên giá trị `value` ở đây nếu cần
+                                // Ví dụ: Gửi giá trị đến máy chủ qua AJAX để xử lý
+                                // Các tác vụ khác...
+                            } else {
+                                // Người dùng không nhập gì hoặc nhập lý do trống.
+                                swal("Vui lòng nhập lý do khiếu nại!", {
+                                    icon: "error",
+                                    button: "Trở lại"
+                                });
+                            }
+                        });
             }
         </script>
 
@@ -709,7 +776,7 @@ List<FeedbackDTO> listAllFeedback = (List<FeedbackDTO>) request.getAttribute("LI
 
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
-        
+
     </body>
 </html>
 <style>
@@ -827,11 +894,11 @@ List<FeedbackDTO> listAllFeedback = (List<FeedbackDTO>) request.getAttribute("LI
         content: 'đ';
     }
     .product-description-container {
-      border: 3px solid #ccc; /* Định dạng viền */
-      padding: 15px; /* Khoảng cách giữa nội dung và viền của hộp */
-      margin-left: 180px; /* Khoảng cách từ lề trái */
-      margin-top: 30px; /* Khoảng cách từ lề trên */
-      font-size: 15px;
-      display: inline-block; /* Đảm bảo hộp chỉ bao bọc nội dung cần thiết */
+        border: 3px solid #ccc; /* Định dạng viền */
+        padding: 15px; /* Khoảng cách giữa nội dung và viền của hộp */
+        margin-left: 180px; /* Khoảng cách từ lề trái */
+        margin-top: 30px; /* Khoảng cách từ lề trên */
+        font-size: 15px;
+        display: inline-block; /* Đảm bảo hộp chỉ bao bọc nội dung cần thiết */
     }
 </style>

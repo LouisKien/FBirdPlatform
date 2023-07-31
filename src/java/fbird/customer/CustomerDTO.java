@@ -11,15 +11,15 @@ import java.util.Date;
  * @author louis
  */
 public class CustomerDTO {
-    int customer_id;
-    String username;
-    String fullname;
-    Date date_of_birth;
-    String phone;
-    String avatar;
-    boolean gender;
-    String email;
-    Date registed_date;
+    private int customer_id;
+    private String username;
+    private String fullname;
+    private Date date_of_birth;
+    private String phone;
+    private String avatar;
+    private boolean gender;
+    private String email;
+    private Date registed_date;
 
     public CustomerDTO() {
     }

@@ -22,11 +22,11 @@ public class OrderDTO {
     private double price;
 
     private int order_id, optional_product_item_id;
-    double sell_price;
-    int amount;
+    private double sell_price;
+    private int amount;
     private int customer_id, delivery_method_id;
     private String order_address;
-    Date order_date;
+    private Date order_date;
     private String status;
     private double total_price_order;
     private String paypal_transaction_id;

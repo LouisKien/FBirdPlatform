@@ -12,27 +12,27 @@ import java.util.Date;
  * @author louis
  */
 public class ProductDTO {
-    int shopProductItemID;
-    int shopID;
-    int categoryID;
-    int typeOfBirdID;
-    String title;
-    String description;
-    int inventory;
-    Date uploadDate;
-    byte status;
-    String image_1;
-    String image_2;
-    String image_3;
-    String image_4;
+    private int shopProductItemID;
+    private int shopID;
+    private int categoryID;
+    private int typeOfBirdID;
+    private String title;
+    private String description;
+    private int inventory;
+    private Date uploadDate;
+    private byte status;
+    private String image_1;
+    private String image_2;
+    private String image_3;
+    private String image_4;
     
-    String type_of_bird_name;
-    String category_name;
-    String shop_name;
-    String avatar;  
-    Double price;
-    String nameOption;
-    double priceView;
+    private String type_of_bird_name;
+    private String category_name;
+    private String shop_name;
+    private String avatar;  
+    private Double price;
+    private String nameOption;
+    private double priceView;
 
 
     public ProductDTO() {

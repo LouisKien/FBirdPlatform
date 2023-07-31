@@ -11,15 +11,15 @@ import java.util.Date;
  * @author Admin
  */
 public class FeedbackDTO {
-    int feedback_id;
-    int customer_id;
-    int shop_product_item_id;
-    String feedback;
-    Boolean status;
-    int number_of_stars;
-    Date feedback_date;
-    String avatar;
-    String fullname;
+    private int feedback_id;
+    private int customer_id;
+    private int shop_product_item_id;
+    private String feedback;
+    private Boolean status;
+    private int number_of_stars;
+    private Date feedback_date;
+    private String avatar;
+    private String fullname;
 
     public FeedbackDTO() {
     }

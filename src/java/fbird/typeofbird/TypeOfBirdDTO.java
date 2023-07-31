@@ -9,8 +9,8 @@ package fbird.typeofbird;
  * @author Admin
  */
 public class TypeOfBirdDTO {
-    int type_of_bird_id;
-    String type_of_bird_name;
+    private int type_of_bird_id;
+    private String type_of_bird_name;
 
     public TypeOfBirdDTO() {
     }

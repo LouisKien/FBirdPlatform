@@ -82,10 +82,10 @@
                     <div class="nav-item nav-link" style="width: max-content">
                         <% 
                             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-                            if(loginUser != null) {
+                            if(loginUser != null && loginUser.getRole() == 3) {
                         %>
                         <a  href="MainController?action=ViewCart&customer_id=<%= loginUser.getCustomer_id() %>"class="shopping">
-                            
+
                             <i class="fa fa-shopping-cart" style="font-size:25px;"></i>
 
                         </a>
@@ -98,14 +98,27 @@
                         <div class="dropdown-menu m-0">
                             <a href="MainController?action=productpage" class="dropdown-item">Sản phẩm</a>
                             <a href="MainController?action=foodpage&categoryID=1" class="dropdown-item">Thức ăn</a>
-                            <a href="MainController?action=foodpage&categoryID=4" class="dropdown-item">Thuốc</a>
+                            <a href="MainController?action=foodpage&categoryID=4" class="dropdown-item">Thuốc - Dược phẩm</a>
                         </div>
                     </div>
-                    <a href="MainController?action=ViewRecipe" class="nav-item nav-link">Khẩu phần</a>                      
-                    <a href="userProfile.jsp" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
+                    <a href="MainController?action=ViewRecipe" class="nav-item nav-link">Khẩu phần</a>
+                    <% if(loginUser != null) {
+                            if(loginUser.getRole() == 1){
+                            loginUser.setFullname("Admin Account");
+                    %>
+
                     <a href="adminDashboard.jsp" class="nav-item nav-link"><i class="fa-solid fa-user-gear"></i></a>
-                    <%
-                
+                        <%
+                        } else if(loginUser.getRole() == 2){
+                        %>
+                    <a href="MainController?action=ViewShopDashboard" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
+                        <%
+                            } else{
+                        %>
+                    <a href="MainController?action=ViewProfile&username=<%= loginUser.getUsername() %>" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
+                        <%
+                            }
+}
                 if(loginUser != null) {
             
                         %>
@@ -113,9 +126,9 @@
                         <a href="#" class="nav-item nav-link nav-contact bg-primary text-white px-3 ms-lg-3" data-bs-toggle="dropdown"><%= loginUser.getFullname() %></a>
                         <div class="dropdown-menu m-3">
                             <% if(loginUser.getRole() == 3){%>
-                            <a href="MainController?action=ViewProfile&username=<%= loginUser.getUsername() %>" class="dropdown-item">View Profile</a>
+                            <a href="MainController?action=ViewProfile&username=<%= loginUser.getUsername() %>" class="dropdown-item">Tài khoản</a>
                             <%}%>
-                            <a href="MainController?action=Logout" class="dropdown-item">LOG OUT</a>
+                            <a href="MainController?action=Logout" class="dropdown-item">Đăng xuất</a>
                         </div>
                     </div>
                     <%}else{%>

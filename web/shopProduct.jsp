@@ -76,7 +76,7 @@
                     <div class="nav-item nav-link" style="width: max-content">
                         <% 
                             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-                            if(loginUser != null) {
+                            if(loginUser != null && loginUser.getRole() == 3) {
                         %>
                         <a  href="MainController?action=ViewCart&customer_id=<%= loginUser.getCustomer_id() %>"class="shopping">
                             

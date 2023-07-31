@@ -78,7 +78,7 @@
                     <div class="navbar-nav ms-auto py-0">
                         <div class="nav-item nav-link" style="width: max-content">
                             <% 
-                                if(loginUser != null) {                           
+                                if(loginUser != null && loginUser.getRole() == 3) {                           
                             %>
                             <a  href="MainController?action=ViewCart&customer_id=<%= loginUser.getCustomer_id() %>"class="shopping">
 
@@ -106,7 +106,7 @@
                             <%
                             } else if(loginUser.getRole() == 2){
                             %>
-                        <a href="accountShop.jsp" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
+                        <a href="MainController?action=ViewShopDashboard" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
                             <%
                                 } else{
                             %>

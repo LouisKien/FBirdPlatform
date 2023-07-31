@@ -110,10 +110,13 @@
 
                 <div class="container-fluid px-4">
                     <div class="row g-3 my-2">
+                        <% ProductDTO db = (ProductDTO) request.getAttribute("SHOP_DASHBOARD");
+                        if(db != null){
+                        %>
                         <div class="col-md-3">
                             <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                                 <div>
-                                    <h3 class="fs-2">720</h3>
+                                    <h3 class="fs-2"><%= db.getTotal_product()%></h3>
                                     <p class="fs-5">Sản phẩm</p>
                                 </div>
                                 <i class="fas fa-gift fs-1 primary-text border rounded-full secondary-bg p-3"></i>
@@ -123,7 +126,7 @@
                         <div class="col-md-3">
                             <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                                 <div>
-                                    <h3 class="fs-2">4920</h3>
+                                    <h3 class="fs-2"><%= db.getTotal_unit_sell()%></h3>
                                     <p class="fs-5">Đã bán</p>
                                 </div>
                                 <i
@@ -134,7 +137,7 @@
                         <div class="col-md-3">
                             <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                                 <div>
-                                    <h3 class="fs-2">3899</h3>
+                                    <h3 class="fs-2"><%= db.getTotal_order()%></h3>
                                     <p class="fs-5">Đơn chuyển</p>
                                 </div>
                                 <i class="fas fa-truck fs-1 primary-text border rounded-full secondary-bg p-3"></i>
@@ -144,12 +147,13 @@
                         <div class="col-md-3">
                             <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                                 <div>
-                                    <h3 class="fs-2">N/A</h3>
-                                    <p class="fs-5">Lợi nhuận</p>
+                                    <h3 class="fs-2"><%= db.getRevenue()%></h3>
+                                    <p class="fs-5">Doanh thu</p>
                                 </div>
                                 <i class="fas fa-chart-line fs-1 primary-text border rounded-full secondary-bg p-3"></i>
                             </div>
                         </div>
+                        <%}%>
                     </div>
 
                     <div class="row my-5">

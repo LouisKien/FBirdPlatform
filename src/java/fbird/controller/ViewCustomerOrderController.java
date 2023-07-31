@@ -34,12 +34,22 @@ public class ViewCustomerOrderController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
          String url = "orderCustomer.jsp";
         try {
+            String index = request.getParameter("index");
+            if (index == null) {
+                index = "1";
+            }
+            int indexPage = Integer.parseInt(index);
              int customer_id = Integer.parseInt(request.getParameter("customer_id"));
              String status = request.getParameter("status");
               OrderDAO dao = new OrderDAO();
-               List<OrderDTO> listOrder = dao.getAllCustomerOrder(customer_id, status);        
+               List<OrderDTO> listOrder = dao.getAllCustomerOrder(customer_id, status, indexPage);
+               int pageNumber = dao.getOrderPageNumber(customer_id, status);
+               
                if (!listOrder.isEmpty()) {
                    request.setAttribute("LIST_ORDER", listOrder);
+                   request.setAttribute("PAGE_NUMBER", pageNumber);
+                   request.setAttribute("INDEX_PAGE", indexPage);
+                   request.setAttribute("STATUS", status);
                }
         }catch (Exception ex) {
             log("Error at Search: " + ex.toString());

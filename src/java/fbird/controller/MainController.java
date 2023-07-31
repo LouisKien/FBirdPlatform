@@ -95,11 +95,7 @@ public class MainController extends HttpServlet {
     private static final String VIEW_PRODUCT_DETAIL_IN_SHOP_DASHBOARD_CONTROLLER = "ViewProductDetailInShopDashboardController";
     private static final String VIEW_SHOP_DASHBOARD = "ViewShopDashboard";
     private static final String VIEW_SHOP_DASHBOARD_CONTROLLER = "ViewShopDashboardController";
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> 3db9cde97a4d7a816809bfecc93009a57907853f
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -188,17 +184,16 @@ public class MainController extends HttpServlet {
             }else if (VIEW_CUSTOMER_ORDER.equals(action)) {
                 url = VIEW_CUSTOMER_ORDER_CONTROLLER;
 
-<<<<<<< HEAD
+
             }else if (UPDATE_PRODUCT.equals(action)) {
                 url = UPDATE_PRODUCT_CONTROLLER;
             }else if (VIEW_SHOP_DASHBOARD.equals(action)) {
                 url = VIEW_SHOP_DASHBOARD_CONTROLLER;
-=======
+
             }else if (VIEW_SHOP_DASHBOARD.equals(action)) {
                 url = VIEW_SHOP_DASHBOARD_CONTROLLER;
 
-            }
->>>>>>> 3db9cde97a4d7a816809bfecc93009a57907853f
+
             
             }
             else {

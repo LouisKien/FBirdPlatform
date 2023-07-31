@@ -181,8 +181,8 @@
         <servlet-class>fbird.controller.UploadController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>DeleteProductController</servlet-name>
-        <servlet-class>fbird.controller.DeleteProductController</servlet-class>
+        <servlet-name>ViewShopDashboardController</servlet-name>
+        <servlet-class>fbird.controller.ViewShopDashboardController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
@@ -368,8 +368,8 @@
         <url-pattern>/UploadController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>DeleteProductController</servlet-name>
-        <url-pattern>/DeleteProductController</url-pattern>
+        <servlet-name>ViewShopDashboardController</servlet-name>
+        <url-pattern>/ViewShopDashboardController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

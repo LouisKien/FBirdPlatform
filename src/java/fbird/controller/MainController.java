@@ -93,7 +93,9 @@ public class MainController extends HttpServlet {
     private static final String ADD_RECIPE_TO_CART_CONTROLLER = "AddRecipeToCartController";
     private static final String VIEW_PRODUCT_DETAIL_IN_SHOP_DASHBOARD = "ViewProductDetailInShopDashboard";
     private static final String VIEW_PRODUCT_DETAIL_IN_SHOP_DASHBOARD_CONTROLLER = "ViewProductDetailInShopDashboardController";
-
+    private static final String VIEW_SHOP_DASHBOARD = "ViewShopDashboard";
+    private static final String VIEW_SHOP_DASHBOARD_CONTROLLER = "ViewShopDashboardController";
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -184,8 +186,10 @@ public class MainController extends HttpServlet {
 
             }else if (UPDATE_PRODUCT.equals(action)) {
                 url = UPDATE_PRODUCT_CONTROLLER;
-            }
+            }else if (VIEW_SHOP_DASHBOARD.equals(action)) {
+                url = VIEW_SHOP_DASHBOARD_CONTROLLER;
             
+            }
             else {
                 request.setAttribute("ERROR", "Your ACTION is not support");
             }

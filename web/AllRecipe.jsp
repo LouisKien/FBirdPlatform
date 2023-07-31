@@ -56,6 +56,8 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="profileDropdown">
 
+                        <li><a class="dropdown-item" style="width: 239px;" href="addRecipe.jsp">Thêm khẩu phần</a></li>
+
                         <li><a class="dropdown-item" style="width: 239px;" href="MainController?action=ViewProduct&shop_id=${sessionScope.LOGIN_USER.getShop_id()}">Tất cả sản phẩm</a></li>
                         <li><a class="dropdown-item" style="width: 239px;" href="AllRecipe.jsp">Tất cả khẩu phần</a></li>
                         <li><a class="dropdown-item" style="width: 239px;" href="sanPhamViPham.jsp">Sản phẩm vi phạm</a></li>
@@ -65,11 +67,11 @@
                     <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold dropdown-toggle" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fas fa-solid fa-store me-2"></i>Quản lý cửa hàng
                     </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                                    <li><a class="dropdown-item" href="hoSoShop.jsp">Hồ sơ</a></li>
-                                    <li><a class="dropdown-item" href="MainController?action=Logout">Đăng xuất</a></li>
-                                </ul>
+                        <li><a class="dropdown-item" href="hoSoShop.jsp">Hồ sơ</a></li>
+                        <li><a class="dropdown-item" href="MainController?action=Logout">Đăng xuất</a></li>
+                    </ul>
                     <!--------------------------------------------------------------------------------------------------------------------------------------------------------->
 
 
@@ -82,7 +84,7 @@
                 <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
                     <div class="d-flex align-items-center">
                         <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-                        <h2 class="fs-2 m-0">Quản lý sản phẩm</h2>
+                        <h2 class="fs-2 m-0">Quản lý khẩu phần</h2>
                     </div>
 
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -99,9 +101,9 @@
                                     <i class="fas fa-user me-2"></i>${sessionScope.LOGIN_USER.getFullname()}
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="hoSoShop.jsp">Hồ sơ</a></li>
 
-                                    <li><a class="dropdown-item" href="login.jsp">Đăng xuất</a></li>
+                                    <li><a class="dropdown-item" href="hoSoShop.jsp">Hồ sơ</a></li>
+                                    <li><a class="dropdown-item" href="MainController?action=Logout">Đăng xuất</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -113,22 +115,15 @@
                     <div class="row my-5">
                         <h3 class="fs-4 mb-3">Gần đây</h3>
                         <div class="col">
-                            <%
-                            List<ProductDTO> list = (List<ProductDTO>) request.getAttribute("LIST_PRODUCT");
-                            if(list != null){
-                                if(list.size()>0){
-                            %>
+
                             <table class="table bg-white rounded shadow-sm  table-hover">
                                 <thead>
                                     <tr>
                                         <!--                                        <th scope="col" width="50">#</th>-->
-                                        <th scope="col">Mã Sản Phẩm</th>
+                                        <th scope="col">Số thứ tự</th>
 
-                                        <th scope="col">Tên Sản Phẩm</th>
+                                        <th scope="col">Tên khẩu phần</th>
 
-                                        <th scope="col">Số Lượng</th>
-                                        <th scope="col">Ngày đăng kí</th>
-                                        <th scope="col">Trạng Thái</th>
                                         <th scope="col" style="text-align: center">Tùy chọn</th>
                                     </tr>
                                 </thead>
@@ -145,44 +140,28 @@
                                                                         </tr>
                                                                         </tr>-->
                                     <%
-                                        int count = 1;
-                                        for (ProductDTO pro : list){
+//                                        int count = 1;
+//                                        for (ProductDTO pro : list){
                                     %>
 
                                 <form action="MainController">
                                     <tr>
                                         <td>
-                                            <%= count++ %>
                                         </td>
 
                                         <td>
-                                            <%= pro.getTitle() %>
                                         </td>
 
-                                        <td>
-                                            <%= pro.getInventory() %>
-                                        </td>
-                                        <td>
-                                            <%= pro.getUploadDate() %>
-                                        </td>
-                                        <td>
-                                            <% if (pro.getStatus() == 1){%>
-                                            Đang bán
 
-                                            <%}else{%>
-
-                                            Ngưng bán
-                                            <%}%>
-                                        </td>
                                         <td style="text-align: center">
-                                            <a href="MainController?action=ViewProductDetailInShopDashboard&shop_product_item_id=<%= pro.getShopProductItemID() %>"><i class="fa-solid fa-pen-to-square"></i></a>
-                                            <i class="fa-solid fa-trash"></i>
+
+                                            <a href="#"><i class="fa-solid fa-trash"></i></a>
+
+
                                         <td>
                                     </tr>
                                 </form>
-                                <%
-                                    }
-                                %>
+
                                 </tbody>
                             </table>
 
@@ -196,17 +175,6 @@
                         <nav aria-label="Page navigation">
                             <ul class="pagination pagination-lg m-0">
 
-                                <%
-                                    int pageNumber = (int) request.getAttribute("PAGE_NUMBER");
-                                   
-                                    for(int i = 1; i <= pageNumber; i++){
-                            
-                                %>
-                                <li class="page-item"><a class="page-link" href="MainController?action=ViewProduct&shop_id=${sessionScope.LOGIN_USER.getShop_id()}&index=<%= i%>"><%= i%></a></li>
-                                    <%
-                                
-                                        }
-                                    %>
 
 
 
@@ -214,10 +182,7 @@
                         </nav>
                     </div>
                 </div>
-                <%
-        }
-        }
-                %>
+
             </div>
         </div>
         <!-- /#page-content-wrapper -->

@@ -161,6 +161,10 @@
         <servlet-class>fbird.controller.AddUserAddressController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>DeleteProductController</servlet-name>
+        <servlet-class>fbird.controller.DeleteProductController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>AddRecipeToCartController</servlet-name>
         <servlet-class>fbird.controller.AddRecipeToCartController</servlet-class>
     </servlet>
@@ -358,6 +362,10 @@
     <servlet-mapping>
         <servlet-name>ViewCustomerOrderController</servlet-name>
         <url-pattern>/ViewCustomerOrderController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteProductController</servlet-name>
+        <url-pattern>/DeleteProductController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AddProductController</servlet-name>

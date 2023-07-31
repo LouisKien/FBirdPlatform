@@ -106,14 +106,14 @@
                             if(loginUser.getRole() == 1){
                             loginUser.setFullname("Admin Account");
                     %>
-                            
+
                     <a href="adminDashboard.jsp" class="nav-item nav-link"><i class="fa-solid fa-user-gear"></i></a>
                         <%
                         } else if(loginUser.getRole() == 2){
                         %>
                     <a href="accountShop.jsp" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
-                    <%
-                        } else{
+                        <%
+                            } else{
                         %>
                     <a href="MainController?action=ViewProfile&username=<%= loginUser.getUsername() %>" class="nav-item nav-link"><i class="fa-solid fa-user"></i></a>
                         <%
@@ -170,19 +170,19 @@
                                                 </div>
                                             </a>
                                         </li>
-                                        
+
                                         <li>
                                             <%
                             if(loginUser != null) {
-                        %>
+                                            %>
                                             <a href="MainController?action=ViewCustomerOrder&customer_id=<%= loginUser.getCustomer_id() %>&status=">
                                                 <div class="color-item">
                                                     <span class="color-name">Đơn hàng của bạn</span>
                                                 </div>
                                             </a>
-                                                <%}%>
+                                            <%}%>
                                         </li>
-                                        
+
                                         <li>
                                             <a href="MainController?action=Logout">
                                                 <div class="color-item">
@@ -205,29 +205,29 @@
                     <div class="col-xl-9" style="border: 2px solid; border-radius: 10px; width: 800px; margin: 10px;">
 
 
-<div class="row g-3 my-2">
-    <div class="col-md-4">
-        <%
-        if(loginUser != null) {
-        %>
-        <a href="MainController?action=ViewCustomerOrder&customer_id=<%= loginUser.getCustomer_id() %>&status=" class="btn btn-primary d-block" style="text-decoration: none; color: black; border: 2px groove;">
-            Tất cả
-        </a>
-        <%}%>
-    </div>
+                        <div class="row g-3 my-2">
+                            <div class="col-md-4">
+                                <%
+                                if(loginUser != null) {
+                                %>
+                                <a href="MainController?action=ViewCustomerOrder&customer_id=<%= loginUser.getCustomer_id() %>&status=" class="btn btn-primary d-block" style="text-decoration: none; color: black; border: 2px groove;">
+                                    Tất cả
+                                </a>
+                                <%}%>
+                            </div>
 
-    <div class="col-md-4">
-        <a href="MainController?action=ViewCustomerOrder&customer_id=<%= loginUser.getCustomer_id() %>&status=<%= java.net.URLEncoder.encode("Đã thanh toán", "UTF-8") %>" class="btn btn-primary d-block" style="text-decoration: none; color: black; border: 2px groove;">
-            Đã thanh toán
-        </a>
-    </div>
+                            <div class="col-md-4">
+                                <a href="MainController?action=ViewCustomerOrder&customer_id=<%= loginUser.getCustomer_id() %>&status=<%= java.net.URLEncoder.encode("Đã thanh toán", "UTF-8") %>" class="btn btn-primary d-block" style="text-decoration: none; color: black; border: 2px groove;">
+                                    Đã thanh toán
+                                </a>
+                            </div>
 
-    <div class="col-md-4">
-        <a href="MainController?action=ViewCustomerOrder&customer_id=<%= loginUser.getCustomer_id() %>&status=<%= java.net.URLEncoder.encode("Đã hủy", "UTF-8") %>" class="btn btn-primary d-block" style="text-decoration: none; color: black; border: 2px groove;">
-            Đã hủy
-        </a>
-    </div>
-</div>
+                            <div class="col-md-4">
+                                <a href="MainController?action=ViewCustomerOrder&customer_id=<%= loginUser.getCustomer_id() %>&status=<%= java.net.URLEncoder.encode("Đã hủy", "UTF-8") %>" class="btn btn-primary d-block" style="text-decoration: none; color: black; border: 2px groove;">
+                                    Đã hủy
+                                </a>
+                            </div>
+                        </div>
 
                         <div class="col">
                             <table class="table bg-white rounded shadow-sm  table-hover">
@@ -235,7 +235,7 @@
                                     <tr>
                                         <th scope="col" width="50">#</th>
                                         <th scope="col">Sản phẩm</th>
-                                        
+
                                         <th scope="col">Giá</th>
                                         <th scope="col">Trạng thái</th>
                                         <th scope="col">Thời gian</th>
@@ -243,134 +243,171 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <% 
-                                    List<OrderDTO> listOrder = (List<OrderDTO>) request.getAttribute("LIST_ORDER");
-                                    if (listOrder != null && !listOrder.isEmpty()) {
-                                        int count = 0;
+                                    <% 
+                                        List<OrderDTO> listOrder = (List<OrderDTO>) request.getAttribute("LIST_ORDER");
+                                        if (listOrder != null && !listOrder.isEmpty()) {
+                                            int count = 0;
             
-                                        for (OrderDTO listOD : listOrder) {
-                                        count++;
+                                            for (OrderDTO listOD : listOrder) {
+                                            count++;
                                     %>
-                                
+
                                     <tr>
                                         <th scope="row"><%=count%></th>
                                         <td><%=listOD.getTitle()%></td>
-                                        
+
                                         <td><%=listOD.getTotal_price_order()%></td>
                                         <td><%=listOD.getStatus()%></td>
                                         <td><%=listOD.getOrder_date()%></td>
                                         <td><%=listOD.getName()%></td>
                                     </tr>
-                                    <%}}
+                                    <%}
                                     %>
-<!--                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Cám chim 2</td>
-                                        
-                                        <td>$750</td>
-                                        <td>Đã hủy</td>
-                                        <td>1/1/2023</td>
-                                        <td>Hỏa tốc</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Cám chim 3</td>
-                                        
-                                        <td>$600</td>
-                                        <td>Đã giao</td>
-                                        <td>1/1/2023</td>
-                                        <td>Hỏa tốc</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">4</th>
-                                        <td>Cám chim 4</td>
-                                        
-                                        <td>$300</td>
-                                        <td>Đã hủy</td>
-                                        <td>1/1/2023</td>
-                                        <td>Hỏa tốc</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">5</th>
-                                        <td>Cám chim 5</td>
-                                        
-                                        <td>$120</td>
-                                        <td>Đã giao</td>
-                                        <td>1/1/2023</td>
-                                        <td>Hỏa tốc</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">6</th>
-                                        <td>Cám chim 6</td>
-                                        
-                                        <td>$1800</td>
-                                        <td>Đã hủy</td>
-                                        <td>1/1/2023</td>
-                                        <td>Hỏa tốc</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">7</th>
-                                        <td>Cám chim 7</td>
-                                        
-                                        <td>$75</td>
-                                        <td>Đã giao</td>
-                                        <td>1/1/2023</td>
-                                        <td>Hỏa tốc</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">8</th>
-                                        <td>Cám chim 8</td>
-                                        
-                                        <td>$36</td>
-                                        <td>Đã hủy</td>
-                                        <td>1/1/2023</td>
-                                        <td>Hỏa tốc</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">9</th>
-                                        <td>Cám chim 9</td>
-                                        
-                                        <td>$255</td>
-                                        <td>Đã giao</td>
-                                        <td>1/1/2023</td>
-                                        <td>Hỏa tốc</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">10</th>
-                                        <td>Cám chim 10</td>
-                                        
-                                        <td>$434</td>
-                                        <td>Đã hủy</td>
-                                        <td>1/1/2023</td>
-                                        <td>Hỏa tốc</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">11</th>
-                                        <td>Cám chim 11</td>
-                                        
-                                        <td>$1236</td>
-                                        <td>Đã giao</td>
-                                        <td>1/1/2023</td>
-                                        <td>Hỏa tốc</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">12</th>
-                                        <td>Cám chim 12</td>
-                                        
-                                        <td>$422</td>
-                                        <td>Đã hủy</td>
-                                        <td>1/1/2023</td>
-                                        <td>Hỏa tốc</td>
-                                    </tr>-->
+                                    <!--                                    <tr>
+                                                                            <th scope="row">2</th>
+                                                                            <td>Cám chim 2</td>
+                                                                            
+                                                                            <td>$750</td>
+                                                                            <td>Đã hủy</td>
+                                                                            <td>1/1/2023</td>
+                                                                            <td>Hỏa tốc</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">3</th>
+                                                                            <td>Cám chim 3</td>
+                                                                            
+                                                                            <td>$600</td>
+                                                                            <td>Đã giao</td>
+                                                                            <td>1/1/2023</td>
+                                                                            <td>Hỏa tốc</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">4</th>
+                                                                            <td>Cám chim 4</td>
+                                                                            
+                                                                            <td>$300</td>
+                                                                            <td>Đã hủy</td>
+                                                                            <td>1/1/2023</td>
+                                                                            <td>Hỏa tốc</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">5</th>
+                                                                            <td>Cám chim 5</td>
+                                                                            
+                                                                            <td>$120</td>
+                                                                            <td>Đã giao</td>
+                                                                            <td>1/1/2023</td>
+                                                                            <td>Hỏa tốc</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">6</th>
+                                                                            <td>Cám chim 6</td>
+                                                                            
+                                                                            <td>$1800</td>
+                                                                            <td>Đã hủy</td>
+                                                                            <td>1/1/2023</td>
+                                                                            <td>Hỏa tốc</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">7</th>
+                                                                            <td>Cám chim 7</td>
+                                                                            
+                                                                            <td>$75</td>
+                                                                            <td>Đã giao</td>
+                                                                            <td>1/1/2023</td>
+                                                                            <td>Hỏa tốc</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">8</th>
+                                                                            <td>Cám chim 8</td>
+                                                                            
+                                                                            <td>$36</td>
+                                                                            <td>Đã hủy</td>
+                                                                            <td>1/1/2023</td>
+                                                                            <td>Hỏa tốc</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">9</th>
+                                                                            <td>Cám chim 9</td>
+                                                                            
+                                                                            <td>$255</td>
+                                                                            <td>Đã giao</td>
+                                                                            <td>1/1/2023</td>
+                                                                            <td>Hỏa tốc</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">10</th>
+                                                                            <td>Cám chim 10</td>
+                                                                            
+                                                                            <td>$434</td>
+                                                                            <td>Đã hủy</td>
+                                                                            <td>1/1/2023</td>
+                                                                            <td>Hỏa tốc</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">11</th>
+                                                                            <td>Cám chim 11</td>
+                                                                            
+                                                                            <td>$1236</td>
+                                                                            <td>Đã giao</td>
+                                                                            <td>1/1/2023</td>
+                                                                            <td>Hỏa tốc</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">12</th>
+                                                                            <td>Cám chim 12</td>
+                                                                            
+                                                                            <td>$422</td>
+                                                                            <td>Đã hủy</td>
+                                                                            <td>1/1/2023</td>
+                                                                            <td>Hỏa tốc</td>
+                                                                        </tr>-->
                                 </tbody>
                             </table>
                         </div>
 
 
                     </div>
+
+                                    
+                    <div class="container py-5">
+                        <div class="col-12">
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination pagination-lg m-0">
+                                    <%
+                                        int pageNumber = (int) request.getAttribute("PAGE_NUMBER");
+                                        int indexPage = (int) request.getAttribute("INDEX_PAGE");
+                                        String status = (String)request.getAttribute("STATUS");
+                                    %>
+                                    <li class="page-item <% if (indexPage == 1) { %>disabled<% } %>">
+                                        <a class="page-link rounded-0" href="MainController?action=ViewCustomerOrder&customer_id=<%= loginUser.getCustomer_id() %>&index=<%= indexPage - 1%>&status=<%= status%>" aria-label="Previous">
+                                            <span aria-hidden="true"><i class="bi bi-arrow-left"></i></span>
+                                        </a>
+                                    </li>
+                                    <%
+                        for(int i = 1; i <= pageNumber; i++){
+                        %>
+                                    <li class="page-item"><a class="page-link" href="MainController?action=ViewCustomerOrder&customer_id=<%= loginUser.getCustomer_id() %>&index=<%= i %>&status=<%= status%>"><%= i %></a></li>
+                                        <%
+                                
+                                    }
+                            %>
+
+
+                                    <li class="page-item <% if (indexPage == pageNumber) { %>disabled<% } %>">
+                                        <a class="page-link rounded-0" href="MainController?action=ViewCustomerOrder&customer_id=<%= loginUser.getCustomer_id() %>&index=<%= indexPage + 1%>&status=<%= status%>" aria-label="Next">
+                                            <span aria-hidden="true"><i class="bi bi-arrow-right"></i></span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+                                            <%}%>
 
 
 
@@ -385,65 +422,65 @@
             <!-- Topbar End -->
             <!-- Footer Start -->
             <div class="container-fluid bg-light mt-5 py-5">
-            <div class="container pt-5">
-                <div class="row g-5">
-                    <div class="col-lg-3 col-md-6">
-                        <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">PHƯƠNG THỨC LIÊN LẠC</h5>
-                        <p class="mb-4"></p>
-                        <p class="mb-2"><i class="bi bi-geo-alt text-primary me-2"></i>Lô E2a-7, Đường D1, Khu Công nghệ cao, P.Long Thạnh Mỹ, Tp. Thủ Đức, TP.HCM.</p>
-                        <p class="mb-2"><i class="bi bi-envelope-open text-primary me-2"></i>daihoc.hcm@fpt.edu.vn</p>
-                        <p class="mb-0"><i class="bi bi-telephone text-primary me-2"></i> (028) 7300 5588</p>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">F-Bird</h5>
-                        <div class="d-flex flex-column justify-content-start">
-                            <a class="text-body mb-2" href="MainController"><i class="bi bi-arrow-right text-primary me-2"></i>Trang chủ</a>
-
-                            <a class="text-body mb-2" href="devteam.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thành viên</a>
-
-
+                <div class="container pt-5">
+                    <div class="row g-5">
+                        <div class="col-lg-3 col-md-6">
+                            <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">PHƯƠNG THỨC LIÊN LẠC</h5>
+                            <p class="mb-4"></p>
+                            <p class="mb-2"><i class="bi bi-geo-alt text-primary me-2"></i>Lô E2a-7, Đường D1, Khu Công nghệ cao, P.Long Thạnh Mỹ, Tp. Thủ Đức, TP.HCM.</p>
+                            <p class="mb-2"><i class="bi bi-envelope-open text-primary me-2"></i>daihoc.hcm@fpt.edu.vn</p>
+                            <p class="mb-0"><i class="bi bi-telephone text-primary me-2"></i> (028) 7300 5588</p>
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Loại hàng cho chim</h5>
-                        <div class="d-flex flex-column justify-content-start">
-                            <a class="text-body mb-2" href="MainController?action=foodpage"><i class="bi bi-arrow-right text-primary me-2"></i>Thức ăn</a>
-                            <a class="text-body mb-2" href="MainController?action=medicinepage"><i class="bi bi-arrow-right text-primary me-2"></i>Thuốc - Dược phẩm</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Theo dõi chúng tôi trên</h5>
-<!--                        <form action="">
-                            <div class="input-group">
-                                <input type="text" class="form-control p-3" placeholder="Nhập email">
-                                <button class="btn btn-primary">Đăng ký</button>
+
+                        <div class="col-lg-3 col-md-6">
+                            <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">F-Bird</h5>
+                            <div class="d-flex flex-column justify-content-start">
+                                <a class="text-body mb-2" href="MainController"><i class="bi bi-arrow-right text-primary me-2"></i>Trang chủ</a>
+
+                                <a class="text-body mb-2" href="devteam.jsp"><i class="bi bi-arrow-right text-primary me-2"></i>Thành viên</a>
+
+
                             </div>
-                        </form>
-                        <h6 class="text-uppercase mt-4 mb-3"> Theo dõi chúng tôi trên</h6>-->
-                        <div class="d-flex">
-                            <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-twitter"></i></a>
-                            <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-facebook"></i></a>
-                            <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-linkedin"></i></a>
-                            <a class="btn btn-outline-primary btn-square" href="#"><i class="bi bi-instagram"></i></a>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Loại hàng cho chim</h5>
+                            <div class="d-flex flex-column justify-content-start">
+                                <a class="text-body mb-2" href="MainController?action=foodpage"><i class="bi bi-arrow-right text-primary me-2"></i>Thức ăn</a>
+                                <a class="text-body mb-2" href="MainController?action=medicinepage"><i class="bi bi-arrow-right text-primary me-2"></i>Thuốc - Dược phẩm</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Theo dõi chúng tôi trên</h5>
+                            <!--                        <form action="">
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control p-3" placeholder="Nhập email">
+                                                            <button class="btn btn-primary">Đăng ký</button>
+                                                        </div>
+                                                    </form>
+                                                    <h6 class="text-uppercase mt-4 mb-3"> Theo dõi chúng tôi trên</h6>-->
+                            <div class="d-flex">
+                                <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-twitter"></i></a>
+                                <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-facebook"></i></a>
+                                <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-linkedin"></i></a>
+                                <a class="btn btn-outline-primary btn-square" href="#"><i class="bi bi-instagram"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="container-fluid bg-dark text-white-50 py-4">
-            <div class="container">
-                <div class="row g-5">
-                    <div class="col-md-6 text-center text-md-start">
-                        <p class="mb-md-0">&copy; <a class="text-white" href="MainController">Trang web được thiết kế bởi Nhóm 3 </a> </p>
-                    </div>
-                    <div class="col-md-6 text-center text-md-end">
-                        <p class="mb-0">Nguồn <a class="text-white" href="https://htmlcodex.com">HTML Codex</a></p>
+            <div class="container-fluid bg-dark text-white-50 py-4">
+                <div class="container">
+                    <div class="row g-5">
+                        <div class="col-md-6 text-center text-md-start">
+                            <p class="mb-md-0">&copy; <a class="text-white" href="MainController">Trang web được thiết kế bởi Nhóm 3 </a> </p>
+                        </div>
+                        <div class="col-md-6 text-center text-md-end">
+                            <p class="mb-0">Nguồn <a class="text-white" href="https://htmlcodex.com">HTML Codex</a></p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
             <!-- Footer End -->
             <!-- JavaScript Libraries -->
             <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

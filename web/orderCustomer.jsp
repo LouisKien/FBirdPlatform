@@ -172,11 +172,15 @@
                                         </li>
                                         
                                         <li>
-                                            <a href="orderCustomer.jsp">
+                                            <%
+                            if(loginUser != null) {
+                        %>
+                                            <a href="MainController?action=ViewCustomerOrder&customer_id=<%= loginUser.getCustomer_id() %>&status=">
                                                 <div class="color-item">
                                                     <span class="color-name">Đơn hàng của bạn</span>
                                                 </div>
                                             </a>
+                                                <%}%>
                                         </li>
                                         
                                         <li>
@@ -201,38 +205,30 @@
                     <div class="col-xl-9" style="border: 2px solid; border-radius: 10px; width: 800px; margin: 10px;">
 
 
-                        <div class="row g-3 my-2">
-                        <div class="col-md-3">
-                            
-                            <a href="#" class="btn btn-primary" style="text-decoration: none; color: black; border: 2px groove;">
+<div class="row g-3 my-2">
+    <div class="col-md-4">
+        <%
+        if(loginUser != null) {
+        %>
+        <a href="MainController?action=ViewCustomerOrder&customer_id=<%= loginUser.getCustomer_id() %>&status=" class="btn btn-primary d-block" style="text-decoration: none; color: black; border: 2px groove;">
+            Tất cả
+        </a>
+        <%}%>
+    </div>
 
-                                Tất cả
+    <div class="col-md-4">
+        <a href="MainController?action=ViewCustomerOrder&customer_id=<%= loginUser.getCustomer_id() %>&status=<%= java.net.URLEncoder.encode("Đã thanh toán", "UTF-8") %>" class="btn btn-primary d-block" style="text-decoration: none; color: black; border: 2px groove;">
+            Đã thanh toán
+        </a>
+    </div>
 
+    <div class="col-md-4">
+        <a href="MainController?action=ViewCustomerOrder&customer_id=<%= loginUser.getCustomer_id() %>&status=<%= java.net.URLEncoder.encode("Đã hủy", "UTF-8") %>" class="btn btn-primary d-block" style="text-decoration: none; color: black; border: 2px groove;">
+            Đã hủy
+        </a>
+    </div>
+</div>
 
-                            </a>
-                            
-                        </div>
-
-                        <div class="col-md-3">
-                            <a href="#"  class="btn btn-primary" style="text-decoration: none; color: black; border: 2px groove;">
-                                Đã giao
-                            </a>
-                        </div>
-
-                        <div class="col-md-3">
-                            <a href="#" class="btn btn-primary" style="text-decoration: none; color: black; border: 2px groove;" >
-                                Đã hủy
-                            </a>
-                        </div>
-                        
-                            
-                        <div class="col-md-3">
-                            <a href="#" class="btn btn-primary" style="text-decoration: none; color: black; border: 2px groove;" >
-                                Chờ xác nhận
-                            </a>
-                        </div>
-
-                    </div>
                         <div class="col">
                             <table class="table bg-white rounded shadow-sm  table-hover">
                                 <thead>

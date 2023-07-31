@@ -178,7 +178,7 @@
                                             <%
                             if(loginUser != null) {
                         %>
-                                            <a href="MainController?action=ViewCustomerOrder&customer_id=<%= loginUser.getCustomer_id() %>">
+                                            <a href="MainController?action=ViewCustomerOrder&customer_id=<%= loginUser.getCustomer_id() %>&status=">
                                                 <div class="color-item">
                                                     <span class="color-name">Đơn hàng của bạn</span>
                                                 </div>

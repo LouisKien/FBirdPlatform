@@ -30,7 +30,7 @@ public class OrderDAO {
     private static final String ADD_ORDER_PRODUCT = "INSERT order_item(order_id, optional_shop_product_item_id, sell_price, amount) VALUES (?,?,?,?)";
     private static final String SUBTRACT_QUANTITY_IN_INVENTORY = "UPDATE shop_product_item SET inventory = inventory - ? WHERE shop_product_item_id = (SELECT shop_product_item.shop_product_item_id FROM optional_shop_product_item JOIN shop_product_item ON optional_shop_product_item.shop_product_item_id = shop_product_item.shop_product_item_id WHERE optional_shop_product_item_id = ?)";
     private static final String GET_CART_ITEM_ID = "SELECT cart_item_id FROM optional_shop_product_item JOIN cart_item ON optional_shop_product_item.optional_shop_product_item_id = cart_item.optional_shop_product_item_id WHERE optional_shop_product_item.optional_shop_product_item_id = ? AND customer_id = ?";
-    private static final String VIEW_CUSTOMER_ORDER = "SELECT  shop_product_item.title, total_price_order, delivery_method.name, customer_order.status, order_date  FROM customer_order JOIN order_item on customer_order.order_id= order_item.order_id JOIN optional_shop_product_item on optional_shop_product_item.optional_shop_product_item_id = order_item.optional_shop_product_item_id JOIN shop_product_item on optional_shop_product_item.shop_product_item_id = shop_product_item.shop_product_item_id JOIN delivery_method on delivery_method.delivery_method_id = customer_order.delivery_method_id WHERE customer_id =?";
+    private static final String VIEW_CUSTOMER_ORDER = "SELECT  shop_product_item.title, total_price_order, delivery_method.name, customer_order.status, order_date  FROM customer_order JOIN order_item on customer_order.order_id= order_item.order_id JOIN optional_shop_product_item on optional_shop_product_item.optional_shop_product_item_id = order_item.optional_shop_product_item_id JOIN shop_product_item on optional_shop_product_item.shop_product_item_id = shop_product_item.shop_product_item_id JOIN delivery_method on delivery_method.delivery_method_id = customer_order.delivery_method_id WHERE customer_id =? AND customer_order.status like ?";
     public List<OrderDTO> getAddress(int customer_id) throws SQLException {
         List<OrderDTO> list = new ArrayList<>();
         Connection conn = null;
@@ -269,7 +269,7 @@ public class OrderDAO {
         }
         return check;
     }
-     public List<OrderDTO> getAllCustomerOrder(int customer_id) throws SQLException {
+     public List<OrderDTO> getAllCustomerOrder(int customer_id, String statuss) throws SQLException {
        List<OrderDTO> list = new ArrayList<>();
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -279,6 +279,7 @@ public class OrderDAO {
             if (conn != null) {
                 ptm = conn.prepareStatement(VIEW_CUSTOMER_ORDER);
                 ptm.setInt(1, customer_id);
+                ptm.setString(2, "%" + statuss + "%");
                 rs = ptm.executeQuery();
                 while (rs.next()) {
                     String title = rs.getString("title");

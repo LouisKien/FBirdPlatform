@@ -35,8 +35,9 @@ public class ViewCustomerOrderController extends HttpServlet {
          String url = "orderCustomer.jsp";
         try {
              int customer_id = Integer.parseInt(request.getParameter("customer_id"));
+             String status = request.getParameter("status");
               OrderDAO dao = new OrderDAO();
-               List<OrderDTO> listOrder = dao.getAllCustomerOrder(customer_id);        
+               List<OrderDTO> listOrder = dao.getAllCustomerOrder(customer_id, status);        
                if (!listOrder.isEmpty()) {
                    request.setAttribute("LIST_ORDER", listOrder);
                }

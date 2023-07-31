@@ -182,6 +182,8 @@ public class MainController extends HttpServlet {
             }else if (VIEW_CUSTOMER_ORDER.equals(action)) {
                 url = VIEW_CUSTOMER_ORDER_CONTROLLER;
 
+            }else if (UPDATE_PRODUCT.equals(action)) {
+                url = UPDATE_PRODUCT_CONTROLLER;
             }
             
             else {

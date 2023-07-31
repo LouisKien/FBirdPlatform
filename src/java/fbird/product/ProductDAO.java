@@ -51,7 +51,8 @@ public class ProductDAO {
             + "ORDER BY\n"
             + "    ospi.price ASC;";
     private static final String ADD_PRODUCT = "INSERT INTO [shop_product_item] VALUES (?,?,?,?,?,?,?,?)";
-    private static final String UPDATE = "UPDATE shop_product_item SET title=?, description=?, inventory=?, status=? WHERE shop_product_item_id=? ";
+    private static final String UPDATE = "UPDATE shop_product_item SET title=?, category_id=?, type_of_bird_id=?, description=?, inventory=?, upload_date=?, status=? WHERE shop_product_item_id=? ";
+    private static final String DELETE = "UPDATE shop_product_item SET status='false' WHERE shop_product_item_id=? ";
     private static final String NEW_VIEW_PRODUCT = "SELECT s.shop_product_item_id, s.shop_id, t.type_of_bird_name, s.title, p.category_name, i.image_1, i.image_2, i.image_3, i.image_4 FROM shop_product_item s JOIN product_category p ON s.category_id = p.category_id LEFT JOIN type_of_bird t ON s.type_of_bird_id = t.type_of_bird_id LEFT JOIN product_image i ON s.shop_product_item_id = i.shop_product_item_id";
     private static final String VIEW_PRODUCT = "SELECT * FROM shop_product_item where shop_id = ? Order by shop_product_item_id ASC\n" +
 "OFFSET ? ROWS \n" +
@@ -268,10 +269,13 @@ public class ProductDAO {
             if (conn != null) {
                 ptm = conn.prepareStatement(UPDATE);
                 ptm.setString(1, product.getTitle());
-                ptm.setString(2, product.getDescription());
-                ptm.setInt(3, product.getInventory());
-                ptm.setInt(4, product.getStatus());
-                ptm.setInt(5, product.getShopProductItemID());
+                ptm.setInt(2, product.getCategoryID());
+                ptm.setInt(3, product.getTypeOfBirdID());
+                ptm.setString(4, product.getDescription());
+                ptm.setInt(5, product.getInventory());
+                ptm.setDate(6, java.sql.Date.valueOf(java.time.LocalDate.now()));
+                ptm.setInt(7, product.getStatus());
+                ptm.setInt(8, product.getShopProductItemID());
                 check = ptm.executeUpdate() > 0 ? true : false;
             }
         } finally {
@@ -928,6 +932,31 @@ public class ProductDAO {
                 ptm = conn.prepareStatement(ADD_IMAGE_PRODUCT);
                 ptm.setInt(1, shopProductItemID);
                 ptm.setString(2, productImage);
+                check = ptm.executeUpdate() > 0? true : false;
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+
+    public boolean delete(int productShopItemID) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(DELETE);
+                ptm.setInt(1, productShopItemID);
                 check = ptm.executeUpdate() > 0? true : false;
 
             }

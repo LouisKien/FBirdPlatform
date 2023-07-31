@@ -21,6 +21,7 @@ public class OptionalshopproductitemDAO {
       private static final String GET_OPTIONAL = "SELECT name, price, optional_shop_product_item_id FROM optional_shop_product_item WHERE shop_product_item_id=?";
       private static final String GET_PRICE = "SELECT price FROM optional_shop_product_item WHERE name=?";
       private static final String ADD_OPTIONAL = "INSERT INTO optional_shop_product_item(shop_product_item_id, name, price) VALUES (?,?,?)";
+      private static final String UPDATE_OPTIONAL = "UPDATE optional_shop_product_item SET name=?, price=? WHERE shop_product_item_id=? AND optional_shop_product_item_id=?";
       
       
       public List<OptionalshopproductitemDTO> getListOptional(int shop_product_item_id) throws SQLException {
@@ -79,11 +80,9 @@ public class OptionalshopproductitemDAO {
     }
        
     public boolean addOptionalProductItem(List<OptionalshopproductitemDTO> listOptional) throws SQLException {
-        List<OptionalshopproductitemDTO> list = null;
         boolean check = false;
         Connection conn = null;
         PreparedStatement ptm = null;
-        ResultSet rs = null;
         try{
             conn = DBUtils.getConnection();
             if(conn != null){
@@ -92,6 +91,30 @@ public class OptionalshopproductitemDAO {
                 ptm.setInt(1, option.getOptional_shop_product_item_id());
                 ptm.setString(2, option.getName());
                 ptm.setDouble(3, option.getPrice());
+                check = ptm.executeUpdate()>0?true:false;
+                }
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            if(ptm != null) ptm.close();
+            if(conn != null) conn.close();
+        }
+        return check;
+    }
+
+    public boolean updateOptional(List<OptionalshopproductitemDTO> listOptional) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try{
+            conn = DBUtils.getConnection();
+            if(conn != null){
+                for(OptionalshopproductitemDTO option : listOptional){
+                ptm = conn.prepareStatement(UPDATE_OPTIONAL);
+                ptm.setInt(3, option.getOptional_shop_product_item_id());
+                ptm.setString(1, option.getName());
+                ptm.setDouble(2, option.getPrice());
                 check = ptm.executeUpdate()>0?true:false;
                 }
             }

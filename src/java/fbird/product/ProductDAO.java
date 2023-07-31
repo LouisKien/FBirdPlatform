@@ -51,11 +51,12 @@ public class ProductDAO {
             + "ORDER BY\n"
             + "    ospi.price ASC;";
     private static final String ADD_PRODUCT = "INSERT INTO [shop_product_item] VALUES (?,?,?,?,?,?,?,?)";
-    private static final String UPDATE = "UPDATE shop_product_item SET title=?, description=?, inventory=?, status=? WHERE shop_product_item_id=? ";
+    private static final String UPDATE = "UPDATE shop_product_item SET title=?, category_id=?, type_of_bird_id=?, description=?, inventory=?, upload_date=?, status=? WHERE shop_product_item_id=? ";
+    private static final String DELETE = "UPDATE shop_product_item SET status='false' WHERE shop_product_item_id=? ";
     private static final String NEW_VIEW_PRODUCT = "SELECT s.shop_product_item_id, s.shop_id, t.type_of_bird_name, s.title, p.category_name, i.image_1, i.image_2, i.image_3, i.image_4 FROM shop_product_item s JOIN product_category p ON s.category_id = p.category_id LEFT JOIN type_of_bird t ON s.type_of_bird_id = t.type_of_bird_id LEFT JOIN product_image i ON s.shop_product_item_id = i.shop_product_item_id";
-    private static final String VIEW_PRODUCT = "SELECT * FROM shop_product_item where shop_id = ? Order by shop_product_item_id ASC\n" +
-"OFFSET ? ROWS \n" +
-"FETCH FIRST 10 ROWS ONLY;";
+    private static final String VIEW_PRODUCT = "SELECT * FROM shop_product_item where shop_id = ? Order by shop_product_item_id ASC\n"
+            + "OFFSET ? ROWS \n"
+            + "FETCH FIRST 10 ROWS ONLY;";
     private static final String VIEW_PRODUCT_PAGENUMBER_SHOP_ACCOUNT = "SELECT count(*) FROM shop_product_item where shop_id = ?";
     private static final String GET_ID = "SELECT s.* FROM shop_product_item s WHERE shop_id = ? and category_id = ? and type_of_bird_id = ? and inventory = ? and title like N'?' and [upload_date] = '?'";
     private static final String VIEW_SHOP_PRODUCT_ITEM_ID = "SELECT shop_product_item_id FROM shop_product_item where shop_id=?";
@@ -93,22 +94,22 @@ public class ProductDAO {
             + "JOIN dbo.optional_shop_product_item ON min_prices.shop_product_item_id = optional_shop_product_item.shop_product_item_id\n"
             + "    AND optional_shop_product_item.price = min_prices.min_price\n"
             + "ORDER BY optional_shop_product_item.price ASC;";
-    private static final String VIEW_PRODUCT_PAGE ="SELECT shop_product_item.*, image_1, optional_shop_product_item.price, optional_shop_product_item.[name]\n" +
-"            FROM dbo.shop_product_item\n" +
-"            JOIN (\n" +
-"                SELECT shop_product_item_id, MIN(price) AS min_price\n" +
-"                FROM dbo.optional_shop_product_item\n" +
-"                GROUP BY shop_product_item_id\n" +
-"            ) AS min_prices ON shop_product_item.shop_product_item_id = min_prices.shop_product_item_id\n" +
-"            JOIN dbo.optional_shop_product_item ON min_prices.shop_product_item_id = optional_shop_product_item.shop_product_item_id\n" +
-"			JOIN product_image ON shop_product_item.shop_product_item_id = product_image.shop_product_item_id\n" +
-"                AND optional_shop_product_item.price = min_prices.min_price\n" +
-"            ORDER BY optional_shop_product_item.price ASC";
+    private static final String VIEW_PRODUCT_PAGE = "SELECT shop_product_item.*, image_1, optional_shop_product_item.price, optional_shop_product_item.[name]\n"
+            + "            FROM dbo.shop_product_item\n"
+            + "            JOIN (\n"
+            + "                SELECT shop_product_item_id, MIN(price) AS min_price\n"
+            + "                FROM dbo.optional_shop_product_item\n"
+            + "                GROUP BY shop_product_item_id\n"
+            + "            ) AS min_prices ON shop_product_item.shop_product_item_id = min_prices.shop_product_item_id\n"
+            + "            JOIN dbo.optional_shop_product_item ON min_prices.shop_product_item_id = optional_shop_product_item.shop_product_item_id\n"
+            + "			JOIN product_image ON shop_product_item.shop_product_item_id = product_image.shop_product_item_id\n"
+            + "                AND optional_shop_product_item.price = min_prices.min_price\n"
+            + "            ORDER BY optional_shop_product_item.price ASC";
 
     private static final String SEARCH_PRODUCT = "SELECT spi.shop_product_item_id, spi.title, ospi.price, spi.shop_id, pi.image_1 FROM dbo.shop_product_item spi JOIN (SELECT shop_product_item_id, MIN(price) AS min_price FROM dbo.optional_shop_product_item GROUP BY shop_product_item_id ) AS min_prices ON spi.shop_product_item_id = min_prices.shop_product_item_id  JOIN dbo.optional_shop_product_item ospi ON min_prices.shop_product_item_id = ospi.shop_product_item_id AND ospi.price = min_prices.min_price LEFT JOIN product_image pi ON spi.shop_product_item_id = pi.shop_product_item_id WHERE title LIKE ? ORDER BY ospi.price ASC OFFSET ? ROWS FETCH FIRST 10 ROWS ONLY;";
 
     private static final String COUNT_SEARCH_PRODUCT_PAGE = "SELECT count(spi.shop_product_item_id) FROM dbo.shop_product_item spi JOIN (SELECT shop_product_item_id, MIN(price) AS min_price FROM dbo.optional_shop_product_item GROUP BY shop_product_item_id ) AS min_prices ON spi.shop_product_item_id = min_prices.shop_product_item_id  JOIN dbo.optional_shop_product_item ospi ON min_prices.shop_product_item_id = ospi.shop_product_item_id AND ospi.price = min_prices.min_price LEFT JOIN product_image pi ON spi.shop_product_item_id = pi.shop_product_item_id WHERE title LIKE ? ";
-    
+
     private static final String PRODUCT_PAGE_NUMBERPAGE = "SELECT\n"
             + "                count(spi.shop_product_item_id)\n"
             + "            FROM\n"
@@ -126,77 +127,77 @@ public class ProductDAO {
             + "                    AND ospi.price = min_prices.min_price\n"
             + "                LEFT JOIN product_image pi ON spi.shop_product_item_id = pi.shop_product_item_id";
 
-    private static final String VIEW_PRODUCT_PAGE_PAGING="SELECT\n" +
-"                spi.shop_product_item_id,\n" +
-"                spi.title,\n" +
-"                ospi.price,\n" +
-"                spi.shop_id,\n" +
-"                pi.image_1\n" +
-"            FROM\n" +
-"                dbo.shop_product_item spi\n" +
-"                JOIN (\n" +
-"                    SELECT\n" +
-"                        shop_product_item_id,\n" +
-"                        MIN(price) AS min_price\n" +
-"                    FROM\n" +
-"                        dbo.optional_shop_product_item\n" +
-"                    GROUP BY\n" +
-"                        shop_product_item_id\n" +
-"                ) AS min_prices ON spi.shop_product_item_id = min_prices.shop_product_item_id\n" +
-"                JOIN dbo.optional_shop_product_item ospi ON min_prices.shop_product_item_id = ospi.shop_product_item_id\n" +
-"                    AND ospi.price = min_prices.min_price\n" +
-"                LEFT JOIN product_image pi ON spi.shop_product_item_id = pi.shop_product_item_id\n" +
-"            ORDER BY\n" +
-"                spi.shop_product_item_id\n" +
-"				OFFSET ? ROWS\n" +
-"				FETCH FIRST 10 ROWS ONLY;";
-    
-    private static final String CATEGORY_PAGENUMBER = "SELECT\n" +
-"                count(spi.shop_product_item_id)\n" +
-"                \n" +
-"            FROM\n" +
-"                dbo.shop_product_item spi\n" +
-"                JOIN (\n" +
-"                    SELECT\n" +
-"                        shop_product_item_id,\n" +
-"                        MIN(price) AS min_price\n" +
-"                    FROM\n" +
-"                        dbo.optional_shop_product_item\n" +
-"                    GROUP BY\n" +
-"                        shop_product_item_id\n" +
-"                ) AS min_prices ON spi.shop_product_item_id = min_prices.shop_product_item_id\n" +
-"                JOIN dbo.optional_shop_product_item ospi ON min_prices.shop_product_item_id = ospi.shop_product_item_id\n" +
-"                    AND ospi.price = min_prices.min_price\n" +
-"                LEFT JOIN product_image pi ON spi.shop_product_item_id = pi.shop_product_item_id where spi.category_id = ?";
-    
-    private static final String VIEW_CATEGORY_PAGING = "SELECT\n" +
-"                spi.shop_product_item_id,\n" +
-"                spi.title,\n" +
-"                ospi.price,\n" +
-"                spi.shop_id,\n" +
-"                pi.image_1\n" +
-"            FROM\n" +
-"                dbo.shop_product_item spi\n" +
-"                JOIN (\n" +
-"                    SELECT\n" +
-"                        shop_product_item_id,\n" +
-"                        MIN(price) AS min_price\n" +
-"                    FROM\n" +
-"                        dbo.optional_shop_product_item\n" +
-"                    GROUP BY\n" +
-"                        shop_product_item_id\n" +
-"                ) AS min_prices ON spi.shop_product_item_id = min_prices.shop_product_item_id\n" +
-"                JOIN dbo.optional_shop_product_item ospi ON min_prices.shop_product_item_id = ospi.shop_product_item_id\n" +
-"                    AND ospi.price = min_prices.min_price\n" +
-"                LEFT JOIN product_image pi ON spi.shop_product_item_id = pi.shop_product_item_id where spi.category_id = ?\n" +
-"           ORDER BY\n" +
-"                spi.shop_product_item_id\n" +
-"				OFFSET ? ROWS\n" +
-"				FETCH FIRST 10 ROWS ONLY;";
+    private static final String VIEW_PRODUCT_PAGE_PAGING = "SELECT\n"
+            + "                spi.shop_product_item_id,\n"
+            + "                spi.title,\n"
+            + "                ospi.price,\n"
+            + "                spi.shop_id,\n"
+            + "                pi.image_1\n"
+            + "            FROM\n"
+            + "                dbo.shop_product_item spi\n"
+            + "                JOIN (\n"
+            + "                    SELECT\n"
+            + "                        shop_product_item_id,\n"
+            + "                        MIN(price) AS min_price\n"
+            + "                    FROM\n"
+            + "                        dbo.optional_shop_product_item\n"
+            + "                    GROUP BY\n"
+            + "                        shop_product_item_id\n"
+            + "                ) AS min_prices ON spi.shop_product_item_id = min_prices.shop_product_item_id\n"
+            + "                JOIN dbo.optional_shop_product_item ospi ON min_prices.shop_product_item_id = ospi.shop_product_item_id\n"
+            + "                    AND ospi.price = min_prices.min_price\n"
+            + "                LEFT JOIN product_image pi ON spi.shop_product_item_id = pi.shop_product_item_id\n"
+            + "            ORDER BY\n"
+            + "                spi.shop_product_item_id\n"
+            + "				OFFSET ? ROWS\n"
+            + "				FETCH FIRST 10 ROWS ONLY;";
+
+    private static final String CATEGORY_PAGENUMBER = "SELECT\n"
+            + "                count(spi.shop_product_item_id)\n"
+            + "                \n"
+            + "            FROM\n"
+            + "                dbo.shop_product_item spi\n"
+            + "                JOIN (\n"
+            + "                    SELECT\n"
+            + "                        shop_product_item_id,\n"
+            + "                        MIN(price) AS min_price\n"
+            + "                    FROM\n"
+            + "                        dbo.optional_shop_product_item\n"
+            + "                    GROUP BY\n"
+            + "                        shop_product_item_id\n"
+            + "                ) AS min_prices ON spi.shop_product_item_id = min_prices.shop_product_item_id\n"
+            + "                JOIN dbo.optional_shop_product_item ospi ON min_prices.shop_product_item_id = ospi.shop_product_item_id\n"
+            + "                    AND ospi.price = min_prices.min_price\n"
+            + "                LEFT JOIN product_image pi ON spi.shop_product_item_id = pi.shop_product_item_id where spi.category_id = ?";
+
+    private static final String VIEW_CATEGORY_PAGING = "SELECT\n"
+            + "                spi.shop_product_item_id,\n"
+            + "                spi.title,\n"
+            + "                ospi.price,\n"
+            + "                spi.shop_id,\n"
+            + "                pi.image_1\n"
+            + "            FROM\n"
+            + "                dbo.shop_product_item spi\n"
+            + "                JOIN (\n"
+            + "                    SELECT\n"
+            + "                        shop_product_item_id,\n"
+            + "                        MIN(price) AS min_price\n"
+            + "                    FROM\n"
+            + "                        dbo.optional_shop_product_item\n"
+            + "                    GROUP BY\n"
+            + "                        shop_product_item_id\n"
+            + "                ) AS min_prices ON spi.shop_product_item_id = min_prices.shop_product_item_id\n"
+            + "                JOIN dbo.optional_shop_product_item ospi ON min_prices.shop_product_item_id = ospi.shop_product_item_id\n"
+            + "                    AND ospi.price = min_prices.min_price\n"
+            + "                LEFT JOIN product_image pi ON spi.shop_product_item_id = pi.shop_product_item_id where spi.category_id = ?\n"
+            + "           ORDER BY\n"
+            + "                spi.shop_product_item_id\n"
+            + "				OFFSET ? ROWS\n"
+            + "				FETCH FIRST 10 ROWS ONLY;";
     private static final String SINGLE_PRODUCT_ITEM = "select title, type_of_bird_name, category_name, image_1, image_2, image_3, image_4, inventory, description, optional_shop_product_item.name, price, status from shop_product_item join optional_shop_product_item on optional_shop_product_item.shop_product_item_id = shop_product_item.shop_product_item_id join product_category on product_category.category_id = shop_product_item.category_id join type_of_bird on type_of_bird.type_of_bird_id = shop_product_item.type_of_bird_id join product_image on product_image.shop_product_item_id = shop_product_item.shop_product_item_id where shop_product_item.shop_product_item_id = ?";
     private static final String GET_LIST_SHOP_ORDER_ITEM = "SELECT title, optional_shop_product_item.name, sell_price, amount, fullname FROM order_item JOIN optional_shop_product_item ON order_item.optional_shop_product_item_id = optional_shop_product_item.optional_shop_product_item_id JOIN shop_product_item ON optional_shop_product_item.shop_product_item_id = shop_product_item.shop_product_item_id JOIN customer_order ON order_item.order_id = customer_order.order_id JOIN customer ON customer_order.customer_id = customer.customer_id where shop_id = ?";
     private static final String GET_DASHBOARD = "SELECT (SELECT count(shop_product_item_id) FROM shop_product_item WHERE shop_id = ?) as total_product, (SELECT count(order_item_id) FROM order_item JOIN optional_shop_product_item ON optional_shop_product_item.optional_shop_product_item_id = order_item.optional_shop_product_item_id JOIN shop_product_item ON shop_product_item.shop_product_item_id = optional_shop_product_item.shop_product_item_id WHERE shop_id = ?) as total_order, (SELECT SUM(amount) FROM order_item JOIN optional_shop_product_item ON optional_shop_product_item.optional_shop_product_item_id = order_item.optional_shop_product_item_id JOIN shop_product_item ON shop_product_item.shop_product_item_id = optional_shop_product_item.shop_product_item_id WHERE shop_id = ?) as total_unit_sell, (SELECT SUM(sell_price * amount) FROM order_item JOIN optional_shop_product_item ON optional_shop_product_item.optional_shop_product_item_id = order_item.optional_shop_product_item_id JOIN shop_product_item ON shop_product_item.shop_product_item_id = optional_shop_product_item.shop_product_item_id WHERE shop_id = ?) as revenue";
-    
+
     public int checkTypeOfBird(String typeOfBird) throws ClassNotFoundException, SQLException {
         int id = 0;
         Connection conn = null;
@@ -270,10 +271,13 @@ public class ProductDAO {
             if (conn != null) {
                 ptm = conn.prepareStatement(UPDATE);
                 ptm.setString(1, product.getTitle());
-                ptm.setString(2, product.getDescription());
-                ptm.setInt(3, product.getInventory());
-                ptm.setInt(4, product.getStatus());
-                ptm.setInt(5, product.getShopProductItemID());
+                ptm.setInt(2, product.getCategoryID());
+                ptm.setInt(3, product.getTypeOfBirdID());
+                ptm.setString(4, product.getDescription());
+                ptm.setInt(5, product.getInventory());
+                ptm.setDate(6, java.sql.Date.valueOf(java.time.LocalDate.now()));
+                ptm.setInt(7, product.getStatus());
+                ptm.setInt(8, product.getShopProductItemID());
                 check = ptm.executeUpdate() > 0 ? true : false;
             }
         } finally {
@@ -286,8 +290,9 @@ public class ProductDAO {
         }
         return check;
     }
+
     public int getNumberProductPageShopAccount(int shop_id) throws SQLException {
-        
+
         Connection conn = null;
         PreparedStatement ptm = null;
         ResultSet rs = null;
@@ -300,8 +305,8 @@ public class ProductDAO {
                 while (rs.next()) {
                     int total = rs.getInt(1);
                     int countPage = 0;
-                    countPage = total/10;
-                    if(total % 10 != 0){
+                    countPage = total / 10;
+                    if (total % 10 != 0) {
                         countPage++;
                     }
                     return countPage;
@@ -322,7 +327,6 @@ public class ProductDAO {
         }
         return 0;
     }
-    
 
     public List<ProductDTO> getListProduct(int shop_id, int index) throws SQLException {
         List<ProductDTO> list = new ArrayList<>();
@@ -334,7 +338,7 @@ public class ProductDAO {
             if (conn != null) {
                 ptm = conn.prepareStatement(VIEW_PRODUCT);
                 ptm.setInt(1, shop_id);
-                ptm.setInt(2, (index-1)*10);
+                ptm.setInt(2, (index - 1) * 10);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
                     int shopProductItemID = rs.getInt("shop_product_item_id");
@@ -528,8 +532,9 @@ public class ProductDAO {
         }
         return list;
     }
+
     public int getNumberProductPage() throws SQLException {
-        
+
         Connection conn = null;
         PreparedStatement ptm = null;
         ResultSet rs = null;
@@ -541,8 +546,8 @@ public class ProductDAO {
                 while (rs.next()) {
                     int total = rs.getInt(1);
                     int countPage = 0;
-                    countPage = total/10;
-                    if(total % 5 != 0){
+                    countPage = total / 10;
+                    if (total % 5 != 0) {
                         countPage++;
                     }
                     return countPage;
@@ -563,6 +568,7 @@ public class ProductDAO {
         }
         return 0;
     }
+
     public List<ProductDTO> getProductPaging(int index) throws SQLException {
         List<ProductDTO> list = new ArrayList<>();
         Connection conn = null;
@@ -601,7 +607,7 @@ public class ProductDAO {
         }
         return list;
     }
-    
+
     public List<ProductDTO> getShopProductItemId(int shop_id) throws SQLException {
         List<ProductDTO> list = new ArrayList<>();
         Connection conn = null;
@@ -704,9 +710,9 @@ public class ProductDAO {
         }
         return list;
     }
-    
+
     public int getNumberSearchPage(String search) throws SQLException {
-        
+
         Connection conn = null;
         PreparedStatement ptm = null;
         ResultSet rs = null;
@@ -719,8 +725,8 @@ public class ProductDAO {
                 while (rs.next()) {
                     int total = rs.getInt(1);
                     int countPage = 0;
-                    countPage = total/10;
-                    if(total % 5 != 0){
+                    countPage = total / 10;
+                    if (total % 5 != 0) {
                         countPage++;
                     }
                     return countPage;
@@ -741,15 +747,15 @@ public class ProductDAO {
         }
         return 0;
     }
-    
+
     public int getID(ProductDTO product) throws SQLException, ClassNotFoundException {
         int shopProductItemID = 0;
         Connection conn = null;
         PreparedStatement ptm = null;
         ResultSet rs = null;
-        try{
+        try {
             conn = DBUtils.getConnection();
-            if(conn != null){
+            if (conn != null) {
                 ptm = conn.prepareStatement(GET_ID);
                 ptm.setInt(1, product.getShopID());
                 ptm.setInt(2, product.getCategoryID());
@@ -758,23 +764,29 @@ public class ProductDAO {
                 ptm.setString(5, product.getShop_name());
                 ptm.setDate(6, (Date) product.getUploadDate());
                 rs = ptm.executeQuery();
-                if(rs.next()){
+                if (rs.next()) {
                     shopProductItemID = rs.getInt("shop_product_item_id");
                 }
-                
+
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally{
-            if(rs != null) rs.close();
-            if(ptm != null) ptm.close();
-            if(conn != null) conn.close();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return shopProductItemID;
     }
-    
+
     public int getNumberCategoryPage(int categoryID) throws SQLException {
-        
+
         Connection conn = null;
         PreparedStatement ptm = null;
         ResultSet rs = null;
@@ -787,8 +799,8 @@ public class ProductDAO {
                 while (rs.next()) {
                     int total = rs.getInt(1);
                     int countPage = 0;
-                    countPage = total/10;
-                    if(total % 5 != 0){
+                    countPage = total / 10;
+                    if (total % 5 != 0) {
                         countPage++;
                     }
                     return countPage;
@@ -809,6 +821,7 @@ public class ProductDAO {
         }
         return 0;
     }
+
     public List<ProductDTO> getCategoryPaging(int index, int categoryID) throws SQLException {
         List<ProductDTO> list = new ArrayList<>();
         Connection conn = null;
@@ -890,7 +903,7 @@ public class ProductDAO {
             ptm = conn.prepareStatement(SINGLE_PRODUCT_ITEM);
             ptm.setInt(1, shop_product_item_id);
             rs = ptm.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 String title = rs.getString("title");
                 String type_of_bird_name = rs.getString("type_of_bird_name");
                 String category_name = rs.getString("category_name");
@@ -920,6 +933,7 @@ public class ProductDAO {
         }
         return detail;
     }
+
     public boolean addImageProduct(int shopProductItemID, String productImage) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -930,7 +944,7 @@ public class ProductDAO {
                 ptm = conn.prepareStatement(ADD_IMAGE_PRODUCT);
                 ptm.setInt(1, shopProductItemID);
                 ptm.setString(2, productImage);
-                check = ptm.executeUpdate() > 0? true : false;
+                check = ptm.executeUpdate() > 0 ? true : false;
 
             }
         } catch (Exception e) {
@@ -956,7 +970,7 @@ public class ProductDAO {
             ptm = conn.prepareStatement(GET_LIST_SHOP_ORDER_ITEM);
             ptm.setInt(1, shop_id);
             rs = ptm.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 String title = rs.getString("title");
                 String name = rs.getString("name");
                 double sell_price = rs.getDouble("sell_price");
@@ -967,6 +981,7 @@ public class ProductDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
+
             if (rs != null) {
                 rs.close();
             }
@@ -976,8 +991,39 @@ public class ProductDAO {
             if (conn != null) {
                 conn.close();
             }
+            return list;
         }
-        return list;
+    }
+    
+
+    
+
+    
+
+    public boolean delete(int productShopItemID) throws SQLException{
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(DELETE);
+                ptm.setInt(1, productShopItemID);
+                check = ptm.executeUpdate() > 0 ? true : false;
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
     }
 
     public ProductDTO getDashboard(int shop_id) throws SQLException {
@@ -997,13 +1043,13 @@ public class ProductDAO {
             ptm.setInt(3, shop_id);
             ptm.setInt(4, shop_id);
             rs = ptm.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 total_product = rs.getInt("total_product");
                 total_order = rs.getInt("total_order");
                 total_unit_sell = rs.getInt("total_unit_sell");
                 revenue = rs.getDouble("revenue");
             }
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

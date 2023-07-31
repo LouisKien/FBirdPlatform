@@ -78,7 +78,7 @@
                 </div>
             </div>
             <!-- /#sidebar-wrapper -->
-            
+
             <!-- Page Content -->
             <div id="page-content-wrapper">
                 <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
@@ -109,7 +109,10 @@
                         </ul>
                     </div>
                 </nav>
-
+                <%
+List<CategoryDTO> listCategory = (List<CategoryDTO>) request.getAttribute("CATEGORY");
+List<TypeOfBirdDTO> listTypeOfBird = (List<TypeOfBirdDTO>) request.getAttribute("TYPE_OF_BIRD");
+                %>
                 <div class="container-fluid px-4">
 
                     <div class="row my-5">
@@ -122,53 +125,79 @@
                                         if(detail != null){
                                         if(detail.size() > 0){
                                     %>
+                                    <input type="hidden" name="shopProductItemID" value="<%= detail.get(0).getShopProductItemID()%>">
                                     <label for="productName" style="font-size: 18px; font-weight: bold;" >Tên sản phẩm:  </label> <input type="text" id="productName" name="productName" value="<%= detail.get(0).getTitle()%>" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
                                     <label for="typeOfBird" style="font-size: 18px; font-weight: bold;">Dành cho chim: </label> 
                                     <select id="typeOfBird" name="typeOfBird" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
-                                        <option value=""><%= detail.get(0).getType_of_bird_name()%></option>
-                                       
+
+                                        <%
+                                        for (TypeOfBirdDTO bird : listTypeOfBird){
+                                        if(bird.getType_of_bird_name().equals(detail.get(0).getType_of_bird_name())){
+                                        %>
+                                        <option value="<%= bird.getType_of_bird_id() %>"><%= bird.getType_of_bird_name() %></option>
+                                        <%
+                                            }
+                                            }
+                                        %>
+                                        <%
+                                        for (TypeOfBirdDTO bird : listTypeOfBird){
+                                        if(!bird.getType_of_bird_name().equals(detail.get(0).getType_of_bird_name())){
+                                        %>
+                                        <option value="<%= bird.getType_of_bird_id() %>"><%= bird.getType_of_bird_name() %></option>
+                                        <%
+                                            }
+                                            }
+                                        %>
+
+
+
                                     </select>
                                     <label for="typeProduct" style="font-size: 18px; font-weight: bold;">Loại hàng:</label>
                                     <select id="typeProduct" name="typeProduct" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
-                                        <option value=""><%= detail.get(0).getCategory_name()%></option>
-                                        
+                                        <%
+                                        for (CategoryDTO cate : listCategory){
+                                        if(cate.getCategoryName().equals(detail.get(0).getCategory_name())){
+                                        %>
+                                        <option value="<%= cate.getCategoryID() %>"><%= cate.getCategoryName() %></option>
+                                        <%
+                                            }
+                                            }
+                                        %>
+                                        <%
+                                        for (CategoryDTO cate : listCategory){
+                                        if(!cate.getCategoryName().equals(detail.get(0).getCategory_name())){
+                                        %>
+                                        <option value="<%= cate.getCategoryID() %>"><%= cate.getCategoryName() %></option>
+                                        <%
+                                            }
+                                            }
+                                        %>
+
                                     </select>
-                                    <span style="font-size: 18px; font-weight: bold;">Ảnh sản phẩm:</span> <input type="file" name="productImage" id="productImage" accept="image/*">
-                                        <script>
-                                            tinymce.init({
-                                                selector: '#productImage'
-                                            });
-                                                </script>
-                                                <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng sản phẩm:  </label> <input type="text" id="productName" name="inventory" value="<%= detail.get(0).getInventory()%>" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-                                                <label for="description" style="font-size: 18px; font-weight: bold;">Mô tả sản phẩm:</label> <input type="text" id="description" name="description" value="<%= detail.get(0).getDescription()%>" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-                                    <span style="font-size: 18px; font-weight: bold;">---------------------------------------------------Tùy chọn--------------------------------------------------------</span>
-                                    
+
+                                    <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng sản phẩm:  </label> <input type="text" id="productName" name="inventory" value="<%= detail.get(0).getInventory()%>" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <label for="description" style="font-size: 18px; font-weight: bold;">Mô tả sản phẩm:</label> <input type="text" id="description" name="description" value="<%= detail.get(0).getDescription()%>" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
                                     <%
-                                        int count = 0;
-                                        for(ProductDTO d: detail){
-                                        
-                                        count++;
+                                    if(detail.size() == 2){
                                     %>
-                                    <label for="option1" style="font-size: 18px; font-weight: bold;">Tùy chọn <%= count%>:</label> <input type="text" id="description" name="option1" placeholder="Nhập tùy chọn" value="<%= d.getNameOption()%>" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-                                    <label for="priceOption1" style="font-size: 18px; font-weight: bold;">Giá tùy chọn <%= count%>:</label> <input type="number" id="description" name="priceOption1" placeholder="Nhập giá" value="<%= d.getPriceView()%>" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-                                    <%}%>
-<!--                                    <label for="option2" style="font-size: 18px; font-weight: bold;">Tùy chọn 2:</label> <input type="text" id="description" name="option2" placeholder="Nhập tùy chọn" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-                                    <label for="priceOption2" style="font-size: 18px; font-weight: bold;">Giá tùy chọn 2:</label> <input type="number" id="description" name="priceOption2" placeholder="Nhập giá" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-                                    <label for="option3" style="font-size: 18px; font-weight: bold;">Tùy chọn 3:</label> <input type="text" id="description" name="option3" placeholder="Nhập tùy chọn" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-                                    <label for="priceOption3" style="font-size: 18px; font-weight: bold;">Giá tùy chọn 3:</label> <input type="number" id="description" name="priceOption3" placeholder="Nhập giá" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-                                    <label for="option4" style="font-size: 18px; font-weight: bold;">Tùy chọn 4:</label> <input type="text" id="description" name="option4" placeholder="Nhập tùy chọn" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-                                    <label for="priceOption4" style="font-size: 18px; font-weight: bold;">Giá tùy chọn 4:</label> <input type="number" id="description" name="priceOption4" placeholder="Nhập giá" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-                                    <label for="option5" style="font-size: 18px; font-weight: bold;">Tùy chọn 5:</label> <input type="text" id="description" name="option5" placeholder="Nhập tùy chọn" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-                                    <label for="priceOption5" style="font-size: 18px; font-weight: bold;">Giá tùy chọn 5:</label> <input type="number" id="description" name="priceOption5" placeholder="Nhập giá" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>-->
-                                    </div>
-
-                                    <%}}%>
-
+                                    <span style="font-size: 18px; font-weight: bold;">---------------------------------------------------Tùy chọn--------------------------------------------------------</span>
+                                    <label for="option1" style="font-size: 18px; font-weight: bold;">Tùy chọn 1:</label> <input type="text" id="description" name="option1" placeholder="Nhập tùy chọn" value="<%= detail.get(0).getNameOption()%>" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <label for="priceOption1" style="font-size: 18px; font-weight: bold;">Giá tùy chọn 1:</label> <input type="number" id="description" name="priceOption1" placeholder="Nhập giá" value="<%= detail.get(0).getPriceView()%>" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <label for="option2" style="font-size: 18px; font-weight: bold;">Tùy chọn 2:</label> <input type="text" id="description" name="option1" placeholder="Nhập tùy chọn" value="<%= detail.get(1).getNameOption()%>" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <label for="priceOption2" style="font-size: 18px; font-weight: bold;">Giá tùy chọn 2:</label> <input type="number" id="description" name="priceOption1" placeholder="Nhập giá" value="<%= detail.get(1).getPriceView()%>" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <%
+                                        }
+                                    %>
+                                    
                                 </div>
 
+                                <%}}%>
 
-                                <button type="submit" name="action" value="Create Product" class="btn btn-primary" style="margin-top: 30px; border-radius: 20px;">Cập nhật</button>
-                                <!--<input type="button" name="action" value="Create" style="margin-top: 30px; border-radius: 20px;/>-->
+                            </div>
+
+
+
+                            <!--<input type="button" name="action" value="Create" style="margin-top: 30px; border-radius: 20px;/>-->
                         </form>
                     </div>
                 </div>

@@ -193,9 +193,8 @@ public class MainController extends HttpServlet {
             }else if (VIEW_SHOP_DASHBOARD.equals(action)) {
                 url = VIEW_SHOP_DASHBOARD_CONTROLLER;
 
-
-            
             }
+            
             else {
                 request.setAttribute("ERROR", "Your ACTION is not support");
             }

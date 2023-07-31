@@ -12,6 +12,7 @@ import java.util.Date;
  * @author louis
  */
 public class ProductDTO {
+
     private int shopProductItemID;
     private int shopID;
     private int categoryID;
@@ -25,17 +26,39 @@ public class ProductDTO {
     private String image_2;
     private String image_3;
     private String image_4;
-    
+
     private String type_of_bird_name;
     private String category_name;
     private String shop_name;
-    private String avatar;  
+    private String avatar;
     private Double price;
     private String nameOption;
     private double priceView;
+    private double sell_price;
+    private int amount;
+    private String fullname;
 
+    private int total_product;
+    private int total_unit_sell;
+    private int total_order;
+    private double revenue;
 
     public ProductDTO() {
+    }
+
+    public ProductDTO(int total_product, int total_order, int total_unit_sell, double revenue) {
+        this.total_product = total_product;
+        this.total_order = total_order;
+        this.total_unit_sell = total_unit_sell;
+        this.revenue = revenue;
+    }
+    
+    public ProductDTO(String title, String name, double sell_price, int amount, String fullname) {
+        this.title = title;
+        this.nameOption = name;
+        this.sell_price = sell_price;
+        this.amount = amount;
+        this.fullname = fullname;
     }
 
     public ProductDTO(int shopID, int categoryID, int typeOfBirdID, String title, String description, int inventory, Date uploadDate, byte status) {
@@ -58,7 +81,7 @@ public class ProductDTO {
         this.price = price;
         this.shop_name = shop_name;
     }
-    
+
     public ProductDTO(int shopProductItemID, int shopID, int categoryID, int typeOfBirdID, String title, String description, int inventory, Date uploadDate, byte status) {
         this.shopProductItemID = shopProductItemID;
         this.shopID = shopID;
@@ -71,11 +94,8 @@ public class ProductDTO {
         this.status = status;
     }
 
-
     public ProductDTO(int shopID, int shopProductItemID, String title, String description, int inventory, Date uploadDate, byte status, String image_1, String image_2, String image_3, String image_4, String type_of_bird_name, String shop_name, String avatar) {
         this.shopProductItemID = shopProductItemID;
-
-   
 
         this.shopID = shopID;
         this.title = title;
@@ -87,11 +107,11 @@ public class ProductDTO {
         this.image_2 = image_2;
         this.image_3 = image_3;
         this.image_4 = image_4;
-        
+
         this.type_of_bird_name = type_of_bird_name;
         this.shop_name = shop_name;
         this.avatar = avatar;
-        
+
     }
 
     public ProductDTO(int shopProductItemID, int shopID, String title, String image_1, Double price) {
@@ -171,13 +191,10 @@ public class ProductDTO {
         this.priceView = priceView;
     }
 
-    
-    
     public ProductDTO(int shopProductItemID) {
         this.shopProductItemID = shopProductItemID;
     }
 
-    
     public int getShopProductItemID() {
         return shopProductItemID;
     }
@@ -185,7 +202,6 @@ public class ProductDTO {
     public void setShopProductItemID(int shopProductItemID) {
         this.shopProductItemID = shopProductItemID;
     }
-    
 
     public int getShopID() {
         return shopID;
@@ -251,7 +267,6 @@ public class ProductDTO {
         this.status = status;
     }
 
-
     public String getImage_1() {
         return image_1;
     }
@@ -283,7 +298,6 @@ public class ProductDTO {
     public void setImage_4(String image_4) {
         this.image_4 = image_4;
     }
-
 
     public String getType_of_bird_name() {
         return type_of_bird_name;
@@ -317,8 +331,6 @@ public class ProductDTO {
         this.avatar = avatar;
     }
 
-
-
     public Double getPrice() {
         return price;
     }
@@ -326,6 +338,7 @@ public class ProductDTO {
     public void setPrice(Double price) {
         this.price = price;
     }
+
     public String getNameOption() {
         return nameOption;
     }
@@ -343,7 +356,61 @@ public class ProductDTO {
 
     }
 
-  
+    public double getSell_price() {
+        return sell_price;
+    }
+
+    public void setSell_price(double sell_price) {
+        this.sell_price = sell_price;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    public int getTotal_product() {
+        return total_product;
+    }
+
+    public void setTotal_product(int total_product) {
+        this.total_product = total_product;
+    }
+
+    public int getTotal_unit_sell() {
+        return total_unit_sell;
+    }
+
+    public void setTotal_unit_sell(int total_unit_sell) {
+        this.total_unit_sell = total_unit_sell;
+    }
+
+    public int getTotal_order() {
+        return total_order;
+    }
+
+    public void setTotal_order(int total_order) {
+        this.total_order = total_order;
+    }
+
+    public double getRevenue() {
+        return revenue;
+    }
+
+    public void setRevenue(double revenue) {
+        this.revenue = revenue;
+    }
 
     
 }

@@ -169,9 +169,17 @@
         <servlet-class>fbird.controller.ViewProductDetailInShopDashboardController</servlet-class>
     </servlet>
     <servlet>
-    <servlet-name>ViewCustomerOrderController</servlet-name>
+        <servlet-name>ViewCustomerOrderController</servlet-name>
         <servlet-class>fbird.controller.ViewCustomerOrderController</servlet-class>
-        </servlet>
+    </servlet>
+    <servlet>
+        <servlet-name>AddProductController</servlet-name>
+        <servlet-class>fbird.controller.AddProductController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UploadController</servlet-name>
+        <servlet-class>fbird.controller.UploadController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -343,10 +351,18 @@
         <servlet-name>ViewProductDetailInShopDashboardController</servlet-name>
         <url-pattern>/ViewProductDetailInShopDashboardController</url-pattern>
     </servlet-mapping>
-     <servlet-mapping>
-    <servlet-name>ViewCustomerOrderController</servlet-name>
+    <servlet-mapping>
+        <servlet-name>ViewCustomerOrderController</servlet-name>
         <url-pattern>/ViewCustomerOrderController</url-pattern>
-        </servlet-mapping>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddProductController</servlet-name>
+        <url-pattern>/AddProductController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UploadController</servlet-name>
+        <url-pattern>/UploadController</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             86400

@@ -10,6 +10,7 @@ import fbird.product.ProductDAO;
 import fbird.product.ProductDTO;
 import fbird.user.UserDTO;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,15 +18,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.crypto.AEADBadTagException;
+
 
 /**
  *
@@ -35,7 +33,7 @@ import javax.crypto.AEADBadTagException;
 public class AddProductController extends HttpServlet {
 
     private static final String ERROR = "themSanPham.jsp";
-    private static final String SUCCESS = "ViewProduct";
+    private static final String SUCCESS = "addimage.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

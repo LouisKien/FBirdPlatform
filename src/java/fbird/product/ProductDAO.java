@@ -20,6 +20,7 @@ import java.util.List;
 public class ProductDAO {
 
     private static final String GET_BIRD = "SELECT [type_of_bird_id] FROM type_of_bird WHERE [name] like ?";
+    private static final String ADD_IMAGE_PRODUCT = "INSERT INTO product_image(shop_product_item_id, image_1) VALUES (?, ?) ";
     private static final String GET_ID1 = "SELECT TOP 1 shop_product_item_id\n"
             + "FROM shop_product_item\n"
             + "ORDER BY shop_product_item_id DESC;";
@@ -916,5 +917,30 @@ public class ProductDAO {
             }
         }
         return detail;
+    }
+    public boolean addImageProduct(int shopProductItemID, String productImage) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(ADD_IMAGE_PRODUCT);
+                ptm.setInt(1, shopProductItemID);
+                ptm.setString(2, productImage);
+                check = ptm.executeUpdate() > 0? true : false;
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
     }
 }

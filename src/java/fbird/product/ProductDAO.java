@@ -192,6 +192,8 @@ public class ProductDAO {
 "                spi.shop_product_item_id\n" +
 "				OFFSET ? ROWS\n" +
 "				FETCH FIRST 10 ROWS ONLY;";
+    private static final String SINGLE_PRODUCT_ITEM = "select title, type_of_bird_name, category_name, image_1, image_2, image_3, image_4, inventory, description, optional_shop_product_item.name, price, status from shop_product_item join optional_shop_product_item on optional_shop_product_item.shop_product_item_id = shop_product_item.shop_product_item_id join product_category on product_category.category_id = shop_product_item.category_id join type_of_bird on type_of_bird.type_of_bird_id = shop_product_item.type_of_bird_id join product_image on product_image.shop_product_item_id = shop_product_item.shop_product_item_id where shop_product_item.shop_product_item_id = ?";
+    
     public int checkTypeOfBird(String typeOfBird) throws ClassNotFoundException, SQLException {
         int id = 0;
         Connection conn = null;
@@ -873,5 +875,46 @@ public class ProductDAO {
             }
         }
         return shopProductItemID;
+    }
+
+    public List<ProductDTO> getSingleProductDetail(int shop_product_item_id) throws SQLException {
+        List<ProductDTO> detail = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            ptm = conn.prepareStatement(SINGLE_PRODUCT_ITEM);
+            ptm.setInt(1, shop_product_item_id);
+            rs = ptm.executeQuery();
+            while (rs.next()){
+                String title = rs.getString("title");
+                String type_of_bird_name = rs.getString("type_of_bird_name");
+                String category_name = rs.getString("category_name");
+                String image_1 = rs.getString("image_1");
+                String image_2 = rs.getString("image_2");
+                String image_3 = rs.getString("image_3");
+                String image_4 = rs.getString("image_4");
+                int inventory = rs.getInt("inventory");
+                String description = rs.getString("description");
+                String name = rs.getString("name");
+                double price = rs.getDouble("price");
+                byte status = rs.getByte("status");
+                detail.add(new ProductDTO(shop_product_item_id, title, description, inventory, status, image_1, image_2, image_3, image_4, type_of_bird_name, category_name, price, name, price));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return detail;
     }
 }

@@ -4,44 +4,38 @@
  */
 package fbird.controller;
 
+import fbird.product.ProductDAO;
+import fbird.product.ProductDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import fbird.order.OrderDTO;
-import fbird.order.OrderDAO;
 import java.util.List;
 
 /**
  *
- * @author Admin
+ * @author Louis Kien
  */
-public class ViewCustomerOrderController extends HttpServlet {
+public class ViewProductDetailInShopDashboardController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    private static final String ERROR = "productDetailForShop.jsp";
+    private static final String SUCCESS = "productDetailForShop.jsp";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-         String url = "orderCustomer.jsp";
+        String url = ERROR;
         try {
-             int customer_id = Integer.parseInt(request.getParameter("customer_id"));
-              OrderDAO dao = new OrderDAO();
-               List<OrderDTO> listOrder = dao.getAllCustomerOrder(customer_id);        
-               if (!listOrder.isEmpty()) {
-                   request.setAttribute("LIST_ORDER", listOrder);
-               }
-        }catch (Exception ex) {
-            log("Error at Search: " + ex.toString());
+            int shop_product_item_id = Integer.parseInt(request.getParameter("shop_product_item_id"));
+            ProductDAO dao = new ProductDAO();
+            List<ProductDTO> detail = dao.getSingleProductDetail(shop_product_item_id);
+            if(detail.size() > 0){
+                request.setAttribute("PRODUCT_DETAIL",detail);
+                url = SUCCESS;
+            }
+        } catch (Exception e) {
+            log("Error at ViewProductDetailInShopDashboardController: " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

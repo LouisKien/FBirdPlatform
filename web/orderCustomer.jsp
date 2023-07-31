@@ -1,6 +1,8 @@
 
 <%@page import="fbird.user.UserDTO"%>
+<%@page import="fbird.order.OrderDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
 <%-- 
     Document   : userProfile
     Created on : Jun 13, 2023, 1:18:21 PM
@@ -245,16 +247,27 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                <% 
+                                    List<OrderDTO> listOrder = (List<OrderDTO>) request.getAttribute("LIST_ORDER");
+                                    if (listOrder != null && !listOrder.isEmpty()) {
+                                        int count = 0;
+            
+                                        for (OrderDTO listOD : listOrder) {
+                                        count++;
+                                    %>
+                                
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>Cám chim 1</td>
+                                        <th scope="row"><%=count%></th>
+                                        <td><%=listOD.getTitle()%></td>
                                         
-                                        <td>$1200</td>
-                                        <td>Đã giao</td>
-                                        <td>1/1/2023</td>
-                                        <td>Hỏa tốc</td>
+                                        <td><%=listOD.getTotal_price_order()%></td>
+                                        <td><%=listOD.getStatus()%></td>
+                                        <td><%=listOD.getOrder_date()%></td>
+                                        <td><%=listOD.getName()%></td>
                                     </tr>
-                                    <tr>
+                                    <%}}
+                                    %>
+<!--                                    <tr>
                                         <th scope="row">2</th>
                                         <td>Cám chim 2</td>
                                         
@@ -352,7 +365,7 @@
                                         <td>Đã hủy</td>
                                         <td>1/1/2023</td>
                                         <td>Hỏa tốc</td>
-                                    </tr>
+                                    </tr>-->
                                 </tbody>
                             </table>
                         </div>

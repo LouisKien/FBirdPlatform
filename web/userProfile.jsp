@@ -175,11 +175,15 @@
                                         </li>
 
                                         <li>
-                                            <a href="orderCustomer.jsp">
+                                            <%
+                            if(loginUser != null) {
+                        %>
+                                            <a href="MainController?action=ViewCustomerOrder&customer_id=<%= loginUser.getCustomer_id() %>">
                                                 <div class="color-item">
                                                     <span class="color-name">Đơn hàng của bạn</span>
                                                 </div>
                                             </a>
+                                                <%}%>
                                         </li>
 
                                         <li>

@@ -269,7 +269,7 @@
                                             <%= pro.getStatus() %>
                                         </td>
                                         <td style="text-align: center">
-                                            <a href="productDetailForShop.jsp"><i class="fa-solid fa-pen-to-square"></i></a>
+                                            <a href="MainController?action=ViewProductDetailInShopDashboard&shop_product_item_id=<%= pro.getShopProductItemID() %>"><i class="fa-solid fa-pen-to-square"></i></a>
                                             <i class="fa-solid fa-trash"></i>
                                         <td>
                                     </tr>

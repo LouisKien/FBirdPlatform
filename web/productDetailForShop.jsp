@@ -1,5 +1,6 @@
 <%@page import="fbird.category.CategoryDTO"%>
 <%@page import="fbird.typeofbird.TypeOfBirdDTO"%>
+<%@page import="fbird.product.ProductDTO"%>
 <%@page import="java.util.List"%>
 
 <!DOCTYPE html>
@@ -116,15 +117,20 @@
                         <form action="MainController">
                             <div class="col">
                                 <div class="container" style="display: grid; grid-template-rows: repeat(4,0fr); gap:10px;">
-                                    <label for="productName" style="font-size: 18px; font-weight: bold;" >Tên sản phẩm:  </label> <input type="text" id="productName" name="productName" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <%
+                                        List<ProductDTO> detail = (List<ProductDTO>) request.getAttribute("PRODUCT_DETAIL");
+                                        if(detail != null){
+                                        if(detail.size() > 0){
+                                    %>
+                                    <label for="productName" style="font-size: 18px; font-weight: bold;" >Tên sản phẩm:  </label> <input type="text" id="productName" name="productName" value="<%= detail.get(0).getTitle()%>" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
                                     <label for="typeOfBird" style="font-size: 18px; font-weight: bold;">Dành cho chim: </label> 
                                     <select id="typeOfBird" name="typeOfBird" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
-                                        <option value="">Loại chim</option>
+                                        <option value=""><%= detail.get(0).getType_of_bird_name()%></option>
                                        
                                     </select>
                                     <label for="typeProduct" style="font-size: 18px; font-weight: bold;">Loại hàng:</label>
                                     <select id="typeProduct" name="typeProduct" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
-                                        <option value="">Loại hàng</option>
+                                        <option value=""><%= detail.get(0).getCategory_name()%></option>
                                         
                                     </select>
                                     <span style="font-size: 18px; font-weight: bold;">Ảnh sản phẩm:</span> <input type="file" name="productImage" id="productImage" accept="image/*">
@@ -133,22 +139,30 @@
                                                 selector: '#productImage'
                                             });
                                                 </script>
-                                    <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng sản phẩm:  </label> <input type="text" id="productName" name="inventory" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-                                    <label for="description" style="font-size: 18px; font-weight: bold;">Mô tả sản phẩm:</label> <input type="text" id="description" name="description" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                                <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng sản phẩm:  </label> <input type="text" id="productName" name="inventory" value="<%= detail.get(0).getInventory()%>" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                                <label for="description" style="font-size: 18px; font-weight: bold;">Mô tả sản phẩm:</label> <input type="text" id="description" name="description" value="<%= detail.get(0).getDescription()%>" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
                                     <span style="font-size: 18px; font-weight: bold;">---------------------------------------------------Tùy chọn--------------------------------------------------------</span>
-                                    <label for="option1" style="font-size: 18px; font-weight: bold;">Tùy chọn 1:</label> <input type="text" id="description" name="option1" placeholder="Nhập tùy chọn" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-                                    <label for="priceOption1" style="font-size: 18px; font-weight: bold;">Giá tùy chọn 1:</label> <input type="number" id="description" name="priceOption1" placeholder="Nhập giá" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-                                    <label for="option2" style="font-size: 18px; font-weight: bold;">Tùy chọn 2:</label> <input type="text" id="description" name="option2" placeholder="Nhập tùy chọn" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    
+                                    <%
+                                        int count = 0;
+                                        for(ProductDTO d: detail){
+                                        
+                                        count++;
+                                    %>
+                                    <label for="option1" style="font-size: 18px; font-weight: bold;">Tùy chọn <%= count%>:</label> <input type="text" id="description" name="option1" placeholder="Nhập tùy chọn" value="<%= d.getNameOption()%>" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <label for="priceOption1" style="font-size: 18px; font-weight: bold;">Giá tùy chọn <%= count%>:</label> <input type="number" id="description" name="priceOption1" placeholder="Nhập giá" value="<%= d.getPriceView()%>" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <%}%>
+<!--                                    <label for="option2" style="font-size: 18px; font-weight: bold;">Tùy chọn 2:</label> <input type="text" id="description" name="option2" placeholder="Nhập tùy chọn" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
                                     <label for="priceOption2" style="font-size: 18px; font-weight: bold;">Giá tùy chọn 2:</label> <input type="number" id="description" name="priceOption2" placeholder="Nhập giá" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
                                     <label for="option3" style="font-size: 18px; font-weight: bold;">Tùy chọn 3:</label> <input type="text" id="description" name="option3" placeholder="Nhập tùy chọn" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
                                     <label for="priceOption3" style="font-size: 18px; font-weight: bold;">Giá tùy chọn 3:</label> <input type="number" id="description" name="priceOption3" placeholder="Nhập giá" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
                                     <label for="option4" style="font-size: 18px; font-weight: bold;">Tùy chọn 4:</label> <input type="text" id="description" name="option4" placeholder="Nhập tùy chọn" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
                                     <label for="priceOption4" style="font-size: 18px; font-weight: bold;">Giá tùy chọn 4:</label> <input type="number" id="description" name="priceOption4" placeholder="Nhập giá" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
                                     <label for="option5" style="font-size: 18px; font-weight: bold;">Tùy chọn 5:</label> <input type="text" id="description" name="option5" placeholder="Nhập tùy chọn" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-                                    <label for="priceOption5" style="font-size: 18px; font-weight: bold;">Giá tùy chọn 5:</label> <input type="number" id="description" name="priceOption5" placeholder="Nhập giá" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <label for="priceOption5" style="font-size: 18px; font-weight: bold;">Giá tùy chọn 5:</label> <input type="number" id="description" name="priceOption5" placeholder="Nhập giá" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>-->
                                     </div>
 
-
+                                    <%}}%>
 
                                 </div>
 

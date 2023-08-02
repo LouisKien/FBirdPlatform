@@ -13,7 +13,7 @@ public class OptionalshopproductitemDTO {
     private int shop_product_item_id;
     private String name;
     private Double price;
-
+    private String title;
     public OptionalshopproductitemDTO() {
     }
 
@@ -21,6 +21,11 @@ public class OptionalshopproductitemDTO {
         this.optional_shop_product_item_id = optional_shop_product_item_id;
         this.name = name;
         this.price = price;
+    }
+
+    public OptionalshopproductitemDTO(String name, String title) {
+        this.name = name;
+        this.title = title;
     }
 
     
@@ -62,6 +67,14 @@ public class OptionalshopproductitemDTO {
 
     public void setOptional_shop_product_item_id(int optional_shop_product_item_id) {
         this.optional_shop_product_item_id = optional_shop_product_item_id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
     
 }

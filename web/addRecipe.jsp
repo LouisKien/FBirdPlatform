@@ -1,7 +1,7 @@
 <%@page import="fbird.category.CategoryDTO"%>
 <%@page import="fbird.typeofbird.TypeOfBirdDTO"%>
 <%@page import="java.util.List"%>
-
+<%@page import="fbird.optionalshopproductitem.OptionalshopproductitemDTO"%>
 <!DOCTYPE html>
 <html lang="vi">
     <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -127,28 +127,56 @@
                                     <label for="productName" style="font-size: 18px; font-weight: bold;" >Tên khẩu phần:  </label> <input type="text" id="productName" name="recipeName" placeholder="Nhập tên khẩu phần" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
                                     <label for="typeOfBird" style="font-size: 18px; font-weight: bold;">Dành cho chim: </label> 
                                     <select id="typeOfBird" name="typeOfBird" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
+
                                         <option value="">Chọn loại chim</option>
-
-                                        <option value=""></option>
-
+                                        <% 
+                                                                            List<TypeOfBirdDTO> listType = (List<TypeOfBirdDTO>) request.getAttribute("LIST_TYPE");
+                                                                            if (listType != null && !listType.isEmpty()) {
+                                        
+            
+                                                                                for (TypeOfBirdDTO listTP : listType) {
+                                        
+                                        %>
+                                        <option value=""><%=listTP.getType_of_bird_name()%></option>
+                                        <%}}
+                                        %>
                                     </select>
-                               
+
                                     <label for="description" style="font-size: 18px; font-weight: bold;">Mô tả sản phẩm:</label> <input type="text" id="description" name="description" placeholder="Nhập mô tả" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
                                     <span style="font-size: 18px; font-weight: bold;">---------------------------------------------------Chọn sản phẩm--------------------------------------------------------</span>
                                     <label for="Product1" style="font-size: 18px; font-weight: bold;">Sản phẩm 1:</label>
                                     <select id="Product1" name="Product1" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
+
                                         <option value="">Chọn sản phẩm</option>
+                                        <% 
+                                    List<OptionalshopproductitemDTO> listOptional = (List<OptionalshopproductitemDTO>) request.getAttribute("LIST_OPTIONAL");
+                                    if (listOptional != null && !listOptional.isEmpty()) {
+                                        
+            
+                                        for (OptionalshopproductitemDTO listOP : listOptional) {
+                                        
+                                        %>
 
-                                        <option value=""> lấy sp từ databaseb</option>
-
+                                        <option value=""><%=listOP.getTitle()%>: <%=listOP.getName()%></option>
+                                        <%}}
+                                        %>
                                     </select>
                                     <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng sản phẩm 1:  </label> <input type="text" id="productName" name="inventory" placeholder="Nhập số lượng sản phẩm" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
 
                                     <label for="Product2" style="font-size: 18px; font-weight: bold;">Sản phẩm 2:</label>
                                     <select id="Product2" name="Product2" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
                                         <option value="">Chọn sản phẩm</option>
+<%
+                                        if (listOptional != null && !listOptional.isEmpty()) {
+                                        
+            
+                                        for (OptionalshopproductitemDTO listOP : listOptional) {
+                                        
+                                        %>
 
-                                        <option value=""> lấy sp từ databaseb</option>
+                                        <option value=""><%=listOP.getTitle()%>: <%=listOP.getName()%></option>
+                                        <%}}
+                                        %>
 
                                     </select>
                                     <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng sản phẩm 2:  </label> <input type="text" id="productName" name="inventory" placeholder="Nhập số lượng sản phẩm" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
@@ -157,7 +185,17 @@
                                     <select id="Product3" name="Product2" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
                                         <option value="">Chọn sản phẩm</option>
 
-                                        <option value=""> lấy sp từ databaseb</option>
+                                       <%
+                                        if (listOptional != null && !listOptional.isEmpty()) {
+                                        
+            
+                                        for (OptionalshopproductitemDTO listOP : listOptional) {
+                                        
+                                        %>
+
+                                        <option value=""><%=listOP.getTitle()%>: <%=listOP.getName()%></option>
+                                        <%}}
+                                        %>
 
                                     </select>
                                     <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng sản phẩm 3:  </label> <input type="text" id="productName" name="inventory" placeholder="Nhập số lượng sản phẩm" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
@@ -166,7 +204,17 @@
                                     <select id="Product4" name="Product2" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
                                         <option value="">Chọn sản phẩm</option>
 
-                                        <option value=""> lấy sp từ databaseb</option>
+                                       <%
+                                        if (listOptional != null && !listOptional.isEmpty()) {
+                                        
+            
+                                        for (OptionalshopproductitemDTO listOP : listOptional) {
+                                        
+                                        %>
+
+                                        <option value=""><%=listOP.getTitle()%>: <%=listOP.getName()%></option>
+                                        <%}}
+                                        %>
 
                                     </select>
                                     <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng sản phẩm 4:  </label> <input type="text" id="productName" name="inventory" placeholder="Nhập số lượng sản phẩm" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
@@ -175,7 +223,17 @@
                                     <select id="Product5" name="Product1" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
                                         <option value="">Chọn sản phẩm</option>
 
-                                        <option value=""> lấy sp từ databaseb</option>
+                                        <%
+                                        if (listOptional != null && !listOptional.isEmpty()) {
+                                        
+            
+                                        for (OptionalshopproductitemDTO listOP : listOptional) {
+                                        
+                                        %>
+
+                                        <option value=""><%=listOP.getTitle()%>: <%=listOP.getName()%></option>
+                                        <%}}
+                                        %>
 
                                     </select>
                                     <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng sản phẩm 5:  </label> <input type="text" id="productName" name="inventory" placeholder="Nhập số lượng sản phẩm" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>

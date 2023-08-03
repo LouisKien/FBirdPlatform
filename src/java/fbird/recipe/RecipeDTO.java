@@ -144,6 +144,17 @@ public class RecipeDTO {
         this.typeOfBirdID = typeOfBirdID;
         this.description = description;
     }
+
+    public RecipeDTO(String title_recipe, Double total_price) {
+        this.title_recipe = title_recipe;
+        this.total_price = total_price;
+    }
+
+    public RecipeDTO(int recipe_id, String title_recipe, Double total_price) {
+        this.recipe_id = recipe_id;
+        this.title_recipe = title_recipe;
+        this.total_price = total_price;
+    }
     
     
 

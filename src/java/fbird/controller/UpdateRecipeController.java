@@ -4,45 +4,34 @@
  */
 package fbird.controller;
 
-import fbird.recipe.RecipeDAO;
-import fbird.recipe.RecipeDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 /**
  *
  * @author tuan3
  */
-public class ViewRecipeShopController extends HttpServlet {
+public class UpdateRecipeController extends HttpServlet {
 
-    private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "AllRecipe.jsp";
-
+    private static final String ERROR = "MainController?action=UpdateRecipe&recipe_id=";
+    private static final String SUCCESS = "MainController?action=UpdateRecipe&recipe_id=";
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
-        try {
-            int shopID = Integer.parseInt(request.getParameter("shop_id"));
-            RecipeDAO dao = new RecipeDAO();
-            List<RecipeDTO> list = dao.getListRecipe(shopID);
-            if (list.size()>0) {
-                request.setAttribute("LIST_RECIPE", list);
-                request.setAttribute("shop_id", shopID);
-                url = SUCCESS;
-            }
-        } catch (Exception e) {
-            log("Error at ViewRecipeShopController:" + e.toString());
+        try{
+            
+        }catch(Exception e){
+            log("Error at UpdateRecipeController:" + e.toString());
         }finally{
             request.getRequestDispatcher(url).forward(request, response);
         }
     }
-
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

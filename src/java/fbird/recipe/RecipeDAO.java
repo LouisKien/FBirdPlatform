@@ -22,6 +22,7 @@ import java.util.List;
 public class RecipeDAO {
 
     private static final String ADD_RECIPE = "INSERT INTO [recipe] VALUES (?,?,?,?,?)";
+    private static final String VIEW_RECIPE_SHOP = "SELECT * FROM recipe WHERE shop_id=?";
     private static final String ADD_RECIPE_PRODUCT = "INSERT INTO [recipe_product] VALUES (?,?,?)";
     private static final String GET_ID = "SELECT TOP 1 * FROM recipe ORDER BY recipe.recipe_id DESC;";
     private static final String FIND_ID = "SELECT o.optional_shop_product_item_id  FROM shop_product_item s JOIN optional_shop_product_item o ON s.shop_product_item_id = o.shop_product_item_id WHERE s.title like ? AND o.[name] like ?";
@@ -462,6 +463,40 @@ public class RecipeDAO {
             }
         }
             return check;
+    }
+
+    public List<RecipeDTO> getListRecipe(int shopID) throws SQLException {
+        List<RecipeDTO> list = new ArrayList();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(VIEW_RECIPE_SHOP);
+                ptm.setInt(1, shopID);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    int recipe_id = rs.getInt("recipe_id");
+                    String title = rs.getString("title_recipe");
+                    double price = rs.getDouble("total_price");
+                    list.add(new RecipeDTO(recipe_id, title, price));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return list;
     }
 
 }

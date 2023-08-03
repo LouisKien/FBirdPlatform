@@ -212,6 +212,10 @@
         <servlet-name>ViewRecipeShopController</servlet-name>
         <servlet-class>fbird.controller.ViewRecipeShopController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateRecipeController</servlet-name>
+        <servlet-class>fbird.controller.UpdateRecipeController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -426,6 +430,10 @@
     <servlet-mapping>
         <servlet-name>ViewRecipeShopController</servlet-name>
         <url-pattern>/ViewRecipeShopController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateRecipeController</servlet-name>
+        <url-pattern>/UpdateRecipeController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

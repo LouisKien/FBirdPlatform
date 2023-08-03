@@ -35,16 +35,22 @@ public class ViewShopOrderController extends HttpServlet {
         String url = "tatCaDonHang.jsp";
         try {
            
+            String index = request.getParameter("index");
+            if (index == null) {
+                index = "1";
+            }
+            int indexPage = Integer.parseInt(index);
           
              int shop_id = Integer.parseInt(request.getParameter("shop_id"));
             
               OrderDAO dao = new OrderDAO();
-               List<OrderDTO> listOrder = dao.getAllShopOrder(shop_id);
-               
+               List<OrderDTO> listOrder = dao.getAllShopOrder(shop_id, indexPage);
+               int pageNumber = dao.getShopOrderPageNumber(shop_id);
                
                if (!listOrder.isEmpty()) {
                    request.setAttribute("LIST_ORDER", listOrder);
-                   
+                   request.setAttribute("PAGE_NUMBER", pageNumber);
+                   request.setAttribute("INDEX_PAGE", indexPage);
                }
         }catch (Exception ex) {
             log("Error at Search: " + ex.toString());

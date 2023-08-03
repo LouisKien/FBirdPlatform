@@ -45,7 +45,7 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="profileDropdown">
 
-                        <li><a class="dropdown-item" style="width: 239px;" href="tatCaDonHang.jsp">Tất cả đơn</a></li>
+                        <li><a class="dropdown-item" style="width: 239px;" href="MainController?action=ViewShopOrder&shop_id=${sessionScope.LOGIN_USER.getShop_id()}">Tất cả đơn</a></li>
                         <li><a class="dropdown-item" style="width: 239px;" href="donHuy.jsp">Đơn hủy</a></li>
                     </ul>
                     <!--------------------------------------------------------------------------------------------------------------------------------------------------------->
@@ -54,8 +54,10 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="profileDropdown">
 
-                        <li><a class="dropdown-item" style="width: 239px;" href="MainController?action=ViewProduct&shop_id=${sessionScope.LOGIN_USER.getShop_id()}">Tất cả sản phẩm</a></li>
+                        <li><a class="dropdown-item" style="width: 239px;" href="MainController?action=AddRecipe&shop_id=${sessionScope.LOGIN_USER.getShop_id()}">Thêm khẩu phần</a></li>
+                        <li><a class="dropdown-item" style="width: 239px;" href="MainController?action=ViewRecipeShop&shop_id=${sessionScope.LOGIN_USER.getShop_id()}">Tất cả khẩu phần</a></li>
                         <li><a class="dropdown-item" style="width: 239px;" href="sanPhamViPham.jsp">Sản phẩm vi phạm</a></li>
+                        <li><a class="dropdown-item" style="width: 239px;" href="MainController?action=ViewProduct&shop_id=${sessionScope.LOGIN_USER.getShop_id()}">Tất cả sản phẩm</a></li>
                         <li><a class="dropdown-item" style="width: 239px;" href="MainController?action=ViewCreateProduct">Thêm sản phẩm</a></li>
                     </ul>
                     <!--------------------------------------------------------------------------------------------------------------------------------------------------------->
@@ -149,6 +151,32 @@
                             </table>
                         </div>
                     </div>
+                     <div class="container py-5">
+                        <div class="col-12">
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination pagination-lg m-0">
+                                    <%
+                                        int pageNumber = (int) request.getAttribute("PAGE_NUMBER");
+                                        int indexPage = (int) request.getAttribute("INDEX_PAGE");
+                                        
+                                    %>
+                                    
+                                    <%
+                        for(int i = 1; i <= pageNumber; i++){
+                                    %>
+                                    <li class="page-item"><a class="page-link" href="MainController?action=ViewShopOrder&shop_id=${sessionScope.LOGIN_USER.getShop_id()}&index=<%= i %>"><%= i %></a></li>
+                                        <%
+                                
+                                    }
+                                        %>
+
+
+                                    
+
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>           
 
                 </div>
             </div>

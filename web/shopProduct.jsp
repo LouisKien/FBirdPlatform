@@ -183,7 +183,22 @@ List<FeedbackDTO> listAllFeedback = (List<FeedbackDTO>) request.getAttribute("LI
                 </div>    
             </div>
             <div style="display: flex; flex-direction: column;">
+                <%if(loginUser != null) {%>
+                        <form action="MainController" id="myForm1">
 
+                            <div class="report-option" >
+
+                                <a type="button" class='fas fa-exclamation-triangle' onclick="callAlert()"   style="margin-top: -28px; margin-left: 550px;"></a>
+
+                            </div>
+                        </form>
+                        <%}else{%>
+                        <div class="report-option" >
+
+                            <a class='fas fa-exclamation-triangle' href="login.jsp"   style="margin-top: -28px; margin-left: 550px;"></a>
+
+                        </div>
+                        <%}%> 
             </div>
         </div>
     </div>
@@ -341,6 +356,46 @@ List<FeedbackDTO> listAllFeedback = (List<FeedbackDTO>) request.getAttribute("LI
             </div>
         </div>
     </div>
+    <script>
+        function callAlert() {
+                swal("Viết lý do khiếu nại:", {
+                    content: "input"
+                })
+                        .then((value) => {
+                            if (value !== null && value.trim() !== '') {
+                                // Hiển thị thông báo khi gửi khiếu nại thành công
+                                swal({
+                                    title: "Gửi khiếu nại thành công!",
+                                    icon: "success",
+                                    button: "OK"
+                                });
+                                submitForm1("ReportProduct", value);
+                                // Tùy chỉnh các tác vụ khác dựa trên giá trị `value` ở đây nếu cần
+                                // Ví dụ: Gửi giá trị đến máy chủ qua AJAX để xử lý
+                                // Các tác vụ khác...
+                            } else {
+                                // Người dùng không nhập gì hoặc nhập lý do trống.
+                                swal("Vui lòng nhập lý do khiếu nại!", {
+                                    icon: "error",
+                                    button: "Trở lại"
+                                });
+                            }
+                        });
+            }
+            function submitForm1(action, shop_id, customer_id, value) {
+                                var form = document.getElementById("myForm1");
+                                var xhr = new XMLHttpRequest();
+                                xhr.open("POST", "MainController?action=" + encodeURIComponent(action) + "&shop_id=" + encodeURIComponent(shop_product_item_id) + "&customer_id=" + encodeURIComponent(customer_id) + "&value=" + encodeURIComponent(value), true);
+                                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                                xhr.onreadystatechange = function () {
+                                    if (xhr.readyState === 4 && xhr.status === 200) {
+                                        // Xử lý kết quả tại đây (nếu cần)
+                                        console.log(xhr.responseText);
+                                    }
+                                };
+                                xhr.send(new FormData(form));
+                            }
+    </script>
     <!-- Footer End -->
     <!--================= Jquery latest version =================-->
     <script src="assets/js/vendors/jquery-3.6.0.min.js"></script>

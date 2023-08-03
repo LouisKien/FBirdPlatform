@@ -43,6 +43,7 @@ public class ViewShopProductController extends HttpServlet {
                 if (listShopProduct.size() > 0) {
                     request.setAttribute("LIST_SHOP_PRODUCT", listShopProduct);
                     request.setAttribute("LIST_AllFeedback", AllFeedback);
+                    request.setAttribute("shop_id", shop_id);
                     
                 }
         } catch (Exception e) {

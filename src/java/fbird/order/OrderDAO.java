@@ -32,6 +32,7 @@ public class OrderDAO {
     private static final String GET_CART_ITEM_ID = "SELECT cart_item_id FROM optional_shop_product_item JOIN cart_item ON optional_shop_product_item.optional_shop_product_item_id = cart_item.optional_shop_product_item_id WHERE optional_shop_product_item.optional_shop_product_item_id = ? AND customer_id = ?";
     private static final String VIEW_CUSTOMER_ORDER = "SELECT  shop_product_item.title, total_price_order, delivery_method.name, customer_order.status, order_date  FROM customer_order JOIN order_item on customer_order.order_id= order_item.order_id JOIN optional_shop_product_item on optional_shop_product_item.optional_shop_product_item_id = order_item.optional_shop_product_item_id JOIN shop_product_item on optional_shop_product_item.shop_product_item_id = shop_product_item.shop_product_item_id JOIN delivery_method on delivery_method.delivery_method_id = customer_order.delivery_method_id WHERE customer_id =? AND customer_order.status like ? ORDER BY total_price_order OFFSET ? ROWS FETCH FIRST 10 ROWS ONLY;";
     private static final String COUNT_ORDER_PAGE_NUMBER = "SELECT  count(shop_product_item.title)  FROM customer_order JOIN order_item on customer_order.order_id= order_item.order_id JOIN optional_shop_product_item on optional_shop_product_item.optional_shop_product_item_id = order_item.optional_shop_product_item_id JOIN shop_product_item on optional_shop_product_item.shop_product_item_id = shop_product_item.shop_product_item_id JOIN delivery_method on delivery_method.delivery_method_id = customer_order.delivery_method_id WHERE customer_id = ? AND customer_order.status like ? ";
+    private static final String SET_TOTAL_PRICE_PER_ORDER = "UPDATE customer_order SET total_price_order = ? WHERE order_id = ?";
 
     public List<OrderDTO> getAddress(int customer_id) throws SQLException {
         List<OrderDTO> list = new ArrayList<>();
@@ -348,6 +349,39 @@ public class OrderDAO {
             }
         }
         return 0;
+    }
+
+    public void setTotalPricePerOrder(List<OrderDTO> listOrder, int order_id, int shippingPrice) throws SQLException {
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                double sum = shippingPrice;
+                for (OrderDTO o: listOrder){
+                    double sell_price = o.getSell_price();
+                    int amount = o.getAmount();
+                    sum = sum + (sell_price * amount);
+                }
+                ptm = conn.prepareStatement(SET_TOTAL_PRICE_PER_ORDER);
+                ptm.setDouble(1, sum);
+                ptm.setInt(2, order_id);
+                ptm.executeUpdate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
+        }
     }
     
 }

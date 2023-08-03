@@ -85,10 +85,15 @@
                                             <hr class="my-4">
                                            
                                             <div class="row mb-4 d-flex justify-content-between align-items-center cart-items-container">
+                                                <%if(cart.getInventory()==0){%>
+                                                <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                                    <input type="checkbox" disabled>
+                                                </div>
+                                                <%}else{%>
                                                 <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                                                     <input type="checkbox" id="myCheckbox" onchange="handleCheckboxChange()">
                                                 </div>
-                                                
+                                                <%}%>
                                                 <div class="col-md-2 col-lg-2 col-xl-2">
                                                     <img src="<%= cart.getImage_1() %>" id="img-product" class="img-fluid rounded-3" alt="Cotton T-shirt">
                                                 </div>
@@ -114,6 +119,9 @@
                                                     <a href="MainController?action=DeleteCartItem&cart_item_id=<%= cart.getCart_item_id() %>&customer_id=<%= loginUser.getCustomer_id() %>" class="text-muted"><i class="fas fa-times"></i></a>
                                                 </div>
                                                  <div style="display: none"><%= cart.getShop_id() %></div>
+                                                 <%if(cart.getInventory()==0){%>
+                                                 <div name="mess" style="color: red;margin-top: 5%; font-weight: bold; text-align: center">Sản Phẩm đã hết hàng</div>
+                                                 <%}%>
                                             </div>
                                             <script>
 

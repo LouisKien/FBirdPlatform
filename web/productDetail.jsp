@@ -251,13 +251,13 @@ if(loginUser != null && loginUser.getRole() == 3) {
                for (int i = 0; i < count; i++) {
                    if (i == 0) {
                             %>
-                        
+
 
                             <div class="product-item">
                                 <div class="product-name">
                                     <label class="btn btn-primary active optionalName" style="margin-right: -50px;" id="optionalName">
 
-                                        <input type="radio" name="optional" autocomplete="off" checked id="<%=listOptional.get(i).getOptional_shop_product_item_id() %>" value="<%=listOptional.get(i).getPrice() %>" onclick="updatePrice(<%=listOptional.get(i).getPrice() %>)" inventory="<%=listOptional.get(i).getInventory() %>">
+                                        <input type="radio" name="optional" autocomplete="off" checked id="<%=listOptional.get(i).getOptional_shop_product_item_id() %>" value="<%=listOptional.get(i).getPrice() %>" onclick="updatePrice(<%=listOptional.get(i).getPrice() %>), totalPriceDefault()" inventory="<%=listOptional.get(i).getInventory() %>">
                                         <input style="display: none" name="optional_shop_product_item_id" value="<%=listOptional.get(i).getOptional_shop_product_item_id() %>">
                                         <%=listOptional.get(i).getName() %>
 
@@ -269,7 +269,7 @@ if(loginUser != null && loginUser.getRole() == 3) {
                             <%
                                     } else {
                             %>
-                            
+
                             <div class="product-item">
                                 <div class="product-name">
                                     <label class="btn btn-primary active optionalName" style="margin-right: -50px;" id="optionalName">
@@ -290,10 +290,10 @@ if(loginUser != null && loginUser.getRole() == 3) {
                             %>
 
                         </div>    
-                            <div >Kho: <a id="inventory"></a> </div>
+                        <div >Kho: <a id="inventory"></a> </div>
                         <div class="quantity" >
                             <p>Số lượng: <input type="number" name="productQuantity" min="1" max="" value="1" onchange="totalPriceDefault()"></p> 
-                                                                                                    
+
                         </div>
 
                         <div class="selected-product-price" id="selectedPrice" style="visibility: hidden">0</div>
@@ -319,8 +319,12 @@ if(loginUser != null && loginUser.getRole() == 3) {
                                 var quantity = document.getElementsByName('productQuantity')[0];
                                 var display = document.getElementById('selectedPrice1');
                                 if (radioElement) {
+                                    if(radioElement.getAttribute('inventory')>0){
                                     inventory.innerHTML = radioElement.getAttribute('inventory');
-                                     quantity.max = radioElement.getAttribute('inventory');
+                                }else{
+                                    inventory.innerHTML=`Hết Hàng`;
+                                }                             
+                                    quantity.max = radioElement.getAttribute('inventory');
                                     var total = radioElement.value * quantity.value;
 //                                    quantity.max = radioElement.getAttribute('inventory');
 ////                                    console.log(radioElement.getAttribute('inventory'));
@@ -349,17 +353,13 @@ if(loginUser != null && loginUser.getRole() == 3) {
                                 var optional_shop_product_item_id = document.querySelector('input[name="optional"]:checked').id;
                                 var quantity = document.getElementsByName('productQuantity')[0].value;
                                 var customer_id = document.getElementsByName('customer_id')[0].value;
-
-
-                                console.log(optional_shop_product_item_id);
-                                console.log(quantity);
-                                console.log(customer_id);
-
-
-
+                                var inventory = document.getElementById('inventory');
+                                if(inventory.innerText==="Hết Hàng"){
+                                mess.innerHTML = "Sản phẩm đã hết hàng";
+                            }else{
                                 submitForm("AddToCart", quantity, optional_shop_product_item_id, customer_id);
                                 mess.innerHTML = "Đã thêm vào giỏ hàng";
-                                console.log(mess);
+                            }
                             }
 
                             // Example usage: updatePrice(productName, price);
@@ -418,20 +418,25 @@ if(loginUser != null && loginUser.getRole() == 3) {
 
                         <form action="MainController" id="myForm">
 
-                            <div class="btn-box">
+                            <div class="btn-box" id="hetHang">
                                 <%if(loginUser != null) {
                                 if(loginUser.getRole() == 3){
                                 %>
 
-                                <button class="btn btn-primary cart-btn" onclick="addtocartv2()" type="button">Thêm vào giỏ hàng</button>
+                                    <button class="btn btn-primary cart-btn" onclick="addtocartv2()" type="button">Thêm vào giỏ hàng</button>
+                                    <a type="button" class="btn btn-primary buy-btn"  href="MainController?action=ViewOderAddress&customer_id=<%= loginUser.getCustomer_id() %>" onclick="buynow()">Mua ngay</a>
 
-                                <a type="button" class="btn btn-primary buy-btn"  href="MainController?action=ViewOderAddress&customer_id=<%= loginUser.getCustomer_id() %>" onclick="buynow()">Mua ngay</a>
-                                <%} else {%>
-                                <button class="cart-btn"><a href="#" style="color: white;">Phân quyền của bạn không được mua hàng</a></button>
-                                <%}}else{%>
-                                <a class="btn btn-primary cart-btn" href="login.jsp" type="button">Thêm vào giỏ hàng</a>
-                                <a type="button" class="btn btn-primary buy-btn"  href="login.jsp" >Mua ngay</a>
-                                <%}%>
+                               
+                                    <%} else {%>
+                                    <button class="cart-btn"><a href="#" style="color: white;">Phân quyền của bạn không được mua hàng</a></button>
+                                    <%}}else{%>
+                              
+                                    <a class="btn btn-primary cart-btn" href="login.jsp" type="button">Thêm vào giỏ hàng</a>
+                                    <a type="button" class="btn btn-primary buy-btn"  href="login.jsp" >Mua ngay</a>
+                                    <%}%>
+                           
+
+
                             </div>
                             <div name="mess" style="color: red;margin-top: 5%; font-weight: bold;"></div>
                         </form>

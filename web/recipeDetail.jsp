@@ -138,7 +138,7 @@
             <div class="flex-box">
                 <div class="left">
                     <div class="big-img">
-                        <img src="img/product-1.png">
+                        <img src="<%=recipe.get(0).getImage_1()%>">
                     </div>
                     <div class="images">
                         <div class="small-img">
@@ -159,12 +159,14 @@
                 <div class="right">
                     <div class="url"><a class="url1" href="MainController">Trang chủ &nbsp</a>  >   <a class="url1" href="MainController?action=ViewRecipe">&nbsp Khẩu phần</a> </div>
                     <div class="pname"><%= recipe.get(0).getTitle_recipe()%></div>
-                    <div class="ratings">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
+                    <div>Thành Phần</div>
+                    <div class="row justify-content-center">
+                    <%
+                            List<RecipeDTO> listRecipeProduct = (List<RecipeDTO>) request.getAttribute("RECIPE_PRODUCT");
+                           for(RecipeDTO rp: listRecipeProduct){
+                    %>
+                    <div><%= rp.getTitle()%></div>
+                    <%}%>
                     </div>
                     <div class="price">
                         <%-- Lấy giá tiền từ recipe.get(0).getTotal_price() --%>
@@ -209,18 +211,7 @@
                         <div><a href="shopProduct.jsp">Xem ngay</a></div>
                     </div>
 
-                    <div style="display: flex; flex-direction: column;">
-                        <div>Đánh giá</div>
-                        <div style="color: red;">80k</div>
-                    </div>
-                    <div style="display: flex; flex-direction: column;">
-                        <div>Sản phẩm</div>
-                        <div style="color: red;">100</div>
-                    </div>
-                    <div style="display: flex; flex-direction: column;">
-                        <div>Số lượng đã bán</div>
-                        <div style="color: red;">100k</div>
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -228,7 +219,7 @@
 
 
 
-        <h2 class="border-start border-5 border-primary ps-3 mb-4" style="color: #7ab730;margin-left: 180px; margin-top: 30px;"">THÀNH PHẦN</h2>
+        <h2 class="border-start border-5 border-primary ps-3 mb-4" style="color: #7ab730;margin-left: 180px; margin-top: 30px;"">THÀNH PHẦN CHI TIẾT</h2>
         <div class="col-xl-12">
             <div class="products-area products-area3">
                 <div class="row justify-content-center">

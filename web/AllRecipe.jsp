@@ -141,7 +141,6 @@
                                     <tr>
                                         <th scope="row"><%=count%></th>
                                         <td><%=listRC.getTitle_recipe()%></td>
-                                        
                                         <td style="text-align: center">
                                             <a href="MainController?action=UpdateRecipe&recipe_id=<%= listRC.getRecipe_id()%>"><i class="fa-solid fa-pen-to-square"></i></a>
                                             <i class="fa-solid fa-trash"></i>

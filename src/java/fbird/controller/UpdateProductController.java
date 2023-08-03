@@ -31,7 +31,7 @@ import java.util.List;
 public class UpdateProductController extends HttpServlet {
 
     private static final String ERROR = "tatCaSanPham.jsp";
-    private static final String SUCCESS = "ViewProductDetailInShopDashboardController";
+    private static final String SUCCESS = "ViewProductDetailInShopDashboardController?shop_product_item_id=";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -43,18 +43,16 @@ public class UpdateProductController extends HttpServlet {
             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
             int shopID = loginUser.getShop_id();
             String productName = request.getParameter("productName");
-            int inventory = Integer.parseInt(request.getParameter("inventory"));
+            //int inventory = Integer.parseInt(request.getParameter("inventory"));
             int typeOfBirdID = Integer.parseInt(request.getParameter("typeOfBird"));
             int typeProductID = Integer.parseInt(request.getParameter("typeProduct"));
 //            priceProduct = request.getParameter("priceOfProduct");
             String description = request.getParameter("description"); 
-            byte status = 0;
-            if(inventory > 0){
-                status = 1;
-            }
+            byte status = 1;
+            
             Date date = new Date();
             ProductDAO dao = new ProductDAO();
-            ProductDTO product = new ProductDTO(productShopItemID, shopID, typeProductID, typeOfBirdID, productName, description, inventory, date, status);
+            ProductDTO product = new ProductDTO(productShopItemID, shopID, typeProductID, typeOfBirdID, productName, description, date, status);
             boolean checkUpdate = dao.checkUpdate(product);
             if(checkUpdate){
                 OptionalshopproductitemDAO optionalDao = new OptionalshopproductitemDAO();
@@ -65,50 +63,61 @@ public class UpdateProductController extends HttpServlet {
                 double priceOption4;
                 double priceOption5;
                 String option1 = request.getParameter("option1");
-                String price1 = request.getParameter("priceOption1");
                 if(option1!=null){
+                String price1 = request.getParameter("priceOption1");
+                int inventory1 = Integer.parseInt(request.getParameter("inventory1"));
+                
                 if (!option1.equals("") && !price1.equals("")) {
                     priceOption1 = Double.parseDouble(price1);
-                    listOptional.add(new OptionalshopproductitemDTO(productShopItemID, option1, priceOption1));
+                    listOptional.add(new OptionalshopproductitemDTO(productShopItemID, option1, priceOption1, inventory1));
                 }
                 }
                 String option2 = request.getParameter("option2");
-                String price2 = request.getParameter("priceOption2");
                 if(option2!=null){
+                String price2 = request.getParameter("priceOption2");
+                int inventory2 = Integer.parseInt(request.getParameter("inventory2"));
+                
                 if (!option2.equals("") && !price2.equals("")) {
                     priceOption2 = Double.parseDouble(price2);
-                    listOptional.add(new OptionalshopproductitemDTO(productShopItemID, option2, priceOption2));
+                    listOptional.add(new OptionalshopproductitemDTO(productShopItemID, option2, priceOption2, inventory2));
                 }
                 }
                 String option3 = request.getParameter("option3");
-                String price3 = request.getParameter("priceOption3");
                 if(option3!=null){
+                String price3 = request.getParameter("priceOption3");
+                int inventory3 = Integer.parseInt(request.getParameter("inventory3"));
+                
                 if (!option3.equals("") && !price3.equals("")) {
                     priceOption3 = Double.parseDouble(price3);
-                    listOptional.add(new OptionalshopproductitemDTO(productShopItemID, option3, priceOption3));
+                    listOptional.add(new OptionalshopproductitemDTO(productShopItemID, option3, priceOption3, inventory3));
                 }
                 }
                 String option4 = request.getParameter("option4");
-                String price4 = request.getParameter("priceOption4");
                 if(option4!=null){
+                String price4 = request.getParameter("priceOption4");
+                int inventory4 = Integer.parseInt(request.getParameter("inventory4"));
+                
                 if (!option4.equals("") && !price4.equals("")) {
                     priceOption4 = Double.parseDouble(price4);
-                    listOptional.add(new OptionalshopproductitemDTO(productShopItemID, option4, priceOption4));
+                    listOptional.add(new OptionalshopproductitemDTO(productShopItemID, option4, priceOption4, inventory4));
                 }
                 }
                 String option5 = request.getParameter("option5");
-                String price5 = request.getParameter("priceOption5");
                 if(option5!=null){
+                String price5 = request.getParameter("priceOption5");
+                int inventory5 = Integer.parseInt(request.getParameter("inventory5"));
+                
                 if (!option5.equals("") && !price5.equals("")) {
                     priceOption5 = Double.parseDouble(price5);
-                    listOptional.add(new OptionalshopproductitemDTO(productShopItemID, option5, priceOption5));
+                    listOptional.add(new OptionalshopproductitemDTO(productShopItemID, option5, priceOption5, inventory5));
                 }
                 }
                 boolean checkOptional = optionalDao.updateOptional(listOptional);
-                
-                if(checkOptional){
-                    url = SUCCESS;
-                }
+                if(checkOptional == true){
+                    request.setAttribute("msg", "Cập nhật thành công");
+                    
+                    url = SUCCESS + productShopItemID;
+            }
             }
         }catch(Exception e){
             log("Error at UpdateProductController :" + e.toString());

@@ -82,14 +82,14 @@ public class ProductDTO {
         this.shop_name = shop_name;
     }
 
-    public ProductDTO(int shopProductItemID, int shopID, int categoryID, int typeOfBirdID, String title, String description, int inventory, Date uploadDate, byte status) {
+    public ProductDTO(int shopProductItemID, int shopID, int categoryID, int typeOfBirdID, String title, String description, Date uploadDate, byte status) {
         this.shopProductItemID = shopProductItemID;
         this.shopID = shopID;
         this.categoryID = categoryID;
         this.typeOfBirdID = typeOfBirdID;
         this.title = title;
         this.description = description;
-        this.inventory = inventory;
+        
         this.uploadDate = uploadDate;
         this.status = status;
     }

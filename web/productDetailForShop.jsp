@@ -117,7 +117,7 @@ List<TypeOfBirdDTO> listTypeOfBird = (List<TypeOfBirdDTO>) request.getAttribute(
 
                     <div class="row my-5">
                         <!--                        <h3 class="fs-4 mb-3">Ngày đặt hàng</h3>-->
-                        <form action="MainController">
+                        <form action="MainController" method="POST">
                             <div class="col">
                                 <div class="container" style="display: grid; grid-template-rows: repeat(4,0fr); gap:10px;">
                                     <%
@@ -175,17 +175,25 @@ List<TypeOfBirdDTO> listTypeOfBird = (List<TypeOfBirdDTO>) request.getAttribute(
 
                                     </select>
 
-                                    <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng sản phẩm:  </label> <input type="text" id="productName" name="inventory" value="<%= detail.get(0).getInventory()%>" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-                                    <label for="description" style="font-size: 18px; font-weight: bold;">Mô tả sản phẩm:</label> <input type="text" id="description" name="description" value="<%= detail.get(0).getDescription()%>" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    
+                                        <label for="description" style="font-size: 18px; font-weight: bold;">Mô tả sản phẩm: </label> <textarea rows="4" cols="50" type="text" id="description" name="description" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"><%= detail.get(0).getDescription()%></textarea></br>
                                     <%
-                                    if(detail.size() == 2){
+                                    int count = 0;
+                                    for(int i = 0; i <= detail.size() - 1; i++){
+                                    
                                     %>
-                                    <span style="font-size: 18px; font-weight: bold;">---------------------------------------------------Tùy chọn--------------------------------------------------------</span>
-                                    <label for="option1" style="font-size: 18px; font-weight: bold;">Tùy chọn 1:</label> <input type="text" id="description" name="option1" placeholder="Nhập tùy chọn" value="<%= detail.get(0).getNameOption()%>" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-                                    <label for="priceOption1" style="font-size: 18px; font-weight: bold;">Giá tùy chọn 1:</label> <input type="number" id="description" name="priceOption1" placeholder="Nhập giá" value="<%= detail.get(0).getPriceView()%>" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-                                    <label for="option2" style="font-size: 18px; font-weight: bold;">Tùy chọn 2:</label> <input type="text" id="description" name="option1" placeholder="Nhập tùy chọn" value="<%= detail.get(1).getNameOption()%>" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <span style="font-size: 18px; font-weight: bold;">---------------------------------------------------Tùy chọn <%= i + 1%>--------------------------------------------------------</span>
+                                    <label for="option1" style="font-size: 18px; font-weight: bold;">Giá tùy chọn <%= i + 1%>:</label> <input type="text" id="description" name="option<%= i + 1%>" placeholder="Nhập tùy chọn" value="<%= detail.get(count).getNameOption()%>" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <label for="priceOption1" style="font-size: 18px; font-weight: bold;">Giá tùy chọn <%= i + 1%>:</label> <input type="number" id="description" name="priceOption<%= i + 1%>" placeholder="Nhập giá" value="<%= detail.get(count).getPriceView()%>" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng tùy chọn <%= i + 1%>:  </label> <input type="text" id="productName" name="inventory<%= i + 1%>" value="<%= detail.get(count).getInventory()%>" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+<!--                                    <label for="option2" style="font-size: 18px; font-weight: bold;">Tùy chọn 2:</label> <input type="text" id="description" name="option1" placeholder="Nhập tùy chọn" value="<%= detail.get(1).getNameOption()%>" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
                                     <label for="priceOption2" style="font-size: 18px; font-weight: bold;">Giá tùy chọn 2:</label> <input type="number" id="description" name="priceOption1" placeholder="Nhập giá" value="<%= detail.get(1).getPriceView()%>" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng tùy chọn 2:  </label> <input type="text" id="productName" name="inventory2" value="<%= detail.get(1).getInventory()%>" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <label for="option2" style="font-size: 18px; font-weight: bold;">Tùy chọn 2:</label> <input type="text" id="description" name="option1" placeholder="Nhập tùy chọn" value="<%= detail.get(2).getNameOption()%>" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <label for="priceOption2" style="font-size: 18px; font-weight: bold;">Giá tùy chọn 2:</label> <input type="number" id="description" name="priceOption1" placeholder="Nhập giá" value="<%= detail.get(2).getPriceView()%>" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng tùy chọn 2:  </label> <input type="text" id="productName" name="inventory2" value="<%= detail.get(2).getInventory()%>" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>-->
                                     <%
+                                        count++;
                                         }
                                     %>
                                     
@@ -196,7 +204,8 @@ List<TypeOfBirdDTO> listTypeOfBird = (List<TypeOfBirdDTO>) request.getAttribute(
                             </div>
 
 
-
+                                    <button type="submit" name="action" value="Update Product" class="btn btn-primary" style="margin-top: 30px; border-radius: 20px;">Cập nhật sản phẩm</button>
+                                    <p>${msg}<p>
                             <!--<input type="button" name="action" value="Create" style="margin-top: 30px; border-radius: 20px;/>-->
                         </form>
                     </div>

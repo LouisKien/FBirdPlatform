@@ -73,35 +73,35 @@ public class AddProductController extends HttpServlet {
 
                 if (!option1.equals("") && !price1.equals("")) {
                     priceOption1 = Double.parseDouble(price1);
-                    listOptional.add(new OptionalshopproductitemDTO(shopProductItemID, option1, priceOption1));
+                    listOptional.add(new OptionalshopproductitemDTO(shopProductItemID, option1, priceOption1, inventory));
                 }
                 String option2 = request.getParameter("option2");
                 String price2 = request.getParameter("priceOption2");
 
                 if (!option2.equals("") && !price2.equals("")) {
                     priceOption2 = Double.parseDouble(price2);
-                    listOptional.add(new OptionalshopproductitemDTO(shopProductItemID, option2, priceOption2));
+                    listOptional.add(new OptionalshopproductitemDTO(shopProductItemID, option2, priceOption2, inventory));
                 }
                 String option3 = request.getParameter("option3");
                 String price3 = request.getParameter("priceOption3");
 
                 if (!option3.equals("") && !price3.equals("")) {
                     priceOption3 = Double.parseDouble(price3);
-                    listOptional.add(new OptionalshopproductitemDTO(shopProductItemID, option3, priceOption3));
+                    listOptional.add(new OptionalshopproductitemDTO(shopProductItemID, option3, priceOption3, inventory));
                 }
                 String option4 = request.getParameter("option4");
                 String price4 = request.getParameter("priceOption4");
 
                 if (!option4.equals("") && !price4.equals("")) {
                     priceOption4 = Double.parseDouble(price4);
-                    listOptional.add(new OptionalshopproductitemDTO(shopProductItemID, option4, priceOption4));
+                    listOptional.add(new OptionalshopproductitemDTO(shopProductItemID, option4, priceOption4, inventory));
                 }
                 String option5 = request.getParameter("option5");
                 String price5 = request.getParameter("priceOption5");
 
                 if (!option5.equals("") && !price5.equals("")) {
                     priceOption5 = Double.parseDouble(price5);
-                    listOptional.add(new OptionalshopproductitemDTO(shopProductItemID, option5, priceOption5));
+                    listOptional.add(new OptionalshopproductitemDTO(shopProductItemID, option5, priceOption5, inventory));
                 }
                 boolean checkOptional = optionalDao.addOptionalProductItem(listOptional);
                 if (checkOptional) {

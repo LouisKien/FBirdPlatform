@@ -126,7 +126,7 @@
 
                                         <th scope="col">Tên Sản Phẩm</th>
 
-                                        <th scope="col">Số Lượng</th>
+                                        
                                         <th scope="col">Ngày đăng kí</th>
                                         <th scope="col">Trạng Thái</th>
                                         <th scope="col" style="text-align: center">Tùy chọn</th>
@@ -159,9 +159,7 @@
                                             <%= pro.getTitle() %>
                                         </td>
 
-                                        <td>
-                                            <%= pro.getInventory() %>
-                                        </td>
+                                        
                                         <td>
                                             <%= pro.getUploadDate() %>
                                         </td>

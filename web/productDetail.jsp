@@ -257,7 +257,7 @@ if(loginUser != null && loginUser.getRole() == 3) {
                                 <div class="product-name">
                                     <label class="btn btn-primary active optionalName" style="margin-right: -50px;" id="optionalName">
 
-                                        <input type="radio" name="optional" autocomplete="off" checked id="<%=listOptional.get(i).getOptional_shop_product_item_id() %>" value="<%=listOptional.get(i).getPrice() %>" onclick="updatePrice(<%=listOptional.get(i).getPrice() %>)" inventory="<%=listOptional.get(i).getInventory() %>">
+                                        <input type="radio" name="optional" autocomplete="off" checked id="<%=listOptional.get(i).getOptional_shop_product_item_id() %>" value="<%=listOptional.get(i).getPrice() %>" onclick="updatePrice(<%=listOptional.get(i).getPrice() %>), totalPriceDefault()" inventory="<%=listOptional.get(i).getInventory() %>">
                                         <input style="display: none" name="optional_shop_product_item_id" value="<%=listOptional.get(i).getOptional_shop_product_item_id() %>">
                                         <%=listOptional.get(i).getName() %>
 
@@ -319,7 +319,11 @@ if(loginUser != null && loginUser.getRole() == 3) {
                                 var quantity = document.getElementsByName('productQuantity')[0];
                                 var display = document.getElementById('selectedPrice1');
                                 if (radioElement) {
+                                    if(radioElement.getAttribute('inventory')>0){
                                     inventory.innerHTML = radioElement.getAttribute('inventory');
+                                }else{
+                                    inventory.innerHTML=`Hết Hàng`;
+                                }                             
                                     quantity.max = radioElement.getAttribute('inventory');
                                     var total = radioElement.value * quantity.value;
 //                                    quantity.max = radioElement.getAttribute('inventory');
@@ -349,17 +353,15 @@ if(loginUser != null && loginUser.getRole() == 3) {
                                 var optional_shop_product_item_id = document.querySelector('input[name="optional"]:checked').id;
                                 var quantity = document.getElementsByName('productQuantity')[0].value;
                                 var customer_id = document.getElementsByName('customer_id')[0].value;
-
-
-                                console.log(optional_shop_product_item_id);
-                                console.log(quantity);
-                                console.log(customer_id);
-
+                                var inventory = document.getElementById('inventory');
+                                if(inventory.innerText==="Hết Hàng"){
+                                mess.innerHTML = "Sản phẩm đã hết hàng";
+                            }else{
 
 
                                 submitForm("AddToCart", quantity, optional_shop_product_item_id, customer_id);
                                 mess.innerHTML = "Đã thêm vào giỏ hàng";
-                                console.log(mess);
+                            }
                             }
 
                             // Example usage: updatePrice(productName, price);

@@ -31,11 +31,21 @@ public class OrderDTO {
     private double total_price_order;
     private String paypal_transaction_id;
     private String order_phone;
+    private int shop_id;
     
     
     public OrderDTO() {
     }
 
+    public OrderDTO(int shop_id) {
+        this.shop_id = shop_id;
+    }
+    
+    public OrderDTO(int order_id, int shop_id) {
+        this.order_id = order_id;
+        this.shop_id = shop_id;
+    }
+    
     public OrderDTO(int order_id, int optional_product_item_id, double sell_price, int amount) {
         this.order_id = order_id;
         this.optional_product_item_id = optional_product_item_id;
@@ -256,6 +266,14 @@ public class OrderDTO {
 
     public void setOrder_phone(String order_phone) {
         this.order_phone = order_phone;
+    }
+
+    public int getShop_id() {
+        return shop_id;
+    }
+
+    public void setShop_id(int shop_id) {
+        this.shop_id = shop_id;
     }
     
     

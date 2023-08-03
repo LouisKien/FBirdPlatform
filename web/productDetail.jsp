@@ -251,13 +251,13 @@ if(loginUser != null && loginUser.getRole() == 3) {
                for (int i = 0; i < count; i++) {
                    if (i == 0) {
                             %>
-                            <div><%=listOptional.get(i).getInventory() %></div>
+                        
 
                             <div class="product-item">
                                 <div class="product-name">
                                     <label class="btn btn-primary active optionalName" style="margin-right: -50px;" id="optionalName">
 
-                                        <input type="radio" name="optional" autocomplete="off" checked id="<%=listOptional.get(i).getOptional_shop_product_item_id() %>" value="<%=listOptional.get(i).getPrice() %>" onclick="updatePrice(<%=listOptional.get(i).getPrice() %>)">
+                                        <input type="radio" name="optional" autocomplete="off" checked id="<%=listOptional.get(i).getOptional_shop_product_item_id() %>" value="<%=listOptional.get(i).getPrice() %>" onclick="updatePrice(<%=listOptional.get(i).getPrice() %>)" inventory="<%=listOptional.get(i).getInventory() %>">
                                         <input style="display: none" name="optional_shop_product_item_id" value="<%=listOptional.get(i).getOptional_shop_product_item_id() %>">
                                         <%=listOptional.get(i).getName() %>
 
@@ -269,12 +269,12 @@ if(loginUser != null && loginUser.getRole() == 3) {
                             <%
                                     } else {
                             %>
-                            <div></div>
+                            
                             <div class="product-item">
                                 <div class="product-name">
                                     <label class="btn btn-primary active optionalName" style="margin-right: -50px;" id="optionalName">
 
-                                        <input type="radio" name="optional" autocomplete="off" id="<%=listOptional.get(i).getOptional_shop_product_item_id() %>" value="<%=listOptional.get(i).getPrice() %>" onclick="updatePrice(<%=listOptional.get(i).getPrice() %>)" inventory="<%=listOptional.get(i).getInventory() %>">
+                                        <input type="radio" name="optional" autocomplete="off" id="<%=listOptional.get(i).getOptional_shop_product_item_id() %>" value="<%=listOptional.get(i).getPrice() %>" onclick="updatePrice(<%=listOptional.get(i).getPrice() %>), totalPriceDefault()" inventory="<%=listOptional.get(i).getInventory() %>">
                                         <input style="display: none" name="optional_shop_product_item_id" value="<%=listOptional.get(i).getOptional_shop_product_item_id() %>">
                                         <%=listOptional.get(i).getName() %>
 
@@ -290,7 +290,7 @@ if(loginUser != null && loginUser.getRole() == 3) {
                             %>
 
                         </div>    
-
+                            <div >Kho: <a id="inventory"></a> </div>
                         <div class="quantity" >
                             <p>Số lượng: <input type="number" name="productQuantity" min="1" max="" value="1" onchange="totalPriceDefault()"></p> 
                                                                                                     
@@ -315,10 +315,15 @@ if(loginUser != null && loginUser.getRole() == 3) {
 
                             function totalPriceDefault() {
                                 var radioElement = document.querySelector('input[name="optional"]:checked');
-                                var quantity = document.getElementsByName('productQuantity');
+                                var inventory = document.getElementById('inventory');
+                                var quantity = document.getElementsByName('productQuantity')[0];
                                 var display = document.getElementById('selectedPrice1');
                                 if (radioElement) {
-                                    var total = radioElement.value * quantity[0].value;
+                                    inventory.innerHTML = radioElement.getAttribute('inventory');
+                                     quantity.max = radioElement.getAttribute('inventory');
+                                    var total = radioElement.value * quantity.value;
+//                                    quantity.max = radioElement.getAttribute('inventory');
+////                                    console.log(radioElement.getAttribute('inventory'));
                                     display.innerHTML = total;
                                 } else {
                                     return;

@@ -258,41 +258,60 @@
                     function getDataFromSessionStorage() {
 
                         var allElement = JSON.parse(sessionStorage.getItem("Element"));
+                        var shop_id = JSON.parse(sessionStorage.getItem("shop_id"));
+                        var shop_name = JSON.parse(sessionStorage.getItem("shop_name"));
+                        
+                        if (Array.isArray(allElement) && Array.isArray(shop_id)) {
+                            
+                            var open = `<div>`; 
+                            var close =`</div>`; 
+                                
+                                for (let i = 0; i < shop_name.length; i++) {
+                                
+//                                const [shop_name1] = shop_name[i];
+                                var b= `<div>`+ shop_name[i]+`</div>`;
+                                
+                               document.getElementById('element').innerHTML +=open+b;
+                             
+                                
+                                for (let j = 0; j < allElement.length; j++){
+                                    const [name2, title2, img2, price2, quantity2, shop_name2] = allElement[j];
+                                     if (shop_name[i] === shop_name2 ) {
+                                         
+                                       var a = `<div class="row mt-3">
+                                            <div class="col-md-2 col-lg-2 col-xl-2">
+                                                <img src="` + img2 + `" id="imgDisplay" class="img-fluid rounded-3" alt="Cotton T-shirt">
+                                            </div>
+                                            <div class="col-md-4 col-lg-4 col-xl-4">
+                                                
+                                                <h6 id="nameDisplay" class="text-muted">` + name2 + `</h6> 
+                                                <h6 id="titleDisplay" class="text-black mb-0">` + title2 + `</h6>
+                                            </div>
+                                            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                                                <p id="quantityDisplay" name="quantity" type="number"  readonly>` + quantity2 + `</p>
+                                            </div>
+                                            <div class="col-md-3 col-lg-2 pt-4 col-xl-2 offset-lg-1">
+                                                <h6 id="priceElement" >` + formatNumber(price2) + ` đ</h6>
+                                            </div>
 
-                        if (Array.isArray(allElement)) {
-                            // Khai báo một mảng để chứa các đối tượng mới
+                                        </div>`;
+                                        
+                                        
+                                        
+                                        document.getElementById('element').innerHTML += a ;
+                                    
+                                    }
+                                }
+                                
+                               document.getElementById('element').innerHTML += close ;
+                                
+                                     
+                                     
 
-
-                            // Duyệt qua các phần tử trong elementArray và tạo các đối tượng mới
-                            for (let i = 0; i < allElement.length; i++) {
-                                const [name, title, img, price, quantity, shop_name] = allElement[i];
-
-                                var a = `<div class="row mt-3">
-    <div class="col-md-2 col-lg-2 col-xl-2">
-        <img src="` + img + `" id="imgDisplay" class="img-fluid rounded-3" alt="Cotton T-shirt">
-    </div>
-    <div class="col-md-4 col-lg-4 col-xl-4">
-        <h6  class="text-muted">` + shop_name + `</h6>
-        <h6 id="nameDisplay" class="text-muted">` + name + `</h6> 
-        <h6 id="titleDisplay" class="text-black mb-0">` + title + `</h6>
-    </div>
-    <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-        <p id="quantityDisplay" name="quantity" type="number"  readonly>` + quantity + `</p>
-    </div>
-    <div class="col-md-3 col-lg-2 pt-4 col-xl-2 offset-lg-1">
-        <h6 id="priceElement" >` + formatNumber(price) + ` đ</h6>
-    </div>
-    
-</div>`;
-                                console.log(title);
-                                document.getElementById('element').innerHTML += a;
-                                // Tạo một đối tượng mới và đẩy vào mảng newObjectArray
-
-
-
+                                
                             }
+                                
 
-                            // Giờ đây, mảng newObjectArray chứa các đối tượng mới với các thuộc tính được trích xuất từ các biến khác nhau
 
                         }
                         updateTotalDisplay();
@@ -303,7 +322,7 @@
                         return numberString.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
                     }
                     function updateTotalDisplay() {
-
+                         var shop_name = JSON.parse(sessionStorage.getItem("shop_name"));
                         var totalPriceDisplay = document.getElementById("allPriceDisplay");
 
                         var allPrice = JSON.parse(sessionStorage.getItem("allPrices"));
@@ -312,7 +331,7 @@
 //                        console.log(data.imgElementValue);
 
 
-                        var total = allPrice + shippingCost;
+                        var total = allPrice + shippingCost*shop_name.length;
 
 
                         totalPriceDisplay.innerText = formatNumber(total) + "đ";
@@ -403,7 +422,7 @@
 
                                                     // Convert the data to JSON and send it to the servlet
                                                     xhr.send(JSON.stringify(dataToSend));
-                                                    console.log(allElement);
+                                                   
                                                 }
                                             }
                                         }

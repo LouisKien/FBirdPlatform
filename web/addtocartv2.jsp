@@ -101,7 +101,7 @@
                                                     <!--                    <button class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
                                                                             <i class="fas fa-minus" id="down-<%= cart.getOptional_shop_product_item_id() %>"></i>
                                                                         </button>-->
-                                                    <input id="quantity-<%= cart.getOptional_shop_product_item_id() %>" min="1" name="quantity-<%= cart.getOptional_shop_product_item_id() %>" value="<%= cart.getQuantity() %>" onchange="updateElementPrice(<%= cart.getOptional_shop_product_item_id() %>)" type="number" class="form-control form-control-sm" />
+                                                    <input id="quantity-<%= cart.getOptional_shop_product_item_id() %>" min="1" max="<%= cart.getInventory() %>" name="quantity-<%= cart.getOptional_shop_product_item_id() %>" value="<%= cart.getQuantity() %>" onchange="updateElementPrice(<%= cart.getOptional_shop_product_item_id() %>)" type="number" class="form-control form-control-sm" />
                                                     <!--                    <button class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
                                                                             <i class="fas fa-plus"></i>
                                                                         </button> -->
@@ -166,6 +166,7 @@
                                                     var totalPrice = 0;
                                                     let Allelement = [];
                                                     let shop = [];
+                                                    let shop_title=[];
                                                     for (var i = 0; i < cartItemsContainer.length; i++) {
                                                         var checkbox = cartItemsContainer[i].querySelector('input[type="checkbox"]');
                                                         var imgElement = cartItemsContainer[i].childNodes[3].childNodes[1];
@@ -190,9 +191,11 @@
                                                             let Element = [nameValue, titleValue, srcValue, price, quantity, shop_name];
                                                             let shopIdArray = [shop_id];
                                                             shop.push(shopIdArray);
-                                                            
-                                                            
-                                                                 sessionStorage.setItem("shop_id", JSON.stringify(shop));
+                                                            if(!shop_title.includes(shop_name)){
+                                                            shop_title.push(shop_name);
+                                                        }
+                                                            sessionStorage.setItem("shop_id", JSON.stringify(shop));
+                                                            sessionStorage.setItem("shop_name", JSON.stringify(shop_title));
                                                             
                                                             Allelement.push(Element);                                                           
                                                             sessionStorage.setItem("Element", JSON.stringify(Allelement));

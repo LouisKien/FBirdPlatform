@@ -18,10 +18,12 @@ public class CartDTO {
     private int quantity;
     private String category_name;
     private String image_1;
+    private int shop_id;
+    private String shop_name;
     public CartDTO() {
     }
 
-    public CartDTO(String title, String image_1, String name, Double price, int quantity, String category_name, int optional_shop_product_item_id, int cart_item_id) {
+    public CartDTO(String title, String image_1, String name, Double price, int quantity, String category_name, int optional_shop_product_item_id, int cart_item_id, int shop_id, String shop_name) {
         this.title = title;
         this.name = name;
         this.price = price;
@@ -30,6 +32,8 @@ public class CartDTO {
         this.optional_shop_product_item_id = optional_shop_product_item_id;      
         this.cart_item_id = cart_item_id;
         this.image_1 = image_1;
+        this.shop_id = shop_id;
+        this.shop_name = shop_name;
     }
 
     public CartDTO(int optional_shop_product_item_id, int customer_id, int quantity) {
@@ -111,6 +115,22 @@ public class CartDTO {
 
     public void setCart_item_id(int cart_item_id) {
         this.cart_item_id = cart_item_id;
+    }
+
+    public int getShop_id() {
+        return shop_id;
+    }
+
+    public void setShop_id(int shop_id) {
+        this.shop_id = shop_id;
+    }
+
+    public String getShop_name() {
+        return shop_name;
+    }
+
+    public void setShop_name(String shop_name) {
+        this.shop_name = shop_name;
     }
     
     

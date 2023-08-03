@@ -18,7 +18,7 @@ import java.util.List;
  * @author Admin
  */
 public class OptionalshopproductitemDAO {
-      private static final String GET_OPTIONAL = "SELECT name, price, optional_shop_product_item_id FROM optional_shop_product_item WHERE shop_product_item_id=?";
+      private static final String GET_OPTIONAL = "SELECT name, price, inventory, optional_shop_product_item_id FROM optional_shop_product_item WHERE shop_product_item_id=?";
       private static final String GET_PRICE = "SELECT price FROM optional_shop_product_item WHERE name=?";
       private static final String ADD_OPTIONAL = "INSERT INTO optional_shop_product_item(shop_product_item_id, name, price) VALUES (?,?,?)";
       private static final String UPDATE_OPTIONAL = "UPDATE optional_shop_product_item SET name=?, price=? WHERE shop_product_item_id=? AND optional_shop_product_item_id=?";
@@ -39,7 +39,8 @@ public class OptionalshopproductitemDAO {
                     int optional_shop_product_item_id = rs.getInt("optional_shop_product_item_id");
                     String name = rs.getString("name");
                     Double price = rs.getDouble("price");
-                    list.add(new OptionalshopproductitemDTO(optional_shop_product_item_id, name, price));
+                    int inventory = rs.getInt("inventory");
+                    list.add(new OptionalshopproductitemDTO(optional_shop_product_item_id, name, price, inventory));
                 }
             }
         }catch(Exception e){

@@ -265,13 +265,14 @@
 
                             // Duyệt qua các phần tử trong elementArray và tạo các đối tượng mới
                             for (let i = 0; i < allElement.length; i++) {
-                                const [name, title, img, price, quantity] = allElement[i];
+                                const [name, title, img, price, quantity, shop_name] = allElement[i];
 
                                 var a = `<div class="row mt-3">
     <div class="col-md-2 col-lg-2 col-xl-2">
         <img src="` + img + `" id="imgDisplay" class="img-fluid rounded-3" alt="Cotton T-shirt">
     </div>
     <div class="col-md-4 col-lg-4 col-xl-4">
+        <h6  class="text-muted">`+shop_name+`</h6>
         <h6 id="nameDisplay" class="text-muted">` + name + `</h6> 
         <h6 id="titleDisplay" class="text-black mb-0">` + title + `</h6>
     </div>

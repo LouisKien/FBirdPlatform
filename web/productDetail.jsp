@@ -251,7 +251,7 @@ if(loginUser != null && loginUser.getRole() == 3) {
                for (int i = 0; i < count; i++) {
                    if (i == 0) {
                             %>
-
+                            <div><%=listOptional.get(i).getInventory() %></div>
 
                             <div class="product-item">
                                 <div class="product-name">
@@ -269,11 +269,12 @@ if(loginUser != null && loginUser.getRole() == 3) {
                             <%
                                     } else {
                             %>
+                            <div></div>
                             <div class="product-item">
                                 <div class="product-name">
                                     <label class="btn btn-primary active optionalName" style="margin-right: -50px;" id="optionalName">
 
-                                        <input type="radio" name="optional" autocomplete="off" id="<%=listOptional.get(i).getOptional_shop_product_item_id() %>" value="<%=listOptional.get(i).getPrice() %>" onclick="updatePrice(<%=listOptional.get(i).getPrice() %>)">
+                                        <input type="radio" name="optional" autocomplete="off" id="<%=listOptional.get(i).getOptional_shop_product_item_id() %>" value="<%=listOptional.get(i).getPrice() %>" onclick="updatePrice(<%=listOptional.get(i).getPrice() %>)" inventory="<%=listOptional.get(i).getInventory() %>">
                                         <input style="display: none" name="optional_shop_product_item_id" value="<%=listOptional.get(i).getOptional_shop_product_item_id() %>">
                                         <%=listOptional.get(i).getName() %>
 
@@ -291,8 +292,8 @@ if(loginUser != null && loginUser.getRole() == 3) {
                         </div>    
 
                         <div class="quantity" >
-                            <p>Số lượng: <input type="number" name="productQuantity" min="1" max="100" value="1" onchange="totalPriceDefault()"></p> 
-
+                            <p>Số lượng: <input type="number" name="productQuantity" min="1" max="" value="1" onchange="totalPriceDefault()"></p> 
+                                                                                                    
                         </div>
 
                         <div class="selected-product-price" id="selectedPrice" style="visibility: hidden">0</div>

@@ -14,13 +14,15 @@ public class OptionalshopproductitemDTO {
     private String name;
     private Double price;
     private String title;
+    private int inventory;
     public OptionalshopproductitemDTO() {
     }
 
-    public OptionalshopproductitemDTO(int optional_shop_product_item_id, String name, Double price) {
+    public OptionalshopproductitemDTO(int optional_shop_product_item_id, String name, Double price, int inventory) {
         this.optional_shop_product_item_id = optional_shop_product_item_id;
         this.name = name;
         this.price = price;
+        this.inventory = inventory;
     }
 
     public OptionalshopproductitemDTO(String name, String title) {
@@ -75,6 +77,14 @@ public class OptionalshopproductitemDTO {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public int getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(int inventory) {
+        this.inventory = inventory;
     }
     
 }

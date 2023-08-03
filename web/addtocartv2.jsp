@@ -83,16 +83,17 @@
             
                                             %>
                                             <hr class="my-4">
-
+                                           
                                             <div class="row mb-4 d-flex justify-content-between align-items-center cart-items-container">
                                                 <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                                                     <input type="checkbox" id="myCheckbox" onchange="handleCheckboxChange()">
                                                 </div>
+                                                
                                                 <div class="col-md-2 col-lg-2 col-xl-2">
                                                     <img src="<%= cart.getImage_1() %>" id="img-product" class="img-fluid rounded-3" alt="Cotton T-shirt">
                                                 </div>
                                                 <div class="col-md-3 col-lg-3 col-xl-3">
-                                                    <h6  class="text-muted"><%= cart.getCategory_name() %></h6>
+                                                    <h6  class="text-muted"><%= cart.getShop_name() %></h6>
                                                     <h6  id="name-product" class="text-black mb-0"><%= cart.getTitle() %></h6>
                                                     <h6 id="title-product" class="text-black mb-0"><%= cart.getName() %></h6>
                                                 </div>
@@ -112,6 +113,7 @@
                                                 <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                                                     <a href="MainController?action=DeleteCartItem&cart_item_id=<%= cart.getCart_item_id() %>&customer_id=<%= loginUser.getCustomer_id() %>" class="text-muted"><i class="fas fa-times"></i></a>
                                                 </div>
+                                                 <div style="display: none"><%= cart.getShop_id() %></div>
                                             </div>
                                             <script>
 
@@ -163,33 +165,39 @@
                                                     var cartItemsContainer = document.getElementsByClassName("cart-items-container");
                                                     var totalPrice = 0;
                                                     let Allelement = [];
+                                                    let shop = [];
                                                     for (var i = 0; i < cartItemsContainer.length; i++) {
                                                         var checkbox = cartItemsContainer[i].querySelector('input[type="checkbox"]');
                                                         var imgElement = cartItemsContainer[i].childNodes[3].childNodes[1];
+                                                        var shop_name0 = cartItemsContainer[i].childNodes[5].childNodes[1];
                                                         var name = cartItemsContainer[i].childNodes[5].childNodes[3];
                                                         var title = cartItemsContainer[i].childNodes[5].childNodes[5];
+                                                        var shop_id = cartItemsContainer[i].childNodes[13].innerText;
+                                                     
+
 
                                                         var srcValue = imgElement.getAttribute("src");
                                                         var nameValue = name.innerText;
                                                         var titleValue = title.innerText;
-
+                                                        var shop_name = shop_name0.innerText;
 
 
                                                         var totalElement = cartItemsContainer[i].childNodes[9].childNodes[3];
                                                         var quantityInput = cartItemsContainer[i].childNodes[7].childNodes[3];
                                                         var quantity = parseInt(quantityInput.value);
                                                         var price = ConvertToNumber((totalElement.innerText));
-
                                                         if (checkbox.checked) {
-                                                            let Element = [nameValue, titleValue, srcValue, price, quantity];
-                                            //        sessionStorage.setItem("name-"+i, JSON.stringify(nameValue));
-                                            //        sessionStorage.setItem("title-"+i, JSON.stringify(titleValue));
-                                            //        sessionStorage.setItem("img-"+i, JSON.stringify(srcValue));
-                                            //        sessionStorage.setItem("priceElement-"+i, JSON.stringify(price));
-                                            //      sessionStorage.setItem("cartQuantities-"+i, JSON.stringify(quantity));
-                                                            Allelement.push(Element);
+                                                            let Element = [nameValue, titleValue, srcValue, price, quantity, shop_name];
+                                          
+                                                            shop.push(shop_id);
+                                                            
+                                                            
+                                                                 sessionStorage.setItem("shop_id", JSON.stringify(shop));
+                                                            
+                                                            Allelement.push(Element);                                                           
                                                             sessionStorage.setItem("Element", JSON.stringify(Allelement));
                                                             totalPrice += price;
+                                                            
                                                         }
                                                     }
 

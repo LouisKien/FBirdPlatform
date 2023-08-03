@@ -94,13 +94,13 @@ public class ProductDTO {
         this.status = status;
     }
 
-    public ProductDTO(int shopID, int shopProductItemID, String title, String description, int inventory, Date uploadDate, byte status, String image_1, String image_2, String image_3, String image_4, String type_of_bird_name, String shop_name, String avatar) {
+    public ProductDTO(int shopID, int shopProductItemID, String title, String description, Date uploadDate, byte status, String image_1, String image_2, String image_3, String image_4, String type_of_bird_name, String shop_name, String avatar) {
         this.shopProductItemID = shopProductItemID;
 
         this.shopID = shopID;
         this.title = title;
         this.description = description;
-        this.inventory = inventory;
+       
         this.uploadDate = uploadDate;
 
         this.image_1 = image_1;

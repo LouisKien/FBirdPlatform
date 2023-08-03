@@ -229,142 +229,48 @@
                             </div>
                         </div>
 
-                        <div class="col">
-                            <table class="table bg-white rounded shadow-sm  table-hover">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" width="50">#</th>
-                                        <th scope="col">Sản phẩm</th>
+<div class="col">
+    <table class="table bg-white rounded shadow-sm table-hover">
+        <thead>
+            <tr>
+                <th scope="col" width="50">#</th>
+                <th scope="col">Sản phẩm</th>
+                <th scope="col">Giá</th>
+                <th scope="col">Trạng thái</th>
+                <th scope="col">Thời gian</th>
+                <th scope="col">Vận chuyển</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% 
+                List<OrderDTO> listOrder = (List<OrderDTO>) request.getAttribute("LIST_ORDER");
+                if (listOrder != null && !listOrder.isEmpty()) {
+                    int count = 0;
+                    for (OrderDTO listOD : listOrder) {
+                        count++;
+            %>
 
-                                        <th scope="col">Giá</th>
-                                        <th scope="col">Trạng thái</th>
-                                        <th scope="col">Thời gian</th>
-                                        <th scope="col">Vận chuyển</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <% 
-                                        List<OrderDTO> listOrder = (List<OrderDTO>) request.getAttribute("LIST_ORDER");
-                                        if (listOrder != null && !listOrder.isEmpty()) {
-                                            int count = 0;
-            
-                                            for (OrderDTO listOD : listOrder) {
-                                            count++;
-                                    %>
+            <tr onclick="redirectToDetailPage();">
+                <th scope="row"><%= count %></th>
+                <td><%= listOD.getTitle() %></td>
+                <td><%= listOD.getTotal_price_order() %></td>
+                <td><%= listOD.getStatus() %></td>
+                <td><%= listOD.getOrder_date() %></td>
+                <td><%= listOD.getName() %></td>
+            </tr>
+            <% }
+            %>
+        </tbody>
+    </table>
+</div>
 
-                                    <tr>
-                                        <th scope="row"><%=count%></th>
-                                        <td><%=listOD.getTitle()%></td>
+<!-- JavaScript function to redirect to the customerOrderDetail.jsp page -->
+<script>
+    function redirectToDetailPage() {
+        window.location.href = 'customerOrderDetail.jsp' ;
+    }
+</script>
 
-                                        <td><%=listOD.getTotal_price_order()%></td>
-                                        <td><%=listOD.getStatus()%></td>
-                                        <td><%=listOD.getOrder_date()%></td>
-                                        <td><%=listOD.getName()%></td>
-                                    </tr>
-                                    <%}
-                                    %>
-                                    <!--                                    <tr>
-                                                                            <th scope="row">2</th>
-                                                                            <td>Cám chim 2</td>
-                                                                            
-                                                                            <td>$750</td>
-                                                                            <td>Đã hủy</td>
-                                                                            <td>1/1/2023</td>
-                                                                            <td>Hỏa tốc</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="row">3</th>
-                                                                            <td>Cám chim 3</td>
-                                                                            
-                                                                            <td>$600</td>
-                                                                            <td>Đã giao</td>
-                                                                            <td>1/1/2023</td>
-                                                                            <td>Hỏa tốc</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="row">4</th>
-                                                                            <td>Cám chim 4</td>
-                                                                            
-                                                                            <td>$300</td>
-                                                                            <td>Đã hủy</td>
-                                                                            <td>1/1/2023</td>
-                                                                            <td>Hỏa tốc</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="row">5</th>
-                                                                            <td>Cám chim 5</td>
-                                                                            
-                                                                            <td>$120</td>
-                                                                            <td>Đã giao</td>
-                                                                            <td>1/1/2023</td>
-                                                                            <td>Hỏa tốc</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="row">6</th>
-                                                                            <td>Cám chim 6</td>
-                                                                            
-                                                                            <td>$1800</td>
-                                                                            <td>Đã hủy</td>
-                                                                            <td>1/1/2023</td>
-                                                                            <td>Hỏa tốc</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="row">7</th>
-                                                                            <td>Cám chim 7</td>
-                                                                            
-                                                                            <td>$75</td>
-                                                                            <td>Đã giao</td>
-                                                                            <td>1/1/2023</td>
-                                                                            <td>Hỏa tốc</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="row">8</th>
-                                                                            <td>Cám chim 8</td>
-                                                                            
-                                                                            <td>$36</td>
-                                                                            <td>Đã hủy</td>
-                                                                            <td>1/1/2023</td>
-                                                                            <td>Hỏa tốc</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="row">9</th>
-                                                                            <td>Cám chim 9</td>
-                                                                            
-                                                                            <td>$255</td>
-                                                                            <td>Đã giao</td>
-                                                                            <td>1/1/2023</td>
-                                                                            <td>Hỏa tốc</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="row">10</th>
-                                                                            <td>Cám chim 10</td>
-                                                                            
-                                                                            <td>$434</td>
-                                                                            <td>Đã hủy</td>
-                                                                            <td>1/1/2023</td>
-                                                                            <td>Hỏa tốc</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="row">11</th>
-                                                                            <td>Cám chim 11</td>
-                                                                            
-                                                                            <td>$1236</td>
-                                                                            <td>Đã giao</td>
-                                                                            <td>1/1/2023</td>
-                                                                            <td>Hỏa tốc</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="row">12</th>
-                                                                            <td>Cám chim 12</td>
-                                                                            
-                                                                            <td>$422</td>
-                                                                            <td>Đã hủy</td>
-                                                                            <td>1/1/2023</td>
-                                                                            <td>Hỏa tốc</td>
-                                                                        </tr>-->
-                                </tbody>
-                            </table>
-                        </div>
 
 
                     </div>

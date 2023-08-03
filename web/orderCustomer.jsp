@@ -229,53 +229,50 @@
                             </div>
                         </div>
 
-<div class="col">
-    <table class="table bg-white rounded shadow-sm table-hover">
-        <thead>
-            <tr>
-                <th scope="col" width="50">#</th>
-                <th scope="col">Sản phẩm</th>
-                <th scope="col">Giá</th>
-                <th scope="col">Trạng thái</th>
-                <th scope="col">Thời gian</th>
-                <th scope="col">Vận chuyển</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% 
-                List<OrderDTO> listOrder = (List<OrderDTO>) request.getAttribute("LIST_ORDER");
-                if (listOrder != null && !listOrder.isEmpty()) {
-                    int count = 0;
-                    for (OrderDTO listOD : listOrder) {
-                        count++;
-            %>
+                        <form action="MainController" method="POST">
+                            <div class="col">
+                                <table class="table bg-white rounded shadow-sm table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" width="50">#</th>
+                                            <th scope="col">Mã đơn hàng</th>
+                                            <th scope="col">Giá tổng</th>
+                                            <th scope="col">Trạng thái</th>
+                                            <th scope="col">Thời gian</th>
+                                            <th scope="col">Vận chuyển</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% 
+                                            List<OrderDTO> listOrder = (List<OrderDTO>) request.getAttribute("LIST_ORDER");
+                                            if (listOrder != null && !listOrder.isEmpty()) {
+                                                int count = 0;
+                                                for (OrderDTO listOD : listOrder) {
+                                                    count++;
+                                        %>
 
-            <tr onclick="redirectToDetailPage();">
-                <th scope="row"><%= count %></th>
-                <td><%= listOD.getTitle() %></td>
-                <td><%= listOD.getTotal_price_order() %></td>
-                <td><%= listOD.getStatus() %></td>
-                <td><%= listOD.getOrder_date() %></td>
-                <td><%= listOD.getName() %></td>
-            </tr>
-            <% }
-            %>
-        </tbody>
-    </table>
-</div>
-
-<!-- JavaScript function to redirect to the customerOrderDetail.jsp page -->
-<script>
-    function redirectToDetailPage() {
-        window.location.href = 'customerOrderDetail.jsp' ;
-    }
-</script>
+                                        <tr onclick="redirectToDetailPage();">
+                                            <th scope="row"><%= count %></th>
+                                            <td><%= listOD.getOrder_id() %></td>
+                                            <td><%= listOD.getTotal_price_order() %></td>
+                                            <td><%= listOD.getStatus() %></td>
+                                            <td><%= listOD.getPaypal_transaction_id() %></td>
+                                            <td><%= listOD.getOrder_date() %></td>
+                                            <td><button><a href="MainController?action=ViewCustomerOrderDetail&order_id=<%= listOD.getOrder_id() %>">Xem chi tiết</a></button></td>
+                                        </tr>
+                                        <% }
+                                        %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </form>
 
 
 
                     </div>
 
-                                    
+
                     <div class="container py-5">
                         <div class="col-12">
                             <nav aria-label="Page navigation">
@@ -292,12 +289,12 @@
                                     </li>
                                     <%
                         for(int i = 1; i <= pageNumber; i++){
-                        %>
+                                    %>
                                     <li class="page-item"><a class="page-link" href="MainController?action=ViewCustomerOrder&customer_id=<%= loginUser.getCustomer_id() %>&index=<%= i %>&status=<%= status%>"><%= i %></a></li>
                                         <%
                                 
                                     }
-                            %>
+                                        %>
 
 
                                     <li class="page-item <% if (indexPage == pageNumber) { %>disabled<% } %>">
@@ -313,7 +310,7 @@
                 </div>
             </div>
         </div>
-                                            <%}%>
+        <%}%>
 
 
 

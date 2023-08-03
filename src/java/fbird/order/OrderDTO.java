@@ -32,6 +32,7 @@ public class OrderDTO {
     private String paypal_transaction_id;
     private String order_phone;
     private int shop_id;
+    private String fullname;
     
     
     public OrderDTO() {
@@ -89,6 +90,15 @@ public class OrderDTO {
         this.order_date = order_date;
         this.status = status;
         this.total_price_order = total_price_order;
+    }
+
+    public OrderDTO(String title, String name, double sell_price, Date order_date, String status, String fullname) {
+        this.title = title;
+        this.name = name;
+        this.sell_price = sell_price;
+        this.order_date = order_date;
+        this.status = status;
+        this.fullname = fullname;
     }
 
     
@@ -274,6 +284,14 @@ public class OrderDTO {
 
     public void setShop_id(int shop_id) {
         this.shop_id = shop_id;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
     
     

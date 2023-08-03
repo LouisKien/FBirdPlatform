@@ -33,7 +33,7 @@ public class OrderDAO {
     private static final String VIEW_CUSTOMER_ORDER = "SELECT  shop_product_item.title, total_price_order, delivery_method.name, customer_order.status, order_date  FROM customer_order JOIN order_item on customer_order.order_id= order_item.order_id JOIN optional_shop_product_item on optional_shop_product_item.optional_shop_product_item_id = order_item.optional_shop_product_item_id JOIN shop_product_item on optional_shop_product_item.shop_product_item_id = shop_product_item.shop_product_item_id JOIN delivery_method on delivery_method.delivery_method_id = customer_order.delivery_method_id WHERE customer_id =? AND customer_order.status like ? ORDER BY total_price_order OFFSET ? ROWS FETCH FIRST 10 ROWS ONLY;";
     private static final String COUNT_ORDER_PAGE_NUMBER = "SELECT  count(shop_product_item.title)  FROM customer_order JOIN order_item on customer_order.order_id= order_item.order_id JOIN optional_shop_product_item on optional_shop_product_item.optional_shop_product_item_id = order_item.optional_shop_product_item_id JOIN shop_product_item on optional_shop_product_item.shop_product_item_id = shop_product_item.shop_product_item_id JOIN delivery_method on delivery_method.delivery_method_id = customer_order.delivery_method_id WHERE customer_id = ? AND customer_order.status like ? ";
     private static final String SET_TOTAL_PRICE_PER_ORDER = "UPDATE customer_order SET total_price_order = ? WHERE order_id = ?";
-
+    private static final String VIEW_SHOP_ORDER = "SELECT shop_product_item.title, customer.fullname, sell_price, customer_order.status, customer_order.order_date, delivery_method.name FROM order_item JOIN optional_shop_product_item on optional_shop_product_item.optional_shop_product_item_id = order_item.optional_shop_product_item_id JOIN shop_product_item on shop_product_item.shop_product_item_id = optional_shop_product_item.shop_product_item_id JOIN customer_order on customer_order.order_id = order_item.order_id JOIN customer on customer.customer_id = customer_order.customer_id JOIN delivery_method on customer_order.delivery_method_id = delivery_method.delivery_method_id Where customer_order.shop_id=?";
     public List<OrderDTO> getAddress(int customer_id) throws SQLException {
         List<OrderDTO> list = new ArrayList<>();
         Connection conn = null;
@@ -382,6 +382,44 @@ public class OrderDAO {
                 rs.close();
             }
         }
+    }
+    public List<OrderDTO> getAllShopOrder(int shop_id) throws SQLException {
+        List<OrderDTO> list = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(VIEW_SHOP_ORDER);
+                ptm.setInt(1, shop_id);
+                
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    String title = rs.getString("title");
+                    String fullname = rs.getString("fullname");
+                    Double sell_price = rs.getDouble("sell_price");
+                    String name = rs.getString("name");                    
+                    String status = rs.getString("status");
+                    Date order_date = rs.getDate("order_date");
+                    
+                    list.add(new OrderDTO(title, name, sell_price, order_date, status, fullname ));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
+        }
+        return list;
     }
     
 }

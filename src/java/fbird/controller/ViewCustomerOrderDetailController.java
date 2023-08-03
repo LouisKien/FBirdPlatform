@@ -10,17 +10,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import fbird.order.OrderDTO;
-import fbird.order.OrderDAO;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 
 /**
  *
- * @author Admin
+ * @author Louis Kien
  */
-public class ViewCustomerOrderController extends HttpServlet {
+public class ViewCustomerOrderDetailController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,30 +29,17 @@ public class ViewCustomerOrderController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-         String url = "orderCustomer.jsp";
-        try {
-            String index = request.getParameter("index");
-            if (index == null) {
-                index = "1";
-            }
-            int indexPage = Integer.parseInt(index);
-             int customer_id = Integer.parseInt(request.getParameter("customer_id"));
-             String status = request.getParameter("status");
-              OrderDAO dao = new OrderDAO();
-               List<OrderDTO> listOrder = dao.getAllCustomerOrder(customer_id, status, indexPage);
-               Collections.sort(listOrder, Comparator.comparing(OrderDTO::getOrder_id).reversed());
-               int pageNumber = dao.getOrderPageNumber(customer_id, status);
-               
-               if (!listOrder.isEmpty()) {
-                   request.setAttribute("LIST_ORDER", listOrder);
-                   request.setAttribute("PAGE_NUMBER", pageNumber);
-                   request.setAttribute("INDEX_PAGE", indexPage);
-                   request.setAttribute("STATUS", status);
-               }
-        }catch (Exception ex) {
-            log("Error at Search: " + ex.toString());
-        } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ViewCustomerOrderDetailController</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ViewCustomerOrderDetailController at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 

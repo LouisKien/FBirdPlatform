@@ -357,8 +357,6 @@ if(loginUser != null && loginUser.getRole() == 3) {
                                 if(inventory.innerText==="Hết Hàng"){
                                 mess.innerHTML = "Sản phẩm đã hết hàng";
                             }else{
-
-
                                 submitForm("AddToCart", quantity, optional_shop_product_item_id, customer_id);
                                 mess.innerHTML = "Đã thêm vào giỏ hàng";
                             }

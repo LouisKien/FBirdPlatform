@@ -188,8 +188,8 @@
                                                         var price = ConvertToNumber((totalElement.innerText));
                                                         if (checkbox.checked) {
                                                             let Element = [nameValue, titleValue, srcValue, price, quantity, shop_name];
-                                          
-                                                            shop.push(shop_id);
+                                                            let shopIdArray = [shop_id];
+                                                            shop.push(shopIdArray);
                                                             
                                                             
                                                                  sessionStorage.setItem("shop_id", JSON.stringify(shop));

@@ -94,6 +94,7 @@ public class OrderPayPalTransactionController extends HttpServlet {
             List<OrderDTO> list_customer_order_id = dao.getCustomerOrderID(customer_id, paypal_transaction_id);
             for (OrderDTO id : list_customer_order_id) {
                 List<OrderDTO> getListProperty = dao.getAllProductProperties(listOrder, id.getOrder_id(), id.getShop_id());
+                dao.setTotalPricePerOrder(getListProperty, id.getOrder_id(), shippingPrice);
                 dao.addOrderProduct(getListProperty);
                 dao.subtractQuantityInInventory(getListProperty);
                 dao.deleteCartItem(getListProperty, customer_id);

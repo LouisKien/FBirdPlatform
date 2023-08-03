@@ -158,17 +158,17 @@
 
                 <div class="right">
                     <div class="url"><a class="url1" href="MainController">Trang chủ &nbsp</a>  >   <a class="url1" href="MainController?action=ViewRecipe">&nbsp Khẩu phần</a> </div>
-                    <div class="pname"><%= recipe.get(0).getTitle_recipe()%></div>
-                    <div>Thành Phần</div>
-                    <div class="row justify-content-center">
+                    <div class="pname" style="text-transform: uppercase;"><%= recipe.get(0).getTitle_recipe()%></div>
+                    <div class="size" style=" font-size: 17px; font-weight: bold; text-transform: uppercase; color: #7ab730;">Thành Phần</div>
+                    <div class="pname" style="margin-top: -20px; ">
                     <%
                             List<RecipeDTO> listRecipeProduct = (List<RecipeDTO>) request.getAttribute("RECIPE_PRODUCT");
                            for(RecipeDTO rp: listRecipeProduct){
                     %>
-                    <div><%= rp.getTitle()%></div>
+                    <div >> <a style="font-size:14px;"><%= rp.getTitle()%></a></div>
                     <%}%>
                     </div>
-                    <div class="price">
+                    <div class="price" style="font-size: 35px;">
                         <%-- Lấy giá tiền từ recipe.get(0).getTotal_price() --%>
                         <% double totalPrice = recipe.get(0).getTotal_price(); %>
 

@@ -237,7 +237,7 @@ if(loginUser != null && loginUser.getRole() == 3) {
 
 
 
-                        <div class="size">Tùy chọn:
+                        <div class="size" style="font-size:  18px;font-weight: bold; font-family: Arial, sans-serif;">Tùy chọn:
 
                             <%
            List<OptionalshopproductitemDTO> listOptional = (List<OptionalshopproductitemDTO>) request.getAttribute("LIST_Optional");
@@ -290,9 +290,11 @@ if(loginUser != null && loginUser.getRole() == 3) {
                             %>
 
                         </div>    
-                        <div >Kho: <a id="inventory"></a> </div>
+                            <div class="quantity" >    
+                                <p style="font-weight: bold;">Kho: <a id="inventory"></a> </p> 
+                            </div>
                         <div class="quantity" >
-                            <p>Số lượng: <input type="number" name="productQuantity" min="1" max="" value="1" onchange="totalPriceDefault()"></p> 
+                            <p style="font-weight: bold;">Số lượng: <input type="number" name="productQuantity" min="1" max="" value="1" onchange="totalPriceDefault()"></p> 
 
                         </div>
 

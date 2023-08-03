@@ -78,7 +78,7 @@
                 <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
                     <div class="d-flex align-items-center">
                         <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-                        <h2 class="fs-2 m-0">Tất cả đơn hàng</h2>
+                        <h2 class="fs-2 m-0">Chi tiết đơn hàng</h2>
                     </div>
 
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -107,36 +107,21 @@
                 <div class="container-fluid px-4">
 
                     <div class="row my-5">
-                        <h3 class="fs-4 mb-3">Gần đây</h3>
+
                         <div class="col">
-                            <table class="table bg-white rounded shadow-sm  table-hover">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" width="50">#</th>
-                                        <th scope="col">Sản phẩm</th>
-                                        <th scope="col">Khách hàng</th>
-                                        <th scope="col">Giá</th>
-                                        <th scope="col">Trạng thái</th>
-                                        <th scope="col">Thời gian</th>
-                                        <th scope="col">Vận chuyển</th>
-                                        <th scope="col"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Cám chim 1</td>
-                                        <td>Jonny</td>
-                                        <td>$1200</td>
-                                        <td>Đã giao</td>
-                                        <td>1/1/2023</td>
-                                        <td>Hỏa tốc</td>
-                                        <td style="text-align: center">
-                                            <a href="xemChiTietDatHangCuaShop.jsp"><i class="fas-solid fas fa-bars"></i></a>
-                                        <td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div class="container" style="display: grid; grid-template-rows: repeat(4,0fr); gap:10px;">
+                                <label  style="font-size: 18px; font-weight: bold;" >Khách hàng:  </label> <input type="text" id="customer" name="customer" readonly="" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                <label  style="font-size: 18px; font-weight: bold;" >Địa chỉ:  </label> <input type="text" id="customer" name="customer" readonly="" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                <label  style="font-size: 18px; font-weight: bold;" >Sản phẩm:  </label> <input type="text" id="productName" name="productName" readonly="" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                <label  style="font-size: 18px; font-weight: bold;" >Tùy chọn sản phẩm:  </label> <input type="text" id="option" name="option" readonly="" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                <label  style="font-size: 18px; font-weight: bold;" >Số lượng:  </label> <input type="text" id="quantity" name="quantity" readonly="" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                <label  style="font-size: 18px; font-weight: bold;" >Giá bán:  </label> <input type="text" id="price" name="price" readonly="" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                <label  style="font-size: 18px; font-weight: bold;" >Ngày mua:   </label> <input type="text" id="date" name="date" readonly="" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                <label  style="font-size: 18px; font-weight: bold;" >Vận chuyển:  </label> <input type="text" id="delivery" name="delivery" readonly="" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                <label  style="font-size: 18px; font-weight: bold;" >Giá vận chuyển:  </label> <input type="text" id="price-delivery" name="price-delivery" readonly="" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+
+                            </div>
+
                         </div>
                     </div>
 
@@ -156,10 +141,6 @@
         };
     </script>
 </body>
-<script>
-    document.getElementById('row1').addEventListener('click', function () {
-        window.location.href = 'xemChiTietDatHangCuaShop.jsp'; // Thay 'ten-trang-jsp.jsp' bằng đường dẫn tới trang JSP cần chuyển hướng
-    });
-</script>
+
 </html>
 

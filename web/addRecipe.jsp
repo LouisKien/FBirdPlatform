@@ -137,7 +137,7 @@
                                                                                 for (TypeOfBirdDTO listTP : listType) {
                                         
                                         %>
-                                        <option value=""><%=listTP.getType_of_bird_name()%></option>
+                                        <option value="<%= listTP.getType_of_bird_id()%>"><%=listTP.getType_of_bird_name()%></option>
                                         <%}}
                                         %>
                                     </select>
@@ -150,7 +150,7 @@
                                     <label for="Product1" style="font-size: 18px; font-weight: bold;">Sản phẩm 1:</label>
                                     <select id="Product1" name="Product1" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
 
-                                        <option value="">Chọn sản phẩm</option>
+                                        <option value="none">Chọn sản phẩm</option>
                                         <% 
                                     List<OptionalshopproductitemDTO> listOptional = (List<OptionalshopproductitemDTO>) request.getAttribute("LIST_OPTIONAL");
                                     if (listOptional != null && !listOptional.isEmpty()) {
@@ -160,15 +160,15 @@
                                         
                                         %>
 
-                                        <option value=""><%=listOP.getTitle()%>: <%=listOP.getName()%></option>
+                                        <option value="<%=listOP.getTitle()%>: <%=listOP.getName()%>"><%=listOP.getTitle()%>: <%=listOP.getName()%></option>
                                         <%}}
                                         %>
                                     </select>
-                                    <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng sản phẩm 1:  </label> <input type="text" id="productName" name="inventory" placeholder="Nhập số lượng sản phẩm" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng sản phẩm 1:  </label> <input type="text" id="productName" name="inventory1" placeholder="Nhập số lượng sản phẩm" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
 
                                     <label for="Product2" style="font-size: 18px; font-weight: bold;">Sản phẩm 2:</label>
                                     <select id="Product2" name="Product2" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
-                                        <option value="">Chọn sản phẩm</option>
+                                        <option value="none">Chọn sản phẩm</option>
                                         <%
                                                                                 if (listOptional != null && !listOptional.isEmpty()) {
                                         
@@ -177,16 +177,16 @@
                                         
                                         %>
 
-                                        <option value=""><%=listOP.getTitle()%>: <%=listOP.getName()%></option>
+                                        <option value="<%=listOP.getTitle()%>: <%=listOP.getName()%>"><%=listOP.getTitle()%>: <%=listOP.getName()%></option>
                                         <%}}
                                         %>
 
                                     </select>
-                                    <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng sản phẩm 2:  </label> <input type="text" id="productName" name="inventory" placeholder="Nhập số lượng sản phẩm" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng sản phẩm 2:  </label> <input type="text" id="productName" name="inventory2" placeholder="Nhập số lượng sản phẩm" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
 
                                     <label for="Product3" style="font-size: 18px; font-weight: bold;">Sản phẩm 3:</label>
                                     <select id="Product3" name="Product2" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
-                                        <option value="">Chọn sản phẩm</option>
+                                        <option value="none">Chọn sản phẩm</option>
 
                                         <%
                                          if (listOptional != null && !listOptional.isEmpty()) {
@@ -196,16 +196,16 @@
                                         
                                         %>
 
-                                        <option value=""><%=listOP.getTitle()%>: <%=listOP.getName()%></option>
+                                        <option value="<%=listOP.getTitle()%>: <%=listOP.getName()%>"><%=listOP.getTitle()%>: <%=listOP.getName()%></option>
                                         <%}}
                                         %>
 
                                     </select>
-                                    <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng sản phẩm 3:  </label> <input type="text" id="productName" name="inventory" placeholder="Nhập số lượng sản phẩm" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng sản phẩm 3:  </label> <input type="text" id="productName" name="inventory3" placeholder="Nhập số lượng sản phẩm" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
 
                                     <label for="Product4" style="font-size: 18px; font-weight: bold;">Sản phẩm 4:</label>
                                     <select id="Product4" name="Product2" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
-                                        <option value="">Chọn sản phẩm</option>
+                                        <option value="none">Chọn sản phẩm</option>
 
                                         <%
                                          if (listOptional != null && !listOptional.isEmpty()) {
@@ -215,16 +215,16 @@
                                         
                                         %>
 
-                                        <option value=""><%=listOP.getTitle()%>: <%=listOP.getName()%></option>
+                                        <option value="<%=listOP.getTitle()%>: <%=listOP.getName()%>"><%=listOP.getTitle()%>: <%=listOP.getName()%></option>
                                         <%}}
                                         %>
 
                                     </select>
-                                    <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng sản phẩm 4:  </label> <input type="text" id="productName" name="inventory" placeholder="Nhập số lượng sản phẩm" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng sản phẩm 4:  </label> <input type="text" id="productName" name="inventory4" placeholder="Nhập số lượng sản phẩm" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
 
                                     <label for="Product5" style="font-size: 18px; font-weight: bold;">Sản phẩm 5:</label>
                                     <select id="Product5" name="Product1" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
-                                        <option value="">Chọn sản phẩm</option>
+                                        <option value="none">Chọn sản phẩm</option>
 
                                         <%
                                         if (listOptional != null && !listOptional.isEmpty()) {
@@ -234,13 +234,13 @@
                                         
                                         %>
 
-                                        <option value=""><%=listOP.getTitle()%>: <%=listOP.getName()%></option>
+                                        <option value="<%=listOP.getTitle()%>: <%=listOP.getName()%>"><%=listOP.getTitle()%>: <%=listOP.getName()%></option>
                                         <%}}
                                         %>
 
                                     </select>
-                                    <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng sản phẩm 5:  </label> <input type="text" id="productName" name="inventory" placeholder="Nhập số lượng sản phẩm" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-                                    <label for="inventory" style="font-size: 18px; font-weight: bold;" >Tổng giá khẩu phần: </label> <input type="text" id="productName" name="inventory" readonly="" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng sản phẩm 5:  </label> <input type="text" id="productName" name="inventory5" placeholder="Nhập số lượng sản phẩm" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <label for="inventory" style="font-size: 18px; font-weight: bold;" >Tổng giá khẩu phần: </label> <input type="text" id="productName" name="totalPrice" readonly="" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
 
                                 </div>
 

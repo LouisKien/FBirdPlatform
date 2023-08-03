@@ -4,12 +4,15 @@
  */
 package fbird.controller;
 
+import fbird.recipe.RecipeDAO;
+import fbird.recipe.RecipeDTO;
+import fbird.user.UserDTO;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -29,17 +32,84 @@ public class CreateRecipeController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet CreateRecipeController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet CreateRecipeController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        String url = "View"
+        try {
+            boolean checkAddProduct = false;
+            HttpSession session = request.getSession();
+            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+            int shopID = loginUser.getShop_id();
+            RecipeDTO recipe = null;
+            RecipeDAO recipeDao = new RecipeDAO();
+            String recipeName = request.getParameter("recipeName");
+            String typeOfBird = request.getParameter("typeOfBird");
+            if (typeOfBird.equals("") || typeOfBird == null) {
+                request.setAttribute("ErrorTypeOfBird", "You need to choose the value of Type Of Bird!!!");
+            } else {
+                int typeOfBirdID = Integer.parseInt(typeOfBird);
+                String description = request.getParameter("description");
+                double totalPrice = Double.parseDouble(request.getParameter("totalPrice"));
+                recipe = new RecipeDTO(shopID, recipeName, totalPrice, typeOfBirdID, description);
+                boolean check = recipeDao.addRicepe(recipe);
+                if (check) {
+                    int recipeID = recipeDao.getID();
+                    String Product1 = request.getParameter("Product1");
+                    if (Product1.equals("none")) {
+                        request.setAttribute("ErrorProduct1", "Your first product in the recipe must have value!!!");
+                    } else {
+                        String[] tmp = Product1.split(":");
+                        String optionName1 = tmp[0].trim();
+                        String productName1 = tmp[1].trim();
+                        int inventory1 = Integer.parseInt(request.getParameter("inventory1"));
+                        int optionalShopProductItemID1 = recipeDao.findOptionalProductID(optionName1, productName1);
+                        checkAddProduct = recipeDao.addProductRecipe(recipeID, optionalShopProductItemID1, inventory1);
+                        
+                    }
+                    String Product2 = request.getParameter("Product2");
+                    if(!Product2.equals("none")){
+                        String[] tmp = Product2.split(":");
+                        String optionName2 = tmp[0].trim();
+                        String productName2 = tmp[1].trim();
+                        int inventory2 = Integer.parseInt(request.getParameter("inventory2"));
+                        int optionalShopProductItemID2 = recipeDao.findOptionalProductID(optionName2, productName2);
+                        checkAddProduct = recipeDao.addProductRecipe(recipeID, optionalShopProductItemID2, inventory2);
+                    }
+                    String Product3 = request.getParameter("Product3");
+                    if(!Product3.equals("none")){
+                        String[] tmp = Product3.split(":");
+                        String optionName3 = tmp[0].trim();
+                        String productName3 = tmp[1].trim();
+                        int inventory3 = Integer.parseInt(request.getParameter("inventory3"));
+                        int optionalShopProductItemID3 = recipeDao.findOptionalProductID(optionName3, productName3);
+                        checkAddProduct = recipeDao.addProductRecipe(recipeID, optionalShopProductItemID3, inventory3);
+                    }
+                    String Product4 = request.getParameter("Product4");
+                    if(!Product4.equals("none")){
+                        String[] tmp = Product4.split(":");
+                        String optionName4 = tmp[0].trim();
+                        String productName4 = tmp[1].trim();
+                        int inventory4 = Integer.parseInt(request.getParameter("inventory4"));
+                        int optionalShopProductItemID4 = recipeDao.findOptionalProductID(optionName4, productName4);
+                        checkAddProduct = recipeDao.addProductRecipe(recipeID, optionalShopProductItemID4, inventory4);
+                    }
+                    String Product5 = request.getParameter("Product5");
+                    if(!Product5.equals("none")){
+                        String[] tmp = Product5.split(":");
+                        String optionName5 = tmp[0].trim();
+                        String productName5 = tmp[1].trim();
+                        int inventory5 = Integer.parseInt(request.getParameter("inventory5"));
+                        int optionalShopProductItemID5 = recipeDao.findOptionalProductID(optionName5, productName5);
+                        checkAddProduct = recipeDao.addProductRecipe(recipeID, optionalShopProductItemID5, inventory5);
+                    }
+                    if(checkAddProduct){
+                        request.setAttribute("SUCCESS_MESSAGE", "Create Recipe Successfully");
+                        url = ""
+                    }
+                }
+            }
+        }catch(Exception e){
+            log("Error at CreateRecipeController:" + e.toString());
+        }finally{
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

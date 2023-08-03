@@ -92,6 +92,7 @@ public class OptionalshopproductitemDAO {
                 ptm.setInt(1, option.getOptional_shop_product_item_id());
                 ptm.setString(2, option.getName());
                 ptm.setDouble(3, option.getPrice());
+                ptm.setInt(4, option.getInventory());
                 check = ptm.executeUpdate()>0?true:false;
                 }
             }

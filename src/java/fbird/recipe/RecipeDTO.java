@@ -19,6 +19,7 @@ public class RecipeDTO {
     private String recipe_image3;
     private String recipe_image4;
     private int recipeProductID;
+    private int typeOfBirdID;
     private String typeOfBirdName;
     private int optionalShopProductItemID;
     private String nameProductOptional;
@@ -81,6 +82,8 @@ public class RecipeDTO {
         this.image_4 = image_4;
         this.description = description;
     }
+    
+    
 
     public RecipeDTO(int recipe_id, int shop_id, String title_recipe, Double total_price, int recipeProductID, String typeOfBirdName, int optionalShopProductItemID, String nameProductOptional, int quantity, int shopProductItemID, String nameProduct, Boolean status, String category, String image_1, String image_2, String image_3, String image_4, String description, double price) {
         this.recipe_id = recipe_id;
@@ -132,6 +135,14 @@ public class RecipeDTO {
     public RecipeDTO(int recipe_id,String title_recipe) {
         this.recipe_id = recipe_id;
         this.title_recipe = title_recipe;
+    }
+
+    public RecipeDTO(int shop_id, String title_recipe, Double total_price, int typeOfBirdID, String description) {
+        this.shop_id = shop_id;
+        this.title_recipe = title_recipe;
+        this.total_price = total_price;
+        this.typeOfBirdID = typeOfBirdID;
+        this.description = description;
     }
     
     
@@ -350,6 +361,14 @@ public class RecipeDTO {
 
     public void setShop_product_item_id(int shop_product_item_id) {
         this.shop_product_item_id = shop_product_item_id;
+    }
+
+    public int getTypeOfBirdID() {
+        return typeOfBirdID;
+    }
+
+    public void setTypeOfBirdID(int typeOfBirdID) {
+        this.typeOfBirdID = typeOfBirdID;
     }
 
     

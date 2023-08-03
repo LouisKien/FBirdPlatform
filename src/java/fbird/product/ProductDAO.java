@@ -50,7 +50,7 @@ public class ProductDAO {
             + "    spi.shop_id = ?\n"
             + "ORDER BY\n"
             + "    ospi.price ASC;";
-    private static final String ADD_PRODUCT = "INSERT INTO [shop_product_item] VALUES (?,?,?,?,?,?,?,?)";
+    private static final String ADD_PRODUCT = "INSERT INTO [shop_product_item] VALUES (?,?,?,?,?,?,?)";
     private static final String UPDATE = "UPDATE shop_product_item SET title=?, category_id=?, type_of_bird_id=?, description=?, upload_date=?, status=? WHERE shop_product_item_id=? ";
     private static final String DELETE = "UPDATE shop_product_item SET status='false' WHERE shop_product_item_id=? ";
     private static final String NEW_VIEW_PRODUCT = "SELECT s.shop_product_item_id, s.shop_id, t.type_of_bird_name, s.title, p.category_name, i.image_1, i.image_2, i.image_3, i.image_4 FROM shop_product_item s JOIN product_category p ON s.category_id = p.category_id LEFT JOIN type_of_bird t ON s.type_of_bird_id = t.type_of_bird_id LEFT JOIN product_image i ON s.shop_product_item_id = i.shop_product_item_id";
@@ -194,7 +194,7 @@ public class ProductDAO {
             + "                spi.shop_product_item_id\n"
             + "				OFFSET ? ROWS\n"
             + "				FETCH FIRST 10 ROWS ONLY;";
-    private static final String SINGLE_PRODUCT_ITEM = "select title, type_of_bird_name, category_name, image_1, image_2, image_3, image_4, inventory, description, optional_shop_product_item.name, price, status, optional_shop_product_item.optional_shop_product_item_id from shop_product_item join optional_shop_product_item on optional_shop_product_item.shop_product_item_id = shop_product_item.shop_product_item_id join product_category on product_category.category_id = shop_product_item.category_id join type_of_bird on type_of_bird.type_of_bird_id = shop_product_item.type_of_bird_id join product_image on product_image.shop_product_item_id = shop_product_item.shop_product_item_id where shop_product_item.shop_product_item_id = ?";
+    private static final String SINGLE_PRODUCT_ITEM = "select title, type_of_bird_name, category_name, inventory, description, optional_shop_product_item.name, price, status, optional_shop_product_item.optional_shop_product_item_id from shop_product_item join optional_shop_product_item on optional_shop_product_item.shop_product_item_id = shop_product_item.shop_product_item_id join product_category on product_category.category_id = shop_product_item.category_id join type_of_bird on type_of_bird.type_of_bird_id = shop_product_item.type_of_bird_id join product_image on product_image.shop_product_item_id = shop_product_item.shop_product_item_id where shop_product_item.shop_product_item_id = ?";
     private static final String GET_LIST_SHOP_ORDER_ITEM = "SELECT title, optional_shop_product_item.name, sell_price, amount, fullname FROM order_item JOIN optional_shop_product_item ON order_item.optional_shop_product_item_id = optional_shop_product_item.optional_shop_product_item_id JOIN shop_product_item ON optional_shop_product_item.shop_product_item_id = shop_product_item.shop_product_item_id JOIN customer_order ON order_item.order_id = customer_order.order_id JOIN customer ON customer_order.customer_id = customer.customer_id where shop_id = ?";
     private static final String GET_DASHBOARD = "SELECT (SELECT count(shop_product_item_id) FROM shop_product_item WHERE shop_id = ?) as total_product, (SELECT count(order_item_id) FROM order_item JOIN optional_shop_product_item ON optional_shop_product_item.optional_shop_product_item_id = order_item.optional_shop_product_item_id JOIN shop_product_item ON shop_product_item.shop_product_item_id = optional_shop_product_item.shop_product_item_id WHERE shop_id = ?) as total_order, (SELECT SUM(amount) FROM order_item JOIN optional_shop_product_item ON optional_shop_product_item.optional_shop_product_item_id = order_item.optional_shop_product_item_id JOIN shop_product_item ON shop_product_item.shop_product_item_id = optional_shop_product_item.shop_product_item_id WHERE shop_id = ?) as total_unit_sell, (SELECT SUM(sell_price * amount) FROM order_item JOIN optional_shop_product_item ON optional_shop_product_item.optional_shop_product_item_id = order_item.optional_shop_product_item_id JOIN shop_product_item ON shop_product_item.shop_product_item_id = optional_shop_product_item.shop_product_item_id WHERE shop_id = ?) as revenue";
 
@@ -243,9 +243,9 @@ public class ProductDAO {
                 ptm.setInt(3, product.getTypeOfBirdID());
                 ptm.setString(4, product.getTitle());
                 ptm.setString(5, product.getDescription());
-                ptm.setInt(6, product.getInventory());
-                ptm.setDate(7, java.sql.Date.valueOf(java.time.LocalDate.now()));
-                ptm.setByte(8, product.getStatus());
+                
+                ptm.setDate(6, java.sql.Date.valueOf(java.time.LocalDate.now()));
+                ptm.setByte(7, product.getStatus());
 
                 check = ptm.executeUpdate() > 0 ? true : false;
 
@@ -907,17 +907,17 @@ public class ProductDAO {
                 String title = rs.getString("title");
                 String type_of_bird_name = rs.getString("type_of_bird_name");
                 String category_name = rs.getString("category_name");
-                String image_1 = rs.getString("image_1");
-                String image_2 = rs.getString("image_2");
-                String image_3 = rs.getString("image_3");
-                String image_4 = rs.getString("image_4");
+                //String image_1 = rs.getString("image_1");
+                //String image_2 = rs.getString("image_2");
+                //String image_3 = rs.getString("image_3");
+                //String image_4 = rs.getString("image_4");
                 int inventory = rs.getInt("inventory");
                 String description = rs.getString("description");
                 String name = rs.getString("name");
                 double price = rs.getDouble("price");
                 byte status = rs.getByte("status");
                 int optional_shop_product_item_id = rs.getInt("optional_shop_product_item_id");
-                detail.add(new ProductDTO(shop_product_item_id, title, description, inventory, status, image_1, image_2, image_3, image_4, type_of_bird_name, category_name, price, name, price, optional_shop_product_item_id));
+                detail.add(new ProductDTO(shop_product_item_id, title, description, inventory, status, type_of_bird_name, category_name, price, name, price, optional_shop_product_item_id));
             }
         } catch (Exception e) {
             e.printStackTrace();

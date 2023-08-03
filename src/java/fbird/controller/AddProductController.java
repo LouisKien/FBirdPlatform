@@ -105,7 +105,7 @@ public class AddProductController extends HttpServlet {
                 }
                 String option4 = request.getParameter("option4");
                 String price4 = request.getParameter("priceOption4");
-
+                
                 if (!option4.equals("") && !price4.equals("")) {
                     int inventory4 = Integer.parseInt(request.getParameter("inventory4"));
                     if(inventory4<0){
@@ -117,7 +117,7 @@ public class AddProductController extends HttpServlet {
                 }
                 String option5 = request.getParameter("option5");
                 String price5 = request.getParameter("priceOption5");
-
+                
                 if (!option5.equals("") && !price5.equals("")) {
                     int inventory5 = Integer.parseInt(request.getParameter("inventory5"));
                     if(inventory5<0){
@@ -128,12 +128,14 @@ public class AddProductController extends HttpServlet {
                 }
                 }
                 boolean checkOptional = optionalDao.addOptionalProductItem(listOptional);
-                if (checkOptional) {
+                if(checkOptional == true){
                     request.setAttribute("MESSAGE", "Create successfully!");
                     url = SUCCESS;
                 }
+                
             } else {
                 request.setAttribute("ERROR", "Unknow error!!");
+                url = ERROR;
             }
         } catch (Exception e) {
             log("Error at AddProductController :" + e.toString());

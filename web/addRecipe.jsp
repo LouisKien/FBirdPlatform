@@ -57,9 +57,11 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="profileDropdown">
 
-
+                        <li><a class="dropdown-item" style="width: 239px;" href="MainController?action=AddRecipe&shop_id=${sessionScope.LOGIN_USER.getShop_id()}">Thêm khẩu phần</a></li>
+                        <li><a class="dropdown-item" style="width: 239px;" href="MainController?action=ViewRecipeOnShop&shop_id=${sessionScope.LOGIN_USER.getShop_id()}">Tất cả khẩu phần</a></li>
                         <li><a class="dropdown-item" style="width: 239px;" href="addRecipe.jsp">Thêm khẩu phần</a></li>
                         <li><a class="dropdown-item" style="width: 239px;" href="AllRecipe.jsp">Tất cả khẩu phần</a></li>
+
                         <li><a class="dropdown-item" style="width: 239px;" href="sanPhamViPham.jsp">Sản phẩm vi phạm</a></li>
                         <li><a class="dropdown-item" style="width: 239px;" href="MainController?action=ViewProduct&shop_id=${sessionScope.LOGIN_USER.getShop_id()}">Tất cả sản phẩm</a></li>
                         <li><a class="dropdown-item" style="width: 239px;" href="MainController?action=ViewCreateProduct">Thêm sản phẩm</a></li>
@@ -185,7 +187,7 @@
                                     <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng sản phẩm 2:  </label> <input type="text" id="productName" name="inventory2" placeholder="Nhập số lượng sản phẩm" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
 
                                     <label for="Product3" style="font-size: 18px; font-weight: bold;">Sản phẩm 3:</label>
-                                    <select id="Product3" name="Product2" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
+                                    <select id="Product3" name="Product3" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
                                         <option value="none">Chọn sản phẩm</option>
 
                                         <%
@@ -249,7 +251,7 @@
                             </div>
 
 
-                            <button type="submit" name="action" value="Create Product" class="btn btn-primary" style="margin-top: 30px; border-radius: 20px;">Thêm khẩu phần</button>
+                            <button type="submit" name="action" value="Create Recipe" class="btn btn-primary" style="margin-top: 30px; border-radius: 20px;">Thêm khẩu phần</button>
                             <!--<input type="button" name="action" value="Create" style="margin-top: 30px; border-radius: 20px;/>-->
                         </form>
                     </div>

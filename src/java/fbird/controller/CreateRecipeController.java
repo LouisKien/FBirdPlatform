@@ -20,19 +20,13 @@ import java.io.IOException;
  */
 public class CreateRecipeController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    private static final String SUCCESS = "AddRecipeControll&shop_id=";
+    private static final String ERROR = "AddRecipeControlle&shop_id=";
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = "View"
+        String url = ERROR;
         try {
             boolean checkAddProduct = false;
             HttpSession session = request.getSession();
@@ -47,7 +41,8 @@ public class CreateRecipeController extends HttpServlet {
             } else {
                 int typeOfBirdID = Integer.parseInt(typeOfBird);
                 String description = request.getParameter("description");
-                double totalPrice = Double.parseDouble(request.getParameter("totalPrice"));
+//                double totalPrice = Double.parseDouble(request.getParameter("totalPrice"));
+                   double totalPrice = 1;
                 recipe = new RecipeDTO(shopID, recipeName, totalPrice, typeOfBirdID, description);
                 boolean check = recipeDao.addRicepe(recipe);
                 if (check) {
@@ -102,7 +97,8 @@ public class CreateRecipeController extends HttpServlet {
                     }
                     if(checkAddProduct){
                         request.setAttribute("SUCCESS_MESSAGE", "Create Recipe Successfully");
-                        url = ""
+                        url = SUCCESS + shopID;
+                        
                     }
                 }
             }

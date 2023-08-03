@@ -62,6 +62,8 @@ public class MainController extends HttpServlet {
 
     private static final String CREATE_PRODUCT = "Create Product";
     private static final String CREATE_PRODUCT_CONTROLLER = "AddProductController";
+    private static final String CREATE_RECIPE = "Create Recipe";
+    private static final String CREATE_RECIPE_CONTROLLER = "CreateRecipeController";
     private static final String VIEW_CREATE_PRODUCT = "ViewCreateProduct";
     private static final String VIEW_CREATE_PRODUCT_CONTROLLER = "ViewCreateProductController";
     private static final String UPDATE_PRODUCT = "Update Product";
@@ -203,6 +205,9 @@ public class MainController extends HttpServlet {
 
             }else if (ADD_RECIPE.equals(action)) {
                 url = ADD_RECIPE_CONTROLLER;
+
+            }else if (CREATE_RECIPE.equals(action)) {
+                url = CREATE_RECIPE_CONTROLLER;
 
             }
             

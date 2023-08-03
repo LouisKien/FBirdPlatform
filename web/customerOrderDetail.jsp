@@ -12,7 +12,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Trang thanh toán</title>
+        <title>Chi tiết đơn hàng</title>
         <link rel="icon" href="img/logo-shop.PNG" type="image/png">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Free HTML Templates" name="keywords">
@@ -130,7 +130,11 @@
         </nav>
         <div class="container">
             <div class="title">
-                <h2>Thông tin đặt hàng</h2>
+                <h2>Chi tiết đơn hàng</h2>
+            </div>
+            <div class="url">
+                <a class="url1" href="MainController"> Trang chủ&nbsp;</a> > <a class="url1" href="customerOrderDetail.jsp">&nbsp;Chi tiết đơn hàng </a>
+
             </div>
             <div class="d-flex">
 
@@ -141,100 +145,29 @@
                         <%
                                   List<OrderDTO> address = (List<OrderDTO>) request.getAttribute("ADDRESS");
                         %>
-                        <label>
 
-                            <span style="width: 60px;">Địa chỉ</span>
-                            <div  onchange="addNewAddress()" id="houseadd">
-                                <select style=" margin-left:1px; ;height: 40px; width: 450px;" id="addr">
-                                    <%-- Tạo các option cho mỗi địa chỉ trong danh sách --%>
-                                    <%
-                                      for (OrderDTO adr : address) {
-                                    %>
-                                    <option value="<%= adr.toString() %>"><%= adr.toString() %></option>
-                                    <%
-                                      }
-                                    %>
-                                    <option> Thêm địa chỉ mới</option>
-                                </select>
-                            </div>
 
-                        </label>
+                        <span style="width: 60px;">Địa chỉ:</span>
+                        <input type="text" name= "houseadd" readonly="" style="width: 350px; height: 40px;"></input>
 
 
 
+                        <span style="width: 60px;" >SĐT:</span>
+                        <input type="text" name= "phone" readonly="" style="width: 150px; height: 40px;"></input>
 
-                        <label>
-                            <span style="width: 60px;" >SĐT</span>
-                            <div onchange="addNewPhone()" id="phoneadd">
-                                <select style="width: 150px; height: 40px;" id="phn" name="phoneadd">
-                                    <%                                                                                  
-                                  for (OrderDTO phone : address){                                                     
-                                    %>
-                                    <option value="<%= phone.getPhone() %>"><%= phone.getPhone() %></option>
-                                    <%
-                                    }
-                                    %>
-                                    <option> Thêm SĐT</option>
-                                </select>
-                            </div>
 
-                        </label>
+                        <span style="width: 60px;" >Ngày mua:</span>
+                        <input type="text" name= "phone" readonly="" style="width: 150px; height: 40px;"></input>
+
+
+
+                        <span style="width: 60px;" >Tổng giá:</span>
+                        <input type="text" name= "phone" readonly="" style="width: 150px; height: 40px;"></input>
+
 
 
                     </div>
-                    <script>
-                        function addNewAddress() {
-                            var selectaddr = document.getElementById("addr");
-                            var newAddr = document.getElementById("houseadd");
-                            var selectedOptionaddr = selectaddr.options[selectaddr.selectedIndex].value;
-                            var input = `<input type="text" name= "houseadd" placeholder="Thêm địa chỉ mới" style="height: 40px;"></input>
-                                         <a class="btn btn-primary" onclick="oldAddress()">Tùy chọn</a>        
-            `;
-                            if (selectedOptionaddr === "Thêm địa chỉ mới") {
-                                newAddr.innerHTML = input;
-                            }
 
-                        }
-                        function addNewPhone() {
-                            var selectphn = document.getElementById("phn");
-                            var newPhone = document.getElementById("phoneadd");
-                            var selectedOptionphn = selectphn.options[selectphn.selectedIndex].value;
-                            var inputphn = `<input type="text" name= "phoneadd" placeholder="Thêm SĐT" style="width: 150px; height: 40px;"></input>
-                                            <a class="btn btn-primary" onclick="oldPhone()">Tùy chọn</a>        
-            `;
-                            if (selectedOptionphn === "Thêm SĐT") {
-                                newPhone.innerHTML = inputphn;
-                            }
-                        }
-                        function oldPhone() {
-                            var a = `<select style="width: 150px; height: 40px;" id="phn" name="phoneadd" >
-                        <%                                                                                  
-                                  for (OrderDTO phone : address){                                                     
-                        %>
-                                    <option value="<%= phone.getPhone() %>"><%= phone.getPhone() %></option>
-                        <%
-                                }
-                        %>
-                                    <option> Thêm SĐT</option>
-                                </select>`;
-                            var oldPhone = document.getElementById("phoneadd");
-                            oldPhone.innerHTML = a;
-                        }
-                        function oldAddress() {
-                            var a = `<select style="height: 40px; width: 450px;" id="addr"  >                                  
-                        <%
-                                      for (OrderDTO adr : address) {
-                        %>
-                                    <option value="<%= adr.toString() %>"><%= adr.toString() %></option>
-                        <%
-                                      }
-                        %>
-                                    <option> Thêm địa chỉ mới</option>
-                                </select>`;
-                            var oldAddr = document.getElementById("houseadd");
-                            oldAddr.innerHTML = a;
-                        }
-                    </script>
                     <div class="row mb-4 d-flex justify-content-between align-items-center" id="element">
 
                     </div>
@@ -261,20 +194,20 @@
                         var shop_name = JSON.parse(sessionStorage.getItem("shop_name"));
 
                         if (Array.isArray(allElement) && Array.isArray(shop_id)) {
-                            var open = `<div class="shop-name-container">`; 
-                            var close =`</div>`; 
+                            var open = `<div class="shop-name-container">`;
+                            var close = `</div>`;
                             for (let i = 0; i < shop_name.length; i++) {
-                                      var shopNameUpper = shop_name[i].toUpperCase();
+                                var shopNameUpper = shop_name[i].toUpperCase();
 
-                                    var b = `<div>` + shopNameUpper + `</div>`;
+                                var b = `<div>` + shopNameUpper + `</div>`;
 
 
-                              document.getElementById('element').innerHTML += open + b;
+                                document.getElementById('element').innerHTML += open + b;
 
-      for (let j = 0; j < allElement.length; j++) {
-        const [name2, title2, img2, price2, quantity2, shop_name2] = allElement[j];
-        if (shop_name[i] === shop_name2) {
-          var a = `<div class="product-container"><div class="row mt-3">
+                                for (let j = 0; j < allElement.length; j++) {
+                                    const [name2, title2, img2, price2, quantity2, shop_name2] = allElement[j];
+                                    if (shop_name[i] === shop_name2) {
+                                        var a = `<div class="product-container"><div class="row mt-3">
             <div class="col-md-2 col-lg-2 col-xl-2">
                 <img src="` + img2 + `" id="imgDisplay" class="img-fluid rounded-3" alt="Cotton T-shirt">
             </div>
@@ -290,14 +223,14 @@
             </div>
           </div></div>`;
 
-          document.getElementById('element').innerHTML += a;
-        }
-      }
+                                        document.getElementById('element').innerHTML += a;
+                                    }
+                                }
 
-      document.getElementById('element').innerHTML += close;
-    }
-  }
-  updateTotalDisplay();
+                                document.getElementById('element').innerHTML += close;
+                            }
+                        }
+                        updateTotalDisplay();
                     }
 
 //                    function getDataFromSessionStorage() {
@@ -392,112 +325,81 @@
 
 
                 </script>
-                <div class="Yorder">
-                    <table style="margin-left: 15%; text-align: center;">
-                        <tr>
-                            <th colspan="2">Đơn hàng của bạn</th>
-                        </tr>
 
-
-                        <tr>
-                            <td>Vận chuyển</td>
-                            <td>
-                                <div onchange="updateTotalDisplay()">
-                                    <select id="shippingOption" style="min-width: 112%; border-radius: 3px;">
-                                        <option value="12000">Tiết kiệm - 12.000đ</option>
-                                        <option value="20000">Nhanh - 20.000đ</option>
-                                        <option value="100000">Hỏa tốc - 100.000đ</option>
-
-                                    </select>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Tổng giá</td>
-                            <td id="allPriceDisplay" style="font-weight: bold;  text-align: center; color: black;"></td>
-                        </tr>
-                    </table><br>
-                    <div style="font-family: 'Roboto', Arial, sans-serif; text-align: center; font-weight: bold;">Phương thức thanh toán</div>
-                    <div>
-                        <div id="paypal-payment-button"></div>
-
-                    </div>
-
-                </div><!-- Yorder -->
             </div>
         </div>
 
         <script src="https://www.paypal.com/sdk/js?client-id=Ac7kMHZaJoJw3hIlaEXI1VO3WLpTmsOHivGxlRZQbilUXOOibAXSj4YUkVl7Nvx_Kqk-wlCnA0hdtZ9f&disable-funding=credit,card"></script>
         <script>
-                                    var presentAddressSelect = document.getElementById("addr");
-                                    var presentAddress = presentAddressSelect.options[presentAddressSelect.selectedIndex].value;
+                    var presentAddressSelect = document.getElementById("addr");
+                    var presentAddress = presentAddressSelect.options[presentAddressSelect.selectedIndex].value;
 
-                                    var presentPhoneSelect = document.getElementById("phn");
-                                    var presentPhone = presentPhoneSelect.options[presentPhoneSelect.selectedIndex].value;
+                    var presentPhoneSelect = document.getElementById("phn");
+                    var presentPhone = presentPhoneSelect.options[presentPhoneSelect.selectedIndex].value;
 
-                                    var totalPriceDisplay = document.getElementById("allPriceDisplay");
+                    var totalPriceDisplay = document.getElementById("allPriceDisplay");
 
-                                    var allPrice = JSON.parse(sessionStorage.getItem("allPrices"));
-                                    var shippingOptionSelect = document.getElementById("shippingOption");
-                                    var shippingCost = parseFloat(shippingOptionSelect.value);
-                                    var totalPriceInVND = allPrice + shippingCost;
+                    var allPrice = JSON.parse(sessionStorage.getItem("allPrices"));
+                    var shippingOptionSelect = document.getElementById("shippingOption");
+                    var shippingCost = parseFloat(shippingOptionSelect.value);
+                    var totalPriceInVND = allPrice + shippingCost;
 
-                                    //                        console.log(data.imgElementValue);
+                    //                        console.log(data.imgElementValue);
 
-                                    function sendDataToServlet(details) {
-                                        var allElement = JSON.parse(sessionStorage.getItem("Element"));
-                                        var allShopId = JSON.parse(sessionStorage.getItem("shop_id"));
+                    function sendDataToServlet(details) {
+                        var allElement = JSON.parse(sessionStorage.getItem("Element"));
+                        var allShopId = JSON.parse(sessionStorage.getItem("shop_id"));
 
-                                        if (Array.isArray(allElement)) {
-                                            if (Array.isArray((allShopId))) {
-                                                var dataToSend = {
-                                                    allElement: allElement, // Sending the entire 'allElement' array
-                                                    allShopId: allShopId,
-                                                    shippingOptionSelect: shippingOptionSelect.value,
-                                                    presentAddress: presentAddress,
-                                                    presentPhone: presentPhone,
-                                                    totalPrice: totalPriceInVND.valueOf(),
-                                                    paypalTransactionID: details.id
-                                                };
+                        if (Array.isArray(allElement)) {
+                            if (Array.isArray((allShopId))) {
+                                var dataToSend = {
+                                    allElement: allElement, // Sending the entire 'allElement' array
+                                    allShopId: allShopId,
+                                    shippingOptionSelect: shippingOptionSelect.value,
+                                    presentAddress: presentAddress,
+                                    presentPhone: presentPhone,
+                                    totalPrice: totalPriceInVND.valueOf(),
+                                    paypalTransactionID: details.id
+                                };
 
-                                                // Create a new AJAX request to send data to the servlet
-                                                const xhr = new XMLHttpRequest();
-                                                xhr.open("POST", "OrderPayPalTransactionController", true);
-                                                xhr.setRequestHeader("Content-Type", "application/json");
+                                // Create a new AJAX request to send data to the servlet
+                                const xhr = new XMLHttpRequest();
+                                xhr.open("POST", "OrderPayPalTransactionController", true);
+                                xhr.setRequestHeader("Content-Type", "application/json");
 
-                                                // Convert the data to JSON and send it to the servlet
-                                                xhr.send(JSON.stringify(dataToSend));
+                                // Convert the data to JSON and send it to the servlet
+                                xhr.send(JSON.stringify(dataToSend));
 
-                                            }
+                            }
+                        }
+                    }
+
+                    var total = (allPrice + shippingCost) / 23500;
+                    paypal.Buttons({
+                        style: {
+                            color: 'blue',
+                            shape: 'pill'
+                        },
+                        createOrder: function (data, actions) {
+                            return actions.order.create({
+                                purchase_units: [{
+                                        amount: {
+                                            value: total.toFixed(2)
                                         }
-                                    }
-
-                                    var total = (allPrice + shippingCost) / 23500;
-                                    paypal.Buttons({
-                                        style: {
-                                            color: 'blue',
-                                            shape: 'pill'
-                                        },
-                                        createOrder: function (data, actions) {
-                                            return actions.order.create({
-                                                purchase_units: [{
-                                                        amount: {
-                                                            value: total.toFixed(2)
-                                                        }
-                                                    }]
-                                            });
-                                        },
-                                        onApprove: function (data, actions) {
-                                            return actions.order.capture().then(function (details) {
-                                                console.log(details)
-                                                sendDataToServlet(details)
-                                                window.location.replace("http://localhost:8084/FBird/orderSuccess.jsp")
-                                            })
-                                        },
-                                        onCancel: function (data) {
-                                            window.location.replace("http://localhost:8084/FBird/orderFail.jsp")
-                                        }
-                                    }).render('#paypal-payment-button');
+                                    }]
+                            });
+                        },
+                        onApprove: function (data, actions) {
+                            return actions.order.capture().then(function (details) {
+                                console.log(details)
+                                sendDataToServlet(details)
+                                window.location.replace("http://localhost:8084/FBird/orderSuccess.jsp")
+                            })
+                        },
+                        onCancel: function (data) {
+                            window.location.replace("http://localhost:8084/FBird/orderFail.jsp")
+                        }
+                    }).render('#paypal-payment-button');
         </script>
 
         <a href="#" class="btn btn-primary py-3 fs-4 back-to-top"><i class="bi bi-arrow-up"></i></a>
@@ -767,15 +669,21 @@
         font-weight: bold;
         padding: 10px;
         margin-bottom: 10px;
-         border-width: 3px; 
-         border-color: black;
+        border-width: 3px;
+        border-color: black;
     }
 
     .product-container {
-  border: 1px solid #ccc;
- 
-  padding: 10px;
-  margin-bottom: 10px;
-}
+        border: 1px solid #ccc;
 
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    .url{
+        display: flex;
+        align-content: space-between;
+    }
+    .url1:hover{
+        color: green;
+    }
 </style>

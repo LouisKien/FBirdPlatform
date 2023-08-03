@@ -24,7 +24,7 @@ public class RecipeDAO {
     private static final String ADD_RECIPE = "INSERT INTO [recipe] VALUES (?,?,?,?,?)";
     private static final String ADD_RECIPE_PRODUCT = "INSERT INTO [recipe_product] VALUES (?,?,?)";
     private static final String GET_ID = "SELECT TOP 1 * FROM recipe ORDER BY recipe.recipe_id DESC;";
-    private static final String FIND_ID = "SELECT o.optional_shop_product_item_id  FROM shop_product_item s JOIN optional_shop_product_item o ON s.shop_product_item_id = o.shop_product_item_id WHERE s.title like N'?' AND o.[name] like N'?'";
+    private static final String FIND_ID = "SELECT o.optional_shop_product_item_id  FROM shop_product_item s JOIN optional_shop_product_item o ON s.shop_product_item_id = o.shop_product_item_id WHERE s.title like ? AND o.[name] like ?";
     private static final String VIEW_RECIPE_HOMEPAGE = "SELECT recipe.title_recipe,recipe.recipe_id, recipe.shop_id, recipe.total_price, recipe_image.image_1 FROM recipe JOIN recipe_image ON recipe.recipe_id = recipe_image.recipe_id";
     private static final String VIEW_RECIPE_DETAIL = "SELECT r.recipe_id, t.type_of_bird_name, r.shop_id, r.title_recipe, r.[description], r.total_price, reimg.image_1 , reimg.image_2 , reimg.image_3 , reimg.image_4 , p.recipe_product_id, p.optional_shop_product_item_id, op.[name], p.quantity, new.*\n"
             + "FROM recipe r\n"

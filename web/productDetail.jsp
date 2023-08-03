@@ -251,7 +251,7 @@ if(loginUser != null && loginUser.getRole() == 3) {
                for (int i = 0; i < count; i++) {
                    if (i == 0) {
                             %>
-                        
+
 
                             <div class="product-item">
                                 <div class="product-name">
@@ -269,7 +269,7 @@ if(loginUser != null && loginUser.getRole() == 3) {
                             <%
                                     } else {
                             %>
-                            
+
                             <div class="product-item">
                                 <div class="product-name">
                                     <label class="btn btn-primary active optionalName" style="margin-right: -50px;" id="optionalName">
@@ -290,10 +290,10 @@ if(loginUser != null && loginUser.getRole() == 3) {
                             %>
 
                         </div>    
-                            <div >Kho: <a id="inventory"></a> </div>
+                        <div >Kho: <a id="inventory"></a> </div>
                         <div class="quantity" >
                             <p>Số lượng: <input type="number" name="productQuantity" min="1" max="" value="1" onchange="totalPriceDefault()"></p> 
-                                                                                                    
+
                         </div>
 
                         <div class="selected-product-price" id="selectedPrice" style="visibility: hidden">0</div>
@@ -320,7 +320,7 @@ if(loginUser != null && loginUser.getRole() == 3) {
                                 var display = document.getElementById('selectedPrice1');
                                 if (radioElement) {
                                     inventory.innerHTML = radioElement.getAttribute('inventory');
-                                     quantity.max = radioElement.getAttribute('inventory');
+                                    quantity.max = radioElement.getAttribute('inventory');
                                     var total = radioElement.value * quantity.value;
 //                                    quantity.max = radioElement.getAttribute('inventory');
 ////                                    console.log(radioElement.getAttribute('inventory'));
@@ -418,20 +418,25 @@ if(loginUser != null && loginUser.getRole() == 3) {
 
                         <form action="MainController" id="myForm">
 
-                            <div class="btn-box">
+                            <div class="btn-box" id="hetHang">
                                 <%if(loginUser != null) {
                                 if(loginUser.getRole() == 3){
                                 %>
 
-                                <button class="btn btn-primary cart-btn" onclick="addtocartv2()" type="button">Thêm vào giỏ hàng</button>
+                                    <button class="btn btn-primary cart-btn" onclick="addtocartv2()" type="button">Thêm vào giỏ hàng</button>
+                                    <a type="button" class="btn btn-primary buy-btn"  href="MainController?action=ViewOderAddress&customer_id=<%= loginUser.getCustomer_id() %>" onclick="buynow()">Mua ngay</a>
 
-                                <a type="button" class="btn btn-primary buy-btn"  href="MainController?action=ViewOderAddress&customer_id=<%= loginUser.getCustomer_id() %>" onclick="buynow()">Mua ngay</a>
-                                <%} else {%>
-                                <button class="cart-btn"><a href="#" style="color: white;">Phân quyền của bạn không được mua hàng</a></button>
-                                <%}}else{%>
-                                <a class="btn btn-primary cart-btn" href="login.jsp" type="button">Thêm vào giỏ hàng</a>
-                                <a type="button" class="btn btn-primary buy-btn"  href="login.jsp" >Mua ngay</a>
-                                <%}%>
+                               
+                                    <%} else {%>
+                                    <button class="cart-btn"><a href="#" style="color: white;">Phân quyền của bạn không được mua hàng</a></button>
+                                    <%}}else{%>
+                              
+                                    <a class="btn btn-primary cart-btn" href="login.jsp" type="button">Thêm vào giỏ hàng</a>
+                                    <a type="button" class="btn btn-primary buy-btn"  href="login.jsp" >Mua ngay</a>
+                                    <%}%>
+                           
+
+
                             </div>
                             <div name="mess" style="color: red;margin-top: 5%; font-weight: bold;"></div>
                         </form>

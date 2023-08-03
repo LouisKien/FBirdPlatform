@@ -56,12 +56,12 @@
                         <i class="fas fa-regular fa-cube me-2"></i>Quản lý sản phẩm
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="profileDropdown">
-                        <li><a class="dropdown-item" style="width: 239px;" href="MainController?action=ViewProduct&shop_id=${sessionScope.LOGIN_USER.getShop_id()}">Tất cả sản phẩm</a></li>
+
 
                         <li><a class="dropdown-item" style="width: 239px;" href="addRecipe.jsp">Thêm khẩu phần</a></li>
                         <li><a class="dropdown-item" style="width: 239px;" href="AllRecipe.jsp">Tất cả khẩu phần</a></li>
-
                         <li><a class="dropdown-item" style="width: 239px;" href="sanPhamViPham.jsp">Sản phẩm vi phạm</a></li>
+                        <li><a class="dropdown-item" style="width: 239px;" href="MainController?action=ViewProduct&shop_id=${sessionScope.LOGIN_USER.getShop_id()}">Tất cả sản phẩm</a></li>
                         <li><a class="dropdown-item" style="width: 239px;" href="MainController?action=ViewCreateProduct">Thêm sản phẩm</a></li>
                     </ul>
                     <!--------------------------------------------------------------------------------------------------------------------------------------------------------->
@@ -143,7 +143,10 @@
                                     </select>
 
                                     <label for="description" style="font-size: 18px; font-weight: bold;">Mô tả sản phẩm:</label> <input type="text" id="description" name="description" placeholder="Nhập mô tả" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-                                    <span style="font-size: 18px; font-weight: bold;">---------------------------------------------------Chọn sản phẩm--------------------------------------------------------</span>
+                                    <div class="product-selection">
+                                        <span class="product-selection-text">CHỌN SẢN PHẨM ĐỂ GẮN VÀO KHẨU PHẦN<span class="arrow-down"></span></span>
+                                    </div>
+
                                     <label for="Product1" style="font-size: 18px; font-weight: bold;">Sản phẩm 1:</label>
                                     <select id="Product1" name="Product1" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
 
@@ -166,11 +169,11 @@
                                     <label for="Product2" style="font-size: 18px; font-weight: bold;">Sản phẩm 2:</label>
                                     <select id="Product2" name="Product2" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
                                         <option value="">Chọn sản phẩm</option>
-<%
-                                        if (listOptional != null && !listOptional.isEmpty()) {
+                                        <%
+                                                                                if (listOptional != null && !listOptional.isEmpty()) {
                                         
             
-                                        for (OptionalshopproductitemDTO listOP : listOptional) {
+                                                                                for (OptionalshopproductitemDTO listOP : listOptional) {
                                         
                                         %>
 
@@ -185,11 +188,11 @@
                                     <select id="Product3" name="Product2" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
                                         <option value="">Chọn sản phẩm</option>
 
-                                       <%
-                                        if (listOptional != null && !listOptional.isEmpty()) {
+                                        <%
+                                         if (listOptional != null && !listOptional.isEmpty()) {
                                         
             
-                                        for (OptionalshopproductitemDTO listOP : listOptional) {
+                                         for (OptionalshopproductitemDTO listOP : listOptional) {
                                         
                                         %>
 
@@ -204,11 +207,11 @@
                                     <select id="Product4" name="Product2" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
                                         <option value="">Chọn sản phẩm</option>
 
-                                       <%
-                                        if (listOptional != null && !listOptional.isEmpty()) {
+                                        <%
+                                         if (listOptional != null && !listOptional.isEmpty()) {
                                         
             
-                                        for (OptionalshopproductitemDTO listOP : listOptional) {
+                                         for (OptionalshopproductitemDTO listOP : listOptional) {
                                         
                                         %>
 
@@ -349,5 +352,30 @@
     .slider.round:before {
         border-radius: 50%;
     }
+    .product-selection {
+        border-bottom: 2px solid black; /* Màu và độ dày đường kẻ */
+        padding-bottom: 5px; /* Khoảng cách giữa văn bản và đường kẻ (tùy chọn) */
+        text-align: center; /* Căn giữa nếu bạn muốn */
+    }
+
+    .product-selection-text {
+        font-size: 18px;
+        font-weight: bold;
+        position: relative; /* Để dùng vị trí tương đối cho mũi tên */
+    }
+
+    .arrow-down {
+        display: inline-block;
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent; /* Kích thước mũi tên dọc */
+        border-right: 5px solid transparent;
+        border-top: 10px solid black; /* Kích thước mũi tên ngang và màu sắc */
+        position: absolute;
+        bottom: -10px; /* Khoảng cách từ dưới lên */
+        left: 50%; /* Căn giữa theo chiều ngang */
+        transform: translateX(-50%); /* Để căn giữa hoàn toàn */
+    }
+
 </style>
 

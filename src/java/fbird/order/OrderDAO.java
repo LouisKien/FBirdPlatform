@@ -30,7 +30,7 @@ public class OrderDAO {
     private static final String ADD_ORDER_PRODUCT = "INSERT order_item(order_id, optional_shop_product_item_id, sell_price, amount) VALUES (?,?,?,?)";
     private static final String SUBTRACT_QUANTITY_IN_INVENTORY = "UPDATE optional_shop_product_item SET inventory = inventory - ? WHERE optional_shop_product_item_id = ?";
     private static final String GET_CART_ITEM_ID = "SELECT cart_item_id FROM optional_shop_product_item JOIN cart_item ON optional_shop_product_item.optional_shop_product_item_id = cart_item.optional_shop_product_item_id WHERE optional_shop_product_item.optional_shop_product_item_id = ? AND customer_id = ?";
-    private static final String VIEW_CUSTOMER_ORDER = "SELECT  shop_product_item.title, total_price_order, delivery_method.name, customer_order.status, order_date  FROM customer_order JOIN order_item on customer_order.order_id= order_item.order_id JOIN optional_shop_product_item on optional_shop_product_item.optional_shop_product_item_id = order_item.optional_shop_product_item_id JOIN shop_product_item on optional_shop_product_item.shop_product_item_id = shop_product_item.shop_product_item_id JOIN delivery_method on delivery_method.delivery_method_id = customer_order.delivery_method_id WHERE customer_id =? AND customer_order.status like ? ORDER BY total_price_order OFFSET ? ROWS FETCH FIRST 10 ROWS ONLY;";
+    private static final String VIEW_CUSTOMER_ORDER = "SELECT  * FROM customer_order WHERE customer_id = ? AND customer_order.status like ? ORDER BY total_price_order OFFSET ? ROWS FETCH FIRST 10 ROWS ONLY;";
     private static final String COUNT_ORDER_PAGE_NUMBER = "SELECT  count(shop_product_item.title)  FROM customer_order JOIN order_item on customer_order.order_id= order_item.order_id JOIN optional_shop_product_item on optional_shop_product_item.optional_shop_product_item_id = order_item.optional_shop_product_item_id JOIN shop_product_item on optional_shop_product_item.shop_product_item_id = shop_product_item.shop_product_item_id JOIN delivery_method on delivery_method.delivery_method_id = customer_order.delivery_method_id WHERE customer_id = ? AND customer_order.status like ? ";
     private static final String SET_TOTAL_PRICE_PER_ORDER = "UPDATE customer_order SET total_price_order = ? WHERE order_id = ?";
 
@@ -289,13 +289,12 @@ public class OrderDAO {
                 ptm.setInt(3, (index - 1) * 10);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
-                    String title = rs.getString("title");
-                    Double total_price_order = rs.getDouble("total_price_order");
-                    String name = rs.getString("name");                    
+                    int order_id = rs.getInt("order_id");
+                    double total_price_order = rs.getDouble("total_price_order");
                     String status = rs.getString("status");
+                    String paypal_transaction_id = rs.getString("paypal_transaction_id");
                     Date order_date = rs.getDate("order_date");
-                    
-                    list.add(new OrderDTO(title, name, order_date, status, total_price_order));
+                    list.add(new OrderDTO(order_id, total_price_order, status, paypal_transaction_id, order_date));
                 }
             }
         } catch (Exception e) {

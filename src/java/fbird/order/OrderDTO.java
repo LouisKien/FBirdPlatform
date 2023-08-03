@@ -36,6 +36,14 @@ public class OrderDTO {
     
     public OrderDTO() {
     }
+    
+    public OrderDTO(int order_id, double total_price_order, String status, String paypal_transaction_id, Date order_date) {
+        this.order_id = order_id;
+        this.total_price_order = total_price_order;
+        this.status = status;
+        this.paypal_transaction_id = paypal_transaction_id;
+        this.order_date = order_date;
+    }
 
     public OrderDTO(int shop_id) {
         this.shop_id = shop_id;

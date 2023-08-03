@@ -162,7 +162,7 @@
                                         
                                         %>
 
-                                        <option value="<%=listOP.getTitle()%>: <%=listOP.getName()%>"><%=listOP.getTitle()%>: <%=listOP.getName()%></option>
+                                        <option value="<%=listOP.getTitle()%>: <%=listOP.getName()%>: <%= listOP.getOptional_shop_product_item_id()%>"><%=listOP.getTitle()%>: <%=listOP.getName()%></option>
                                         <%}}
                                         %>
                                     </select>
@@ -179,7 +179,7 @@
                                         
                                         %>
 
-                                        <option value="<%=listOP.getTitle()%>: <%=listOP.getName()%>"><%=listOP.getTitle()%>: <%=listOP.getName()%></option>
+                                        <option value="<%=listOP.getTitle()%>: <%=listOP.getName()%>: <%= listOP.getOptional_shop_product_item_id()%>"><%=listOP.getTitle()%>: <%=listOP.getName()%></option>
                                         <%}}
                                         %>
 
@@ -198,7 +198,7 @@
                                         
                                         %>
 
-                                        <option value="<%=listOP.getTitle()%>: <%=listOP.getName()%>"><%=listOP.getTitle()%>: <%=listOP.getName()%></option>
+                                        <option value="<%=listOP.getTitle()%>: <%=listOP.getName()%>: <%= listOP.getOptional_shop_product_item_id()%>"><%=listOP.getTitle()%>: <%=listOP.getName()%></option>
                                         <%}}
                                         %>
 
@@ -206,7 +206,7 @@
                                     <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng sản phẩm 3:  </label> <input type="text" id="productName" name="inventory3" placeholder="Nhập số lượng sản phẩm" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
 
                                     <label for="Product4" style="font-size: 18px; font-weight: bold;">Sản phẩm 4:</label>
-                                    <select id="Product4" name="Product2" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
+                                    <select id="Product4" name="Product4" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
                                         <option value="none">Chọn sản phẩm</option>
 
                                         <%
@@ -217,7 +217,7 @@
                                         
                                         %>
 
-                                        <option value="<%=listOP.getTitle()%>: <%=listOP.getName()%>"><%=listOP.getTitle()%>: <%=listOP.getName()%></option>
+                                        <option value="<%=listOP.getTitle()%>: <%=listOP.getName()%>: <%= listOP.getOptional_shop_product_item_id()%>"><%=listOP.getTitle()%>: <%=listOP.getName()%></option>
                                         <%}}
                                         %>
 
@@ -225,7 +225,7 @@
                                     <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng sản phẩm 4:  </label> <input type="text" id="productName" name="inventory4" placeholder="Nhập số lượng sản phẩm" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
 
                                     <label for="Product5" style="font-size: 18px; font-weight: bold;">Sản phẩm 5:</label>
-                                    <select id="Product5" name="Product1" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
+                                    <select id="Product5" name="Product5" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
                                         <option value="none">Chọn sản phẩm</option>
 
                                         <%
@@ -236,14 +236,14 @@
                                         
                                         %>
 
-                                        <option value="<%=listOP.getTitle()%>: <%=listOP.getName()%>"><%=listOP.getTitle()%>: <%=listOP.getName()%></option>
+                                        <option value="<%=listOP.getTitle()%>: <%=listOP.getName()%>: <%= listOP.getOptional_shop_product_item_id()%>"><%=listOP.getTitle()%>: <%=listOP.getName()%></option>
                                         <%}}
                                         %>
 
                                     </select>
                                     <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng sản phẩm 5:  </label> <input type="text" id="productName" name="inventory5" placeholder="Nhập số lượng sản phẩm" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
                                     <label for="inventory" style="font-size: 18px; font-weight: bold;" >Tổng giá khẩu phần: </label> <input type="text" id="productName" name="totalPrice" readonly="" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-
+                                    
                                 </div>
 
 
@@ -253,6 +253,7 @@
 
                             <button type="submit" name="action" value="Create Recipe" class="btn btn-primary" style="margin-top: 30px; border-radius: 20px;">Thêm khẩu phần</button>
                             <!--<input type="button" name="action" value="Create" style="margin-top: 30px; border-radius: 20px;/>-->
+                            ${requestScope.SUCCESS_MESSAGE}
                         </form>
                     </div>
                 </div>

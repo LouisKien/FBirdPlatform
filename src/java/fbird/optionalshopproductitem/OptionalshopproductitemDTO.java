@@ -32,6 +32,13 @@ public class OptionalshopproductitemDTO {
         this.price = price;
         this.inventory = inventory;
     }
+
+    public OptionalshopproductitemDTO(int optional_shop_product_item_id, String name, Double price, String title) {
+        this.optional_shop_product_item_id = optional_shop_product_item_id;
+        this.name = name;
+        this.price = price;
+        this.title = title;
+    }
     
     
     
@@ -98,5 +105,6 @@ public class OptionalshopproductitemDTO {
     public void setInventory(int inventory) {
         this.inventory = inventory;
     }
+    
     
 }

@@ -20,8 +20,8 @@ import java.io.IOException;
  */
 public class CreateRecipeController extends HttpServlet {
 
-    private static final String SUCCESS = "AddRecipeControll&shop_id=";
-    private static final String ERROR = "AddRecipeControlle&shop_id=";
+    private static final String SUCCESS = "MainController?action=AddRecipe&shop_id=";
+    private static final String ERROR = "AddRecipeController&shop_id=";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -52,47 +52,37 @@ public class CreateRecipeController extends HttpServlet {
                         request.setAttribute("ErrorProduct1", "Your first product in the recipe must have value!!!");
                     } else {
                         String[] tmp = Product1.split(":");
-                        String optionName1 = tmp[0].trim();
-                        String productName1 = tmp[1].trim();
+                        int optionalShopProductItemID1 = Integer.parseInt(tmp[2].trim());
                         int inventory1 = Integer.parseInt(request.getParameter("inventory1"));
-                        int optionalShopProductItemID1 = recipeDao.findOptionalProductID(optionName1, productName1);
                         checkAddProduct = recipeDao.addProductRecipe(recipeID, optionalShopProductItemID1, inventory1);
                         
                     }
                     String Product2 = request.getParameter("Product2");
                     if(!Product2.equals("none")){
                         String[] tmp = Product2.split(":");
-                        String optionName2 = tmp[0].trim();
-                        String productName2 = tmp[1].trim();
+                        int optionalShopProductItemID2 = Integer.parseInt(tmp[2].trim());
                         int inventory2 = Integer.parseInt(request.getParameter("inventory2"));
-                        int optionalShopProductItemID2 = recipeDao.findOptionalProductID(optionName2, productName2);
                         checkAddProduct = recipeDao.addProductRecipe(recipeID, optionalShopProductItemID2, inventory2);
                     }
                     String Product3 = request.getParameter("Product3");
                     if(!Product3.equals("none")){
                         String[] tmp = Product3.split(":");
-                        String optionName3 = tmp[0].trim();
-                        String productName3 = tmp[1].trim();
+                        int optionalShopProductItemID3 = Integer.parseInt(tmp[2].trim());
                         int inventory3 = Integer.parseInt(request.getParameter("inventory3"));
-                        int optionalShopProductItemID3 = recipeDao.findOptionalProductID(optionName3, productName3);
                         checkAddProduct = recipeDao.addProductRecipe(recipeID, optionalShopProductItemID3, inventory3);
                     }
                     String Product4 = request.getParameter("Product4");
                     if(!Product4.equals("none")){
                         String[] tmp = Product4.split(":");
-                        String optionName4 = tmp[0].trim();
-                        String productName4 = tmp[1].trim();
+                        int optionalShopProductItemID4 = Integer.parseInt(tmp[2].trim());
                         int inventory4 = Integer.parseInt(request.getParameter("inventory4"));
-                        int optionalShopProductItemID4 = recipeDao.findOptionalProductID(optionName4, productName4);
                         checkAddProduct = recipeDao.addProductRecipe(recipeID, optionalShopProductItemID4, inventory4);
                     }
                     String Product5 = request.getParameter("Product5");
                     if(!Product5.equals("none")){
                         String[] tmp = Product5.split(":");
-                        String optionName5 = tmp[0].trim();
-                        String productName5 = tmp[1].trim();
+                        int optionalShopProductItemID5 = Integer.parseInt(tmp[2].trim());
                         int inventory5 = Integer.parseInt(request.getParameter("inventory5"));
-                        int optionalShopProductItemID5 = recipeDao.findOptionalProductID(optionName5, productName5);
                         checkAddProduct = recipeDao.addProductRecipe(recipeID, optionalShopProductItemID5, inventory5);
                     }
                     if(checkAddProduct){

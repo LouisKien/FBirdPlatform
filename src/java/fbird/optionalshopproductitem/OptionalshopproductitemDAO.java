@@ -20,7 +20,7 @@ import java.util.List;
 public class OptionalshopproductitemDAO {
       private static final String GET_OPTIONAL = "SELECT name, price, inventory, optional_shop_product_item_id FROM optional_shop_product_item WHERE shop_product_item_id=?";
       private static final String GET_PRICE = "SELECT price FROM optional_shop_product_item WHERE name=?";
-      private static final String ADD_OPTIONAL = "INSERT INTO optional_shop_product_item(shop_product_item_id, name, price) VALUES (?,?,?)";
+      private static final String ADD_OPTIONAL = "INSERT INTO optional_shop_product_item(shop_product_item_id, name, price, inventory) VALUES (?,?,?,?)";
       private static final String UPDATE_OPTIONAL = "UPDATE optional_shop_product_item SET name=?, price=?, inventory=? WHERE shop_product_item_id=? AND optional_shop_product_item_id=?";
       private static final String GET_OPTIONAL_ADD = "select shop_product_item.title, name From optional_shop_product_item JOIN shop_product_item on shop_product_item.shop_product_item_id = optional_shop_product_item.shop_product_item_id where shop_product_item.shop_id=?";
       
@@ -89,9 +89,10 @@ public class OptionalshopproductitemDAO {
             if(conn != null){
                 for(OptionalshopproductitemDTO option : listOptional){
                 ptm = conn.prepareStatement(ADD_OPTIONAL);
-                ptm.setInt(1, option.getOptional_shop_product_item_id());
+                ptm.setInt(1, option.getShop_product_item_id());
                 ptm.setString(2, option.getName());
                 ptm.setDouble(3, option.getPrice());
+                ptm.setInt(4, option.getInventory());
                 check = ptm.executeUpdate()>0?true:false;
                 }
             }

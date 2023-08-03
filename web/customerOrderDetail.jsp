@@ -147,24 +147,28 @@
                         %>
 
 
-                        <span style="width: 60px;">Địa chỉ:</span>
+                        
+                        
+                        <label>
+                            <span style="width: 60px;">Địa chỉ:</span>
                         <input type="text" name= "houseadd" readonly="" style="width: 350px; height: 40px;"></input>
+                        </label>
+
+                                                <label>
+                            <span style="width: 60px;">SĐT:</span>
+                        <input type="text" name= "houseadd" readonly="" style="width: 350px; height: 40px;"></input>
+                        </label>
+                                                <label>
+                            <span style="width: 60px;">Ngày mua:</span>
+                        <input type="text" name= "houseadd" readonly="" style="width: 350px; height: 40px;"></input>
+                        </label>
+                                                <label>
+                            <span style="width: 60px;">Tổng giá:</span>
+                        <input type="text" name= "houseadd" readonly="" style="width: 350px; height: 40px;"></input>
+                        </label>
 
 
-
-                        <span style="width: 60px;" >SĐT:</span>
-                        <input type="text" name= "phone" readonly="" style="width: 150px; height: 40px;"></input>
-
-
-                        <span style="width: 60px;" >Ngày mua:</span>
-                        <input type="text" name= "phone" readonly="" style="width: 150px; height: 40px;"></input>
-
-
-
-                        <span style="width: 60px;" >Tổng giá:</span>
-                        <input type="text" name= "phone" readonly="" style="width: 150px; height: 40px;"></input>
-
-
+                        
 
                     </div>
 
@@ -174,7 +178,21 @@
 
                 </form>
 
-
+                        <div class="product-container"><div class="row mt-3">
+            <div class="col-md-2 col-lg-2 col-xl-2">
+                <img src="` + img2 + `" id="imgDisplay" class="img-fluid rounded-3" alt="Cotton T-shirt">
+            </div>
+            <div class="col-md-4 col-lg-4 col-xl-4">
+                <h6 id="nameDisplay" class="text-muted">Hello</h6> 
+                <h6 id="titleDisplay" class="text-black mb-0">Hello</h6>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                <p id="quantityDisplay" name="quantity" type="number" readonly>Hello</p>
+            </div>
+            <div class="col-md-3 col-lg-2 pt-4 col-xl-2 offset-lg-1">
+                <h6 id="priceElement">Hello</h6>
+            </div>
+          </div></div>
 
                 <script>
 

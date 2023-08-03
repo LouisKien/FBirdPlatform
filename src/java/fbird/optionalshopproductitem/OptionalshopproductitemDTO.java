@@ -18,12 +18,21 @@ public class OptionalshopproductitemDTO {
     public OptionalshopproductitemDTO() {
     }
 
-    public OptionalshopproductitemDTO(int shop_product_item_id, String name, Double price, int inventory) {
+    public OptionalshopproductitemDTO(int shop_product_item_id,int optional_shop_product_item_id, String name, Double price, int inventory) {
         this.shop_product_item_id = shop_product_item_id;
+        this.optional_shop_product_item_id = optional_shop_product_item_id;
         this.name = name;
         this.price = price;
         this.inventory = inventory;
     }
+
+    public OptionalshopproductitemDTO(int optional_shop_product_item_id, String name, Double price, int inventory) {
+        this.optional_shop_product_item_id = optional_shop_product_item_id;
+        this.name = name;
+        this.price = price;
+        this.inventory = inventory;
+    }
+    
     
     
 

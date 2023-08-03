@@ -42,7 +42,7 @@ public class ProductDTO {
     private int total_unit_sell;
     private int total_order;
     private double revenue;
-
+    private int optional_shop_product_item_id;
     public ProductDTO() {
     }
 
@@ -168,7 +168,7 @@ public class ProductDTO {
         this.priceView = priceView;
     }
 
-    public ProductDTO(int shopProductItemID, String title, String description, int inventory, byte status, String image_1, String image_2, String image_3, String image_4, String type_of_bird_name, String category_name, Double price, String nameOption, double priceView) {
+    public ProductDTO(int shopProductItemID, String title, String description, int inventory, byte status, String image_1, String image_2, String image_3, String image_4, String type_of_bird_name, String category_name, Double price, String nameOption, double priceView, int optional_shop_product_item_id) {
         this.shopProductItemID = shopProductItemID;
         this.shopID = shopID;
         this.categoryID = categoryID;
@@ -189,6 +189,7 @@ public class ProductDTO {
         this.price = price;
         this.nameOption = nameOption;
         this.priceView = priceView;
+        this.optional_shop_product_item_id = optional_shop_product_item_id;
     }
 
     public ProductDTO(int shopProductItemID) {
@@ -411,6 +412,15 @@ public class ProductDTO {
     public void setRevenue(double revenue) {
         this.revenue = revenue;
     }
+
+    public int getOptional_shop_product_item_id() {
+        return optional_shop_product_item_id;
+    }
+
+    public void setOptional_shop_product_item_id(int optional_shop_product_item_id) {
+        this.optional_shop_product_item_id = optional_shop_product_item_id;
+    }
+    
 
     
 }

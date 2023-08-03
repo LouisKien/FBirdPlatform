@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="vi">
     <%@page contentType="text/html" pageEncoding="UTF-8"%>
+    <%@page import="fbird.order.OrderDTO"%>
+    <%@page import="java.util.List"%>
     <head>
         <title>Shop Dashboard</title>
         <link rel="icon" href="img/logo-shop.PNG" type="image/png">
@@ -123,18 +125,26 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <% 
+                List<OrderDTO> listOrder = (List<OrderDTO>) request.getAttribute("LIST_ORDER");
+                if (listOrder != null && !listOrder.isEmpty()) {
+                    int count = 0;
+                    for (OrderDTO listOD : listOrder) {
+                        count++;
+                                    %>
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>Cám chim 1</td>
-                                        <td>Jonny</td>
-                                        <td>$1200</td>
-                                        <td>Đã giao</td>
-                                        <td>1/1/2023</td>
-                                        <td>Hỏa tốc</td>
+                                        <th scope="row"><%= count %></th>
+                                        <td><%= listOD.getTitle() %></td>
+                                        <td><%= listOD.getFullname() %></td>
+                                        <td><%= listOD.getSell_price() %></td>
+                                        <td><%= listOD.getStatus() %></td>
+                                        <td><%= listOD.getOrder_date() %></td>
+                                        <td><%= listOD.getName() %></td>
                                         <td style="text-align: center">
                                             <a href="xemChiTietDatHangCuaShop.jsp"><i class="fas-solid fas fa-bars"></i></a>
                                         <td>
                                     </tr>
+                                    <%}}%>
                                 </tbody>
                             </table>
                         </div>

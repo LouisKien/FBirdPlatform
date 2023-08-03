@@ -22,7 +22,7 @@ import java.util.List;
  * @author Admin
  */
 public class OrderDAO {
-    
+
     private static final String VIEW_ADDRESS = "select street, city, postal_code, phone, home_number from customer_address where customer_id=?";
     private static final String CREATE_ORDER = "INSERT customer_order(customer_id, delivery_method_id, order_address, order_date, status, total_price_order, paypal_transaction_id, order_phone, shop_id) VALUES (?,?,?,?,?,?,?,?,?)";
     private static final String GET_LIST_OPTIONAL_SHOP_PRODUCT_ITEM_ID = "SELECT optional_shop_product_item_id FROM optional_shop_product_item JOIN shop_product_item ON optional_shop_product_item.shop_product_item_id = shop_product_item.shop_product_item_id WHERE name = ? AND title = ? AND price = ? AND shop_id = ?";
@@ -30,10 +30,12 @@ public class OrderDAO {
     private static final String ADD_ORDER_PRODUCT = "INSERT order_item(order_id, optional_shop_product_item_id, sell_price, amount) VALUES (?,?,?,?)";
     private static final String SUBTRACT_QUANTITY_IN_INVENTORY = "UPDATE optional_shop_product_item SET inventory = inventory - ? WHERE optional_shop_product_item_id = ?";
     private static final String GET_CART_ITEM_ID = "SELECT cart_item_id FROM optional_shop_product_item JOIN cart_item ON optional_shop_product_item.optional_shop_product_item_id = cart_item.optional_shop_product_item_id WHERE optional_shop_product_item.optional_shop_product_item_id = ? AND customer_id = ?";
-    private static final String VIEW_CUSTOMER_ORDER = "SELECT  shop_product_item.title, total_price_order, delivery_method.name, customer_order.status, order_date  FROM customer_order JOIN order_item on customer_order.order_id= order_item.order_id JOIN optional_shop_product_item on optional_shop_product_item.optional_shop_product_item_id = order_item.optional_shop_product_item_id JOIN shop_product_item on optional_shop_product_item.shop_product_item_id = shop_product_item.shop_product_item_id JOIN delivery_method on delivery_method.delivery_method_id = customer_order.delivery_method_id WHERE customer_id =? AND customer_order.status like ? ORDER BY total_price_order OFFSET ? ROWS FETCH FIRST 10 ROWS ONLY;";
+    private static final String VIEW_CUSTOMER_ORDER = "SELECT order_id, name, order_date, status, total_price_order, paypal_transaction_id FROM customer_order JOIN delivery_method ON delivery_method.delivery_method_id = customer_order.delivery_method_id WHERE customer_id = ? AND customer_order.status like ? ORDER BY total_price_order OFFSET ? ROWS FETCH FIRST 10 ROWS ONLY";
     private static final String COUNT_ORDER_PAGE_NUMBER = "SELECT  count(shop_product_item.title)  FROM customer_order JOIN order_item on customer_order.order_id= order_item.order_id JOIN optional_shop_product_item on optional_shop_product_item.optional_shop_product_item_id = order_item.optional_shop_product_item_id JOIN shop_product_item on optional_shop_product_item.shop_product_item_id = shop_product_item.shop_product_item_id JOIN delivery_method on delivery_method.delivery_method_id = customer_order.delivery_method_id WHERE customer_id = ? AND customer_order.status like ? ";
     private static final String SET_TOTAL_PRICE_PER_ORDER = "UPDATE customer_order SET total_price_order = ? WHERE order_id = ?";
     private static final String VIEW_SHOP_ORDER = "SELECT shop_product_item.title, customer.fullname, sell_price, customer_order.status, customer_order.order_date, delivery_method.name FROM order_item JOIN optional_shop_product_item on optional_shop_product_item.optional_shop_product_item_id = order_item.optional_shop_product_item_id JOIN shop_product_item on shop_product_item.shop_product_item_id = optional_shop_product_item.shop_product_item_id JOIN customer_order on customer_order.order_id = order_item.order_id JOIN customer on customer.customer_id = customer_order.customer_id JOIN delivery_method on customer_order.delivery_method_id = delivery_method.delivery_method_id Where customer_order.shop_id=?";
+    private static final String GET_ORDER_DETAIL = "SELECT order_address, amount, order_phone, order_date, total_price_order, image_1, shop_name, title, name, sell_price FROM order_item JOIN customer_order ON customer_order.order_id = order_item.order_id JOIN optional_shop_product_item ON order_item.optional_shop_product_item_id = optional_shop_product_item.optional_shop_product_item_id JOIN shop_product_item ON shop_product_item.shop_product_item_id = optional_shop_product_item.shop_product_item_id JOIN product_image ON shop_product_item.shop_product_item_id = product_image.shop_product_item_id JOIN shop_owner ON shop_product_item.shop_id = shop_owner.shop_id WHERE customer_order.order_id = ?";
+
     public List<OrderDTO> getAddress(int customer_id) throws SQLException {
         List<OrderDTO> list = new ArrayList<>();
         Connection conn = null;
@@ -51,7 +53,7 @@ public class OrderDAO {
                     String postal_code = rs.getString("postal_code");
                     String phone = rs.getString("phone");
                     String home_number = rs.getString("home_number");
-                    
+
                     list.add(new OrderDTO(street, city, postal_code, phone, home_number));
                 }
             }
@@ -70,7 +72,7 @@ public class OrderDAO {
         }
         return list;
     }
-    
+
     public boolean createOrder(int customer_id, int delivery_method_id, String order_address, double total_price_order, String order_phone, String paypal_transaction_id, int shop_id) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -106,7 +108,7 @@ public class OrderDAO {
         }
         return check;
     }
-    
+
     public List<OrderDTO> getAllProductProperties(List<OrderDTO> listOrder, int customer_order_id, int shop_id) {
         List<OrderDTO> list = new ArrayList<>();
         Connection conn = null;
@@ -141,7 +143,7 @@ public class OrderDAO {
         }
         return list;
     }
-    
+
     public List<OrderDTO> getCustomerOrderID(int customer_id, String paypal_transaction_id) throws SQLException {
         List<OrderDTO> customer_order_id = new ArrayList<>();
         Connection conn = null;
@@ -171,7 +173,7 @@ public class OrderDAO {
         }
         return customer_order_id;
     }
-    
+
     public boolean addOrderProduct(List<OrderDTO> listProperty) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -208,7 +210,7 @@ public class OrderDAO {
         }
         return check;
     }
-    
+
     public boolean subtractQuantityInInventory(List<OrderDTO> listProperty) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -239,7 +241,7 @@ public class OrderDAO {
         }
         return check;
     }
-    
+
     public boolean deleteCartItem(List<OrderDTO> listProperty, int customer_id) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -289,13 +291,14 @@ public class OrderDAO {
                 ptm.setInt(3, (index - 1) * 10);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
-                    String title = rs.getString("title");
-                    Double total_price_order = rs.getDouble("total_price_order");
-                    String name = rs.getString("name");                    
+                    int order_id = rs.getInt("order_id");
+                    double total_price_order = rs.getDouble("total_price_order");
                     String status = rs.getString("status");
+                    String paypal_transaction_id = rs.getString("paypal_transaction_id");
                     Date order_date = rs.getDate("order_date");
-                    
-                    list.add(new OrderDTO(title, name, order_date, status, total_price_order));
+                    String name = rs.getString("name");
+
+                    list.add(new OrderDTO(order_id, total_price_order, status, paypal_transaction_id, order_date, name));
                 }
             }
         } catch (Exception e) {
@@ -313,7 +316,7 @@ public class OrderDAO {
         }
         return list;
     }
-    
+
     public int getOrderPageNumber(int customer_id, String status) throws SQLException {
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -359,7 +362,7 @@ public class OrderDAO {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 double sum = shippingPrice;
-                for (OrderDTO o: listOrder){
+                for (OrderDTO o : listOrder) {
                     double sell_price = o.getSell_price();
                     int amount = o.getAmount();
                     sum = sum + (sell_price * amount);
@@ -383,6 +386,7 @@ public class OrderDAO {
             }
         }
     }
+
     public List<OrderDTO> getAllShopOrder(int shop_id) throws SQLException {
         List<OrderDTO> list = new ArrayList<>();
         Connection conn = null;
@@ -393,17 +397,17 @@ public class OrderDAO {
             if (conn != null) {
                 ptm = conn.prepareStatement(VIEW_SHOP_ORDER);
                 ptm.setInt(1, shop_id);
-                
+
                 rs = ptm.executeQuery();
                 while (rs.next()) {
                     String title = rs.getString("title");
                     String fullname = rs.getString("fullname");
                     Double sell_price = rs.getDouble("sell_price");
-                    String name = rs.getString("name");                    
+                    String name = rs.getString("name");
                     String status = rs.getString("status");
                     Date order_date = rs.getDate("order_date");
-                    
-                    list.add(new OrderDTO(title, name, sell_price, order_date, status, fullname ));
+
+                    list.add(new OrderDTO(title, name, sell_price, order_date, status, fullname));
                 }
             }
         } catch (Exception e) {
@@ -421,5 +425,46 @@ public class OrderDAO {
         }
         return list;
     }
-    
+
+    public List<OrderDTO> getListOrderProduct(int order_id) throws SQLException {
+        List<OrderDTO> list = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(GET_ORDER_DETAIL);
+                ptm.setInt(1, order_id);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    String order_address = rs.getString("order_address");
+                    String order_phone = rs.getString("order_phone");
+                    Date order_date = rs.getDate("order_date");
+                    Double total_price_order = rs.getDouble("total_price_order");
+                    String image_1 = rs.getString("image_1");
+                    String shop_name = rs.getString("shop_name");
+                    String title = rs.getString("title");
+                    String name = rs.getString("name");
+                    Double sell_price = rs.getDouble("sell_price");
+                    int amount = rs.getInt("amount");
+                    list.add(new OrderDTO(order_address, order_phone, order_date, total_price_order, image_1, shop_name, title, name, sell_price, amount));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
+        }
+        return list;
+    }
+
 }

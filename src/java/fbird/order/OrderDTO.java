@@ -33,11 +33,25 @@ public class OrderDTO {
     private String order_phone;
     private int shop_id;
     private String fullname;
+    private String image_1, shop_name;
     
     
     public OrderDTO() {
     }
 
+    public OrderDTO(String order_address, String order_phone, Date order_date, Double total_price_order, String image_1, String shop_name, String title, String name, Double sell_price, int amount) {
+        this.order_address = order_address;
+        this.order_phone = order_phone;
+        this.order_date = order_date;
+        this.total_price_order = total_price_order;
+        this.image_1 = image_1;
+        this.shop_name = shop_name;
+        this.title = title;
+        this.name = name;
+        this.sell_price = sell_price;
+        this.amount = amount;
+    }
+    
     public OrderDTO(int shop_id) {
         this.shop_id = shop_id;
     }
@@ -52,6 +66,15 @@ public class OrderDTO {
         this.optional_product_item_id = optional_product_item_id;
         this.sell_price = sell_price;
         this.amount = amount;
+    }
+    
+    public OrderDTO(int order_id, double total_price_order, String status, String paypal_transaction_id, Date order_date, String name) {
+        this.order_id = order_id;
+        this.total_price_order = total_price_order;
+        this.status = status;
+        this.paypal_transaction_id = paypal_transaction_id;
+        this.order_date = order_date;
+        this.name = name;
     }
     
     public OrderDTO(int customer_id, int delivery_method_id, String order_address, Date order_date, String status, double total_price_order, String paypal_transaction_id, String order_phone) {
@@ -292,6 +315,22 @@ public class OrderDTO {
 
     public void setFullname(String fullname) {
         this.fullname = fullname;
+    }
+
+    public String getImage_1() {
+        return image_1;
+    }
+
+    public void setImage_1(String image_1) {
+        this.image_1 = image_1;
+    }
+
+    public String getShop_name() {
+        return shop_name;
+    }
+
+    public void setShop_name(String shop_name) {
+        this.shop_name = shop_name;
     }
     
     

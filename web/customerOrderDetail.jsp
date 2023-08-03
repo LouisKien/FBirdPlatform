@@ -133,291 +133,153 @@
                 <h2>Chi tiết đơn hàng</h2>
             </div>
             <div class="url">
-                <a class="url1" href="MainController"> Trang chủ&nbsp;</a> > <a class="url1" href="customerOrderDetail.jsp">&nbsp;Chi tiết đơn hàng </a>
+                <a class="url1" href="MainController"> Trang chủ&nbsp;</a> > <a class="url1" href="MainController?action=ViewCustomerOrder&customer_id=<%= loginUser.getCustomer_id()%>&status=">&nbsp;Chi tiết đơn hàng </a>
 
             </div>
-            <div class="d-flex">
+            <div class="address-row" id="addresstest">
+                <%
+            List<OrderDTO> listOrderProduct = (List<OrderDTO>) request.getAttribute("LIST_ORDER_PRODUCT");
+            if(listOrderProduct != null){
+                if(listOrderProduct.size() > 0){
+                %>
+                <div class="d-flex">
 
-                <form>
-                    <!--                    <a href="../src/java/fbird/controller/ViewAddressController.java"></a>-->
-
-                    <div class="address-row" id="addresstest">
-                        <%
-                                  List<OrderDTO> address = (List<OrderDTO>) request.getAttribute("ADDRESS");
-                        %>
+                    <form>
+                        <!--                    <a href="../src/java/fbird/controller/ViewAddressController.java"></a>-->
 
 
-                        
-                        
+
+
+
+
                         <label>
                             <span style="width: 60px;">Địa chỉ:</span>
-                        <input type="text" name= "houseadd" readonly="" style="width: 350px; height: 40px;"></input>
+                            <input type="text" name= "houseadd" value="<%=listOrderProduct.get(0).getOrder_address()%>" readonly="" style="width: 350px; height: 40px;"></input>
                         </label>
 
-                                                <label>
+                        <label>
                             <span style="width: 60px;">SĐT:</span>
-                        <input type="text" name= "houseadd" readonly="" style="width: 350px; height: 40px;"></input>
+                            <input type="text" name= "houseadd" value="<%=listOrderProduct.get(0).getOrder_phone()%>" readonly="" style="width: 350px; height: 40px;"></input>
                         </label>
-                                                <label>
+                        <label>
                             <span style="width: 60px;">Ngày mua:</span>
-                        <input type="text" name= "houseadd" readonly="" style="width: 350px; height: 40px;"></input>
+                            <input type="text" name= "houseadd" value="<%=listOrderProduct.get(0).getOrder_date()%>" readonly="" style="width: 350px; height: 40px;"></input>
                         </label>
-                                                <label>
+                        <label>
                             <span style="width: 60px;">Tổng giá:</span>
-                        <input type="text" name= "houseadd" readonly="" style="width: 350px; height: 40px;"></input>
+                            <input type="text" name= "houseadd" value="<%=listOrderProduct.get(0).getTotal_price_order()%>" readonly="" style="width: 350px; height: 40px;"></input>
                         </label>
 
 
-                        
 
-                    </div>
 
-                    <div class="row mb-4 d-flex justify-content-between align-items-center" id="element">
+                </div>
 
-                    </div>
+                <div class="row mb-4 d-flex justify-content-between align-items-center" id="element">
+
+                </div>
 
                 </form>
-
-                        <div class="product-container"><div class="row mt-3">
-            <div class="col-md-2 col-lg-2 col-xl-2">
-                <img src="` + img2 + `" id="imgDisplay" class="img-fluid rounded-3" alt="Cotton T-shirt">
-            </div>
-            <div class="col-md-4 col-lg-4 col-xl-4">
-                <h6 id="nameDisplay" class="text-muted">Hello</h6> 
-                <h6 id="titleDisplay" class="text-black mb-0">Hello</h6>
-            </div>
-            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                <p id="quantityDisplay" name="quantity" type="number" readonly>Hello</p>
-            </div>
-            <div class="col-md-3 col-lg-2 pt-4 col-xl-2 offset-lg-1">
-                <h6 id="priceElement">Hello</h6>
-            </div>
-          </div></div>
-
-                <script>
-
-
-
-
-
-
-                    document.addEventListener("DOMContentLoaded", function () {
-                        getDataFromSessionStorage();
-                        var shippingOptionSelect = document.getElementById("shippingOption");
-                        shippingOptionSelect.addEventListener("change", updateTotalDisplay);
-                    });
-                    function getDataFromSessionStorage() {
-                        var allElement = JSON.parse(sessionStorage.getItem("Element"));
-                        var shop_id = JSON.parse(sessionStorage.getItem("shop_id"));
-                        var shop_name = JSON.parse(sessionStorage.getItem("shop_name"));
-
-                        if (Array.isArray(allElement) && Array.isArray(shop_id)) {
-                            var open = `<div class="shop-name-container">`;
-                            var close = `</div>`;
-                            for (let i = 0; i < shop_name.length; i++) {
-                                var shopNameUpper = shop_name[i].toUpperCase();
-
-                                var b = `<div>` + shopNameUpper + `</div>`;
-
-
-                                document.getElementById('element').innerHTML += open + b;
-
-                                for (let j = 0; j < allElement.length; j++) {
-                                    const [name2, title2, img2, price2, quantity2, shop_name2] = allElement[j];
-                                    if (shop_name[i] === shop_name2) {
-                                        var a = `<div class="product-container"><div class="row mt-3">
-            <div class="col-md-2 col-lg-2 col-xl-2">
-                <img src="` + img2 + `" id="imgDisplay" class="img-fluid rounded-3" alt="Cotton T-shirt">
-            </div>
-            <div class="col-md-4 col-lg-4 col-xl-4">
-                <h6 id="nameDisplay" class="text-muted">` + name2 + `</h6> 
-                <h6 id="titleDisplay" class="text-black mb-0">` + title2 + `</h6>
-            </div>
-            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                <p id="quantityDisplay" name="quantity" type="number" readonly>` + quantity2 + `</p>
-            </div>
-            <div class="col-md-3 col-lg-2 pt-4 col-xl-2 offset-lg-1">
-                <h6 id="priceElement">` + formatNumber(price2) + ` đ</h6>
-            </div>
-          </div></div>`;
-
-                                        document.getElementById('element').innerHTML += a;
-                                    }
-                                }
-
-                                document.getElementById('element').innerHTML += close;
-                            }
-                        }
-                        updateTotalDisplay();
-                    }
-
-//                    function getDataFromSessionStorage() {
-//
-//                        var allElement = JSON.parse(sessionStorage.getItem("Element"));
-//                        var shop_id = JSON.parse(sessionStorage.getItem("shop_id"));
-//                        var shop_name = JSON.parse(sessionStorage.getItem("shop_name"));
-//                        
-//                        if (Array.isArray(allElement) && Array.isArray(shop_id)) {
-//                            
-//                            var open = `<div>`; 
-//                            var close =`</div>`; 
-//                                
-//                                for (let i = 0; i < shop_name.length; i++) {
-//                                
-////                                const [shop_name1] = shop_name[i];
-//                                var b= `<div>`+ shop_name[i]+`</div>`;
-//                                
-//                               document.getElementById('element').innerHTML +=open+b;
-//                             
-//                                
-//                                for (let j = 0; j < allElement.length; j++){
-//                                    const [name2, title2, img2, price2, quantity2, shop_name2] = allElement[j];
-//                                     if (shop_name[i] === shop_name2 ) {
-//                                         
-//                                       var a = `<div class="row mt-3">
-//                                            <div class="col-md-2 col-lg-2 col-xl-2">
-//                                                <img src="` + img2 + `" id="imgDisplay" class="img-fluid rounded-3" alt="Cotton T-shirt">
-//                                            </div>
-//                                            <div class="col-md-4 col-lg-4 col-xl-4">
-//                                                
-//                                                <h6 id="nameDisplay" class="text-muted">` + name2 + `</h6> 
-//                                                <h6 id="titleDisplay" class="text-black mb-0">` + title2 + `</h6>
-//                                            </div>
-//                                            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-//                                                <p id="quantityDisplay" name="quantity" type="number"  readonly>` + quantity2 + `</p>
-//                                            </div>
-//                                            <div class="col-md-3 col-lg-2 pt-4 col-xl-2 offset-lg-1">
-//                                                <h6 id="priceElement" >` + formatNumber(price2) + ` đ</h6>
-//                                            </div>
-//
-//                                        </div>`;
-//                                        
-//                                        
-//                                        
-//                                        document.getElementById('element').innerHTML += a ;
-//                                    
-//                                    }
-//                                }
-//                                
-//                               document.getElementById('element').innerHTML += close ;
-//                                
-//                                     
-//                                     
-//
-//                                
-//                            }
-//                                
-//
-//
-//                        }
-//                        updateTotalDisplay();
-//                    }
-                    function formatNumber(n) {
-                        // format number 1000000 to 1,234,567
-                        var numberString = n.toString();
-                        return numberString.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                    }
-                    function updateTotalDisplay() {
-                        var shop_name = JSON.parse(sessionStorage.getItem("shop_name"));
-                        var totalPriceDisplay = document.getElementById("allPriceDisplay");
-
-                        var allPrice = JSON.parse(sessionStorage.getItem("allPrices"));
-                        var shippingOptionSelect = document.getElementById("shippingOption");
-                        var shippingCost = parseFloat(shippingOptionSelect.value);
-//                        console.log(data.imgElementValue);
-
-
-                        var total = allPrice + shippingCost * shop_name.length;
-
-
-                        totalPriceDisplay.innerText = formatNumber(total) + "đ";
-
-//                            sessionStorage.clear();
-                    }
-
-
-
-
-
-
-
-
-                </script>
-
+                        
+                <div class="product-container">
+                    <div class="row mt-3">
+                        <%
+                            for(OrderDTO x: listOrderProduct){
+                        %>
+                        <div class="col-md-2 col-lg-2 col-xl-2">
+                            <img src="<%= x.getImage_1()%>" id="imgDisplay" class="img-fluid rounded-3" alt="Cotton T-shirt">
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-xl-4">
+                            <h6 id="nameDisplay" class="text-muted"><%= x.getShop_name()%></h6> 
+                            <h6 id="titleDisplay" class="text-black mb-0"><%= x.getTitle()%></h6></br>
+                            <h6 id="titleDisplay" class="text-black mb-0">Loại sản phẩm: <%= x.getName()%></h6>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                            <p id="quantityDisplay" name="quantity" type="number" readonly><%= x.getAmount()%></p>
+                        </div>
+                        <div class="col-md-3 col-lg-2 pt-4 col-xl-2 offset-lg-1">
+                            <h6 id="priceElement"><%= x.getSell_price()*x.getAmount()%></h6>
+                        </div>
+                        <%}}}%>
+                    </div>
+                </div>
+                
             </div>
         </div>
 
+                    
+                    
         <script src="https://www.paypal.com/sdk/js?client-id=Ac7kMHZaJoJw3hIlaEXI1VO3WLpTmsOHivGxlRZQbilUXOOibAXSj4YUkVl7Nvx_Kqk-wlCnA0hdtZ9f&disable-funding=credit,card"></script>
         <script>
-                    var presentAddressSelect = document.getElementById("addr");
-                    var presentAddress = presentAddressSelect.options[presentAddressSelect.selectedIndex].value;
+            var presentAddressSelect = document.getElementById("addr");
+            var presentAddress = presentAddressSelect.options[presentAddressSelect.selectedIndex].value;
 
-                    var presentPhoneSelect = document.getElementById("phn");
-                    var presentPhone = presentPhoneSelect.options[presentPhoneSelect.selectedIndex].value;
+            var presentPhoneSelect = document.getElementById("phn");
+            var presentPhone = presentPhoneSelect.options[presentPhoneSelect.selectedIndex].value;
 
-                    var totalPriceDisplay = document.getElementById("allPriceDisplay");
+            var totalPriceDisplay = document.getElementById("allPriceDisplay");
 
-                    var allPrice = JSON.parse(sessionStorage.getItem("allPrices"));
-                    var shippingOptionSelect = document.getElementById("shippingOption");
-                    var shippingCost = parseFloat(shippingOptionSelect.value);
-                    var totalPriceInVND = allPrice + shippingCost;
+            var allPrice = JSON.parse(sessionStorage.getItem("allPrices"));
+            var shippingOptionSelect = document.getElementById("shippingOption");
+            var shippingCost = parseFloat(shippingOptionSelect.value);
+            var totalPriceInVND = allPrice + shippingCost;
 
-                    //                        console.log(data.imgElementValue);
+            //                        console.log(data.imgElementValue);
 
-                    function sendDataToServlet(details) {
-                        var allElement = JSON.parse(sessionStorage.getItem("Element"));
-                        var allShopId = JSON.parse(sessionStorage.getItem("shop_id"));
+            function sendDataToServlet(details) {
+                var allElement = JSON.parse(sessionStorage.getItem("Element"));
+                var allShopId = JSON.parse(sessionStorage.getItem("shop_id"));
 
-                        if (Array.isArray(allElement)) {
-                            if (Array.isArray((allShopId))) {
-                                var dataToSend = {
-                                    allElement: allElement, // Sending the entire 'allElement' array
-                                    allShopId: allShopId,
-                                    shippingOptionSelect: shippingOptionSelect.value,
-                                    presentAddress: presentAddress,
-                                    presentPhone: presentPhone,
-                                    totalPrice: totalPriceInVND.valueOf(),
-                                    paypalTransactionID: details.id
-                                };
+                if (Array.isArray(allElement)) {
+                    if (Array.isArray((allShopId))) {
+                        var dataToSend = {
+                            allElement: allElement, // Sending the entire 'allElement' array
+                            allShopId: allShopId,
+                            shippingOptionSelect: shippingOptionSelect.value,
+                            presentAddress: presentAddress,
+                            presentPhone: presentPhone,
+                            totalPrice: totalPriceInVND.valueOf(),
+                            paypalTransactionID: details.id
+                        };
 
-                                // Create a new AJAX request to send data to the servlet
-                                const xhr = new XMLHttpRequest();
-                                xhr.open("POST", "OrderPayPalTransactionController", true);
-                                xhr.setRequestHeader("Content-Type", "application/json");
+                        // Create a new AJAX request to send data to the servlet
+                        const xhr = new XMLHttpRequest();
+                        xhr.open("POST", "OrderPayPalTransactionController", true);
+                        xhr.setRequestHeader("Content-Type", "application/json");
 
-                                // Convert the data to JSON and send it to the servlet
-                                xhr.send(JSON.stringify(dataToSend));
+                        // Convert the data to JSON and send it to the servlet
+                        xhr.send(JSON.stringify(dataToSend));
 
-                            }
-                        }
                     }
+                }
+            }
 
-                    var total = (allPrice + shippingCost) / 23500;
-                    paypal.Buttons({
-                        style: {
-                            color: 'blue',
-                            shape: 'pill'
-                        },
-                        createOrder: function (data, actions) {
-                            return actions.order.create({
-                                purchase_units: [{
-                                        amount: {
-                                            value: total.toFixed(2)
-                                        }
-                                    }]
-                            });
-                        },
-                        onApprove: function (data, actions) {
-                            return actions.order.capture().then(function (details) {
-                                console.log(details)
-                                sendDataToServlet(details)
-                                window.location.replace("http://localhost:8084/FBird/orderSuccess.jsp")
-                            })
-                        },
-                        onCancel: function (data) {
-                            window.location.replace("http://localhost:8084/FBird/orderFail.jsp")
-                        }
-                    }).render('#paypal-payment-button');
+            var total = (allPrice + shippingCost) / 23500;
+            paypal.Buttons({
+                style: {
+                    color: 'blue',
+                    shape: 'pill'
+                },
+                createOrder: function (data, actions) {
+                    return actions.order.create({
+                        purchase_units: [{
+                                amount: {
+                                    value: total.toFixed(2)
+                                }
+                            }]
+                    });
+                },
+                onApprove: function (data, actions) {
+                    return actions.order.capture().then(function (details) {
+                        console.log(details)
+                        sendDataToServlet(details)
+                        window.location.replace("http://localhost:8084/FBird/orderSuccess.jsp")
+                    })
+                },
+                onCancel: function (data) {
+                    window.location.replace("http://localhost:8084/FBird/orderFail.jsp")
+                }
+            }).render('#paypal-payment-button');
         </script>
 
         <a href="#" class="btn btn-primary py-3 fs-4 back-to-top"><i class="bi bi-arrow-up"></i></a>

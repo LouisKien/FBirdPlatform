@@ -228,8 +228,6 @@
                                 </a>
                             </div>
                         </div>
-
-                        <form action="MainController" method="POST">
                             <div class="col">
                                 <table class="table bg-white rounded shadow-sm table-hover">
                                     <thead>
@@ -238,6 +236,7 @@
                                             <th scope="col">Mã đơn hàng</th>
                                             <th scope="col">Giá tổng</th>
                                             <th scope="col">Trạng thái</th>
+                                            <th scope="col">Mã giao dịch</th>
                                             <th scope="col">Thời gian</th>
                                             <th scope="col">Vận chuyển</th>
                                             <th scope="col"></th>
@@ -259,16 +258,14 @@
                                             <td><%= listOD.getStatus() %></td>
                                             <td><%= listOD.getPaypal_transaction_id() %></td>
                                             <td><%= listOD.getOrder_date() %></td>
-                                            <td><button><a href="MainController?action=ViewCustomerOrderDetail&order_id=<%= listOD.getOrder_id() %>">Xem chi tiết</a></button></td>
+                                            <td><%= listOD.getName() %></td>
+                                            <td><a href="MainController?action=ViewCustomerOrderDetail&order_id=<%= listOD.getOrder_id() %>"><button>Xem chi tiết</button></a></td>
                                         </tr>
                                         <% }
                                         %>
                                     </tbody>
                                 </table>
                             </div>
-                        </form>
-
-
 
                     </div>
 

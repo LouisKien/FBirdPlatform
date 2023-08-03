@@ -390,19 +390,25 @@ if(loginUser != null && loginUser.getRole() == 3) {
 
                                     }
                                 }
-
+                                var shop_name0 = document.getElementById('shopname');
+                                var shop_id0 = document.getElementById('shopId');
                                 var quantity = document.getElementsByName('productQuantity')[0].value;
                                 var price = ConvertToNumber(document.getElementById('selectedPrice1').innerText);
                                 var imgbuynow = document.getElementById('imgbuynow');
-
+                                var shop_name = shop_name0.innerText;
+                                var shop_id = shop_id0.innerText;
                                 var img = imgbuynow.getAttribute("src");
                                 let Allelement = [];
-                                console.log(titleproduct);
-                                console.log(optional);
-                                console.log(price);
-                                console.log(quantity);
-                                console.log(img);
-                                let Element = [optional, titleproduct, img, price, quantity];
+                                let shop = [];
+                                let shop_title=[];
+                                let shopIdArray = [shop_id];
+                                shop.push(shopIdArray);
+                                if(!shop_title.includes(shop_name)){
+                                 shop_title.push(shop_name);
+                             }
+                                sessionStorage.setItem("shop_id", JSON.stringify(shop));
+                                sessionStorage.setItem("shop_name", JSON.stringify(shop_title));
+                                let Element = [optional, titleproduct, img, price, quantity, shop_name];
                                 Allelement.push(Element);
                                 sessionStorage.setItem("Element", JSON.stringify(Allelement));
                                 sessionStorage.setItem("allPrices", JSON.stringify(price));
@@ -482,7 +488,8 @@ if(loginUser != null && loginUser.getRole() == 3) {
                             </div>
                         </a>
                         <div class="shop-name" style="display: flex; flex-direction: column;">
-                            <div><%=LPD.getShop_name() %></div>
+                            <div id="shopId" style="display: none"><%=LPD.getShopID() %></div>
+                            <div id="shopname"><%=LPD.getShop_name() %></div>
                             <div><a href="MainController?action=ViewShopProduct&shop_id=<%=LPD.getShopID() %>">Xem ngay</a></div>
                         </div>
                         <%

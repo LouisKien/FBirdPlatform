@@ -4,12 +4,15 @@
  */
 package fbird.controller;
 
+import fbird.recipe.RecipeDAO;
+import fbird.recipe.RecipeDTO;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  *
@@ -17,31 +20,29 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ViewRecipeShopController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    private static final String ERROR = "error.jsp";
+    private static final String SUCCESS = "AllRecipe.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ViewRecipeShopController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ViewRecipeShopController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        String url = ERROR;
+        try {
+            int shopID = Integer.parseInt(request.getParameter("shop_id"));
+            RecipeDAO dao = new RecipeDAO();
+            List<RecipeDTO> list = dao.getListRecipe(shopID);
+            if (list.size()>0) {
+                request.setAttribute("LIST_RECIPE", list);
+                request.setAttribute("shop_id", shopID);
+                url = SUCCESS;
+            }
+        } catch (Exception e) {
+            log("Error at ViewRecipeShopController:" + e.toString());
+        }finally{
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

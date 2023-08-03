@@ -40,7 +40,7 @@ public class MainController extends HttpServlet {
     private static final String VIEW_ACCOUNT = "ViewAccount";
     private static final String VIEW_ACCOUNT_CONTROLLER = "ViewAccountController";
     private static final String VIEW_RECIPE_SHOP = "ViewRecipeShop";
-    private static final String VIEW_RECIPE_SHOP_CONTROLLER = "ViewRecipeController";
+    private static final String VIEW_RECIPE_SHOP_CONTROLLER = "ViewRecipeShopController";
     private static final String VIEW_CUSTOMER_ACCOUNT = "ViewCustomerAccount";
     private static final String VIEW_CUSTOMER_ACCOUNT_CONTROLLER = "ViewCustomerAccountController";
     private static final String VIEW_SHOP_ACCOUNT = "ViewShopAccount";

@@ -513,14 +513,14 @@ public class RecipeDAO {
                 rs = ptm.executeQuery();
                 while (rs.next()) {
                     int recipe_product_id = rs.getInt("recipe_product_id");
-                    int optionalShopProductItemID = rs.getInt("optional_shop_product_item_id");
+                    String optionalShopProductItemName = rs.getString("optional_shop_product_item_id");
                     int quantity = rs.getInt("quantity");
-                    int typeOfBirdName = rs.getInt("type_of_bird_id");
+                    String typeOfBirdName = rs.getString("type_of_bird_id");
                     int shop_id = rs.getInt("shop_id");
                     String title = rs.getString("title_recipe");
                     String description = rs.getString("description");
                     double price = rs.getDouble("total_price");
-                    recipe.add(new RecipeDTO(recipeID, shop_id, title, price, recipe_product_id, typeOfBirdID, optionalShopProductItemID, quantity, description));
+                    recipe.add(new RecipeDTO(recipeID, shop_id, title, price, recipe_product_id, typeOfBirdName, optionalShopProductItemName, quantity, description));
                 }
             }
         } catch (Exception e) {

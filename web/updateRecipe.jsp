@@ -131,22 +131,29 @@
                                     <label for="productName" style="font-size: 18px; font-weight: bold;" >Tên khẩu phần:  </label> <input type="text" id="productName" name="recipeName" placeholder="Nhập tên khẩu phần" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
                                     <label for="typeOfBird" style="font-size: 18px; font-weight: bold;">Dành cho chim: </label> 
                                     <select id="typeOfBird" name="typeOfBird" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
-                                        <option value="">Chọn loại chim</option>
+                                        
                                         <%
                                         List<TypeOfBirdDTO> listType = (List<TypeOfBirdDTO>) request.getAttribute("LIST_TYPE");
-                                                if (listType != null && !listType.isEmpty()) {
+                                               
+                                        if (listType != null && !listType.isEmpty()) {
 
 
                                                 for (TypeOfBirdDTO listTP : listType) {
-                                                
-
+                                               if(listTP.getType_of_bird_name().equals(listRecipe.get(0).getTypeOfBirdName())){                                   
+                                        
                                         %>
                                         <option value="<%= listTP.getType_of_bird_id()%>"><%=listTP.getType_of_bird_name()%></option>
                                         <%
-                                            
                                             }
+                                            }
+                                        %> 
+
+                                        <option value="">Chọn loại chim</option>
+                                        
+                                        <%
+                                            
                                             for (TypeOfBirdDTO listTP : listType) {
-                                            if(listTP.getType_of_bird_id()==listRecipe.get(0).getTypeOfBirdID()){                                   
+                                            if(!listTP.getType_of_bird_name().equals(listRecipe.get(0).getTypeOfBirdName())){                                   
                                         
                                         %>
                                         <option value="<%= listTP.getType_of_bird_id()%>"><%=listTP.getType_of_bird_name()%></option>
@@ -156,6 +163,7 @@
                                         %>
                                         <%
                                             }
+
                                         %>
 
                                     </select>

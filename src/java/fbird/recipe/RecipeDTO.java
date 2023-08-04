@@ -52,6 +52,8 @@ public class RecipeDTO {
         this.quantity = quantity;
     }
     
+    
+    
     public RecipeDTO() {
     }
 
@@ -80,6 +82,18 @@ public class RecipeDTO {
         this.image_2 = image_2;
         this.image_3 = image_3;
         this.image_4 = image_4;
+        this.description = description;
+    }
+
+    public RecipeDTO(int recipe_id, int shop_id, String title_recipe, Double total_price, int recipeProductID, String typeOfBirdName, String nameProductOptional, int quantity, String description) {
+        this.recipe_id = recipe_id;
+        this.shop_id = shop_id;
+        this.title_recipe = title_recipe;
+        this.total_price = total_price;
+        this.recipeProductID = recipeProductID;
+        this.typeOfBirdName = typeOfBirdName;
+        this.nameProductOptional = nameProductOptional;
+        this.quantity = quantity;
         this.description = description;
     }
     

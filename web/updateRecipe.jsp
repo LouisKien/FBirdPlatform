@@ -188,7 +188,7 @@
                                         if(listOP.getName().equals(listRecipe.get(i).getNameProductOptional())){
                                         %>
 
-                                        <option value="<%=listOP.getTitle()%>: <%=listOP.getName()%>: <%= listOP.getOptional_shop_product_item_id()%>"><%=listOP.getTitle()%>: <%=listOP.getName()%></option>
+                                        <option value="<%=listOP.getTitle()%>: <%=listOP.getName()%>: <%= listOP.getOptional_shop_product_item_id()%>" price="<%=listOP.getPrice()%>"><%=listOP.getTitle()%>: <%=listOP.getName()%></option>
                                         <%
                                             }
                                         }
@@ -196,7 +196,7 @@
                                         if(!listOP.getName().equals(listRecipe.get(i).getNameProductOptional())){
                                         %>
 
-                                        <option value="<%=listOP.getTitle()%>: <%=listOP.getName()%>: <%= listOP.getOptional_shop_product_item_id()%>"><%=listOP.getTitle()%>: <%=listOP.getName()%></option>
+                                        <option value="<%=listOP.getTitle()%>: <%=listOP.getName()%>: <%= listOP.getOptional_shop_product_item_id()%>" price="<%=listOP.getPrice()%>"><%=listOP.getTitle()%>: <%=listOP.getName()%></option>
                                         <%
                                             }
                                         }
@@ -206,10 +206,10 @@
                                         %>
 
                                     </select>
-                                    <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng sản phẩm <%= i + 1 %>:  </label> <input type="text" id="productName" name="inventory<%= i+1 %>" value="<%=listRecipe.get(i).getQuantity()%>" placeholder="Nhập số lượng sản phẩm" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng sản phẩm <%= i + 1 %>:  </label> <input type="number" id="productName" name="inventory<%= i+1 %>" value="<%=listRecipe.get(i).getQuantity()%>" placeholder="Nhập số lượng sản phẩm" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
                                     <%}%>
 
-                                    <label for="inventory" style="font-size: 18px; font-weight: bold;" >Tổng giá khẩu phần: </label> <input type="text" id="productName" name="inventory" readonly="" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <div id="aaa"> <label for="inventory" style="font-size: 18px; font-weight: bold;" >Tổng giá khẩu phần: </label> <input  id="totalPrice" name="totalPrice" value="" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br></div>
 
                                 </div>
 
@@ -255,6 +255,65 @@
     }
 
     document.getElementById("productImage").addEventListener("change", onFileSelect);
+    function totalPrice(){
+        var product1 = document.getElementById("Product1");
+        var selectedprivce1 = product1.options[product1.selectedIndex];
+        var price1 = parseFloat(selectedprivce1.getAttribute("price"));
+        var quantity1 = parseFloat(document.getElementsByName('inventory1')[0].value);
+        
+        var product2 = document.getElementById("Product2");
+        var selectedprivce2 = product2.options[product2.selectedIndex];
+        var price2 = parseFloat(selectedprivce2.getAttribute("price"));
+        var quantity2 = parseFloat(document.getElementsByName('inventory2')[0].value);
+        
+        var product3 = document.getElementById("Product3");
+        var selectedprivce3 = product3.options[product3.selectedIndex];
+        var price3 = parseFloat(selectedprivce3.getAttribute("price"));
+        var quantity3 = parseFloat(document.getElementsByName('inventory3')[0].value);
+        
+        var product4 = document.getElementById("Product4");
+        var selectedprivce4 = product4.options[product4.selectedIndex];
+        var price4 = parseFloat(selectedprivce4.getAttribute("price"));
+        var quantity4 = parseFloat(document.getElementsByName('inventory4')[0].value);
+        
+        var product5 = document.getElementById("Product5");
+        var selectedprivce5 = product5.options[product5.selectedIndex];
+        var price5 = parseFloat(selectedprivce5.getAttribute("price"));
+        var quantity5 = parseFloat(document.getElementsByName('inventory5')[0].value);
+        
+        
+var totalprice = 0; // Khởi tạo totalprice với giá trị ban đầu là 0
+
+console.log(price1);
+console.log(quantity1);
+
+if (!isNaN(price1) && !isNaN(quantity1)) {
+    totalprice += price1 * quantity1;
+}
+
+if (!isNaN(price2) && !isNaN(quantity2) && !isNaN(price1) && !isNaN(quantity1)) {
+    totalprice += (price2 * quantity2) + (price1 * quantity1);
+}
+
+if (!isNaN(price3) && !isNaN(quantity3) && !isNaN(price2) && !isNaN(quantity2) && !isNaN(price1) && !isNaN(quantity1)) {
+    totalprice += (price3 * quantity3) + (price2 * quantity2) + (price1 * quantity1);
+}
+
+if (!isNaN(price4) && !isNaN(quantity4) && !isNaN(price3) && !isNaN(quantity3) && !isNaN(price2) && !isNaN(quantity2) && !isNaN(price1) && !isNaN(quantity1)) {
+    totalprice += (price4 * quantity4) + (price3 * quantity3) + (price2 * quantity2) + (price1 * quantity1);
+}
+
+if (!isNaN(price5) && !isNaN(quantity5) && !isNaN(price4) && !isNaN(quantity4) && !isNaN(price3) && !isNaN(quantity3) && !isNaN(price2) && !isNaN(quantity2) && !isNaN(price1) && !isNaN(quantity1)) {
+    totalprice += price5 * quantity5 + (price4 * quantity4) + (price3 * quantity3) + (price2 * quantity2) + (price1 * quantity1);
+}
+var totalpricedisplay = document.getElementById('aaa');
+var a = `<label for="inventory" style="font-size: 18px; font-weight: bold;" >Tổng giá khẩu phần: </label> <input  id="totalPrice" name="totalPrice" value="`+ totalprice +`" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>`;
+console.log(totalprice);
+totalpricedisplay.innerHTML = a;
+    
+    }
+    
+
 
 </script>
 

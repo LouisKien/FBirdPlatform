@@ -44,8 +44,7 @@ public class UpdateRecipeController extends HttpServlet {
             } else {
                 int typeOfBirdID = Integer.parseInt(typeOfBird);
                 String description = request.getParameter("description");
-//                double totalPrice = Double.parseDouble(request.getParameter("totalPrice"));
-                   double totalPrice = 1;
+                double totalPrice = Double.parseDouble(request.getParameter("totalPrice"));
                 recipe = new RecipeDTO(shopID, recipeName, totalPrice, typeOfBirdID, description);
                 
 
@@ -71,7 +70,7 @@ public class UpdateRecipeController extends HttpServlet {
                         int optionalShopProductItemID2 = Integer.parseInt(tmp[2].trim());
                         int inventory2 = Integer.parseInt(request.getParameter("inventory2"));
                         if(inventory2<=0){
-                            request.setAttribute("inventory1","The inventory must more than 0");
+                            request.setAttribute("inventory2","The inventory must more than 0");
                         }else{
                         checkAddProduct = recipeDao.updateOption(recipeProductID2, recipe_ID, optionalShopProductItemID2, inventory2);
                         }

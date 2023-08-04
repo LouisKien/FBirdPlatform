@@ -55,36 +55,55 @@ public class CreateRecipeController extends HttpServlet {
                         String[] tmp = Product1.split(":");
                         int optionalShopProductItemID1 = Integer.parseInt(tmp[2].trim());
                         int inventory1 = Integer.parseInt(request.getParameter("inventory1"));
+                        if(inventory1<=0){
+                            request.setAttribute("inventory5","The inventory must more than 0");
+                        }else{
                         checkAddProduct = recipeDao.addProductRecipe(recipeID, optionalShopProductItemID1, inventory1);
-                        
+                        }
                     }
                     String Product2 = request.getParameter("Product2");
                     if(!Product2.equals("none")){
                         String[] tmp = Product2.split(":");
                         int optionalShopProductItemID2 = Integer.parseInt(tmp[2].trim());
                         int inventory2 = Integer.parseInt(request.getParameter("inventory2"));
+                        if(inventory2<=0){
+                            request.setAttribute("inventory5","The inventory must more than 0");
+                        }else{
                         checkAddProduct = recipeDao.addProductRecipe(recipeID, optionalShopProductItemID2, inventory2);
+                    }
                     }
                     String Product3 = request.getParameter("Product3");
                     if(!Product3.equals("none")){
                         String[] tmp = Product3.split(":");
                         int optionalShopProductItemID3 = Integer.parseInt(tmp[2].trim());
                         int inventory3 = Integer.parseInt(request.getParameter("inventory3"));
+                        if(inventory3<=0){
+                            request.setAttribute("inventory5","The inventory must more than 0");
+                        }else{
                         checkAddProduct = recipeDao.addProductRecipe(recipeID, optionalShopProductItemID3, inventory3);
+                    }
                     }
                     String Product4 = request.getParameter("Product4");
                     if(!Product4.equals("none")){
                         String[] tmp = Product4.split(":");
                         int optionalShopProductItemID4 = Integer.parseInt(tmp[2].trim());
                         int inventory4 = Integer.parseInt(request.getParameter("inventory4"));
+                        if(inventory4<=0){
+                            request.setAttribute("inventory5","The inventory must more than 0");
+                        }else{
                         checkAddProduct = recipeDao.addProductRecipe(recipeID, optionalShopProductItemID4, inventory4);
+                    }
                     }
                     String Product5 = request.getParameter("Product5");
                     if(!Product5.equals("none")){
                         String[] tmp = Product5.split(":");
                         int optionalShopProductItemID5 = Integer.parseInt(tmp[2].trim());
                         int inventory5 = Integer.parseInt(request.getParameter("inventory5"));
+                        if(inventory5<=0){
+                            request.setAttribute("inventory5","The inventory must more than 0");
+                        }else{
                         checkAddProduct = recipeDao.addProductRecipe(recipeID, optionalShopProductItemID5, inventory5);
+                    }
                     }
                     if(checkAddProduct){
                         request.setAttribute("SUCCESS_MESSAGE", "Create Recipe Successfully");

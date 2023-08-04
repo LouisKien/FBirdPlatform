@@ -128,6 +128,7 @@
                                                 </div>-->
                         <form action="MainController">
                             <div class="col">
+                                <input type="hidden" name="recipe_id" value="${requestScope.recipe_id}"/>
                                 <div class="container" style="display: grid; grid-template-rows: repeat(4,0fr); gap:10px;">
                                     <label for="productName" style="font-size: 18px; font-weight: bold;" >Tên khẩu phần:  </label> <input type="text" id="productName" value="<%=listRecipe.get(0).getTitle_recipe()%>" name="recipeName" placeholder="Nhập tên khẩu phần" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
                                     <label for="typeOfBird" style="font-size: 18px; font-weight: bold;">Dành cho chim: </label> 
@@ -173,11 +174,11 @@
                                     <span style="font-size: 18px; font-weight: bold;">---------------------------------------------------Chọn sản phẩm--------------------------------------------------------</span>
                                     <% for(int i = 0; i <= listRecipe.size() - 1; i++){
                                     %>
-                                        
+                                        <input type="hidden" name="recipe_product_id<%= i+1%>" value="<%=listRecipe.get(i).getRecipeProductID()%>"/>
                                     <label for="Product1" style="font-size: 18px; font-weight: bold;">Sản phẩm <%= i + 1 %>:</label>
                                     <select id="Product<%= i+1 %>" name="Product<%= i+1 %>" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
                                         
-
+                                        
                                         <% 
                                     List<OptionalshopproductitemDTO> listOptional = (List<OptionalshopproductitemDTO>) request.getAttribute("LIST_OPTIONAL");
                                     if (listOptional != null && !listOptional.isEmpty()) {
@@ -217,9 +218,10 @@
                             </div>
 
 
-                            <button type="submit" name="action" value="Create Product" class="btn btn-primary" style="margin-top: 30px; border-radius: 20px;">Cập nhật khẩu phần</button>
+                            <button type="submit" name="action" value="Update Recipe" class="btn btn-primary" style="margin-top: 30px; border-radius: 20px;">Cập nhật khẩu phần</button>
                             <!--<input type="button" name="action" value="Create" style="margin-top: 30px; border-radius: 20px;/>-->
                         </form>
+                                    <h5>${requestScope.SUCCESS_MESSAGE}</h5>
                     </div>
                 </div>
 

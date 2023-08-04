@@ -47,6 +47,7 @@ public class ViewUpdateRecipeController extends HttpServlet {
                 request.setAttribute("LIST_OPTIONAL", list);
                 request.setAttribute("LIST_TYPE", listType);
                 request.setAttribute("LIST_RECIPE", listRecipe);
+                request.setAttribute("recipe_id", recipeID);
                 
             }
         }catch(Exception e){

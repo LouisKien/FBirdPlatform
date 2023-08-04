@@ -129,7 +129,7 @@ public class AddProductController extends HttpServlet {
                 }
                 boolean checkOptional = optionalDao.addOptionalProductItem(listOptional);
                 if(checkOptional == true){
-                    request.setAttribute("MESSAGE", "Create successfully!");
+                    request.setAttribute("MESSAGE", "Tạo Sản Phẩm Thành Công");
                     url = SUCCESS;
                 }
                 

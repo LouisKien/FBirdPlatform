@@ -22,6 +22,8 @@ import java.util.List;
 public class RecipeDAO {
 
     private static final String ADD_RECIPE = "INSERT INTO [recipe] VALUES (?,?,?,?,?)";
+    private static final String UPDATE_RECIPE_OPTION = "UPDATE recipe_product SET optional_shop_product_item_id=?, quantity=? WHERE recipe_id=? AND recipe_product_id=?";
+    private static final String UPDATE_RECIPE = "UPDATE [recipe] SET type_of_bird_id=?,title_recipe=?,description=?,total_price=? WHERE recipe_id=?";
     private static final String VIEW_RECIPE_SHOP = "SELECT * FROM recipe WHERE shop_id=?";
     private static final String GET_RECIPE_SHOP = "select s.recipe_product_id, s.recipe_id, o.name, s.quantity, b.type_of_bird_name, r.shop_id, r.title_recipe, r.description, r.total_price FROM recipe r JOIN recipe_product s ON r.recipe_id = s.recipe_id JOIN type_of_bird b ON r.type_of_bird_id = b.type_of_bird_id JOIN optional_shop_product_item o ON s.optional_shop_product_item_id = o.optional_shop_product_item_id WHERE r.recipe_id=?";
     private static final String ADD_RECIPE_PRODUCT = "INSERT INTO [recipe_product] VALUES (?,?,?)";
@@ -537,6 +539,57 @@ public class RecipeDAO {
             }
         }
         return recipe;
+    }
+
+    public boolean updateRecipe(RecipeDTO recipe, int recipe_ID) throws SQLException, ClassNotFoundException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try{
+            conn = DBUtils.getConnection();
+            if(conn!=null){
+                ptm = conn.prepareStatement(UPDATE_RECIPE);
+                ptm.setInt(1, recipe.getTypeOfBirdID());
+                ptm.setString(2, recipe.getTitle_recipe());
+                ptm.setString(3, recipe.getDescription());
+                ptm.setDouble(4, recipe.getTotal_price());
+                ptm.setInt(5, recipe_ID);
+                check = ptm.executeUpdate() > 0? true:false;
+            }
+        }finally{
+            if(ptm != null){
+                ptm.close();
+            }
+            if(conn != null){
+                conn.close();
+            }
+        }
+            return check;
+    }
+
+    public boolean updateOption(int recipeProductID, int recipe_ID, int optionalShopProductItemID, int inventory) throws SQLException, ClassNotFoundException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try{
+            conn = DBUtils.getConnection();
+            if(conn!=null){
+                ptm = conn.prepareStatement(UPDATE_RECIPE_OPTION);
+                ptm.setInt(1, optionalShopProductItemID);
+                ptm.setInt(2, inventory);
+                ptm.setInt(3, recipe_ID);
+                ptm.setInt(4, recipeProductID);
+                check = ptm.executeUpdate() > 0? true:false;
+            }
+        }finally{
+            if(ptm != null){
+                ptm.close();
+            }
+            if(conn != null){
+                conn.close();
+            }
+        }
+            return check;
     }
 
 }

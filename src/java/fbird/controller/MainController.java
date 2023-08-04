@@ -243,6 +243,9 @@ public class MainController extends HttpServlet {
             }else if (DELETE_RECIPE.equals(action)) {
                 url = DELETE_RECIPE_CONTROLLER;
 
+            }else if (UPDATE_RECIPE.equals(action)) {
+                url = UPDATE_RECIPE_CONTROLLER;
+
             }
             else {
                 request.setAttribute("ERROR", "Your ACTION is not support");

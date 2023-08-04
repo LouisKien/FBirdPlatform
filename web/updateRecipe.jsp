@@ -2,6 +2,7 @@
 <%@page import="fbird.typeofbird.TypeOfBirdDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="fbird.recipe.RecipeDTO"%>
+<%@page import="fbird.optionalshopproductitem.OptionalshopproductitemDTO"%>
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -128,10 +129,10 @@
                         <form action="MainController">
                             <div class="col">
                                 <div class="container" style="display: grid; grid-template-rows: repeat(4,0fr); gap:10px;">
-                                    <label for="productName" style="font-size: 18px; font-weight: bold;" >Tên khẩu phần:  </label> <input type="text" id="productName" name="recipeName" placeholder="Nhập tên khẩu phần" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <label for="productName" style="font-size: 18px; font-weight: bold;" >Tên khẩu phần:  </label> <input type="text" id="productName" value="<%=listRecipe.get(0).getTitle_recipe()%>" name="recipeName" placeholder="Nhập tên khẩu phần" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
                                     <label for="typeOfBird" style="font-size: 18px; font-weight: bold;">Dành cho chim: </label> 
                                     <select id="typeOfBird" name="typeOfBird" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
-                                        
+
                                         <%
                                         List<TypeOfBirdDTO> listType = (List<TypeOfBirdDTO>) request.getAttribute("LIST_TYPE");
                                                
@@ -149,12 +150,12 @@
                                         %> 
 
                                         <option value="">Chọn loại chim</option>
-                                        
+
                                         <%
                                             
                                             for (TypeOfBirdDTO listTP : listType) {
                                             if(!listTP.getType_of_bird_name().equals(listRecipe.get(0).getTypeOfBirdName())){                                   
-                                        
+                                            
                                         %>
                                         <option value="<%= listTP.getType_of_bird_id()%>"><%=listTP.getType_of_bird_name()%></option>
                                         <%
@@ -168,52 +169,45 @@
 
                                     </select>
 
-                                    <label for="description" style="font-size: 18px; font-weight: bold;">Mô tả sản phẩm:</label> <input type="text" id="description" name="description" placeholder="Nhập mô tả" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                        <label for="description" style="font-size: 18px; font-weight: bold;">Mô tả sản phẩm:</label> <input type="text" id="description" value="<%=listRecipe.get(0).getDescription()%>" name="description" placeholder="Nhập mô tả" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
                                     <span style="font-size: 18px; font-weight: bold;">---------------------------------------------------Chọn sản phẩm--------------------------------------------------------</span>
-                                    <label for="Product1" style="font-size: 18px; font-weight: bold;">Sản phẩm 1:</label>
-                                    <select id="Product1" name="Product1" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
-                                        <option value="">Chọn sản phẩm</option>
+                                    <% for(int i = 0; i <= listRecipe.size() - 1; i++){
+                                    %>
+                                        
+                                    <label for="Product1" style="font-size: 18px; font-weight: bold;">Sản phẩm <%= i + 1 %>:</label>
+                                    <select id="Product<%= i+1 %>" name="Product<%= i+1 %>" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
+                                        
 
-                                        <option value=""> lấy sp từ databaseb</option>
+                                        <% 
+                                    List<OptionalshopproductitemDTO> listOptional = (List<OptionalshopproductitemDTO>) request.getAttribute("LIST_OPTIONAL");
+                                    if (listOptional != null && !listOptional.isEmpty()) {
+                                        
+            
+                                        for (OptionalshopproductitemDTO listOP : listOptional) {
+                                        if(listOP.getName().equals(listRecipe.get(i).getNameProductOptional())){
+                                        %>
 
-                                    </select>
-                                    <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng sản phẩm 1:  </label> <input type="text" id="productName" name="inventory" placeholder="Nhập số lượng sản phẩm" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                        <option value="<%=listOP.getTitle()%>: <%=listOP.getName()%>: <%= listOP.getOptional_shop_product_item_id()%>"><%=listOP.getTitle()%>: <%=listOP.getName()%></option>
+                                        <%
+                                            }
+                                        }
+                                        for (OptionalshopproductitemDTO listOP : listOptional) {
+                                        if(!listOP.getName().equals(listRecipe.get(i).getNameProductOptional())){
+                                        %>
 
-                                    <label for="Product2" style="font-size: 18px; font-weight: bold;">Sản phẩm 2:</label>
-                                    <select id="Product2" name="Product2" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
-                                        <option value="">Chọn sản phẩm</option>
-
-                                        <option value=""> lấy sp từ databaseb</option>
-
-                                    </select>
-                                    <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng sản phẩm 2:  </label> <input type="text" id="productName" name="inventory" placeholder="Nhập số lượng sản phẩm" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-
-                                    <label for="Product3" style="font-size: 18px; font-weight: bold;">Sản phẩm 3:</label>
-                                    <select id="Product3" name="Product2" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
-                                        <option value="">Chọn sản phẩm</option>
-
-                                        <option value=""> lấy sp từ databaseb</option>
-
-                                    </select>
-                                    <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng sản phẩm 3:  </label> <input type="text" id="productName" name="inventory" placeholder="Nhập số lượng sản phẩm" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-
-                                    <label for="Product4" style="font-size: 18px; font-weight: bold;">Sản phẩm 4:</label>
-                                    <select id="Product4" name="Product2" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
-                                        <option value="">Chọn sản phẩm</option>
-
-                                        <option value=""> lấy sp từ databaseb</option>
-
-                                    </select>
-                                    <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng sản phẩm 4:  </label> <input type="text" id="productName" name="inventory" placeholder="Nhập số lượng sản phẩm" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-
-                                    <label for="Product5" style="font-size: 18px; font-weight: bold;">Sản phẩm 5:</label>
-                                    <select id="Product5" name="Product1" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
-                                        <option value="">Chọn sản phẩm</option>
-
-                                        <option value=""> lấy sp từ databaseb</option>
+                                        <option value="<%=listOP.getTitle()%>: <%=listOP.getName()%>: <%= listOP.getOptional_shop_product_item_id()%>"><%=listOP.getTitle()%>: <%=listOP.getName()%></option>
+                                        <%
+                                            }
+                                        }
+                                        %>
+                                        <%
+                                        }
+                                        %>
 
                                     </select>
-                                    <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng sản phẩm 5:  </label> <input type="text" id="productName" name="inventory" placeholder="Nhập số lượng sản phẩm" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng sản phẩm <%= i + 1 %>:  </label> <input type="text" id="productName" name="inventory<%= i+1 %>" value="<%=listRecipe.get(i).getQuantity()%>" placeholder="Nhập số lượng sản phẩm" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                    <%}%>
+
                                     <label for="inventory" style="font-size: 18px; font-weight: bold;" >Tổng giá khẩu phần: </label> <input type="text" id="productName" name="inventory" readonly="" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
 
                                 </div>

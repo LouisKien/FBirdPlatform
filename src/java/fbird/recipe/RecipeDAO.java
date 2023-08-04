@@ -23,7 +23,7 @@ public class RecipeDAO {
 
     private static final String ADD_RECIPE = "INSERT INTO [recipe] VALUES (?,?,?,?,?)";
     private static final String VIEW_RECIPE_SHOP = "SELECT * FROM recipe WHERE shop_id=?";
-    private static final String GET_RECIPE_SHOP = "select s.recipe_product_id, s.recipe_id,o.name, b.type_of_bird_name, r.shop_id, r.title_recipe, r.description, r.total_price FROM recipe r JOIN recipe_product s ON r.recipe_id = s.recipe_id JOIN type_of_bird b ON r.type_of_bird_id = b.type_of_bird_id JOIN optional_shop_product_item o ON s.optional_shop_product_item_id = o.optional_shop_product_item_id WHERE r.recipe_id=?";
+    private static final String GET_RECIPE_SHOP = "select s.recipe_product_id, s.recipe_id, o.name, s.quantity, b.type_of_bird_name, r.shop_id, r.title_recipe, r.description, r.total_price FROM recipe r JOIN recipe_product s ON r.recipe_id = s.recipe_id JOIN type_of_bird b ON r.type_of_bird_id = b.type_of_bird_id JOIN optional_shop_product_item o ON s.optional_shop_product_item_id = o.optional_shop_product_item_id WHERE r.recipe_id=?";
     private static final String ADD_RECIPE_PRODUCT = "INSERT INTO [recipe_product] VALUES (?,?,?)";
     private static final String GET_ID = "SELECT TOP 1 * FROM recipe ORDER BY recipe.recipe_id DESC;";
     private static final String FIND_ID = "SELECT o.optional_shop_product_item_id  FROM shop_product_item s JOIN optional_shop_product_item o ON s.shop_product_item_id = o.shop_product_item_id WHERE s.title like ? AND o.[name] like ?";
@@ -513,9 +513,9 @@ public class RecipeDAO {
                 rs = ptm.executeQuery();
                 while (rs.next()) {
                     int recipe_product_id = rs.getInt("recipe_product_id");
-                    String optionalShopProductItemName = rs.getString("optional_shop_product_item_id");
+                    String optionalShopProductItemName = rs.getString("name");
                     int quantity = rs.getInt("quantity");
-                    String typeOfBirdName = rs.getString("type_of_bird_id");
+                    String typeOfBirdName = rs.getString("type_of_bird_name");
                     int shop_id = rs.getInt("shop_id");
                     String title = rs.getString("title_recipe");
                     String description = rs.getString("description");

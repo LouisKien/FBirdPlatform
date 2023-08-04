@@ -247,11 +247,11 @@
                                 </div>
 
 
-                                            
+                                            <div name="mess" style="color: red;margin-top: 5%; font-weight: bold;"></div>
                             </div>
 
 
-                            <button type="submit" name="action" value="Create Recipe" class="btn btn-primary" style="margin-top: 30px; border-radius: 20px;">Thêm khẩu phần</button>
+                                        <div id="btnsm"> <button type="submit" name="action" value="Create Recipe" class="btn btn-primary" style="margin-top: 30px; border-radius: 20px;">Thêm khẩu phần</button> </div>
                             <!--<input type="button" name="action" value="Create" style="margin-top: 30px; border-radius: 20px;/>-->
                             ${requestScope.SUCCESS_MESSAGE}
                         </form>
@@ -340,11 +340,23 @@ if (!isNaN(price4) && !isNaN(quantity4) && !isNaN(price3) && !isNaN(quantity3) &
 if (!isNaN(price5) && !isNaN(quantity5) && !isNaN(price4) && !isNaN(quantity4) && !isNaN(price3) && !isNaN(quantity3) && !isNaN(price2) && !isNaN(quantity2) && !isNaN(price1) && !isNaN(quantity1)) {
     totalprice += price5 * quantity5 + (price4 * quantity4) + (price3 * quantity3) + (price2 * quantity2) + (price1 * quantity1);
 }
+if(quantity1 <0 || quantity2 <0 || quantity3 <0 || quantity4 <0 || quantity5 <0){
+    var mess = document.querySelector('div[name="mess"]');
+    mess.innerHTML = "Số lượng không được nhỏ hơn 0";
+    var a = `<a href="error.jsp" value="Create Recipe" class="btn btn-primary" style="margin-top: 30px; border-radius: 20px;">Thêm khẩu phần</a>`;
+    var btndisplay = document.getElementById('btnsm');
+    btndisplay.innerHTML= a;
+}else{
 var totalpricedisplay = document.getElementById('aaa');
 var a = `<label for="inventory" style="font-size: 18px; font-weight: bold;" >Tổng giá khẩu phần: </label> <input  id="totalPrice" name="totalPrice" value="`+ totalprice +`" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>`;
 console.log(totalprice);
 totalpricedisplay.innerHTML = a;
-    
+var btndisplay = document.getElementById('btnsm');
+    var b = `<button type="submit" name="action" value="Create Recipe" class="btn btn-primary" style="margin-top: 30px; border-radius: 20px;">Thêm khẩu phần</button>`;
+    btndisplay.innerHTML = b;
+    var mess = document.querySelector('div[name="mess"]');
+    mess.innerHTML = "";
+}  
     }
     
 

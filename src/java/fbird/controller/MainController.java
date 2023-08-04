@@ -113,6 +113,10 @@ public class MainController extends HttpServlet {
     private static final String VIEW_CUSTOMER_ORDER_DETAIL_CONTROLLER = "ViewCustomerOrderDetailController";
     private static final String VIEW_SHOP_ORDER_DETAIL = "ViewShopOrderDetail";
     private static final String VIEW_SHOP_ORDER_DETAIL_CONTROLLER = "ViewShopOrderDetailController";
+    private static final String DELETE_PRODUCT = "DeleteProduct";
+    private static final String DELETE_PRODUCT_CONTROLLER = "DeleteProductController";
+    private static final String DELETE_RECIPE = "DeleteProduct";
+    private static final String DELETE_RECIPE_CONTROLLER = "DeleteRecipeController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -232,6 +236,12 @@ public class MainController extends HttpServlet {
 
             }else if (VIEW_SHOP_ORDER_DETAIL.equals(action)) {
                 url = VIEW_SHOP_ORDER_DETAIL_CONTROLLER;
+
+            }else if (DELETE_PRODUCT.equals(action)) {
+                url = DELETE_PRODUCT_CONTROLLER;
+
+            }else if (DELETE_RECIPE.equals(action)) {
+                url = DELETE_RECIPE_CONTROLLER;
 
             }
             else {

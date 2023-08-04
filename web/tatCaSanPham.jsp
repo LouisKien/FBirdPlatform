@@ -169,7 +169,7 @@
                                         </td>
                                         <td style="text-align: center">
                                             <a href="MainController?action=ViewProductDetailInShopDashboard&shop_product_item_id=<%= pro.getShopProductItemID() %>"><i class="fa-solid fa-pen-to-square"></i></a>
-                                            <i class="fa-solid fa-trash"></i>
+                                            <a href="MainController?action=DeleteProduct&shopProductItemID=<%= pro.getShopProductItemID() %>"><i class="fa-solid fa-trash"></i></a>
                                         <td>
                                     </tr>
                                 </form>

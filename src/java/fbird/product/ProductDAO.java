@@ -197,7 +197,10 @@ public class ProductDAO {
     private static final String SINGLE_PRODUCT_ITEM = "select title, type_of_bird_name, category_name, inventory, description, optional_shop_product_item.name, price, status, optional_shop_product_item.optional_shop_product_item_id from shop_product_item join optional_shop_product_item on optional_shop_product_item.shop_product_item_id = shop_product_item.shop_product_item_id join product_category on product_category.category_id = shop_product_item.category_id join type_of_bird on type_of_bird.type_of_bird_id = shop_product_item.type_of_bird_id join product_image on product_image.shop_product_item_id = shop_product_item.shop_product_item_id where shop_product_item.shop_product_item_id = ?";
     private static final String GET_LIST_SHOP_ORDER_ITEM = "SELECT title, optional_shop_product_item.name, sell_price, amount, fullname FROM order_item JOIN optional_shop_product_item ON order_item.optional_shop_product_item_id = optional_shop_product_item.optional_shop_product_item_id JOIN shop_product_item ON optional_shop_product_item.shop_product_item_id = shop_product_item.shop_product_item_id JOIN customer_order ON order_item.order_id = customer_order.order_id JOIN customer ON customer_order.customer_id = customer.customer_id where customer_order.shop_id = ?";
     private static final String GET_DASHBOARD = "SELECT (SELECT count(shop_product_item_id) FROM shop_product_item WHERE shop_id = ?) as total_product, (SELECT count(order_item_id) FROM order_item JOIN optional_shop_product_item ON optional_shop_product_item.optional_shop_product_item_id = order_item.optional_shop_product_item_id JOIN shop_product_item ON shop_product_item.shop_product_item_id = optional_shop_product_item.shop_product_item_id WHERE shop_id = ?) as total_order, (SELECT SUM(amount) FROM order_item JOIN optional_shop_product_item ON optional_shop_product_item.optional_shop_product_item_id = order_item.optional_shop_product_item_id JOIN shop_product_item ON shop_product_item.shop_product_item_id = optional_shop_product_item.shop_product_item_id WHERE shop_id = ?) as total_unit_sell, (SELECT SUM(sell_price * amount) FROM order_item JOIN optional_shop_product_item ON optional_shop_product_item.optional_shop_product_item_id = order_item.optional_shop_product_item_id JOIN shop_product_item ON shop_product_item.shop_product_item_id = optional_shop_product_item.shop_product_item_id WHERE shop_id = ?) as revenue";
-
+    private static final String GET_OPTIONAL_LIST = "SELECT optional_shop_product_item_id, title FROM optional_shop_product_item JOIN shop_product_item ON shop_product_item.shop_product_item_id = optional_shop_product_item.shop_product_item_id WHERE shop_product_item.shop_product_item_id = ?";
+    private static final String SET_EMPTY_INVENTORY = "UPDATE optional_shop_product_item SET inventory = 0 WHERE optional_shop_product_item_id = ?";
+    private static final String SET_STATUS_DISABLE = "UPDATE shop_product_item SET status = 0 WHERE shop_product_item_id = ?";
+    
     public int checkTypeOfBird(String typeOfBird) throws ClassNotFoundException, SQLException {
         int id = 0;
         Connection conn = null;
@@ -243,7 +246,7 @@ public class ProductDAO {
                 ptm.setInt(3, product.getTypeOfBirdID());
                 ptm.setString(4, product.getTitle());
                 ptm.setString(5, product.getDescription());
-                
+
                 ptm.setDate(6, java.sql.Date.valueOf(java.time.LocalDate.now()));
                 ptm.setByte(7, product.getStatus());
 
@@ -425,7 +428,7 @@ public class ProductDAO {
 
                     String title = rs.getString("title");
                     String description = rs.getString("description");
-                    
+
                     int shop_id = rs.getInt("shop_id");
                     Date uploadDate = rs.getDate("upload_date");
                     Byte status = rs.getByte("status");
@@ -995,13 +998,8 @@ public class ProductDAO {
             return list;
         }
     }
-    
 
-    
-
-    
-
-    public boolean delete(int productShopItemID) throws SQLException{
+    public boolean delete(int productShopItemID) throws SQLException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -1066,5 +1064,63 @@ public class ProductDAO {
             }
         }
         return dashboard;
+    }
+
+    public List<ProductDTO> getOptionalProductList(int productShopItemID) throws SQLException {
+        List<ProductDTO> list = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            ptm = conn.prepareStatement(GET_OPTIONAL_LIST);
+            ptm.setInt(1, productShopItemID);
+            rs = ptm.executeQuery();
+            while (rs.next()) {
+                int optional_id = rs.getInt("optional_shop_product_item_id");
+                String title = rs.getString("title");
+                list.add(new ProductDTO(optional_id, title));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return list;
+    }
+
+    public void setEmptyInventory(List<ProductDTO> listOptional, int productShopItemID) throws SQLException {
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            ptm = conn.prepareStatement(SET_STATUS_DISABLE);
+            ptm.setInt(1, productShopItemID);
+            ptm.executeUpdate();
+            ptm = conn.prepareStatement(SET_EMPTY_INVENTORY);
+            for (ProductDTO x : listOptional) {
+                ptm.setInt(1, x.getOptional_shop_product_item_id());
+                ptm.executeUpdate();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
     }
 }

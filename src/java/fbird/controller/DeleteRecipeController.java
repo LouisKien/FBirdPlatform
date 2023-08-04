@@ -4,39 +4,42 @@
  */
 package fbird.controller;
 
-import fbird.product.ProductDAO;
-import fbird.product.ProductDTO;
-import fbird.user.UserDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 /**
  *
- * @author tuan3
+ * @author COMPUTER
  */
-public class DeleteProductController extends HttpServlet {
+public class DeleteRecipeController extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
-        UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-        String url = "MainController?action=ViewProduct&shop_id=" + loginUser.getShop_id();
-        try {
-            int productShopItemID = Integer.parseInt(request.getParameter("shopProductItemID"));
-            ProductDAO dao = new ProductDAO();
-            List<ProductDTO> listOptional = dao.getOptionalProductList(productShopItemID);
-            dao.setEmptyInventory(listOptional, productShopItemID);
-        } catch (Exception e) {
-            log("Error at DeleteProductController:" + e.toString());
-        } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet DeleteRecipeController</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet DeleteRecipeController at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 

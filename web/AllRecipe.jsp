@@ -136,7 +136,7 @@
                                         <td><%=listRC.getTitle_recipe()%></td>
                                         <td style="text-align: center">
                                             <a href="MainController?action=ViewUpdateRecipe&recipe_id=<%= listRC.getRecipe_id()%>&shop_id=${requestScope.shop_id}"><i class="fa-solid fa-pen-to-square"></i></a>
-                                            <i class="fa-solid fa-trash"></i>
+                                            <a href="#"><i class="fa-solid fa-trash"></a></i>
                                         <td>
                                     </tr>
                                     <%}}

@@ -114,6 +114,11 @@ public class ProductDTO {
 
     }
 
+    public ProductDTO(int optional_shop_product_item_id, String title){
+        this.optional_shop_product_item_id = optional_shop_product_item_id;
+        this.title = title;
+    }
+    
     public ProductDTO(int shopProductItemID, int shopID, String title, String image_1, Double price) {
         this.shopProductItemID = shopProductItemID;
         this.shopID = shopID;

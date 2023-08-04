@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<%@page import="fbird.user.UserDTO"%>
+<%@page import="fbird.order.OrderDTO"%>
+<%@page import="java.util.List"%>
 <html lang="vi">
     <%@page contentType="text/html" pageEncoding="UTF-8"%>
     <head>
@@ -25,7 +28,7 @@
                 <!--------------------------------------------------------------------------------------------------------------------------------------------------------->
 
                 <div class="list-group list-group-flush my-3">
-                    <a href="accountShop.jsp" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                    <a href="MainController?action=ViewShopDashboard" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                             class="fas fa-tachometer-alt me-2"></i>Thống kê</a>
                     <!--------------------------------------------------------------------------------------------------------------------------------------------------------->
 
@@ -43,8 +46,8 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="profileDropdown">
 
-                        <li><a class="dropdown-item" style="width: 239px;" href="tatCaDonHang.jsp">Tất cả đơn</a></li>
-                        <li><a class="dropdown-item" style="width: 239px;" href="donHuy.jsp">Đơn hủy</a></li>
+                        <li><a class="dropdown-item" style="width: 239px;" href="MainController?action=ViewShopOrder&shop_id=${sessionScope.LOGIN_USER.getShop_id()}&status=Đã%20thanh%20toán">Tất cả đơn</a></li>
+                        <li><a class="dropdown-item" style="width: 239px;" href="MainController?action=ViewShopOrder&shop_id=${sessionScope.LOGIN_USER.getShop_id()}&status=Đã%20hủy">Đơn hủy</a></li>
                     </ul>
                     <!--------------------------------------------------------------------------------------------------------------------------------------------------------->
                     <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold dropdown-toggle" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -107,21 +110,25 @@
                 <div class="container-fluid px-4">
 
                     <div class="row my-5">
-
                         <div class="col">
+                            <%
+                                OrderDTO orderProduct = (OrderDTO) request.getAttribute("LIST_SHOP_ORDER_PRODUCT");
+                                if(orderProduct != null){
+                            %>
                             <div class="container" style="display: grid; grid-template-rows: repeat(4,0fr); gap:10px;">
-                                <label  style="font-size: 18px; font-weight: bold;" >Khách hàng:  </label> <input type="text" id="customer" name="customer" readonly="" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-                                <label  style="font-size: 18px; font-weight: bold;" >Địa chỉ:  </label> <input type="text" id="customer" name="customer" readonly="" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-                                <label  style="font-size: 18px; font-weight: bold;" >Sản phẩm:  </label> <input type="text" id="productName" name="productName" readonly="" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-                                <label  style="font-size: 18px; font-weight: bold;" >Tùy chọn sản phẩm:  </label> <input type="text" id="option" name="option" readonly="" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-                                <label  style="font-size: 18px; font-weight: bold;" >Số lượng:  </label> <input type="text" id="quantity" name="quantity" readonly="" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-                                <label  style="font-size: 18px; font-weight: bold;" >Giá bán:  </label> <input type="text" id="price" name="price" readonly="" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-                                <label  style="font-size: 18px; font-weight: bold;" >Ngày mua:   </label> <input type="text" id="date" name="date" readonly="" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-                                <label  style="font-size: 18px; font-weight: bold;" >Vận chuyển:  </label> <input type="text" id="delivery" name="delivery" readonly="" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-                                <label  style="font-size: 18px; font-weight: bold;" >Giá vận chuyển:  </label> <input type="text" id="price-delivery" name="price-delivery" readonly="" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                <label  style="font-size: 18px; font-weight: bold;" >Khách hàng:  </label> <input type="text" id="customer" name="customer" value="<%= orderProduct.getFullname()%>" readonly="" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                <label  style="font-size: 18px; font-weight: bold;" >Địa chỉ:  </label> <input type="text" id="customer" name="customer" value="<%= orderProduct.getOrder_address()%>" readonly="" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                <label  style="font-size: 18px; font-weight: bold;" >Số điện thoại:  </label> <input type="text" id="customer" name="customer" value="<%= orderProduct.getOrder_address()%>" readonly="" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                <label  style="font-size: 18px; font-weight: bold;" >Sản phẩm:  </label> <input type="text" id="productName" name="productName" value="<%= orderProduct.getTitle()%>" readonly="" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                <label  style="font-size: 18px; font-weight: bold;" >Tùy chọn sản phẩm:  </label> <input type="text" id="option" name="option" value="<%= orderProduct.getName()%>" readonly="" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                <label  style="font-size: 18px; font-weight: bold;" >Số lượng:  </label> <input type="text" id="quantity" name="quantity" readonly="" value="<%= orderProduct.getAmount()%>" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                <label  style="font-size: 18px; font-weight: bold;" >Giá bán:  </label> <input type="text" id="price" name="price" readonly="" value="<%= orderProduct.getSell_price() * orderProduct.getAmount()%>" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                <label  style="font-size: 18px; font-weight: bold;" >Ngày mua:   </label> <input type="text" id="date" name="date" readonly="" value="<%= orderProduct.getOrder_date()%>" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                <label  style="font-size: 18px; font-weight: bold;" >Vận chuyển:  </label> <input type="text" id="delivery" name="delivery" readonly="" value="<%= orderProduct.getDmname()%>" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
+                                <label  style="font-size: 18px; font-weight: bold;" >Giá vận chuyển:  </label> <input type="text" id="price-delivery" name="price-delivery" value="<%= orderProduct.getShipping_fee()%>" readonly="" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
 
                             </div>
-
+                            <%}%>
                         </div>
                     </div>
 

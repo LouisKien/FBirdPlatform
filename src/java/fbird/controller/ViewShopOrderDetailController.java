@@ -12,13 +12,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 /**
  *
- * @author Admin
+ * @author Louis Kien
  */
-public class ViewShopOrderController extends HttpServlet {
+public class ViewShopOrderDetailController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,28 +31,17 @@ public class ViewShopOrderController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = "tatCaDonHang.jsp";
+        String url = "xemChiTietDatHangCuaShop.jsp";
         try {
-            String status = request.getParameter("status");
-            String index = request.getParameter("index");
-            if (index == null) {
-                index = "1";
-            }
-            int indexPage = Integer.parseInt(index);
-
-            int shop_id = Integer.parseInt(request.getParameter("shop_id"));
-
+            int order_id = Integer.parseInt(request.getParameter("order_id"));
+            int optional_shop_product_item_id = Integer.parseInt(request.getParameter("optional"));
             OrderDAO dao = new OrderDAO();
-            List<OrderDTO> listOrder = dao.getAllShopOrder(shop_id, status, indexPage);
-            int pageNumber = dao.getShopOrderPageNumber(shop_id);
-
-            if (!listOrder.isEmpty()) {
-                request.setAttribute("LIST_ORDER", listOrder);
-                request.setAttribute("PAGE_NUMBER", pageNumber);
-                request.setAttribute("INDEX_PAGE", indexPage);
+            OrderDTO listOrderProduct = dao.getShopOrderProduct(order_id, optional_shop_product_item_id);
+            if (listOrderProduct != null) {
+                request.setAttribute("LIST_SHOP_ORDER_PRODUCT", listOrderProduct);
             }
-        } catch (Exception ex) {
-            log("Error at Search: " + ex.toString());
+        } catch (Exception e) {
+            log("Error at ViewShopOrderDetailController: " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

@@ -22,7 +22,7 @@ public class OrderDTO {
     private double price;
     
     private int order_id, optional_product_item_id;
-    private double sell_price;
+    private double sell_price, shipping_fee;
     private int amount;
     private int customer_id, delivery_method_id;
     private String order_address;
@@ -33,12 +33,25 @@ public class OrderDTO {
     private String order_phone;
     private int shop_id;
     private String fullname;
-    private String image_1, shop_name;
+    private String image_1, shop_name, dmname;
     
     
     public OrderDTO() {
     }
 
+    public OrderDTO(String order_address, String order_phone, Date order_date, String title, String name, Double sell_price, int amount, String dmname, String fullname, double shipping_fee) {
+        this.order_address = order_address;
+        this.order_phone = order_phone;
+        this.order_date = order_date;
+        this.title = title;
+        this.name = name;
+        this.sell_price = sell_price;
+        this.amount = amount;
+        this.fullname = fullname;
+        this.dmname = dmname;
+        this.shipping_fee = shipping_fee;
+    }
+    
     public OrderDTO(String order_address, String order_phone, Date order_date, Double total_price_order, String image_1, String shop_name, String title, String name, Double sell_price, int amount) {
         this.order_address = order_address;
         this.order_phone = order_phone;
@@ -115,7 +128,9 @@ public class OrderDTO {
         this.total_price_order = total_price_order;
     }
 
-    public OrderDTO(String title, String name, double sell_price, Date order_date, String status, String fullname) {
+    public OrderDTO(int optional_product_item_id, int order_id, String title, String name, double sell_price, Date order_date, String status, String fullname) {
+        this.optional_product_item_id = optional_product_item_id;
+        this.order_id = order_id;
         this.title = title;
         this.name = name;
         this.sell_price = sell_price;
@@ -331,6 +346,22 @@ public class OrderDTO {
 
     public void setShop_name(String shop_name) {
         this.shop_name = shop_name;
+    }
+
+    public double getShipping_fee() {
+        return shipping_fee;
+    }
+
+    public void setShipping_fee(double shipping_fee) {
+        this.shipping_fee = shipping_fee;
+    }
+
+    public String getDmname() {
+        return dmname;
+    }
+
+    public void setDmname(String dmname) {
+        this.dmname = dmname;
     }
     
     

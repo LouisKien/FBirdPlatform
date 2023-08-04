@@ -96,7 +96,6 @@ public class MainController extends HttpServlet {
     private static final String ADD_RECIPE_CONTROLLER = "AddRecipeController";
     private static final String VIEW_SHOP_ORDER = "ViewShopOrder";
     private static final String VIEW_SHOP_ORDER_CONTROLLER = "ViewShopOrderController";
-    
 
     private static final String FOOD_PAGE = "foodpage";
     private static final String VIEW_FOOD_PAGE_CONTROLLER = "ViewFoodPageController";
@@ -112,6 +111,8 @@ public class MainController extends HttpServlet {
     private static final String VIEW_SHOP_DASHBOARD_CONTROLLER = "ViewShopDashboardController";
     private static final String VIEW_CUSTOMER_ORDER_DETAIL = "ViewCustomerOrderDetail";
     private static final String VIEW_CUSTOMER_ORDER_DETAIL_CONTROLLER = "ViewCustomerOrderDetailController";
+    private static final String VIEW_SHOP_ORDER_DETAIL = "ViewShopOrderDetail";
+    private static final String VIEW_SHOP_ORDER_DETAIL_CONTROLLER = "ViewShopOrderDetailController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -145,8 +146,7 @@ public class MainController extends HttpServlet {
             } else if (DELETE_REPORTED_SHOP.equals(action)) {
                 url = DELETE_REPORTED_SHOP_CONTROLLER;
 
-            }
-            else if (HOMEPAGE.equals(action)) {
+            } else if (HOMEPAGE.equals(action)) {
                 url = VIEW_HOMEPAGE;
             } else if (VIEW_PRODUCT_DETAIL.equals(action)) {
                 url = VIEW_PRODUCT_DETAIL_CONTROLLER;
@@ -189,51 +189,51 @@ public class MainController extends HttpServlet {
             } else if (VIEW_ODER_ADDRESS.equals(action)) {
                 url = VIEW_ODER_ADDRESS_CONTROLLER;
 
-            }else if (REPORT_PRODUCT.equals(action)) {
+            } else if (REPORT_PRODUCT.equals(action)) {
                 url = REPORT_PRODUCT_CONTROLLER;
 
             } else if (ADD_RECIPE_TO_CART.equals(action)) {
                 url = ADD_RECIPE_TO_CART_CONTROLLER;
 
-            }else if (VIEW_PRODUCT_DETAIL_IN_SHOP_DASHBOARD.equals(action)) {
+            } else if (VIEW_PRODUCT_DETAIL_IN_SHOP_DASHBOARD.equals(action)) {
                 url = VIEW_PRODUCT_DETAIL_IN_SHOP_DASHBOARD_CONTROLLER;
 
-            }else if (VIEW_CUSTOMER_ORDER.equals(action)) {
+            } else if (VIEW_CUSTOMER_ORDER.equals(action)) {
                 url = VIEW_CUSTOMER_ORDER_CONTROLLER;
 
-
-            }else if (UPDATE_PRODUCT.equals(action)) {
+            } else if (UPDATE_PRODUCT.equals(action)) {
                 url = UPDATE_PRODUCT_CONTROLLER;
-            }else if (VIEW_SHOP_DASHBOARD.equals(action)) {
+            } else if (VIEW_SHOP_DASHBOARD.equals(action)) {
                 url = VIEW_SHOP_DASHBOARD_CONTROLLER;
 
-            }else if (VIEW_SHOP_DASHBOARD.equals(action)) {
+            } else if (VIEW_SHOP_DASHBOARD.equals(action)) {
                 url = VIEW_SHOP_DASHBOARD_CONTROLLER;
 
-            }else if (VIEW_RECIPE_ON_SHOP.equals(action)) {
+            } else if (VIEW_RECIPE_ON_SHOP.equals(action)) {
                 url = VIEW_RECIPE_ON_SHOP_CONTROLLER;
 
-            }else if (ADD_RECIPE.equals(action)) {
+            } else if (ADD_RECIPE.equals(action)) {
                 url = ADD_RECIPE_CONTROLLER;
 
-            }else if (CREATE_RECIPE.equals(action)) {
+            } else if (CREATE_RECIPE.equals(action)) {
                 url = CREATE_RECIPE_CONTROLLER;
 
-            }else if (VIEW_CUSTOMER_ORDER_DETAIL.equals(action)) {
+            } else if (VIEW_CUSTOMER_ORDER_DETAIL.equals(action)) {
                 url = VIEW_CUSTOMER_ORDER_DETAIL_CONTROLLER;
 
-            }else if (VIEW_SHOP_ORDER.equals(action)) {
+            } else if (VIEW_SHOP_ORDER.equals(action)) {
                 url = VIEW_SHOP_ORDER_CONTROLLER;
 
-            }else if (VIEW_RECIPE_SHOP.equals(action)) {
+            } else if (VIEW_RECIPE_SHOP.equals(action)) {
                 url = VIEW_RECIPE_SHOP_CONTROLLER;
 
-            }else if (VIEW_UPDATE_RECIPE.equals(action)) {
+            } else if (VIEW_UPDATE_RECIPE.equals(action)) {
                 url = VIEW_UPDATE_RECIPE_CONTROLLER;
 
+            }else if (VIEW_SHOP_ORDER_DETAIL.equals(action)) {
+                url = VIEW_SHOP_ORDER_DETAIL_CONTROLLER;
+
             }
-            
-            
             else {
                 request.setAttribute("ERROR", "Your ACTION is not support");
             }

@@ -12,6 +12,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -45,6 +47,7 @@ public class ViewShopOrderController extends HttpServlet {
 
             OrderDAO dao = new OrderDAO();
             List<OrderDTO> listOrder = dao.getAllShopOrder(shop_id, status, indexPage);
+            Collections.sort(listOrder, Comparator.comparing(OrderDTO::getOrder_id).reversed());
             int pageNumber = dao.getShopOrderPageNumber(shop_id);
 
             if (!listOrder.isEmpty()) {

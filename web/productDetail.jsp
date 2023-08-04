@@ -422,10 +422,7 @@ if(loginUser != null && loginUser.getRole() == 3) {
                                 Allelement.push(Element);
                                 sessionStorage.setItem("Element", JSON.stringify(Allelement));
                                 sessionStorage.setItem("allPrices", JSON.stringify(price));
-//                                submitForm3("ViewOderAddress", customer_id);
-//                                 const xhr = new XMLHttpRequest();
-//                                                xhr.open("POST", "MainController?action=ViewOderAddress&customer_id="+customer_id, true);
-//                                                 xhr.setRequestHeader("Content-Type", "application/json");
+//                              
                             window.location.href = "MainController?action=ViewOderAddress&customer_id="+customer_id;
                             }
                             }

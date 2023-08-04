@@ -23,6 +23,7 @@ public class RecipeDAO {
 
     private static final String ADD_RECIPE = "INSERT INTO [recipe] VALUES (?,?,?,?,?)";
     private static final String VIEW_RECIPE_SHOP = "SELECT * FROM recipe WHERE shop_id=?";
+    private static final String GET_RECIPE_SHOP = "select s.recipe_product_id, s.recipe_id,o.name, b.type_of_bird_name, r.shop_id, r.title_recipe, r.description, r.total_price FROM recipe r JOIN recipe_product s ON r.recipe_id = s.recipe_id JOIN type_of_bird b ON r.type_of_bird_id = b.type_of_bird_id JOIN optional_shop_product_item o ON s.optional_shop_product_item_id = o.optional_shop_product_item_id WHERE r.recipe_id=?";
     private static final String ADD_RECIPE_PRODUCT = "INSERT INTO [recipe_product] VALUES (?,?,?)";
     private static final String GET_ID = "SELECT TOP 1 * FROM recipe ORDER BY recipe.recipe_id DESC;";
     private static final String FIND_ID = "SELECT o.optional_shop_product_item_id  FROM shop_product_item s JOIN optional_shop_product_item o ON s.shop_product_item_id = o.shop_product_item_id WHERE s.title like ? AND o.[name] like ?";
@@ -497,6 +498,45 @@ public class RecipeDAO {
             }
         }
         return list;
+    }
+
+    public List<RecipeDTO> getRecipeShop(int recipeID) throws SQLException {
+        List<RecipeDTO> recipe = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(GET_RECIPE_SHOP);
+                ptm.setInt(1, recipeID);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    int recipe_product_id = rs.getInt("recipe_product_id");
+                    int optionalShopProductItemID = rs.getInt("optional_shop_product_item_id");
+                    int quantity = rs.getInt("quantity");
+                    int typeOfBirdName = rs.getInt("type_of_bird_id");
+                    int shop_id = rs.getInt("shop_id");
+                    String title = rs.getString("title_recipe");
+                    String description = rs.getString("description");
+                    double price = rs.getDouble("total_price");
+                    recipe.add(new RecipeDTO(recipeID, shop_id, title, price, recipe_product_id, typeOfBirdID, optionalShopProductItemID, quantity, description));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return recipe;
     }
 
 }

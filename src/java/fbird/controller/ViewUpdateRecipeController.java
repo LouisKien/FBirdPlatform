@@ -13,6 +13,7 @@ import java.io.PrintWriter;
 import fbird.optionalshopproductitem.OptionalshopproductitemDAO;
 import fbird.optionalshopproductitem.OptionalshopproductitemDTO;
 import fbird.recipe.RecipeDAO;
+import fbird.recipe.RecipeDTO;
 import java.util.List;
 import fbird.typeofbird.TypeOfBirdDAO;
 import fbird.typeofbird.TypeOfBirdDTO;
@@ -26,7 +27,7 @@ import fbird.typeofbird.TypeOfBirdDTO;
 public class ViewUpdateRecipeController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "recipeDetailShop.jsp";
+    private static final String SUCCESS = "updateRecipe.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -45,6 +46,7 @@ public class ViewUpdateRecipeController extends HttpServlet {
                 url = SUCCESS;
                 request.setAttribute("LIST_OPTIONAL", list);
                 request.setAttribute("LIST_TYPE", listType);
+                request.setAttribute("LIST_RECIPE", listRecipe);
                 
             }
         }catch(Exception e){

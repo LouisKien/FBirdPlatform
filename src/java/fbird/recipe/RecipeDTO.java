@@ -155,6 +155,19 @@ public class RecipeDTO {
         this.title_recipe = title_recipe;
         this.total_price = total_price;
     }
+
+    public RecipeDTO(int recipe_id, int shop_id, String title_recipe, Double total_price, int recipeProductID, int typeOfBirdID, int optionalShopProductItemID, int quantity, String description) {
+        this.recipe_id = recipe_id;
+        this.shop_id = shop_id;
+        this.title_recipe = title_recipe;
+        this.total_price = total_price;
+        this.recipeProductID = recipeProductID;
+        this.typeOfBirdID = typeOfBirdID;
+        this.optionalShopProductItemID = optionalShopProductItemID;
+        this.quantity = quantity;
+        this.description = description;
+    }
+    
     
     
 
@@ -382,6 +395,6 @@ public class RecipeDTO {
         this.typeOfBirdID = typeOfBirdID;
     }
 
-    
+
 
 }

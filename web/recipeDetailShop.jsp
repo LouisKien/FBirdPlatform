@@ -2,6 +2,7 @@
 <%@page import="fbird.typeofbird.TypeOfBirdDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="fbird.optionalshopproductitem.OptionalshopproductitemDTO"%>
+<%@page import="fbird.recipe.RecipeDTO"%>
 <!DOCTYPE html>
 <html lang="vi">
     <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -18,6 +19,9 @@
     </head>
 
     <body>
+        <%
+        List<RecipeDTO> listRecipe = (List<RecipeDTO>) request.getAttribute("LIST_RECIPE");
+        %>
         <div class="d-flex" id="wrapper">
             <script src="scss/tinymce/tinymce.min.js"></script>
             <!-- Sidebar -->
@@ -137,10 +141,23 @@
                                         
             
                                                                                 for (TypeOfBirdDTO listTP : listType) {
+                                                                                if(listRecipe.get(0).getTypeOfBirdID() == listTP.getType_of_bird_id()){
                                         
                                         %>
                                         <option value="<%= listTP.getType_of_bird_id()%>"><%=listTP.getType_of_bird_name()%></option>
-                                        <%}}
+                                        <%
+                                            }
+                                            }
+                                            for (TypeOfBirdDTO listTP : listType) {
+                                                                                if(listRecipe.get(0).getTypeOfBirdID() != listTP.getType_of_bird_id()){
+                                        
+                                        %>
+                                        <option value="<%= listTP.getType_of_bird_id()%>"><%=listTP.getType_of_bird_name()%></option>
+                                        <%}
+                                            }
+                                        %>
+                                        <%
+                                            }
                                         %>
                                     </select>
 
@@ -243,7 +260,7 @@
                                     </select>
                                     <label for="inventory" style="font-size: 18px; font-weight: bold;" >Số lượng sản phẩm 5:  </label> <input type="text" id="productName" name="inventory5" placeholder="Nhập số lượng sản phẩm" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
                                     <label for="inventory" style="font-size: 18px; font-weight: bold;" >Tổng giá khẩu phần: </label> <input type="text" id="productName" name="totalPrice" readonly="" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
-                                    
+
                                 </div>
 
 

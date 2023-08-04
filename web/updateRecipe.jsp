@@ -1,6 +1,7 @@
 <%@page import="fbird.category.CategoryDTO"%>
 <%@page import="fbird.typeofbird.TypeOfBirdDTO"%>
 <%@page import="java.util.List"%>
+<%@page import="fbird.recipe.RecipeDTO"%>
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -113,6 +114,9 @@
                 </nav>
 
                 <div class="container-fluid px-4">
+                    <%
+        List<RecipeDTO> listRecipe = (List<RecipeDTO>) request.getAttribute("LIST_RECIPE");
+                    %>
 
                     <div class="row my-5">
                         <!--                        <h3 class="fs-4 mb-3">Ngày đặt hàng</h3>-->
@@ -128,11 +132,34 @@
                                     <label for="typeOfBird" style="font-size: 18px; font-weight: bold;">Dành cho chim: </label> 
                                     <select id="typeOfBird" name="typeOfBird" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;">
                                         <option value="">Chọn loại chim</option>
+                                        <%
+                                        List<TypeOfBirdDTO> listType = (List<TypeOfBirdDTO>) request.getAttribute("LIST_TYPE");
+                                                if (listType != null && !listType.isEmpty()) {
 
-                                        <option value=""></option>
+
+                                                for (TypeOfBirdDTO listTP : listType) {
+                                                
+
+                                        %>
+                                        <option value="<%= listTP.getType_of_bird_id()%>"><%=listTP.getType_of_bird_name()%></option>
+                                        <%
+                                            
+                                            }
+                                            for (TypeOfBirdDTO listTP : listType) {
+                                            if(listTP.getType_of_bird_id()==listRecipe.get(0).getTypeOfBirdID()){                                   
+                                        
+                                        %>
+                                        <option value="<%= listTP.getType_of_bird_id()%>"><%=listTP.getType_of_bird_name()%></option>
+                                        <%
+                                            }
+                                            }
+                                        %>
+                                        <%
+                                            }
+                                        %>
 
                                     </select>
-                               
+
                                     <label for="description" style="font-size: 18px; font-weight: bold;">Mô tả sản phẩm:</label> <input type="text" id="description" name="description" placeholder="Nhập mô tả" style="border-radius: 10px; margin-bottom: 1%; width: 70%; height: 50px; font-size: 20px; margin-left: 5%;"></br>
                                     <span style="font-size: 18px; font-weight: bold;">---------------------------------------------------Chọn sản phẩm--------------------------------------------------------</span>
                                     <label for="Product1" style="font-size: 18px; font-weight: bold;">Sản phẩm 1:</label>

@@ -380,6 +380,12 @@ if(loginUser != null && loginUser.getRole() == 3) {
                                 return Number.parseInt(price);
                             }
                             function buynow() {
+                                var mess = document.querySelector('div[name="mess"]');
+                                var inventory = document.getElementById('inventory');
+                                console.log(inventory.innerText);
+                                if(inventory.innerText==="Hết Hàng"){
+                                mess.innerHTML = "Sản phẩm đã hết hàng";
+                                }else{
                                 sessionStorage.clear();
                                 var titleproduct = document.getElementById('titleproduct').innerText;
 
@@ -392,6 +398,8 @@ if(loginUser != null && loginUser.getRole() == 3) {
 
                                     }
                                 }
+                                var customer_id = document.getElementsByName('customer_id')[0].value;
+                                console.log(customer_id);
                                 var shop_name0 = document.getElementById('shopname');
                                 var shop_id0 = document.getElementById('shopId');
                                 var quantity = document.getElementsByName('productQuantity')[0].value;
@@ -414,13 +422,12 @@ if(loginUser != null && loginUser.getRole() == 3) {
                                 Allelement.push(Element);
                                 sessionStorage.setItem("Element", JSON.stringify(Allelement));
                                 sessionStorage.setItem("allPrices", JSON.stringify(price));
-//                                sessionStorage.clear();
-//                                sessionStorage.setItem("title", JSON.stringify(titleproduct));
-//                                sessionStorage.setItem("name", JSON.stringify(optionname));
-//                                sessionStorage.setItem("img", JSON.stringify(imgbuynow));
-//                                sessionStorage.setItem("quantity", JSON.stringify(quantity));
-//                                sessionStorage.setItem("price", JSON.stringify(price));
-
+//                                submitForm3("ViewOderAddress", customer_id);
+//                                 const xhr = new XMLHttpRequest();
+//                                                xhr.open("POST", "MainController?action=ViewOderAddress&customer_id="+customer_id, true);
+//                                                 xhr.setRequestHeader("Content-Type", "application/json");
+                            window.location.href = "MainController?action=ViewOderAddress&customer_id="+customer_id;
+                            }
                             }
                         </script>
 
@@ -430,9 +437,9 @@ if(loginUser != null && loginUser.getRole() == 3) {
                                 <%if(loginUser != null) {
                                 if(loginUser.getRole() == 3){
                                 %>
-
+                                <div style="display: none" id="customerId" value="<%= loginUser.getCustomer_id() %>"></div>
                                     <button class="btn btn-primary cart-btn" onclick="addtocartv2()" type="button">Thêm vào giỏ hàng</button>
-                                    <a type="button" class="btn btn-primary buy-btn"  href="MainController?action=ViewOderAddress&customer_id=<%= loginUser.getCustomer_id() %>" onclick="buynow()">Mua ngay</a>
+                                    <a type="button" class="btn btn-primary buy-btn"   onclick="buynow()">Mua ngay</a>
 
                                
                                     <%} else {%>
@@ -467,6 +474,19 @@ if(loginUser != null && loginUser.getRole() == 3) {
                                 var form = document.getElementById("myForm1");
                                 var xhr = new XMLHttpRequest();
                                 xhr.open("POST", "MainController?action=" + encodeURIComponent(action) + "&shop_product_item_id=" + encodeURIComponent(shop_product_item_id) + "&customer_id=" + encodeURIComponent(customer_id) + "&value=" + encodeURIComponent(value), true);
+                                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                                xhr.onreadystatechange = function () {
+                                    if (xhr.readyState === 4 && xhr.status === 200) {
+                                        // Xử lý kết quả tại đây (nếu cần)
+                                        console.log(xhr.responseText);
+                                    }
+                                };
+                                xhr.send(new FormData(form));
+                            }
+                            function submitForm3(action,  customer_id) {
+                                var form = document.getElementById("myForm");
+                                var xhr = new XMLHttpRequest();
+                                xhr.open("POST", "MainController?action=" + encodeURIComponent(action) + "&customer_id=" + encodeURIComponent(customer_id), true);
                                 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                                 xhr.onreadystatechange = function () {
                                     if (xhr.readyState === 4 && xhr.status === 200) {

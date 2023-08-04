@@ -20,7 +20,7 @@ public class OrderDTO {
     private String title, name, img;
     private int quantity;
     private double price;
-
+    
     private int order_id, optional_product_item_id;
     private double sell_price;
     private int amount;

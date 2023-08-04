@@ -36,13 +36,14 @@ public class CreateRecipeController extends HttpServlet {
             RecipeDAO recipeDao = new RecipeDAO();
             String recipeName = request.getParameter("recipeName");
             String typeOfBird = request.getParameter("typeOfBird");
+          
             if (typeOfBird.equals("") || typeOfBird == null) {
                 request.setAttribute("ErrorTypeOfBird", "You need to choose the value of Type Of Bird!!!");
             } else {
                 int typeOfBirdID = Integer.parseInt(typeOfBird);
                 String description = request.getParameter("description");
-//                double totalPrice = Double.parseDouble(request.getParameter("totalPrice"));
-                   double totalPrice = 1;
+                double totalPrice = Double.parseDouble(request.getParameter("totalPrice"));
+                   
                 recipe = new RecipeDTO(shopID, recipeName, totalPrice, typeOfBirdID, description);
                 boolean check = recipeDao.addRicepe(recipe);
                 if (check) {
